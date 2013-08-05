@@ -1,0 +1,34 @@
+<!ENTITY prefwindow.title "Preferenze di QuickPasswords">
+<!ENTITY pane1.title "Preferenze di QuickPasswords">
+<!ENTITY checkCopyShowMessage.label "Dopo aver copiato la password nel 'Blocco degli appunti' viene visualizzato un messaggio">
+<!ENTITY checkCopyShowMessage.accesskey "B">
+<!ENTITY checkLoginShowMessage.label "Dopo aver selezionato l'accesso al sito (Login) viene visualizzato un messaggio">
+<!ENTITY checkLoginShowMessage.accesskey "L">
+<!ENTITY checkDebug.label "Modalità di debug">
+<!ENTITY checkDebug.accesskey "M">
+<!ENTITY intMsgDelay.label "Tempo di ritardo [ms] della casella di ricerca del Password Manager:">
+<!ENTITY intMsgDelay.tooltip "Talvolta la casella di ricerca non viene riempita automaticamente con il nome di dominio del sito web. In tal caso bisogna aumentare il valore di default del ritardo">
+<!ENTITY intMsgDelay.accesskey "T">
+<!ENTITY about.label "Informazioni">
+<!ENTITY about.accesskey "I">
+<!ENTITY checkMultirowHeader.label "Se si copiano più record, viene aggiunta una riga con le intestazioni dei campi">
+<!ENTITY checkMultirowHeader.accesskey "S">
+<!ENTITY checkUpdateFields.label "Prompt per modificare il Nome dei campi errato">
+<!ENTITY checkUpdateFields.accesskey "N">
+<!ENTITY href.label.homePage "Visita il sito web di QuickPasswords presso mozdev.org!">
+<!ENTITY checkAutoCloseManager.label "Dopo aver eseguito la copia, il Password Manager si chiude automaticamente">
+<!ENTITY checkAutoCloseManager.accesskey "P">
+<!ENTITY checkDisplayContextMenuItem.label "Visualizza QuickPasswords nel menu contestuale del browser">
+<!ENTITY checkDisplayContextMenuItem.accesskey "V">
+<!ENTITY checkAutoLoginFill.label "Quando si accede ad un sito (Login), i campi delle chiavi di accesso si riempiono automaticamente">
+<!ENTITY checkAutoLoginFill.accesskey "Q">
+<!ENTITY href.label.bugPage "Segnala un bug o suggerisci una nuova caratteristica…">
+<!ENTITY radioContextMenuAlways.label "Mostra sempre nel menu contestuale del browser gli elementi da inserire">
+<!ENTITY radioContextMenuAlways.accesskey "M">
+<!ENTITY radioContextMenuSelective.label "Mostra gli elementi da inserire solo quando si è sopra le caselle di inserimento [default]">
+<!ENTITY radioContextMenuSelective.accesskey "E">
+<!ENTITY radioContextMenuOff.label "Non visualizzare mai nel menu contestuale del browser gli elementi da inserire">
+<!ENTITY radioContextMenuOff.accesskey "N">
+<!ENTITY donateButton.tooltip "Supporta lo sviluppo di QuickPasswords">
+<!ENTITY donateButton.label "Dona">
+<!ENTITY donateButton.shortcut "D">

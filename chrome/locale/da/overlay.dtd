@@ -1,0 +1,25 @@
+<!ENTITY quickPasswords.label "QuickPasswords">
+<!ENTITY quickPasswordsContext.label "Hent en adgangskode…">
+<!ENTITY quickPasswordsContext.accesskey "H">
+<!ENTITY quickPasswordsContext.insertUser.label "Udfyld brugernavn">
+<!ENTITY quickPasswordsContext.insertUser.accesskey "U">
+<!ENTITY quickPasswordsContext.insertPassword.label "Udfyld adgangskode">
+<!ENTITY quickPasswordsContext.insertPassword.accesskey "d">
+<!ENTITY quickPasswordsContext.cancelLogin.label "Annuller QuickPasswords login">
+<!ENTITY quickPasswordsToolbarButton.label "QuickPasswords">
+<!ENTITY quickPasswordsToolbarButton.tooltip "Kopierer adgangskoder til udklipsholder!">
+<!ENTITY quickPasswordsTreeContextMenuCopy.label "Kopier adgangskode til udklipsholder">
+<!ENTITY quickPasswordsTreeContextMenuCopy.accesskey "a">
+<!ENTITY quickPasswordsTreeContextMenuCopyUser.label "Kopier brugernavn til udklipsholder">
+<!ENTITY quickPasswordsTreeContextMenuCopyUser.accesskey "b">
+<!ENTITY quickPasswordsTreeContextMenuCopyURI.label "Kopier websteds URI">
+<!ENTITY quickPasswordsTreeContextMenuCopyURI.accesskey "U">
+<!ENTITY quickPasswordsTreeContextMenuCopyFull.label "Kopier valgte linjer til udklipsholder">
+<!ENTITY quickPasswordsTreeContextMenuCopyFull.accesskey "v">
+<!ENTITY quickPasswordsTreeContextMenuLogin.label "Login til websted">
+<!ENTITY quickPasswordsTreeContextMenuLogin.accesskey "L">
+<!ENTITY quickPasswordsManagerCopyButton.label "Kopier adgangskode!">
+<!ENTITY quickPasswordsTreeContextMenuQuickPasswordsOptions.label "QuickPasswords Indstillinger…">
+<!ENTITY quickPasswordsTreeContextMenuChangePasswords.label "Samlet ændring af adgangskoder…">
+<!ENTITY quickPasswordsManager.siteFilter "Indskrænk listen med websteder">
+<!ENTITY quickPasswordsManager.protection "Beskyt 'Gemte adgangskoder' efter lukning - spørg efter hovedadgangskode næste gang">

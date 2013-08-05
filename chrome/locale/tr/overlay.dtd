@@ -1,0 +1,25 @@
+<!ENTITY quickPasswords.label "QuickPasswords">
+<!ENTITY quickPasswordsContext.label "Şifreyi getir..">
+<!ENTITY quickPasswordsContext.accesskey "G">
+<!ENTITY quickPasswordsContext.insertUser.label "Kullanıcı adını gir">
+<!ENTITY quickPasswordsContext.insertUser.accesskey "k">
+<!ENTITY quickPasswordsContext.insertPassword.label "Şifreyi gir">
+<!ENTITY quickPasswordsContext.insertPassword.accesskey "f">
+<!ENTITY quickPasswordsContext.cancelLogin.label "QuickPassword girişini iptal et">
+<!ENTITY quickPasswordsToolbarButton.label "QuickPassword">
+<!ENTITY quickPasswordsToolbarButton.tooltip "Şifreleri panoya kopyala">
+<!ENTITY quickPasswordsTreeContextMenuCopy.label "Şifreyi panoya kopyala">
+<!ENTITY quickPasswordsTreeContextMenuCopy.accesskey "Ş">
+<!ENTITY quickPasswordsTreeContextMenuCopyUser.label "Kullanıcı adını panoya kopyala">
+<!ENTITY quickPasswordsTreeContextMenuCopyUser.accesskey "U">
+<!ENTITY quickPasswordsTreeContextMenuCopyURI.label "Sayfa adresini panoya kopyala">
+<!ENTITY quickPasswordsTreeContextMenuCopyURI.accesskey "A">
+<!ENTITY quickPasswordsTreeContextMenuCopyFull.label "Seçilen satırları panoya kopyala">
+<!ENTITY quickPasswordsTreeContextMenuCopyFull.accesskey "S">
+<!ENTITY quickPasswordsTreeContextMenuLogin.label "Siteye giriş yap">
+<!ENTITY quickPasswordsTreeContextMenuLogin.accesskey "G">
+<!ENTITY quickPasswordsManagerCopyButton.label "Şifreyi kopyala!">
+<!ENTITY quickPasswordsTreeContextMenuQuickPasswordsOptions.label "QuickPassswords Ayarları...">
+<!ENTITY quickPasswordsTreeContextMenuChangePasswords.label "Şifre değiştirici...">
+<!ENTITY quickPasswordsManager.siteFilter "Site listesini daralt">
+<!ENTITY quickPasswordsManager.protection "Şifre yöneticisini kapadıktan sonra koru - sonraki açılışta Ana Şifreyi sor">

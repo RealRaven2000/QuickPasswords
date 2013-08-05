@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?xml-stylesheet href="chrome://quickpasswords/skin/overlay.css" title="qpChangePasswords" type="text/css"?>
+
+
+<!DOCTYPE overlay SYSTEM "chrome://quickpasswords/locale/overlay.dtd"> 
+
+<overlay id="QuickPasswords-overlay" xmlns="http://www.mozilla.org/keymaster/gatekeeper/there.is.only.xul">
+  <script type="application/x-javascript;version=1.7" src="chrome://quickpasswords/content/quickpasswords.js"/>
+  <script type="application/x-javascript;version=1.7" src="chrome://quickpasswords/content/quickpasswords_preferences.js"/>
+  <script type="application/x-javascript;version=1.7" src="chrome://quickpasswords/content/quickpasswords_util.js"/>
+  <script type="application/x-javascript;version=1.7" src="chrome://quickpasswords/content/quickpasswords_observers.js"/>  
+ <stringbundleset id="stringbundleset">
+    <stringbundle id="QuickPasswords-strings" src="chrome://quickpasswords/locale/overlay.properties"/>
+  </stringbundleset>
+
+  <!-- Thunderbird (toolbar) -->
+  <toolbarpalette id="MailToolbarPalette">
+	  <toolbarbutton id="QuickPasswords-toolbar-button" class="toolbarbutton-1 chromeclass-toolbar-additional custombutton"
+	    label="&quickPasswordsToolbarButton.label;" tooltiptext="&quickPasswordsToolbarButton.tooltip;"
+	    oncommand="QuickPasswords.onToolbarButtonCommand(event);"
+	    />
+  </toolbarpalette>
+
+  <!-- SeaMonkey -->
+  <vbox id="palette-box">
+	  <toolbarbutton id="QuickPasswords-toolbar-button" class="toolbarbutton-1 chromeclass-toolbar-additional"
+	    label="&quickPasswordsToolbarButton.label;" tooltiptext="&quickPasswordsToolbarButton.tooltip;"
+	    oncommand="QuickPasswords.onToolbarButtonCommand(event);"/>
+  </vbox>
+
+  <!-- Thunderbird -->
+  <popup id="mailContext">
+    <menuitem id="context-quickPasswords"
+              label="&quickPasswordsContext.label;"
+              class="menuitem-iconic"
+              accesskey="&quickPasswordsContext.accesskey;"
+              insertafter="context-quickPasswords-cancelLogin"
+              oncommand="QuickPasswords.onMenuItemCommand(event,'passwordManager');"/>
+  </popup>
+  <popup id="folderPaneContext">
+    <menuitem id="context-quickPasswords2"
+              label="&quickPasswordsContext.label;"
+              class="menuitem-iconic"
+              accesskey="&quickPasswordsContext.accesskey;"
+              insertafter="context-quickPasswords-cancelLogin"
+              oncommand="QuickPasswords.onMenuItemCommand(event,'passwordManager');"/>
+  </popup>
+  
+</overlay>

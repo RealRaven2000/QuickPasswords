@@ -1,0 +1,25 @@
+<!ENTITY quickPasswords.label "Брзе лозинке">
+<!ENTITY quickPasswordsContext.label "Добави лозинку…">
+<!ENTITY quickPasswordsContext.accesskey "Д">
+<!ENTITY quickPasswordsContext.insertUser.label "Попуни корисничку назнаку">
+<!ENTITY quickPasswordsContext.insertUser.accesskey "к">
+<!ENTITY quickPasswordsContext.insertPassword.label "Попуни лозинку">
+<!ENTITY quickPasswordsContext.insertPassword.accesskey "л">
+<!ENTITY quickPasswordsContext.cancelLogin.label "Откажи пријављивање">
+<!ENTITY quickPasswordsToolbarButton.label "Брзе лозинке">
+<!ENTITY quickPasswordsToolbarButton.tooltip "Умножите лозинке">
+<!ENTITY quickPasswordsTreeContextMenuCopy.label "Умножи лозинку">
+<!ENTITY quickPasswordsTreeContextMenuCopy.accesskey "У">
+<!ENTITY quickPasswordsTreeContextMenuCopyUser.label "Умножи корисничко име">
+<!ENTITY quickPasswordsTreeContextMenuCopyUser.accesskey "к">
+<!ENTITY quickPasswordsTreeContextMenuCopyURI.label "Умножи адресу странице">
+<!ENTITY quickPasswordsTreeContextMenuCopyURI.accesskey "а">
+<!ENTITY quickPasswordsTreeContextMenuCopyFull.label "Умножи изабране редове">
+<!ENTITY quickPasswordsTreeContextMenuCopyFull.accesskey "и">
+<!ENTITY quickPasswordsTreeContextMenuLogin.label "Пријави ме на сајт">
+<!ENTITY quickPasswordsTreeContextMenuLogin.accesskey "П">
+<!ENTITY quickPasswordsManagerCopyButton.label "Умножи лозинку">
+<!ENTITY quickPasswordsTreeContextMenuQuickPasswordsOptions.label "Поставке Брзих лозинки…">
+<!ENTITY quickPasswordsTreeContextMenuChangePasswords.label "Обједињено мењање лозинке...">
+<!ENTITY quickPasswordsManager.siteFilter "Сужени списак сајтова">
+<!ENTITY quickPasswordsManager.protection "Заштити управљач лозинкама после затварања и тражи главну лозинку следећи пут">
