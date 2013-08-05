@@ -1,0 +1,137 @@
+#QuickPasswords-hello
+{
+	list-style-image: url('chrome://quickpasswords/skin/QuickPasswords-16x16.png')  !important;
+}
+
+#quickPasswordsLockAfterClosing { 
+	list-style-image: url("chrome://quickpasswords/skin/fugue-locks.png"); 
+	/* max-width:24px;
+	padding: 0; */
+}
+
+#quickPasswordsLockAfterClosing[checked]  { -moz-image-region: rect(16px, 16px, 32px, 0px); }  /* closed ! */
+#quickPasswordsLockAfterClosing[checked]:hover  { -moz-image-region: rect(48px, 16px, 64px, 0px); } /* closed, strong */
+#quickPasswordsLockAfterClosing:not([checked])  { -moz-image-region: rect(32px, 16px, 48px, 0px); } /* open */
+#quickPasswordsLockAfterClosing[checked]:active  { -moz-image-region: rect(32px, 16px, 48px, 0px); }  /* open */
+#quickPasswordsLockAfterClosing:not([checked]):active  { -moz-image-region: rect(48px, 16px, 64px, 0px); }  /* closed, strong */
+#quickPasswordsLockAfterClosing[disabled] { -moz-image-region: rect(64px, 16px, 80px, 0px); }  /* gray */
+
+#context-quickPasswords,
+#context-quickPasswords2,
+#context-copyPassword,
+#context-copypassword
+{
+	list-style-image: url('chrome://quickpasswords/skin/QuickPasswords-16x16.png')  !important;
+}
+
+#context-quickPasswords-insertPassword
+{
+	list-style-image: url('chrome://quickpasswords/skin/insertPassword-small.png')  !important;
+}
+
+
+#context-quickPasswords-cancelLogin
+{
+	list-style-image: url('chrome://quickpasswords/skin/insertCancel.png')  !important;
+}
+
+
+#context-copyusername
+{
+	list-style-image: url('chrome://quickpasswords/skin/copyUsrClipboard-small.png')  !important;
+}
+
+#context-quickPasswords-insertUser
+{
+	list-style-image: url('chrome://quickpasswords/skin/insertUser-small.png')  !important;
+}
+
+
+#context-copyUrl
+{
+	list-style-image: url('chrome://quickpasswords/skin/copyUriClipboard-small.png')  !important;
+}
+
+#context-copyPasswordRecord
+{
+	list-style-image: url('chrome://quickpasswords/skin/QuickPasswords-16x16-record.png')  !important;
+}
+
+#context-quickPasswordOptions
+{
+	list-style-image: url('chrome://quickpasswords/skin/QuickPasswords-Options.png')  !important;
+}
+
+#context-quickPasswordLogin /*, #context-quickPasswords-login */
+{
+	list-style-image: url("chrome://quickpasswords/skin/login-small.png");
+}
+
+
+#context-quickPasswordChange
+{
+	list-style-image: url('chrome://quickpasswords/skin/QP-EditPassword.png')  !important;
+}
+
+
+#QuickPasswords-toolbar-button
+{
+  list-style-image: url("chrome://quickpasswords/skin/QuickPasswords-24x24.png");
+  -moz-image-region: rect(0px 24px 24px 0px);
+}
+#QuickPasswords-toolbar-button:hover
+{
+  -moz-image-region: rect(24px 24px 48px  0px);
+}
+
+#quickPasswordsThrobber {
+  width: 22px;
+  height: 22px;
+  background-repeat: no-repeat;
+  background-image: url("chrome://quickpasswords/skin/orbit3-throbber.gif");
+}
+
+toolbar:not([iconsize="small"]) #QuickPasswords-toolbar-button image
+{
+  width: 24px;
+  height: 24px;
+}
+
+[iconsize="small"] #QuickPasswords-toolbar-button
+{
+  list-style-image: url("chrome://quickpasswords/skin/QuickPasswords-buttonSmall.png");
+  -moz-image-region: rect(0px 16px 16px 0px);
+}
+[iconsize="small"] #QuickPasswords-toolbar-button:hover
+{
+  list-style-image: url("chrome://quickpasswords/skin/QuickPasswords-buttonSmall.png");
+  -moz-image-region: rect(16px 16px 32px 0px);
+}
+
+
+button#quickPasswordsUriFilterRefiner {
+	list-style-image: url("chrome://quickpasswords/skin/wand.png");
+	min-width: 16px !important;
+}
+
+button#quickPasswordsLogin {
+	list-style-image: url("chrome://quickpasswords/skin/tool-login.gif");
+	min-width: 16px !important;
+}
+
+button#copyPasswordToClipboard {
+	list-style-image: url("chrome://quickpasswords/skin/copyPwdClipboard-small.png");
+	min-width: 16px !important;
+}
+
+button#quickPasswordsChangePasswords {
+	list-style-image: url("chrome://quickpasswords/skin/QP-EditPassword.png");
+	min-width: 16px !important;
+}
+
+quickpasswords-tip-img1 {
+	max-width: 16px;
+	max-height: 16px;
+	background-color:transparent;
+	background-image: url("chrome://quickpasswords/skin/right-click-ani.gif") !important;
+}
