@@ -285,48 +285,66 @@ var QuickPasswords = {
 
 	showPasswords: function(filterString) {
 
-		var win = this.getPasswordManagerWindow(filterString);
+		let win = this.getPasswordManagerWindow(filterString);
 		this.PasswordManagerWindow = win;
 
-		var fs = filterString; // need to marshall this into the setFilter method, the filterString parameter doesn't survive
-		var fullActiveURI = this.getActiveUri(true, true);
-		var theTime = QuickPasswords.Preferences.waitForManager();
+		let fs = filterString; // need to marshall this into the setFilter method, the filterString parameter doesn't survive
+		let fullActiveURI = this.getActiveUri(true, true);
+		let theTime = QuickPasswords.Preferences.waitForManager();
 
-		QuickPasswords.Util.logDebugOptional ("showPasswords","showPasswords(" + fs + ") uri=" + fullActiveURI + " time=" + theTime.toString());
+		QuickPasswords.Util.logDebugOptional ("showPasswords", "showPasswords(" + fs + ") uri=" + fullActiveURI + " time=" + theTime.toString());
+		
+		let theContent = null;
+		// global variable.
+		if (typeof content !== 'undefined') {
+			theContent = content;
+		}
 
 		win.setTimeout(
-			function () {
-				QuickPasswords.Util.logDebugOptional ("showPasswords", "in setTimeout( anonymous function )");
-				// ieTab2 support - disable the login to page as we cannot control context menu of the IE container
-				if (content) {
-					let btnLogin = 	win.document.getElementById('quickPasswordsLogin');
-					let host = content.location.host;
-					if (btnLogin)
-						btnLogin.disabled = (host == "ietab2" || host == "messenger");
-				}
-				if (win.self.setFilter) {
-					win.self.setFilter(fs);
-					// now select activeURI in Manager
-					var tree = win.signonsTree;
-					if (tree.view && tree.view.rowCount) {
-						// find activeURI
-						var sel = tree.view.selection.QueryInterface(Components.interfaces.nsITreeSelection);
-						for (var i=0; i<tree.view.rowCount;i++)
-						{
-							var s = QuickPasswords.getSite(i, tree);
-							if (s==fullActiveURI) {
-								sel.clearSelection();
-								sel.select(i);
-								var boxobject = tree.boxObject;
-								boxobject.QueryInterface(Components.interfaces.nsITreeBoxObject);
-								boxobject.scrollToRow(i);
-								return;
-							}
+			function (theContent) {
+				try  {
+					QuickPasswords.Util.logDebugOptional ("showPasswords", "in setTimeout( anonymous function )");
+					// ieTab2 support - disable the login to page as we cannot control context menu of the IE container
+					if (theContent) {
+						QuickPasswords.Util.logDebugOptional ("showPasswords", "content var is defined");
+						let btnLogin = 	win.document.getElementById('quickPasswordsLogin');
+						if (btnLogin) {
+							let host = theContent.location.host;
+							btnLogin.disabled = (host == "ietab2" || host == "messenger");
 						}
+					}
+					if (QuickPasswords.Preferences.isAutoFill && win.self.setFilter) {
+						win.self.setFilter(fs);
+						QuickPasswords.Util.logDebugOptional ("showPasswords", "after setFilter");
+						// now select activeURI in Manager
+						var tree = win.signonsTree;
+						if (tree.view && tree.view.rowCount) {
+							QuickPasswords.Util.logDebugOptional ("showPasswords", "start to enumerate " + tree.view.rowCount + " rows for selecting...");
+							// find activeURI
+							var sel = tree.view.selection.QueryInterface(Components.interfaces.nsITreeSelection);
+							QuickPasswords.Util.logDebugOptional ("showPasswords", "got selection - " + sel);
+							for (let i=0; i<tree.view.rowCount;i++)
+							{
+								let s = QuickPasswords.getSite(i, tree);
+								if (s==fullActiveURI) {
+									QuickPasswords.Util.logDebugOptional ("showPasswords", "found matching URI: " + fullActiveURI);
+									sel.clearSelection();
+									sel.select(i);
+									QuickPasswords.Util.logDebugOptional ("showPasswords", "selected item " + i);
+									let boxobject = tree.boxObject;
+									boxobject.QueryInterface(Components.interfaces.nsITreeBoxObject);
+									boxobject.scrollToRow(i);
+									return;
+								}
+							}
 
+						}
 					}
 				}
-			}, theTime);
+				catch(ex) {
+					QuickPasswords.Util.logException("Error during auto filter", ex);
+				}
+		}, theTime);
 	 },
 
 	getManagerColumn:   function (idx, colName, tree) {
@@ -345,7 +363,7 @@ var QuickPasswords = {
 	getSite: function (idx, t) {
 		// truncate at first space to avoid comment e.g. www.xxx.com (foo bar)
 		var theSite =  this.getManagerColumn (idx, 'siteCol', t);
-		return theSite.split(" ", 1).toString();
+		return theSite ? theSite.split(" ", 1).toString() : '';
 	},
 	getUser: function (idx, t) { return this.getManagerColumn (idx, 'userCol', t); },
 	getPassword: function (idx, t) { return this.getManagerColumn (idx, 'passwordCol', t); },

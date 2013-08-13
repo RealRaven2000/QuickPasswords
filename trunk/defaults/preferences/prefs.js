@@ -2,6 +2,7 @@ pref("extensions.QuickPasswords@axelg.com.description", "chrome://quickpasswords
 pref("extensions.quickpasswords.copyMsg", true);
 pref("extensions.quickpasswords.loginMsg", true);
 pref("extensions.quickpasswords.waitForManagerTime", 600);
+pref("extensions.quickpasswords.autofilter", true);
 pref("extensions.quickpasswords.multiRowHeader", true);
 pref("extensions.quickpasswords.wizardAbove", true);
 pref("extensions.quickpasswords.updateFieldsNotify", true);
