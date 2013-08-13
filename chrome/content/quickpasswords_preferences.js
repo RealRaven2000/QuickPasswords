@@ -94,7 +94,11 @@ QuickPasswords.Preferences = {
 	get isUpdateFieldIds() {
 	  return this.getBoolPref("updateFieldsNotify");
 	} ,
-
+	
+	get isAutoFill() {
+	  return this.getBoolPref("autofilter");
+	} ,
+	
 	contextMenuOption: function() {
 		return this.service.getIntPref("extensions.quickpasswords.displayContextMenuChoice");
 	},
