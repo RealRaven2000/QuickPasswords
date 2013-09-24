@@ -8,6 +8,7 @@
 <!ENTITY quickPasswordsContext.cancelLogin.label "Откажи пријављивање">
 <!ENTITY quickPasswordsToolbarButton.label "Брзе лозинке">
 <!ENTITY quickPasswordsToolbarButton.tooltip "Умножите лозинке">
+<!ENTITY quickPasswordsRepairButton.label "Исправи поље за име">
 <!ENTITY quickPasswordsTreeContextMenuCopy.label "Умножи лозинку">
 <!ENTITY quickPasswordsTreeContextMenuCopy.accesskey "У">
 <!ENTITY quickPasswordsTreeContextMenuCopyUser.label "Умножи корисничко име">

@@ -8,6 +8,7 @@
 <!ENTITY quickPasswordsContext.cancelLogin.label "Annuller QuickPasswords login">
 <!ENTITY quickPasswordsToolbarButton.label "QuickPasswords">
 <!ENTITY quickPasswordsToolbarButton.tooltip "Kopierer adgangskoder til udklipsholder!">
+<!ENTITY quickPasswordsRepairButton.label "Ret feltnavne">
 <!ENTITY quickPasswordsTreeContextMenuCopy.label "Kopier adgangskode til udklipsholder">
 <!ENTITY quickPasswordsTreeContextMenuCopy.accesskey "a">
 <!ENTITY quickPasswordsTreeContextMenuCopyUser.label "Kopier brugernavn til udklipsholder">

@@ -2,7 +2,7 @@
 <RDF xmlns="http://www.w3.org/1999/02/22-rdf-syntax-ns#" xmlns:em="http://www.mozilla.org/2004/em-rdf#">
   <Description about="urn:mozilla:install-manifest"
 	em:id="QuickPasswords@axelg.com"
-	em:version="2.10pre10"
+	em:version="3.0pre32"
 	em:creator="Axel Grude"
 	em:description="Quickly get Passwords from Password Manager to the clipboard, or log on to the site directly. No need to display them anymore!"
 	em:name="QuickPasswords"
@@ -41,21 +41,21 @@
       <Description>
         <em:id>{ec8030f7-c20a-464f-9b0e-13a3a9e97384}</em:id> <!-- Firefox -->
         <em:minVersion>3.6</em:minVersion>
-        <em:maxVersion>22.*</em:maxVersion>
+        <em:maxVersion>25.*</em:maxVersion>
       </Description>
     </em:targetApplication>
     <em:targetApplication>
       <Description>
         <em:id>{3550f703-e582-4d05-9a08-453d09bdfdc6}</em:id> <!-- Thunderbird -->
         <em:minVersion>3.1</em:minVersion>
-        <em:maxVersion>22.*</em:maxVersion>
+        <em:maxVersion>25.*</em:maxVersion>
       </Description>
     </em:targetApplication>
     <em:targetApplication>
       <Description>
         <em:id>{92650c4d-4b8e-4d2a-b7eb-24ecf4f6b63a}</em:id> <!-- SeaMonkey -->
         <em:minVersion>2.0</em:minVersion>
-        <em:maxVersion>2.20.*</em:maxVersion>
+        <em:maxVersion>2.24a1</em:maxVersion>
       </Description>
     </em:targetApplication>
     <em:targetApplication>

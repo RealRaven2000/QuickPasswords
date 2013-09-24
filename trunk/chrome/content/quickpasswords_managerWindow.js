@@ -76,7 +76,7 @@ if (!QuickPasswords.Manager)
 				function(evt) { 
 					QuickPasswords.Util.logDebug("doubleclick event:\n" + evt.toString());
 					// do login...
-					QuickPasswords.attemptLogin();
+					QuickPasswords.attemptLogin(true);
 					evt.preventDefault();
 					evt.stopPropagation();
 					}, false);	
@@ -86,7 +86,7 @@ if (!QuickPasswords.Manager)
 					if (evt.keyCode && evt.keyCode  == 13) {
 						QuickPasswords.Util.logDebug("Enter Key was pressed:\n" + evt.toString());
 						// do login...
-						QuickPasswords.attemptLogin();
+						QuickPasswords.attemptLogin(true);
 						evt.preventDefault();
 						evt.stopPropagation();
 					}					

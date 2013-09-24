@@ -25,7 +25,7 @@
 <!ENTITY href.label.bugPage "Segnala un bug o suggerisci una nuova caratteristica…">
 <!ENTITY radioContextMenuAlways.label "Mostra sempre nel menu contestuale del browser gli elementi da inserire">
 <!ENTITY radioContextMenuAlways.accesskey "M">
-<!ENTITY radioContextMenuSelective.label "Mostra gli elementi da inserire solo quando si è sopra le caselle di inserimento [default]">
+<!ENTITY radioContextMenuSelective.label "Mostra gli elementi del menu solo se si è sopra le caselle di inserimento [default]">
 <!ENTITY radioContextMenuSelective.accesskey "E">
 <!ENTITY radioContextMenuOff.label "Non visualizzare mai nel menu contestuale del browser gli elementi da inserire">
 <!ENTITY radioContextMenuOff.accesskey "N">
