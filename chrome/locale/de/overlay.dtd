@@ -11,6 +11,7 @@
 <!ENTITY quickPasswordsTreeContextMenuCopy.label "Passwort in die Zwischenablage kopieren">
 <!ENTITY quickPasswordsTreeContextMenuCopy.accesskey "P">
 <!ENTITY quickPasswordsTreeContextMenuCopyUser.label "Benutzername in die Zwischenablage kopieren">
+<!ENTITY quickPasswordsRepairButton.label "Feldnamen korrigieren">
 <!ENTITY quickPasswordsTreeContextMenuCopyUser.accesskey "B">
 <!ENTITY quickPasswordsTreeContextMenuCopyURI.label "URL der Webseite kopieren">
 <!ENTITY quickPasswordsTreeContextMenuCopyURI.accesskey "U">

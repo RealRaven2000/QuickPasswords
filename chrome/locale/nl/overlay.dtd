@@ -8,6 +8,7 @@
 <!ENTITY quickPasswordsContext.cancelLogin.label "Aanmelding met QuickPasswords annuleren">
 <!ENTITY quickPasswordsToolbarButton.label "QuickPasswords">
 <!ENTITY quickPasswordsToolbarButton.tooltip "Kopieert wachtwoorden naar het Klembord!">
+<!ENTITY quickPasswordsRepairButton.label "Veldnamen corrigeren">
 <!ENTITY quickPasswordsTreeContextMenuCopy.label "Wachtwoord naar Klembord kopiëren">
 <!ENTITY quickPasswordsTreeContextMenuCopy.accesskey "W">
 <!ENTITY quickPasswordsTreeContextMenuCopyUser.label "Gebruikersnaam naar Klembord kopiëren">

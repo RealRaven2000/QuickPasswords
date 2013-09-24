@@ -8,6 +8,7 @@
 <!ENTITY quickPasswordsContext.cancelLogin.label "Прервать регистрацию">
 <!ENTITY quickPasswordsToolbarButton.label "QuickPasswords">
 <!ENTITY quickPasswordsToolbarButton.tooltip "Копирует пароли в буфер обмена!">
+<!ENTITY quickPasswordsRepairButton.label "Исправить имена полей ввода">
 <!ENTITY quickPasswordsTreeContextMenuCopy.label "Копировать пароль в буфер обмена.">
 <!ENTITY quickPasswordsTreeContextMenuCopy.accesskey "п">
 <!ENTITY quickPasswordsTreeContextMenuCopyUser.label "Копировать имя пользователя в буфер обмена.">

@@ -135,3 +135,61 @@ quickpasswords-tip-img1 {
 	background-color:transparent;
 	background-image: url("chrome://quickpasswords/skin/right-click-ani.gif") !important;
 }
+/** Toolbar buttons ***/
+#quickpasswords-toolbox toolbarbutton {
+  padding: 6px 5px;
+}
+
+#QuickPasswordsBtnLogin, #QuickPasswordsBtnRepair, #QuickPasswordsBtnCopyPassword, #QuickPasswordsBtnCopyUser, #QuickPasswordsBtnCopyURI, #QuickPasswordsBtnChangePasswords, #QuickPasswordsBtnSettings 
+{
+  display: -moz-box;
+}
+
+#QuickPasswordsBtnLogin {
+	list-style-image: url("chrome://quickpasswords/skin/login24.png");
+}
+
+#QuickPasswordsBtnCopyPassword {
+	list-style-image: url("chrome://quickpasswords/skin/copyPwd24.png");
+}
+
+#QuickPasswordsBtnCopyUser {
+	list-style-image: url("chrome://quickpasswords/skin/copyUsr24.png");
+}
+
+#QuickPasswordsBtnCopyURI {
+	list-style-image: url("chrome://quickpasswords/skin/copyUri24.png");
+}
+
+/** red pencil user by http://theiconlab.com/ freeware license */
+#QuickPasswordsBtnChangePasswords {
+	list-style-image: url("chrome://quickpasswords/skin/editPwd24.png");
+}
+
+#QuickPasswordsBtnRepair {
+	list-style-image: url("chrome://quickpasswords/skin/repair24.png");
+}
+
+#QuickPasswordsBtnSettings {
+	list-style-image: url("chrome://quickpasswords/skin/wrench.png");
+}
+
+
+notification[value="quickpasswords-changeprompt.repairFields"] image.messageImage,
+notification[value="quickpasswords-changeprompt.user"] image.messageImage,
+notification[value="quickpasswords-changeprompt.password"] image.messageImage
+{
+	/* repair24.png */
+	min-width: 24px !important;
+	width: 24px !important;
+	min-height: 24px !important;
+	height: 24px !important;
+}
+
+notification[value="quickpasswords-changeprompt.repairFields"] hbox.notification-inner,
+notification[value="quickpasswords-changeprompt.user"] hbox.notification-inner,
+notification[value="quickpasswords-changeprompt.password"] hbox.notification-inner {
+	padding-top: 0.75em;
+	padding-bottom: 0.75em;
+}
+

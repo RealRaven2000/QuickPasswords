@@ -8,6 +8,7 @@
 <!ENTITY quickPasswordsContext.cancelLogin.label "QuickPassword girişini iptal et">
 <!ENTITY quickPasswordsToolbarButton.label "QuickPassword">
 <!ENTITY quickPasswordsToolbarButton.tooltip "Şifreleri panoya kopyala">
+<!ENTITY quickPasswordsRepairButton.label "Correct the Field Names">
 <!ENTITY quickPasswordsTreeContextMenuCopy.label "Şifreyi panoya kopyala">
 <!ENTITY quickPasswordsTreeContextMenuCopy.accesskey "Ş">
 <!ENTITY quickPasswordsTreeContextMenuCopyUser.label "Kullanıcı adını panoya kopyala">

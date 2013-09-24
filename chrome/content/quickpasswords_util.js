@@ -401,28 +401,26 @@ QuickPasswords.Util = {
 		}
 	
 	} ,
+	
+	get NotificationBox() {
+		switch(this.Application) {
+			case 'Firefox': 
+				return QuickPasswords.getCurrentBrowserWindow().gBrowser.getNotificationBox();
+			case 'Postbox':
+				return window.document.getElementById ('pbSearchThresholdNotifcationBar');  // msgNotificationBar
+			case 'Thunderbird': 
+				return window.document.getElementById ('mail-notification-box');
+			case 'SeaMonkey':
+				return null;
+		}	
+		return null;
+	} ,
 
 	notifyUpdateId: function(oldField, newField, insertType, userName, oldLoginInfo) {
 		try {
-			let notifyBox;
-			let win = window;
+			let notifyBox = this.NotificationBox;
 				
-			switch(this.Application) {
-				case 'Firefox': 
-					notifyBox = gBrowser.getNotificationBox();
-					break;
-				case 'Postbox':
-					notifyBox = win.document.getElementById ('pbSearchThresholdNotifcationBar');  // msgNotificationBar
-					break;
-				case 'Thunderbird': 
-					notifyBox = win.document.getElementById ('mail-notification-box');
-					break;
-				case 'SeaMonkey':
-					notifyBox = null;
-					break;
-			}	
 			// SeaMonkey currently has no matching notification mechanism, the only thing here possible is an alert box or confirm()
-			
 			if (notifyBox) {
 				// show loginPrepared.updateIdPrompt
 				let theText = QuickPasswords.Util.getBundleString("loginPrepared.updateIdPrompt",
@@ -433,7 +431,7 @@ QuickPasswords.Util = {
 				theText2 = theText2.replace("{3}", oldLoginInfo.username ? oldLoginInfo.username : 'n/a');
 
 				// we have 2 separate notifications - one for user names and one for passwords
-				let notificationId = "quickpasswords-changeprompt." + insertType; 
+				let notificationKey = "quickpasswords-changeprompt." + insertType; 
 				let theTypeLocalized = 
 					QuickPasswords.Util.getBundleString(insertType == 'user' ? 'copyMessageUser' : 'copyMessagePassword');
 							
@@ -459,14 +457,24 @@ QuickPasswords.Util = {
 						popup: null
 					}				
 				];
-				let item = notifyBox.getNotificationWithValue(notificationId)
-				if(item) {
-					notifyBox.removeNotification(item);
+				let item = notifyBox.getNotificationWithValue(notificationKey)
+				if(item) { notifyBox.removeNotification(item); }
+				item = notifyBox.getNotificationWithValue("quickpasswords-changeprompt.repairFields")
+				if(item) { notifyBox.removeNotification(item); }
+				
+				let icon = "repair24.png"; // default (blue arrow)
+				switch(insertType) {
+					case 'user':
+					  icon = "repairUser24.png"; 
+						break;
+					case 'password':
+					  icon = "repairPwd24.png"; 
+						break;
 				}
 					
 				notifyBox.appendNotification( theText, 
-						notificationId , 
-						"chrome://quickpasswords/skin/quickpasswords-Icon.png" , 
+						notificationKey, 
+						"chrome://quickpasswords/skin/" + icon, 
 						notifyBox.PRIORITY_INFO_HIGH, 
 						nbox_buttons );
 			}

@@ -8,6 +8,7 @@
 <!ENTITY quickPasswordsContext.cancelLogin.label "ألغِ الولوج عن طريق كويك باسووردس">
 <!ENTITY quickPasswordsToolbarButton.label "كويك باسووردس">
 <!ENTITY quickPasswordsToolbarButton.tooltip "نسخ كلمات السر إلى الحافظة!">
+<!ENTITY quickPasswordsRepairButton.label "Correct the Field Names">
 <!ENTITY quickPasswordsTreeContextMenuCopy.label "انسخ كلمة السر إلى الحافظة">
 <!ENTITY quickPasswordsTreeContextMenuCopy.accesskey "س">
 <!ENTITY quickPasswordsTreeContextMenuCopyUser.label "انسخ اسم المستخدم إلى الحافظة">

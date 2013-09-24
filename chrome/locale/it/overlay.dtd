@@ -1,25 +1,26 @@
 <!ENTITY quickPasswords.label "QuickPasswords">
 <!ENTITY quickPasswordsContext.label "Richiama una password…">
 <!ENTITY quickPasswordsContext.accesskey "R">
-<!ENTITY quickPasswordsContext.insertUser.label "Inserisci il Nome utente">
+<!ENTITY quickPasswordsContext.insertUser.label "Inserire il nome utente">
 <!ENTITY quickPasswordsContext.insertUser.accesskey "N">
-<!ENTITY quickPasswordsContext.insertPassword.label "Inserisci la Password">
+<!ENTITY quickPasswordsContext.insertPassword.label "Inserire la password">
 <!ENTITY quickPasswordsContext.insertPassword.accesskey "I">
 <!ENTITY quickPasswordsContext.cancelLogin.label "Annulla l'accesso tramite QuickPasswords">
 <!ENTITY quickPasswordsToolbarButton.label "QuickPasswords">
 <!ENTITY quickPasswordsToolbarButton.tooltip "Copia le password nel blocco degli appunti">
-<!ENTITY quickPasswordsTreeContextMenuCopy.label "Copia la Password nel blocco degli appunti">
+<!ENTITY quickPasswordsRepairButton.label "Correzione nome dei campi">
+<!ENTITY quickPasswordsTreeContextMenuCopy.label "Copia la password nel blocco degli appunti">
 <!ENTITY quickPasswordsTreeContextMenuCopy.accesskey "P">
-<!ENTITY quickPasswordsTreeContextMenuCopyUser.label "Copia il Nome utente nel blocco appunti">
+<!ENTITY quickPasswordsTreeContextMenuCopyUser.label "Copia il nome utente nel blocco appunti">
 <!ENTITY quickPasswordsTreeContextMenuCopyUser.accesskey "N">
 <!ENTITY quickPasswordsTreeContextMenuCopyURI.label "Copia l'URI del sito web">
 <!ENTITY quickPasswordsTreeContextMenuCopyURI.accesskey "U">
 <!ENTITY quickPasswordsTreeContextMenuCopyFull.label "Copia i record selezionati nel blocco degli appunti">
 <!ENTITY quickPasswordsTreeContextMenuCopyFull.accesskey "C">
-<!ENTITY quickPasswordsTreeContextMenuLogin.label "Accedi al sito web">
+<!ENTITY quickPasswordsTreeContextMenuLogin.label "Accesso al sito web">
 <!ENTITY quickPasswordsTreeContextMenuLogin.accesskey "A">
 <!ENTITY quickPasswordsManagerCopyButton.label "Copia password">
 <!ENTITY quickPasswordsTreeContextMenuQuickPasswordsOptions.label "Opzioni di QuickPasswords…">
 <!ENTITY quickPasswordsTreeContextMenuChangePasswords.label "Cambio password unificato…">
 <!ENTITY quickPasswordsManager.siteFilter "Filtra l'elenco dei siti">
-<!ENTITY quickPasswordsManager.protection "Protezione di Password Manager dopo la chiusura - La prossima volta richiederà l'inserimento della password principale">
+<!ENTITY quickPasswordsManager.protection "Protezione di Password Manager dopo la chiusura - la prossima volta verrà richiesto l'inserimento della password principale">
