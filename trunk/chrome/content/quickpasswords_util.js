@@ -416,8 +416,23 @@ QuickPasswords.Util = {
 		return null;
 	} ,
 
+	/**
+	*
+	* @Desc notifyUpdateId - update field name sliding notification. Makes it possible to correct (outdated?) form 
+	 *      field names when clicking the Update field
+	*
+	* @param oldField     - id of old INPUT field
+	* @param newField     - id of new INPUT field
+	* @param insertType   - 'user' | 'password'
+	* @param userName     - the user name to display in the notification message
+	* @param oldLoginInfo - the structure containing all stored pwd info including field names, contents and hostname / formSubmitURL
+	*
+	* @return void
+	**/
 	notifyUpdateId: function(oldField, newField, insertType, userName, oldLoginInfo) {
 		try {
+		  if (!oldLoginInfo)
+				return; // no update possible!
 			let notifyBox = this.NotificationBox;
 				
 			// SeaMonkey currently has no matching notification mechanism, the only thing here possible is an alert box or confirm()
@@ -446,13 +461,13 @@ QuickPasswords.Util = {
 				let nbox_buttons = [
 					{
 						label: btnYes,
-						accessKey: null, 
+						accessKey: btnYes.substr(0,1), 
 						callback: function() { QuickPasswords.Util.updateLogin(oldLoginInfo, insertType, newField); },  
 						popup: null
 					},
 					{
 						label: btnCancel,
-						accessKey: null, 
+						accessKey: btnCancel.substr(0,1), 
 						callback: function() { ; },
 						popup: null
 					}				

@@ -1018,25 +1018,26 @@ var QuickPasswords = {
 					let theSite = this.getSite(tree.currentIndex, tree);
 					let uri = this.getActiveUri(false, false); // browserWin.gBrowser.currentURI;
 					
-					// correct browser URI?
+					// retrieve field names of user name and password INPUT elements (via matching usr+pwd)
+					let logins = loginManager.findLogins({}, theSite, '', null);
+					// Find user from returned array of nsILoginInfo objects
+					for (let i = 0; i < logins.length; i++) {
+						if ((logins[i].username == user) && (pwd == logins[i].password)) {
+							foundLoginInfo = logins[i];
+							passwordField = foundLoginInfo.passwordField;
+							usernameField = foundLoginInfo.usernameField;
+							break;
+						}
+					}				
+					
+					// matching browser URI?
 					if (theSite.indexOf(uri) >= 0) {
+						utils.logDebugOptional('formFill',
+							'Searching forms for password field =' + passwordField + 
+							', username field =' + usernameField + '...');
 						let form = browserWin.gBrowser.contentDocument.querySelectorAll("form");
 						// Find users for the given parameters
 						//  count, hostname, actionURL, httpRealm, ...out logins
-						let logins = loginManager.findLogins({}, theSite, '', null);
-
-						// Find user from returned array of nsILoginInfo objects
-						for (let i = 0; i < logins.length; i++) {
-							if ((logins[i].username == user) && (pwd == logins[i].password)) {
-								foundLoginInfo = logins[i];
-								passwordField = foundLoginInfo.passwordField;
-								usernameField = foundLoginInfo.usernameField;
-								break;
-							}
-						}				
-						utils.logDebugOptional('formFill',
-							'Searching for password field =' + passwordField + 
-							', username field =' + usernameField + '...');
 						
 						// try to autofill both form values
 						if (fillForm) {
@@ -1085,9 +1086,15 @@ var QuickPasswords = {
 							} // for loop.
 						}
 					}  // end of uri matching
+					else {
+					  // no match, no correction!!
+					  foundLoginInfo = null;
+					}
 				}
 				catch(ex) {
 					utils.logException('Error trying to get auto-login: ', ex);
+					// no match, no correction!!
+					foundLoginInfo = null;
 				}
 			}
 			utils.logDebugOptional('formFill', 
@@ -1097,7 +1104,7 @@ var QuickPasswords = {
 				
 		} // auto insert
 			
-		// loginManager.fillForm(form);	 
+		// Prepare context menu with all necessary information, including existing and target field name
 		if (!pwdFilled)
 			QuickPasswords.prepareContextMenu(browserWin, 'insertPassword', pwd, passwordField, foundLoginInfo);
 		if (!usrFilled)
@@ -1158,7 +1165,7 @@ var QuickPasswords = {
 			let nbox_buttons = [
 				{
 					label: btnCancel,
-					accessKey: null, 
+					accessKey: btnCancel.substr(0,1), 
 					callback: function() { QuickPasswords.onMenuItemCommand(null,'cancelLogin'); },
 					popup: null
 				}				

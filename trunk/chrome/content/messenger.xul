@@ -30,12 +30,37 @@
 
   <!-- Thunderbird -->
   <popup id="mailContext">
+  
+    <menuitem id="context-quickPasswords-insertUser"
+              label="&quickPasswordsContext.insertUser.label;"
+              class="menuitem-iconic"
+              accesskey="&quickPasswordsContext.insertUser.accesskey;"
+              insertafter="context-stop"
+              oncommand="QuickPasswords.onMenuItemCommand(event,'pasteUser',gContextMenu.target);"
+              collapsed="true"/>
+
+    <menuitem id="context-quickPasswords-insertPassword"
+              label="&quickPasswordsContext.insertPassword.label;"
+              class="menuitem-iconic"
+              accesskey="&quickPasswordsContext.insertPassword.accesskey;"
+              insertafter="context-quickPasswords-insertUser"
+              oncommand="QuickPasswords.onMenuItemCommand(event,'pastePassword',gContextMenu.target);"
+              collapsed="true"/>
+
+    <menuitem id="context-quickPasswords-cancelLogin"
+              label="&quickPasswordsContext.cancelLogin.label;"
+              class="menuitem-iconic"
+              insertafter="context-quickPasswords-insertPassword"
+              oncommand="QuickPasswords.onMenuItemCommand(event,'cancelLogin',gContextMenu.target);"
+              collapsed="true"/>
+			  
     <menuitem id="context-quickPasswords"
               label="&quickPasswordsContext.label;"
               class="menuitem-iconic"
               accesskey="&quickPasswordsContext.accesskey;"
               insertafter="context-quickPasswords-cancelLogin"
               oncommand="QuickPasswords.onMenuItemCommand(event,'passwordManager');"/>
+			  
   </popup>
   <popup id="folderPaneContext">
     <menuitem id="context-quickPasswords2"
