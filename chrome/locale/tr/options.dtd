@@ -6,7 +6,7 @@
 <!ENTITY checkLoginShowMessage.accesskey "G">
 <!ENTITY checkDebug.label "Debug Modu">
 <!ENTITY checkDebug.accesskey "D">
-<!ENTITY intMsgDelay.label "Kayıtlı Parolalarda geçen zaman [ms]">
+<!ENTITY intMsgDelay.label "Kayıtlı Parolalar Arama kutusu için gecikme süresi [ms]">
 <!ENTITY intMsgDelay.tooltip "Bazen Arama Kutusu sitelerin ismi ile otomatik doldurulmaz - bu durumda veriyi artırın.">
 <!ENTITY intMsgDelay.accesskey "Z">
 <!ENTITY about.label "Hakkında">

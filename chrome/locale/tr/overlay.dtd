@@ -5,15 +5,15 @@
 <!ENTITY quickPasswordsContext.insertUser.accesskey "k">
 <!ENTITY quickPasswordsContext.insertPassword.label "Şifreyi gir">
 <!ENTITY quickPasswordsContext.insertPassword.accesskey "f">
-<!ENTITY quickPasswordsContext.cancelLogin.label "QuickPassword girişini iptal et">
+<!ENTITY quickPasswordsContext.cancelLogin.label "QuickPassword Girdisini iptal et">
 <!ENTITY quickPasswordsToolbarButton.label "QuickPassword">
 <!ENTITY quickPasswordsToolbarButton.tooltip "Şifreleri panoya kopyala">
-<!ENTITY quickPasswordsRepairButton.label "Correct the Field Names">
+<!ENTITY quickPasswordsRepairButton.label "Yer isimlerini doğrula">
 <!ENTITY quickPasswordsTreeContextMenuCopy.label "Şifreyi panoya kopyala">
 <!ENTITY quickPasswordsTreeContextMenuCopy.accesskey "Ş">
 <!ENTITY quickPasswordsTreeContextMenuCopyUser.label "Kullanıcı adını panoya kopyala">
 <!ENTITY quickPasswordsTreeContextMenuCopyUser.accesskey "U">
-<!ENTITY quickPasswordsTreeContextMenuCopyURI.label "Sayfa adresini panoya kopyala">
+<!ENTITY quickPasswordsTreeContextMenuCopyURI.label "Sayfa adresini kopyala">
 <!ENTITY quickPasswordsTreeContextMenuCopyURI.accesskey "A">
 <!ENTITY quickPasswordsTreeContextMenuCopyFull.label "Seçilen satırları panoya kopyala">
 <!ENTITY quickPasswordsTreeContextMenuCopyFull.accesskey "S">
