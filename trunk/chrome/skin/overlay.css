@@ -114,6 +114,7 @@ button#quickPasswordsUriFilterRefiner {
 	min-width: 16px !important;
 }
 
+/** OBSOLETE BUTTONS 
 button#quickPasswordsLogin {
 	list-style-image: url("chrome://quickpasswords/skin/tool-login.gif");
 	min-width: 16px !important;
@@ -128,6 +129,8 @@ button#quickPasswordsChangePasswords {
 	list-style-image: url("chrome://quickpasswords/skin/QP-EditPassword.png");
 	min-width: 16px !important;
 }
+ **/
+
 
 quickpasswords-tip-img1 {
 	max-width: 16px;
@@ -146,8 +149,16 @@ quickpasswords-tip-img1 {
 }
 
 #QuickPasswordsBtnLogin {
-	list-style-image: url("chrome://quickpasswords/skin/login24.png");
+  list-style-image: url("chrome://quickpasswords/skin/login24.png");
+  -moz-image-region: rect(0px, 24px, 24px, 0px); 
 }
+
+#QuickPasswordsBtnLogin[disabled],
+#QuickPasswordsBtnRepair[disabled] {
+  -moz-image-region: rect(24px, 24px, 48px, 0px); 
+}
+
+
 
 #QuickPasswordsBtnCopyPassword {
 	list-style-image: url("chrome://quickpasswords/skin/copyPwd24.png");
@@ -167,7 +178,8 @@ quickpasswords-tip-img1 {
 }
 
 #QuickPasswordsBtnRepair {
-	list-style-image: url("chrome://quickpasswords/skin/repair24.png");
+  list-style-image: url("chrome://quickpasswords/skin/repair24.png");
+  -moz-image-region: rect(0px, 24px, 24px, 0px); 
 }
 
 #QuickPasswordsBtnSettings {

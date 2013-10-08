@@ -163,6 +163,13 @@
 		Better heuristics to determine which fields are not visible to avoid filling the wrong logon fields
 		Added "Correct Field Names" button
 		
+	3.1 - WIP
+		Fixed disabling (login / repair) buttons in IETabs - IE tabs do not support modifying the context menu
+	  Added translations for toggle version and donation messages.
+		Moved options css file into skins folder
+		Removed obsolete buttons from passwordwindow overlay
+	
+		
 ===========================================================================================
 
 		Planned: adding option for configuring delimiter of multi line export. At the moment this is hard coded to tab.
@@ -306,16 +313,21 @@ var QuickPasswords = {
 		}
 
 		win.setTimeout(
-			function (theContent) {
+			function () {
 				try  {
 					QuickPasswords.Util.logDebugOptional ("showPasswords", "in setTimeout( anonymous function )");
 					// ieTab2 support - disable the login to page as we cannot control context menu of the IE container
 					if (theContent) {
 						QuickPasswords.Util.logDebugOptional ("showPasswords", "content var is defined");
-						let btnLogin = 	win.document.getElementById('quickPasswordsLogin');
+						let btnLogin = 	win.document.getElementById('QuickPasswordsBtnLogin');
 						if (btnLogin) {
 							let host = theContent.location.host;
 							btnLogin.disabled = (host == "ietab2" || host == "messenger");
+						}
+						let btnRepair = win.document.getElementById('QuickPasswordsBtnRepair');
+						if (btnRepair) {
+							let host = theContent.location.host;
+							btnRepair.disabled = (host == "ietab2" || host == "messenger");
 						}
 					}
 					if (QuickPasswords.Preferences.isAutoFill && win.self.setFilter) {

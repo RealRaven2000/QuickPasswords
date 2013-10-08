@@ -8,7 +8,6 @@
 <!ENTITY quickPasswordsContext.cancelLogin.label "Cancelar ingreso de QuickPasswords">
 <!ENTITY quickPasswordsToolbarButton.label "QuickPasswords">
 <!ENTITY quickPasswordsToolbarButton.tooltip "¡Copiar contraseñas al portapapeles!">
-<!ENTITY quickPasswordsRepairButton.label "Correct the Field Names">
 <!ENTITY quickPasswordsTreeContextMenuCopy.label "Copiar contraseña al portapapeles">
 <!ENTITY quickPasswordsTreeContextMenuCopy.accesskey "C">
 <!ENTITY quickPasswordsTreeContextMenuCopyUser.label "Copiar nombre de usuario al portapapeles">
