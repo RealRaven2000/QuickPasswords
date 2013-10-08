@@ -1,6 +1,6 @@
 <!ENTITY quickPasswords.label "QuickPasswords">
 <!ENTITY quickPasswordsContext.label "Récupérer les identifiants…">
-<!ENTITY quickPasswordsContext.accesskey "P">
+<!ENTITY quickPasswordsContext.accesskey "R">
 <!ENTITY quickPasswordsContext.insertUser.label "Copier le nom d'utilisateur">
 <!ENTITY quickPasswordsContext.insertUser.accesskey "U">
 <!ENTITY quickPasswordsContext.insertPassword.label "Copier le mot de passe">
@@ -8,7 +8,7 @@
 <!ENTITY quickPasswordsContext.cancelLogin.label "Annuler les identifiants">
 <!ENTITY quickPasswordsToolbarButton.label "QuickPasswords">
 <!ENTITY quickPasswordsToolbarButton.tooltip "Copie les mots de passe dans le presse-papiers !">
-<!ENTITY quickPasswordsRepairButton.label "Correct the Field Names">
+<!ENTITY quickPasswordsRepairButton.label "Corrigez le nom des champs">
 <!ENTITY quickPasswordsTreeContextMenuCopy.label "Copier les mots de passe dans le presse-papiers">
 <!ENTITY quickPasswordsTreeContextMenuCopy.accesskey "P">
 <!ENTITY quickPasswordsTreeContextMenuCopyUser.label "Copier les noms d'utilisateurs dans le presse-papiers">
@@ -17,8 +17,8 @@
 <!ENTITY quickPasswordsTreeContextMenuCopyURI.accesskey "S">
 <!ENTITY quickPasswordsTreeContextMenuCopyFull.label "Copier les lignes sélectionnées dans le presse-papiers">
 <!ENTITY quickPasswordsTreeContextMenuCopyFull.accesskey "L">
-<!ENTITY quickPasswordsTreeContextMenuLogin.label "S'identifier">
-<!ENTITY quickPasswordsTreeContextMenuLogin.accesskey "i">
+<!ENTITY quickPasswordsTreeContextMenuLogin.label "Connexion au site">
+<!ENTITY quickPasswordsTreeContextMenuLogin.accesskey "C">
 <!ENTITY quickPasswordsManagerCopyButton.label "Copier le mot de passe !">
 <!ENTITY quickPasswordsTreeContextMenuQuickPasswordsOptions.label "Options de QuickPasswords…">
 <!ENTITY quickPasswordsTreeContextMenuChangePasswords.label "Modification du mot de passe unifié…">

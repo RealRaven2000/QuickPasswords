@@ -8,7 +8,6 @@
 <!ENTITY quickPasswordsContext.cancelLogin.label "Hủy bỏ Đăng Nhập QuickPasswords">
 <!ENTITY quickPasswordsToolbarButton.label "QuickPassword">
 <!ENTITY quickPasswordsToolbarButton.tooltip "Ghi nhớ các Mật Khẩu vào bộ nhớ tạm!">
-<!ENTITY quickPasswordsRepairButton.label "Correct the Field Names">
 <!ENTITY quickPasswordsTreeContextMenuCopy.label "Ghi nhớ Mật Khẩu vào bộ nhớ tạm">
 <!ENTITY quickPasswordsTreeContextMenuCopy.accesskey "G">
 <!ENTITY quickPasswordsTreeContextMenuCopyUser.label "Sao chép Tên Sử Dụng vào bộ nhớ tạm">

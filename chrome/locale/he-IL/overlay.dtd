@@ -8,7 +8,7 @@
 <!ENTITY quickPasswordsContext.cancelLogin.label "ביטול התחברות QuickPasswords">
 <!ENTITY quickPasswordsToolbarButton.label "QuickPasswords">
 <!ENTITY quickPasswordsToolbarButton.tooltip "עותקים של סיסמאות במיקום זמני בזיכרון המחשב!">
-<!ENTITY quickPasswordsRepairButton.label "Correct the Field Names">
+<!ENTITY quickPasswordsRepairButton.label "תקן את שמות השדות">
 <!ENTITY quickPasswordsTreeContextMenuCopy.label "העתק סיסמאות למיקום זמני בזיכרון המחשב">
 <!ENTITY quickPasswordsTreeContextMenuCopy.accesskey "ע">
 <!ENTITY quickPasswordsTreeContextMenuCopyUser.label "העתק שם משתמש ללוח כתיבה">

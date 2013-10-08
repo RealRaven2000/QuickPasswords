@@ -667,13 +667,18 @@ QuickPasswords.Util = {
 	
 	toggleDonations: function() {
 		let isAsk = QuickPasswords.Preferences.getBoolPref('donations.askOnUpdate');
-		let question = "Do you want to {0} the donations screen which is displayed every time QuickPasswords updates?";
-		question = question.replace('{0}', isAsk ? 'disable' : 're-enable');
+		let question = this.getBundleString("qpDonationToggle","Do you want to {0} the donations screen which is displayed whenever QuickPasswords updates?");
+		
+		question = question.replace('{0}', isAsk ? 
+               this.getBundleString("qpDonationToggle.disable", 'disable') : 
+							 this.getBundleString("qpDonationToggle.enable", 're-enable'));
 		if (confirm(question)) {
 		  isAsk = !isAsk;
 			QuickPasswords.Preferences.setBoolPref('donations.askOnUpdate', isAsk);
-			let message = "The donations screen is now {0}.";
-			message = message.replace('{0}', isAsk ? 'enabled' : 'disabled');
+			let message = this.getBundleString("qpDonationIsToggled", "The donations screen is now {0}.");
+			message = message.replace('{0}', isAsk ? 
+			  this.getBundleString("qpDonationIsToggled.enabled",'enabled'): 
+				this.getBundleString("qpDonationIsToggled.disabled",'disabled'));
 			alert(message);	
 		}
 	},
@@ -754,8 +759,8 @@ QuickPasswords.Util = {
 		let current=label.value.toString();  // retrieve version number from label
 		
 		let pureVersion = this.getVersionSimple(current);
-		let sPrompt = QuickPasswords.Util.getBundleString("qfConfirmVersionLink", "Display version history for QuickPasswords");
-		if (!ask || confirm(sPrompt + " " + pureVersion + "?")) {
+		let sPrompt = QuickPasswords.Util.getBundleString("qpConfirmVersionHistory", "Display version history for QuickPasswords {0}?");
+		if (!ask || confirm(sPrompt.replace("{0}", pureVersion))) {
 			QuickPasswords.Util.openURL(null, "http://quickpasswords.mozdev.org/version.html" + "#" + pureVersion);
 		}
 	},
