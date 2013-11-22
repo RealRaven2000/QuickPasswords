@@ -2,19 +2,23 @@
 
 QuickPasswords.Preferences = {
 	service: Components.classes["@mozilla.org/preferences-service;1"].getService(Components.interfaces.nsIPrefBranch),
+	get ExtensionBranch() {
+    return 	"extensions.quickpasswords.";
+	},
 
 	getBoolPref: function(term) {
+	  let eBranch = this.ExtensionBranch + term;
 		try {
-			return this.service.getBoolPref("extensions.quickpasswords." + term);
+			return this.service.getBoolPref(eBranch);
 		}
 		catch(ex) {
-			QuickPasswords.Util.logException("getBoolPref(extensions.quickpasswords." + term + ")", ex);
+			QuickPasswords.Util.logException("getBoolPref(" + eBranch + ")", ex);
 			return false;
 		}
 	},
 	
 	setBoolPref: function(term, val) {
-		this.service.setBoolPref("extensions.quickpasswords." + term, val);
+		this.service.setBoolPref(this.ExtensionBranch + term, val);
 	},
 
 	get isDebug() {
@@ -28,34 +32,34 @@ QuickPasswords.Preferences = {
 	},
 
 	setLastLocation: function(URL) {
-		this.service.setCharPref("extensions.quickPasswords.lastLocation",URL)
+		this.service.setCharPref(this.ExtensionBranch + "lastLocation",URL)
 	} ,
 
 	getLastLocation: function() {
-		if(!this.service.prefHasUserValue("extensions.quickPasswords.lastLocation"))
+	  let branch = this.ExtensionBranch + "lastLocation";
+		if(!this.service.prefHasUserValue(branch))
 			return "";
 
-		var ll = this.service.getCharPref("extensions.quickPasswords.lastLocation").toString();
+		var ll = this.service.getCharPref(branch).toString();
 		return ll;
 	} ,
 
 
 	setUrlEntries: function(UrlEntries) { // store array as JSON string
-		var json = JSON.stringify(UrlEntries)
-
-		QuickPasswords.Util.logDebug(json)
-
-		this.service.setCharPref("extensions.quickPasswords.Urls",json)
+		var json = JSON.stringify(UrlEntries);
+		QuickPasswords.Util.logDebug(json);
+		this.service.setCharPref(this.ExtensionBranch + "Urls",json);
 	} ,
 
 	getUrlEntries: function() { // retrieve a list of values...
-		if(!this.service.prefHasUserValue("extensions.quickPasswords.Urls")) {
+	  let branch = this.ExtensionBranch + "Urls";
+		if(!this.service.prefHasUserValue(branch)) {
 			return [];
 		}
 
 		var Urls;
 
-		if((Urls = this.service.getCharPref("extensions.quickPasswords.Urls").toString())) {
+		if((Urls = this.service.getCharPref(branch).toString())) {
 			return JSON.parse(Urls);
 		}
 		else {
@@ -88,7 +92,7 @@ QuickPasswords.Preferences = {
 	} ,
 
 	get isContextMenu() { // obsolete
-		return Boolean(this.service.getBoolPref("extensions.quickpasswords.displayContextMenu")); // obsolete!
+		return Boolean(this.service.getBoolPref(this.ExtensionBranch + "displayContextMenu")); // obsolete!
 	} ,
 	
 	get isUpdateFieldIds() {
@@ -100,11 +104,11 @@ QuickPasswords.Preferences = {
 	} ,
 	
 	contextMenuOption: function() {
-		return this.service.getIntPref("extensions.quickpasswords.displayContextMenuChoice");
+		return this.service.getIntPref(this.ExtensionBranch + "displayContextMenuChoice");
 	},
 
 	waitForManager: function() {
-		return this.getIntPref('extensions.quickpasswords.waitForManagerTime');
+		return this.getIntPref(this.ExtensionBranch + 'waitForManagerTime');
 	},
 
 	getIntPref: function(p) {

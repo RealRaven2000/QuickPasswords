@@ -14,7 +14,7 @@
 #quickPasswordsLockAfterClosing:not([checked])  { -moz-image-region: rect(32px, 16px, 48px, 0px); } /* open */
 #quickPasswordsLockAfterClosing[checked]:active  { -moz-image-region: rect(32px, 16px, 48px, 0px); }  /* open */
 #quickPasswordsLockAfterClosing:not([checked]):active  { -moz-image-region: rect(48px, 16px, 64px, 0px); }  /* closed, strong */
-#quickPasswordsLockAfterClosing[disabled] { -moz-image-region: rect(64px, 16px, 80px, 0px); }  /* gray */
+#quickPasswordsLockAfterClosing.disabled { -moz-image-region: rect(64px, 16px, 80px, 0px); }  /* gray */
 
 #context-quickPasswords,
 #context-quickPasswords2,

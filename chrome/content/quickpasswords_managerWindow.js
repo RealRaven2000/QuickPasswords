@@ -11,7 +11,7 @@ if (!QuickPasswords.Manager)
 		var tooltip = true; // replace that with a pref later
 
 		var moveTarget = e.target;
-		QuickPasswords.Util.logDebug("QuickPasswords.Manager.onMove(" + e.toString() + ")");
+		QuickPasswords.Util.logDebugOptional("default", "QuickPasswords.Manager.onMove(" + e.toString() + ")");
 // 		while(){
 // 			moveTarget = moveTarget.parentNode;
 // 		}
@@ -55,9 +55,49 @@ if (!QuickPasswords.Manager)
 	} ,
 	
 	protectPasswordManager: function(checkbox) {
-		let toggleProtect = checkbox.checked;
-		let pref = document.getElementById('quickpasswords_protectOnClose');
-		QuickPasswords.Preferences.service.setBoolPref(pref.name, toggleProtect);
+	  if (!this.isMasterPasswordActive) {
+			let txtAlert;
+			try {
+				txtAlert = QuickPasswords.Bundle.GetStringFromName("alertSetupMasterPassword");
+			}
+			catch(ex) {
+				txtAlert = 'To protect your passwords, set up a master password first.';
+			}
+			alert(txtAlert);
+		  let prefURI;
+			switch(QuickPasswords.Util.Application) {
+				case 'Firefox': case 'SeaMonkey':
+				  prefURI = "chrome://browser/content/preferences/preferences.xul";
+				  break;
+				case 'Thunderbird': case 'Postbox':
+				  prefURI = "chrome://messenger/content/preferences/preferences.xul";
+				  break;
+			}
+		  let dialog = window.openDialog(prefURI, 
+			                     "Preferences",
+                           "chrome,dependent,titlebar,toolbar,alwaysRaised,centerscreen,dialog=no", 
+													 "paneSecurity");
+			dialog.window.setTimeout(
+				function() {
+					QuickPasswords.Util.logDebugOptional("Manager", "useMasterPassword...");
+					let doc = dialog.document;
+					let chkMasterPassword = doc.getElementById('useMasterPassword');
+					QuickPasswords.Util.logDebugOptional("Manager", "useMasterPassword: " + chkMasterPassword);
+					chkMasterPassword.style.backgroundColor = "#CC0000";
+					chkMasterPassword.style.backgroundImage = "linear-gradient(to bottom, rgba(255,191,191,1) 0%,rgba(214,79,79,1) 30%,rgba(144,11,2,1) 51%,rgba(110,7,0,1) 100%)";
+					chkMasterPassword.style.color = "#FFFFFF";
+					chkMasterPassword.style.borderColor = "#FFFFFF";
+					dialog.window.focus();
+				},
+				250);
+			// update the style of protection button accordingly:
+			dialog.window.addEventListener('close', QuickPasswords.Manager.initProtectionButton, false);
+		}
+		else {
+			let toggleProtect = checkbox.checked;
+			let pref = document.getElementById('quickpasswords_protectOnClose');
+			QuickPasswords.Preferences.service.setBoolPref(pref.name, toggleProtect);
+		}
 	} ,
 	
 	keyListener: function(evt) {
@@ -65,6 +105,23 @@ if (!QuickPasswords.Manager)
 			return;
 		}
   },
+	
+	initProtectionButton: function() {
+		// disable the security checkbox (Master Password) if no master password is used:
+		let cbProtect = document.getElementById('quickPasswordsLockAfterClosing');
+		if (cbProtect) {
+			if (!this.isMasterPasswordActive) {
+				// no masterpassword is set at the moment - need to change behavior
+				if (cbProtect.className.indexOf('disabled')==-1)
+					cbProtect.className += " disabled";
+			}
+			else {
+			  if (cbProtect.className.indexOf('disabled')>=0)
+			    cbProtect.className = cbProtect.className.replace('disabled','');
+			}
+		}
+		return cbProtect;
+	} ,
 	
 	load: function () {
 		QuickPasswords.Util.logDebugOptional("Manager", "QuickPasswords.Manager.init()");
@@ -74,7 +131,7 @@ if (!QuickPasswords.Manager)
 			// double click
 			signonsTree.addEventListener("dblclick", 
 				function(evt) { 
-					QuickPasswords.Util.logDebug("doubleclick event:\n" + evt.toString());
+					QuickPasswords.Util.logDebugOptional("default", "doubleclick event:\n" + evt.toString());
 					// do login...
 					QuickPasswords.attemptLogin(true);
 					evt.preventDefault();
@@ -84,7 +141,7 @@ if (!QuickPasswords.Manager)
 			signonsTree.addEventListener('keypress', 
 				function(evt) {
 					if (evt.keyCode && evt.keyCode  == 13) {
-						QuickPasswords.Util.logDebug("Enter Key was pressed:\n" + evt.toString());
+						QuickPasswords.Util.logDebugOptional("default", "Enter Key was pressed:\n" + evt.toString());
 						// do login...
 						QuickPasswords.attemptLogin(true);
 						evt.preventDefault();
@@ -105,14 +162,7 @@ if (!QuickPasswords.Manager)
 			}
 		}
 		
-		// disable the security checkbox (Master Password) if no master password is used:
-		let cbProtect = document.getElementById('quickPasswordsLockAfterClosing');
-		if (!this.isMasterPasswordActive) {
-			if (cbProtect)
-				cbProtect.disabled = true;
-		}
-		// if the password was not given we should probably also disable the lock!
-		
+		let cbProtect = this.initProtectionButton();
 		
 		// get container for close button
 		let actions = document.documentElement.getElementsByClassName('actionButtons');
