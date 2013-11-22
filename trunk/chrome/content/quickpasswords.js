@@ -165,9 +165,11 @@
 		
 	3.1 - WIP
 		Fixed disabling (login / repair) buttons in IETabs - IE tabs do not support modifying the context menu
+		Improved filtering function (showPasswords) in order to always highlight the most correct domain match
 	  Added translations for toggle version and donation messages.
 		Now opens Security preferences when clicking the "Lock" button and no master password is set
 		Moved options css file into skins folder
+		Improved security of about:config dialogs
 		Removed obsolete buttons from passwordwindow overlay
 		Enabled decreasing amount of console messages making most messages dependant on debug.default (defaults to true)
 		Removed some global variables to avoid namespace pollution
