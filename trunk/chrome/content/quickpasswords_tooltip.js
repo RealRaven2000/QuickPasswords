@@ -52,5 +52,5 @@ QuickPasswordsTooltip.prototype.hide = function(){
 	this.tip.hidePopup();
 }
 
-QuickPasswords.Util.logDebug("Initialized QuickPasswordsTooltip!");
+QuickPasswords.Util.logDebugOptional("default", "Initialized QuickPasswordsTooltip!");
 

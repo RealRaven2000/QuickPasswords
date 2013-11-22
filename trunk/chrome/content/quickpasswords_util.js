@@ -1,10 +1,5 @@
 "use strict";
 
-if (!QuickPasswords.StringBundle)
-	QuickPasswords.StringBundle = Components.classes["@mozilla.org/intl/stringbundle;1"].getService(Components.interfaces.nsIStringBundleService);
-if (!QuickPasswords.Properties)
-	QuickPasswords.Properties = QuickPasswords.StringBundle.createBundle("chrome://quickpasswords/locale/overlay.properties");
-
 
 var QuickPasswords_TabURIregexp = {
 	get _thunderbirdRegExp() {
@@ -102,11 +97,11 @@ QuickPasswords.Util = {
 					AddonManager.getAddonByID(QuickPasswords.Util.AddonId, function(addon) {
 						let u = QuickPasswords.Util;
 						u.mExtensionVer = addon.version;
-						u.logDebug("================================================\n" +
+						u.logDebugOptional("default", "================================================\n" +
 						           "================================================");
-						u.logDebug("AddonManager: QuickPasswords extension's version is " + addon.version);
-						u.logDebug("QuickPasswords.VersionProxy() - DETECTED QuickPasswords Version " + u.mExtensionVer + "\n" + "Running on " + u.Application	 + " Version " + u.AppVersionFull);
-						u.logDebug("================================================\n" +
+						u.logDebugOptional("default", "AddonManager: QuickPasswords extension's version is " + addon.version);
+						u.logDebugOptional("default", "QuickPasswords.VersionProxy() - DETECTED QuickPasswords Version " + u.mExtensionVer + "\n" + "Running on " + u.Application	 + " Version " + u.AppVersionFull);
+						u.logDebugOptional("default", "================================================\n" +
 						           "================================================");
 						var wd=window.document;
 						if (wd) {
@@ -191,7 +186,7 @@ QuickPasswords.Util = {
 	// and for secured pages (donation page).
 	openLinkInBrowserForced: function(linkURI) {
 		try {
-			this.logDebug("openLinkInBrowserForced (" + linkURI + ")");
+			this.logDebugOptional("default", "openLinkInBrowserForced (" + linkURI + ")");
 			if (QuickPasswords.Util.Application=='SeaMonkey') {
 				let windowManager = Components.classes['@mozilla.org/appshell/window-mediator;1'].getService(Components.interfaces.nsIWindowMediator);
 				let browser = windowManager.getMostRecentWindow( "navigator:browser" );
@@ -271,16 +266,16 @@ QuickPasswords.Util = {
 	} ,
 
 	checkfirstRun: function() {
-		QuickPasswords.Util.logDebug("checkfirstRun");
+		QuickPasswords.Util.logDebugOptional("default", "checkfirstRun");
 		var prev = -1, firstRun = false;
 		var debugfirstRun = false;
 
 		var svc = Components.classes["@mozilla.org/preferences-service;1"]
 			.getService(Components.interfaces.nsIPrefService);
-		var ssPrefs = svc.getBranch("extensions.quickpasswords.");
+		var ssPrefs = svc.getBranch(QuickPasswords.Preferences.ExtensionBranch);
 
 		var current = QuickPasswords.Util.Version;
-		QuickPasswords.Util.logDebug("Current QuickPasswords Version: " + current);
+		QuickPasswords.Util.logDebugOptional("default", "Current QuickPasswords Version: " + current);
 		try {
 			QuickPasswords.Util.logDebugOptional ("firstRun","try to get setting: getCharPref(version)");
 			try {
@@ -518,7 +513,7 @@ QuickPasswords.Util = {
 						function(addon) {
 							// This is an asynchronous callback function that might not be called immediately, ah well...
 							let ut = QuickPasswords.Util;
-							ut.logDebug("AddonManager retrieved Version number: " + addon.version);
+							ut.logDebugOptional("default", "AddonManager retrieved Version number: " + addon.version);
 							if (addon.version)
 								ut.checkfirstRun();
 							else
@@ -529,7 +524,7 @@ QuickPasswords.Util = {
 		}
 		else { // Tb 3.0
 			utils.mExtensionVer = this.getAddon(aId).version;
-			utils.logDebug("Retrieved Version number from nsIExtensionManager (legacy): " + utils.mExtensionVer);
+			utils.logDebugOptional("default", "Retrieved Version number from nsIExtensionManager (legacy): " + utils.mExtensionVer);
 			utils.checkfirstRun();
 		}
 	},
@@ -698,7 +693,7 @@ QuickPasswords.Util = {
 			// let donateButtons = Array.filter(dlgButtons, function(element) { return (element.dlgType=='extra2') });
 			donateButton.addEventListener("click", 
 				function(evt) { 
-					QuickPasswords.Util.logDebug("donateButton event:\n" + evt.toString());
+					QuickPasswords.Util.logDebugOptional("default", "donateButton event:\n" + evt.toString());
 					if(evt.button == 2) {
 						QuickPasswords.Util.toggleDonations();
 						evt.preventDefault();
@@ -717,7 +712,7 @@ QuickPasswords.Util = {
 			});
 	} ,
 
-	showAboutConfig: function(filter, owner) {
+	showAboutConfig: function(filter, owner, readOnly) {
 
 		const name = "Preferences:ConfigManager";
 		const uri = "chrome://global/content/config.xul";
@@ -730,22 +725,26 @@ QuickPasswords.Util = {
 			w = watcher.openWindow(owner || null, uri, name, "dependent,alwaysRaised,dialog,chrome,resizable,centerscreen,width=500px,height=350px", null);
 		}
 		w.focus();
-		w.setTimeout(
+		w.addEventListener('load',
 			function () {
 				var flt = w.document.getElementById("textbox");
 				if (flt) {
-					 flt.value=filter;
-					 flt.focus();
-					 if (w.self.FilterPrefs)
-					 w.self.FilterPrefs();
+					flt.value=filter;
+				 	// make filter box readonly to prevent damage!
+					if (!readOnly)
+					 	flt.focus();
+					else
+						flt.setAttribute('readonly',true);
+					if (w.self.FilterPrefs)
+					  w.self.FilterPrefs();
 				}
-			}, 300);
+			});
 	},
 
 	getBundleString: function(id, defaultText) { // moved from local copies in various modules.
 		let s;
 		try {
-			s = QuickPasswords.Properties.GetStringFromName(id);
+			s = QuickPasswords.Bundle.GetStringFromName(id);
 		}
 		catch(e) {
 			s = defaultText;
