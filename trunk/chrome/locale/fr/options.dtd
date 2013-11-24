@@ -1,8 +1,8 @@
 <!ENTITY prefwindow.title "Préférences de QuickPasswords">
 <!ENTITY pane1.title "Préférences de QuickPasswords">
-<!ENTITY checkCopyShowMessage.label "Afficher les messages après avoir copié les mots de passe dans le presse-papiers">
+<!ENTITY checkCopyShowMessage.label "Afficher un message après avoir copié les mots de passe dans le presse-papiers">
 <!ENTITY checkCopyShowMessage.accesskey "M">
-<!ENTITY checkLoginShowMessage.label "Afficher le message après sélection de la commande nom d'utilisateur">
+<!ENTITY checkLoginShowMessage.label "Afficher un message après sélection de la commande de connexion">
 <!ENTITY checkLoginShowMessage.accesskey "A">
 <!ENTITY checkDebug.label "Mode débogage">
 <!ENTITY checkDebug.accesskey "D">
@@ -11,9 +11,9 @@
 <!ENTITY intMsgDelay.accesskey "T">
 <!ENTITY about.label "À propos de">
 <!ENTITY about.accesskey "A">
-<!ENTITY checkMultirowHeader.label "Ajoutez une rangée d'en-tête lors de la copie de plusieurs lignes">
+<!ENTITY checkMultirowHeader.label "Ajouter une rangée d'en-tête lors de la copie de plusieurs lignes">
 <!ENTITY checkMultirowHeader.accesskey "R">
-<!ENTITY checkUpdateFields.label "Invitation à modifier les noms de champs incorrects.">
+<!ENTITY checkUpdateFields.label "Invitater à modifier les noms de champs incorrects.">
 <!ENTITY checkUpdateFields.accesskey "I">
 <!ENTITY href.label.homePage "Visiter la page d'accueil de QuickPasswords à mozdev.org!">
 <!ENTITY checkAutoCloseManager.label "Fermer automatiquement le gestionnaire de mots de passe après avoir copié">
