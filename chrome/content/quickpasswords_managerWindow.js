@@ -53,6 +53,30 @@ if (!QuickPasswords.Manager)
 			.getService(Components.interfaces.nsIPK11TokenDB)
 			.findTokenByName("").logoutAndDropAuthenticatedResources();
 	} ,
+
+	// since the passwords sub Tab has no Id we cannot use any built in helper from Thunderbird
+  openPasswordsTab: function(win, checkbox) {
+    // find the passwords tab by looking for the tabpane that contains the checkbox
+		if (checkbox) {
+		  let p=checkbox.parentNode;
+			while (p && (p.tagName != 'tabpanel')) {
+			  p = p.parentNode;
+			}
+			if (p) {
+			  win.setTimeout(
+				  function() {
+						// find tab index and then activate the panel
+						let tabPanels = p.parentNode;
+						for (let i=0; i<tabPanels.tabbox.tabs.childNodes.length; i++) {
+							if (tabPanels.children[i] == p) {
+								tabPanels.tabbox.tabs.childNodes[i].click();
+								break;
+							}
+						}
+					});
+			}
+		}
+  }	,
 	
 	protectPasswordManager: function(checkbox) {
 	  if (!this.isMasterPasswordActive) {
@@ -64,34 +88,73 @@ if (!QuickPasswords.Manager)
 				txtAlert = 'To protect your passwords, set up a master password first.';
 			}
 			alert(txtAlert);
-		  let prefURI;
+		  let prefURI, dialog;
 			switch(QuickPasswords.Util.Application) {
-				case 'Firefox': case 'SeaMonkey':
+				case 'Firefox': 
 				  prefURI = "chrome://browser/content/preferences/preferences.xul";
+				  dialog = window.openDialog(prefURI, 
+														 "Preferences",
+														 "chrome,dependent,titlebar,toolbar,alwaysRaised,centerscreen,dialog=no", 
+														 "paneSecurity");
 				  break;
-				case 'Thunderbird': case 'Postbox':
+				case 'SeaMonkey':
+			    let wm = Components.classes["@mozilla.org/appshell/window-mediator;1"]
+                   .getService(Components.interfaces.nsIWindowMediator);
+					let win = wm.getMostRecentWindow("navigator:browser") ||
+					     wm.getMostRecentWindow("mail:3pane") ||
+							 wm.getMostRecentWindow("mail:messageWindow") ||
+							 wm.getMostRecentWindow("msgcompose");
+					if (typeof win.goPreferences == "function") {
+					  win.goPreferences('masterpass_pane');
+					}
+					break;
+				case 'Postbox':
 				  prefURI = "chrome://messenger/content/preferences/preferences.xul";
+				  dialog = window.openDialog(prefURI, 
+														 "Preferences",
+														 "chrome,dependent,titlebar,toolbar,alwaysRaised,centerscreen,dialog=no", 
+														 "panePrivacy"
+														 );
+					break;
+				case 'Thunderbird': 
+				  prefURI = "chrome://messenger/content/preferences/preferences.xul";
+				  dialog = window.openDialog(prefURI, 
+														 "Preferences",
+														 "chrome,dependent,titlebar,toolbar,alwaysRaised,centerscreen,dialog=no", 
+														 "paneSecurity", 
+														 "passwordsTab"  // Thunderbird has no name for this tab yet, so this will not work until this bug is fixed.
+														 );
 				  break;
 			}
-		  let dialog = window.openDialog(prefURI, 
-			                     "Preferences",
-                           "chrome,dependent,titlebar,toolbar,alwaysRaised,centerscreen,dialog=no", 
-													 "paneSecurity");
-			dialog.window.setTimeout(
-				function() {
-					QuickPasswords.Util.logDebugOptional("Manager", "useMasterPassword...");
-					let doc = dialog.document;
-					let chkMasterPassword = doc.getElementById('useMasterPassword');
-					QuickPasswords.Util.logDebugOptional("Manager", "useMasterPassword: " + chkMasterPassword);
-					chkMasterPassword.style.backgroundColor = "#CC0000";
-					chkMasterPassword.style.backgroundImage = "linear-gradient(to bottom, rgba(255,191,191,1) 0%,rgba(214,79,79,1) 30%,rgba(144,11,2,1) 51%,rgba(110,7,0,1) 100%)";
-					chkMasterPassword.style.color = "#FFFFFF";
-					chkMasterPassword.style.borderColor = "#FFFFFF";
-					dialog.window.focus();
-				},
-				250);
-			// update the style of protection button accordingly:
-			dialog.window.addEventListener('close', QuickPasswords.Manager.initProtectionButton, false);
+			if (QuickPasswords.Util.Application!='SeaMonkey') {
+			  dialog.window.addEventListener('load',
+					function() {
+						dialog.window.setTimeout(
+							function() {
+								QuickPasswords.Util.logDebugOptional("Manager", "useMasterPassword...");
+								let doc = dialog.document;
+								let chkMasterPassword = doc.getElementById('useMasterPassword');
+								QuickPasswords.Util.logDebugOptional("Manager", "useMasterPassword: " + chkMasterPassword);
+								if (QuickPasswords.Util.Application=='Postbox') {
+									chkMasterPassword.style.color = "#CC0000";
+									chkMasterPassword.style.borderColor = "#CC0000";
+								}
+								else {
+									chkMasterPassword.style.backgroundColor = "#CC0000";
+									chkMasterPassword.style.backgroundImage = "linear-gradient(to bottom, rgba(255,191,191,1) 0%,rgba(214,79,79,1) 30%,rgba(144,11,2,1) 51%,rgba(110,7,0,1) 100%)";
+									chkMasterPassword.style.color = "#FFFFFF";
+									chkMasterPassword.style.borderColor = "#FFFFFF";
+								}
+								// some special code for selecting the correct sub tab:
+								if (QuickPasswords.Util.Application == 'Thunderbird')
+									QuickPasswords.Manager.openPasswordsTab(dialog.window, chkMasterPassword);
+								dialog.window.focus();
+							},
+							100 );
+					}, true );
+				// update the style of protection button accordingly:
+				dialog.window.addEventListener('close', QuickPasswords.Manager.initProtectionButton, false);
+			}
 		}
 		else {
 			let toggleProtect = checkbox.checked;
