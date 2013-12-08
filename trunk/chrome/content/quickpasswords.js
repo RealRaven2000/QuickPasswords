@@ -292,8 +292,6 @@ var QuickPasswords = {
 			argstring = Components.classes["@mozilla.org/supports-string;1"]
 							.createInstance(Components.interfaces.nsISupportsString);
 			argstring.data = filterString;
-
-
 			var watcher = Components.classes["@mozilla.org/embedcomp/window-watcher;1"].getService(Components.interfaces.nsIWindowWatcher);
 			win = watcher.openWindow(null, uri, name, "chrome,centerscreen,resizable,alwaysRaised", argstring); //
 		}
@@ -303,6 +301,13 @@ var QuickPasswords = {
 	showPasswords: function(filterString) {
 		let win = this.getPasswordManagerWindow(filterString);
 		this.PasswordManagerWindow = win;
+		if (!win) {
+		  setTimeout(function() {showPasswords(filterString);}, 1000);
+			// if we have started Fx and are asked for the master password = no window, lets repeat!
+			QuickPasswords.Util.logDebugOptional ("showPasswords", "waiting for password manager...");
+			return;
+		}
+		QuickPasswords.Util.logDebugOptional ("showPasswords", "Got Password Window:" + win);
 
 		let fs = filterString; // need to marshall this into the setFilter method, the filterString parameter doesn't survive
 		let serverURI = this.getActiveUri(true, true);
@@ -341,8 +346,8 @@ var QuickPasswords = {
 						if (!tree.view.rowCount) { // throws if Thunderbird is not ready.
 							QuickPasswords.Util.logDebugOptional ("showPasswords", "no rows in tree, postponing doAutoFilter for 200ms...");
 							win.setTimeout(
-								function() {QuickPasswords.checkCountChanged(0, tree, doAutoFilter)},
-								200);
+								function() {QuickPasswords.checkCountChanged(win, 0, tree, doAutoFilter)},
+								2000);
 							return;
 						}
 						win.self.setFilter(fs);
@@ -352,7 +357,7 @@ var QuickPasswords = {
 					  // this can happen if master password dialog is shown (Password Manager is invisible)
 						QuickPasswords.Util.logException("auto filter - password manager not ready - postponing by 1 sec:", ex);
 						win.setTimeout(
-							function() {QuickPasswords.checkCountChanged(0, tree, doAutoFilter)},
+							function() {QuickPasswords.checkCountChanged(win, 0, tree, doAutoFilter)},
 							1000);
 						return;
 					}
@@ -388,12 +393,16 @@ var QuickPasswords = {
 						}
 						// make sure to refilter if the count changes.
 						win.setTimeout(
-							function() {QuickPasswords.checkCountChanged(tree.view.rowCount, tree, doAutoFilter)},
+							function() {QuickPasswords.checkCountChanged(win, tree.view.rowCount, tree, doAutoFilter)},
 							250);
+						return;
 					}
-					
-					
 				}
+				else {
+				  // still too early...
+  				win.setTimeout(doAutoFilter, 200);
+				}
+
 			}
 			catch(ex) {
 				QuickPasswords.Util.logException("Error during auto filter", ex);
@@ -409,7 +418,7 @@ var QuickPasswords = {
 		}
 	},
 	
-	checkCountChanged: function(oldCount, tree, theFilterFunction) {
+	checkCountChanged: function(win, oldCount, tree, theFilterFunction) {
 	  if(tree) {
 		  let rowCount = tree.view.rowCount;
 		  if (rowCount > oldCount || rowCount == 0) {
@@ -417,9 +426,13 @@ var QuickPasswords = {
 				  rowCount ? 
 					"checkCountChanged() - count changed:" + rowCount :
 					"checkCountChanged() - no rows found");
-				setTimeOut(
-					function() { QuickPasswords.checkCountChanged(rowCount, tree, theFilterFunction); },
-					rowCount ? 250 : 1000);
+				if (rowCount) 
+					win.setTimeout(theFilterFunction,10); // count changed, let's filter.
+				else {
+				  win.setTimeout(
+					  function() { QuickPasswords.checkCountChanged(win, rowCount, tree, theFilterFunction); },
+					  rowCount ? 250 : 1000);
+					}
 			}
 			else
 				QuickPasswords.Util.logDebugOptional ("showPasswords", "checkCountChanged() unchanged:" + tree.view.rowCount);

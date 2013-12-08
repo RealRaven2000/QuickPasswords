@@ -134,17 +134,18 @@ if (!QuickPasswords.Manager)
 								QuickPasswords.Util.logDebugOptional("Manager", "useMasterPassword...");
 								let doc = dialog.document;
 								let chkMasterPassword = doc.getElementById('useMasterPassword');
+								let container = chkMasterPassword.parentNode;
+								if (!container || container.tagName != 'hbox') 
+								  container = chkMasterPassword;
+								
 								QuickPasswords.Util.logDebugOptional("Manager", "useMasterPassword: " + chkMasterPassword);
-								if (QuickPasswords.Util.Application=='Postbox') {
-									chkMasterPassword.style.color = "#CC0000";
-									chkMasterPassword.style.borderColor = "#CC0000";
-								}
-								else {
-									chkMasterPassword.style.backgroundColor = "#CC0000";
-									chkMasterPassword.style.backgroundImage = "linear-gradient(to bottom, rgba(255,191,191,1) 0%,rgba(214,79,79,1) 30%,rgba(144,11,2,1) 51%,rgba(110,7,0,1) 100%)";
-									chkMasterPassword.style.color = "#FFFFFF";
-									chkMasterPassword.style.borderColor = "#FFFFFF";
-								}
+								chkMasterPassword.style.color = "#FFFFFF";
+								container.style.backgroundColor = "#CC0000";
+								let bgStyle = (QuickPasswords.Util.Application=='Postbox')  ?
+								              "-moz-linear-gradient(top, rgba(255,191,191,1) 0%,rgba(214,79,79,1) 30%,rgba(144,11,2,1) 51%,rgba(110,7,0,1) 100%)" :
+															"linear-gradient(to bottom, rgba(255,191,191,1) 0%,rgba(214,79,79,1) 30%,rgba(144,11,2,1) 51%,rgba(110,7,0,1) 100%)";
+								container.style.backgroundImage = bgStyle;
+								container.style.borderColor = "#FFFFFF";
 								// some special code for selecting the correct sub tab:
 								if (QuickPasswords.Util.Application == 'Thunderbird')
 									QuickPasswords.Manager.openPasswordsTab(dialog.window, chkMasterPassword);
