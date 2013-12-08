@@ -682,12 +682,12 @@ QuickPasswords.Util = {
 		this.onLoadVersionInfoDialog();
 		document.getElementById('qp-version-field').value=this.Version;
 		// hide about button...
-		if (!window.opener.gExtensionsViewController) {
+/* 		if (!window.opener.gExtensionsViewController) {
 			var about = document.getElementById("qp-About");
 			if (about)
 				about.style["visibility"]="hidden";
 		}
-		// no donation loophoole
+ */		// no donation loophoole
 		let donateButton = document.documentElement.getButton('extra2');
 		if (donateButton) {
 			// let donateButtons = Array.filter(dlgButtons, function(element) { return (element.dlgType=='extra2') });

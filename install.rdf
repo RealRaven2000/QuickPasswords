@@ -2,7 +2,7 @@
 <RDF xmlns="http://www.w3.org/1999/02/22-rdf-syntax-ns#" xmlns:em="http://www.mozilla.org/2004/em-rdf#">
   <Description about="urn:mozilla:install-manifest"
 	em:id="QuickPasswords@axelg.com"
-	em:version="3.1pre47"
+	em:version="3.1"
 	em:creator="Axel Grude"
 	em:description="Quickly get Passwords from Password Manager to the clipboard, or log on to the site directly. No need to display them anymore!"
 	em:name="QuickPasswords"
