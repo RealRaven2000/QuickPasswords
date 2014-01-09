@@ -4,6 +4,9 @@
 <!ENTITY checkCopyShowMessage.accesskey "M">
 <!ENTITY checkLoginShowMessage.label "Display Message after selecting Login command">
 <!ENTITY checkLoginShowMessage.accesskey "L">
+<!ENTITY checkFillSearch.label "Fill Search box when opening Password Manager">
+<!ENTITY checkFillSearch.accesskey "F">
+<!ENTITY checkFillSearch.tooltip "Filters the list of passwords according to context.">
 <!ENTITY checkDebug.label "Debug Mode">
 <!ENTITY checkDebug.accesskey "D">
 <!ENTITY intMsgDelay.label "Delay Time for Password Manager Search Box [ms]">

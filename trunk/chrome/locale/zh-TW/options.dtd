@@ -13,7 +13,7 @@
 <!ENTITY about.accesskey "A">
 <!ENTITY checkMultirowHeader.label "複製多列時加入標題列">
 <!ENTITY checkMultirowHeader.accesskey "H">
-<!ENTITY checkUpdateFields.label "提示變更不正確欄位名稱。">
+<!ENTITY checkUpdateFields.label "提示變更不正確的欄位名稱。">
 <!ENTITY checkUpdateFields.accesskey "P">
 <!ENTITY href.label.homePage "於 mozdev.org 瀏覽 QuickPasswords 首頁!">
 <!ENTITY checkAutoCloseManager.label "複製後自動關閉密碼管理員">
