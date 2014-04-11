@@ -1,5 +1,7 @@
 <!ENTITY prefwindow.title "QuickPasswords Preferences">
 <!ENTITY pane1.title "QuickPasswords preferences">
+<!ENTITY tab.general "General">
+<!ENTITY tab.support "Advanced + Support">
 <!ENTITY checkCopyShowMessage.label "Display Message after copying Password to Clipboard">
 <!ENTITY checkCopyShowMessage.accesskey "M">
 <!ENTITY checkLoginShowMessage.label "Display Message after selecting Login command">
@@ -9,6 +11,8 @@
 <!ENTITY checkFillSearch.tooltip "Filters the list of passwords according to context.">
 <!ENTITY checkDebug.label "Debug Mode">
 <!ENTITY checkDebug.accesskey "D">
+<!ENTITY checkAustralis.label "Australis Theme Support">
+<!ENTITY checkAustralis.tooltip "Use this for better integration with monochrome themes">
 <!ENTITY intMsgDelay.label "Delay Time for Password Manager Search Box [ms]">
 <!ENTITY intMsgDelay.tooltip "Sometimes the Search Box is not automatically filled with the web site's domain name - in this case increase this value.">
 <!ENTITY intMsgDelay.accesskey "T">

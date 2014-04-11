@@ -1,11 +1,18 @@
 <!ENTITY prefwindow.title "QuickPasswords Optionen">
 <!ENTITY pane1.title "QuickPasswords Optionen">
+<!ENTITY tab.general "Allgemein">
+<!ENTITY tab.support "Erweitert + Support">
 <!ENTITY checkCopyShowMessage.label "Nach Kopieren Meldung anzeigen">
 <!ENTITY checkCopyShowMessage.accesskey "M">
 <!ENTITY checkLoginShowMessage.label "Meldung anzeigen nach Einloggen Kommando">
 <!ENTITY checkLoginShowMessage.accesskey "E">
+<!ENTITY checkFillSearch.label "Beim öffnen von Passwort Manager Suchfeld automatisch ausfüllen">
+<!ENTITY checkFillSearch.accesskey "S">
+<!ENTITY checkFillSearch.tooltip "Filtert die Passwortliste je nach Kontext.">
 <!ENTITY checkDebug.label "Debug Modus">
 <!ENTITY checkDebug.accesskey "D">
+<!ENTITY checkAustralis.label "Australis Skin">
+<!ENTITY checkAustralis.tooltip "Gut geeignet für einfarbige Skins">
 <!ENTITY intMsgDelay.label "Wartezeit für Suche im Fenster &quot;Gespeicherte Passwörter&quot; (Passwort Manager)">
 <!ENTITY intMsgDelay.tooltip "Wenn der Filter im Passwort Manager nicht automatisch mit dem Domänennamen der Webseite initialisiert wird, diesen Wert erhöhen.">
 <!ENTITY intMsgDelay.accesskey "W">
