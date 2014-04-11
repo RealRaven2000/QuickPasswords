@@ -8,7 +8,7 @@
 <!ENTITY quickPasswordsContext.cancelLogin.label "Annulla l'accesso tramite QuickPasswords">
 <!ENTITY quickPasswordsToolbarButton.label "QuickPasswords">
 <!ENTITY quickPasswordsToolbarButton.tooltip "Copia le password nel blocco degli appunti">
-<!ENTITY quickPasswordsRepairButton.label "Correzione nome dei campi">
+<!ENTITY quickPasswordsRepairButton.label "Correzione del nome dei campi">
 <!ENTITY quickPasswordsTreeContextMenuCopy.label "Copia la password nel blocco degli appunti">
 <!ENTITY quickPasswordsTreeContextMenuCopy.accesskey "P">
 <!ENTITY quickPasswordsTreeContextMenuCopyUser.label "Copia il nome utente nel blocco appunti">
@@ -23,4 +23,4 @@
 <!ENTITY quickPasswordsTreeContextMenuQuickPasswordsOptions.label "Opzioni di QuickPasswords…">
 <!ENTITY quickPasswordsTreeContextMenuChangePasswords.label "Cambio password unificato…">
 <!ENTITY quickPasswordsManager.siteFilter "Filtra l'elenco dei siti">
-<!ENTITY quickPasswordsManager.protection "Protezione di Password Manager dopo la chiusura - la prossima volta verrà richiesto l'inserimento della password principale">
+<!ENTITY quickPasswordsManager.protection "Protezione del Password Manager dopo la chiusura - Al prossimo accesso verrà richiesto l'inserimento della password principale">

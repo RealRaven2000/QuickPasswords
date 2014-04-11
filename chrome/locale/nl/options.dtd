@@ -1,20 +1,20 @@
 <!ENTITY prefwindow.title "QuickPasswords-voorkeuren">
 <!ENTITY pane1.title "QuickPasswords-voorkeuren">
-<!ENTITY tab.general "General">
-<!ENTITY tab.support "Advanced + Support">
+<!ENTITY tab.general "Algemeen">
+<!ENTITY tab.support "Geavanceerd + ondersteuning">
 <!ENTITY checkCopyShowMessage.label "Bericht weergeven na kopiëren wachtwoord naar Klembord">
 <!ENTITY checkCopyShowMessage.accesskey "B">
 <!ENTITY checkLoginShowMessage.label "Bericht weergeven na selecteren opdracht Aanmelden">
 <!ENTITY checkLoginShowMessage.accesskey "g">
-<!ENTITY checkFillSearch.label "Fill Search box when opening Password Manager">
-<!ENTITY checkFillSearch.accesskey "F">
-<!ENTITY checkFillSearch.tooltip "Filters the list of passwords according to context.">
+<!ENTITY checkFillSearch.label "Zoekveld vullen bij openen Wachtwoordbeheerder">
+<!ENTITY checkFillSearch.accesskey "u">
+<!ENTITY checkFillSearch.tooltip "Filters de lijst met wachtwoorden op context.">
 <!ENTITY checkDebug.label "Foutopsporingsmodus">
 <!ENTITY checkDebug.accesskey "F">
-<!ENTITY checkAustralis.label "Australis Theme Support">
-<!ENTITY checkAustralis.tooltip "Use this for better integration with monochrome themes">
-<!ENTITY intMsgDelay.label "Wachttijd voor venster wachtwoordbeheerder [ms]">
-<!ENTITY intMsgDelay.tooltip "Soms wordt het Zoekveld niet automatisch gevuld met de domeinnaam van de website - verhoog in dit geval de waarde.">
+<!ENTITY checkAustralis.label "Ondersteuning Australis-thema">
+<!ENTITY checkAustralis.tooltip "Gebruik dit voor betere integratie met monochrome thema’s">
+<!ENTITY intMsgDelay.label "Wachttijd voor zoekveld wachtwoordbeheerder [ms]">
+<!ENTITY intMsgDelay.tooltip "Soms wordt het zoekveld niet automatisch gevuld met de domeinnaam van de website - verhoog in dit geval de waarde.">
 <!ENTITY intMsgDelay.accesskey "W">
 <!ENTITY about.label "Over">
 <!ENTITY about.accesskey "O">
