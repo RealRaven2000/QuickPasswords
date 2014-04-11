@@ -256,6 +256,21 @@ quickpasswords-tip-img1 {
 	list-style-image: url("chrome://quickpasswords/skin/options.png");
 }
 
+.australis #QuickPasswordsBtnSettings:hover image {
+   animation-duration: 3s;
+	 animation-name: rotate;
+	 animation-iteration-count: infinite;
+}
+
+@keyframes rotate {
+  from {
+	  transform: rotate(0deg);
+	}
+	to {
+	  transform: rotate(359deg);
+	}
+}
+
 
 notification[value="quickpasswords-changeprompt.repairFields"] image.messageImage,
 notification[value="quickpasswords-changeprompt.user"] image.messageImage,
