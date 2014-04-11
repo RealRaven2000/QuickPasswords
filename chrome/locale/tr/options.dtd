@@ -1,11 +1,18 @@
 <!ENTITY prefwindow.title "QuickPasswords Seçenekleri">
 <!ENTITY pane1.title "QuickPasswords seçenekleri">
+<!ENTITY tab.general "General">
+<!ENTITY tab.support "Advanced + Support">
 <!ENTITY checkCopyShowMessage.label "Şifreyi kopyaladıktan sonra bildirim göster">
 <!ENTITY checkCopyShowMessage.accesskey "M">
 <!ENTITY checkLoginShowMessage.label "Giriş komutunu seçtikten sonra bildirim göster">
 <!ENTITY checkLoginShowMessage.accesskey "G">
+<!ENTITY checkFillSearch.label "Fill Search box when opening Password Manager">
+<!ENTITY checkFillSearch.accesskey "F">
+<!ENTITY checkFillSearch.tooltip "Filters the list of passwords according to context.">
 <!ENTITY checkDebug.label "Debug Modu">
 <!ENTITY checkDebug.accesskey "D">
+<!ENTITY checkAustralis.label "Australis Theme Support">
+<!ENTITY checkAustralis.tooltip "Use this for better integration with monochrome themes">
 <!ENTITY intMsgDelay.label "Kayıtlı Parolalar Arama kutusu için gecikme süresi [ms]">
 <!ENTITY intMsgDelay.tooltip "Bazen Arama Kutusu sitelerin ismi ile otomatik doldurulmaz - bu durumda veriyi artırın.">
 <!ENTITY intMsgDelay.accesskey "Z">

@@ -1,11 +1,18 @@
 <!ENTITY prefwindow.title "QuickPasswords העדפות">
 <!ENTITY pane1.title "QuickPasswords העדפות">
+<!ENTITY tab.general "General">
+<!ENTITY tab.support "Advanced + Support">
 <!ENTITY checkCopyShowMessage.label "הצג הודעה לאחר העתקת סיסמה">
 <!ENTITY checkCopyShowMessage.accesskey "ס">
 <!ENTITY checkLoginShowMessage.label "הצג הודעה לאחר בחירת הפקודה כניסה">
 <!ENTITY checkLoginShowMessage.accesskey "כ">
+<!ENTITY checkFillSearch.label "Fill Search box when opening Password Manager">
+<!ENTITY checkFillSearch.accesskey "F">
+<!ENTITY checkFillSearch.tooltip "Filters the list of passwords according to context.">
 <!ENTITY checkDebug.label "מצב איתור באגים">
 <!ENTITY checkDebug.accesskey "ב">
+<!ENTITY checkAustralis.label "Australis Theme Support">
+<!ENTITY checkAustralis.tooltip "Use this for better integration with monochrome themes">
 <!ENTITY intMsgDelay.label "משך השהיה עבור תיבת החיפוש מנהל סיסמאות [שניות]">
 <!ENTITY intMsgDelay.tooltip ".לעיתים תיבת החיפוש אינו מוזן באופן אוטומטי עם שם האתר/הדומיין של האתר - במצב שכזה הגדל את הערך">
 <!ENTITY intMsgDelay.accesskey "ש">

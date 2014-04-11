@@ -1,11 +1,18 @@
 <!ENTITY prefwindow.title "QuickPasswords Indstillinger">
 <!ENTITY pane1.title "QuickPasswords indstillinger">
+<!ENTITY tab.general "General">
+<!ENTITY tab.support "Advanced + Support">
 <!ENTITY checkCopyShowMessage.label "Vis besked efter kopiering af adgangskode til udklipsholder">
 <!ENTITY checkCopyShowMessage.accesskey "b">
 <!ENTITY checkLoginShowMessage.label "Vis besked efter valg af kommandoen Login">
 <!ENTITY checkLoginShowMessage.accesskey "s">
+<!ENTITY checkFillSearch.label "Fill Search box when opening Password Manager">
+<!ENTITY checkFillSearch.accesskey "F">
+<!ENTITY checkFillSearch.tooltip "Filters the list of passwords according to context.">
 <!ENTITY checkDebug.label "Debug-tilstand">
 <!ENTITY checkDebug.accesskey "e">
+<!ENTITY checkAustralis.label "Australis Theme Support">
+<!ENTITY checkAustralis.tooltip "Use this for better integration with monochrome themes">
 <!ENTITY intMsgDelay.label "Forsinkelse på udfyldning af søgefeltet i 'Gemte adgangskoder' [ms]">
 <!ENTITY intMsgDelay.tooltip "Nogle gange bliver søgefeltet ikke automatisk udfyldt med webstedets domænenavn - i så fald skal du hæve denne værdi.">
 <!ENTITY intMsgDelay.accesskey "F">

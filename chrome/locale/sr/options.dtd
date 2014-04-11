@@ -1,11 +1,18 @@
 <!ENTITY prefwindow.title "Подешавања">
 <!ENTITY pane1.title "Подешавања">
+<!ENTITY tab.general "General">
+<!ENTITY tab.support "Advanced + Support">
 <!ENTITY checkCopyShowMessage.label "Прикажи поруку након умножавања лозинке">
 <!ENTITY checkCopyShowMessage.accesskey "П">
 <!ENTITY checkLoginShowMessage.label "Прикажи поруку након пријављивања">
 <!ENTITY checkLoginShowMessage.accesskey "р">
+<!ENTITY checkFillSearch.label "Fill Search box when opening Password Manager">
+<!ENTITY checkFillSearch.accesskey "F">
+<!ENTITY checkFillSearch.tooltip "Filters the list of passwords according to context.">
 <!ENTITY checkDebug.label "Уклањање грешака">
 <!ENTITY checkDebug.accesskey "У">
+<!ENTITY checkAustralis.label "Australis Theme Support">
+<!ENTITY checkAustralis.tooltip "Use this for better integration with monochrome themes">
 <!ENTITY intMsgDelay.label "Кашњење поља претраге за управљач лозинкама (ms):">
 <!ENTITY intMsgDelay.tooltip "Понекад поље за претрагу није попуњено доменом сајта. У том случају повећајте ову вредност.">
 <!ENTITY intMsgDelay.accesskey "К">

@@ -1,11 +1,18 @@
 <!ENTITY prefwindow.title "Настройки QuickPasswords">
 <!ENTITY pane1.title "QuickPasswords настройки">
+<!ENTITY tab.general "General">
+<!ENTITY tab.support "Advanced + Support">
 <!ENTITY checkCopyShowMessage.label "Показывать сообщение после копирования">
 <!ENTITY checkCopyShowMessage.accesskey "П">
 <!ENTITY checkLoginShowMessage.label "Показывать сообщение после команды Зарегистрироваться">
 <!ENTITY checkLoginShowMessage.accesskey "к">
+<!ENTITY checkFillSearch.label "Fill Search box when opening Password Manager">
+<!ENTITY checkFillSearch.accesskey "F">
+<!ENTITY checkFillSearch.tooltip "Filters the list of passwords according to context.">
 <!ENTITY checkDebug.label "Режим отладки">
 <!ENTITY checkDebug.accesskey "Р">
+<!ENTITY checkAustralis.label "Australis Theme Support">
+<!ENTITY checkAustralis.tooltip "Use this for better integration with monochrome themes">
 <!ENTITY intMsgDelay.label "Время ожидания окна менеджера паролей[мс]">
 <!ENTITY intMsgDelay.tooltip "Увеличьте это значение если в строке поиска не успевает появится адрес домена страницы.">
 <!ENTITY intMsgDelay.accesskey "В">
