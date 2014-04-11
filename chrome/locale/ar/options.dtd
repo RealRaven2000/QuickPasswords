@@ -1,18 +1,18 @@
 <!ENTITY prefwindow.title "تفضيلات كويك باسووردس">
 <!ENTITY pane1.title "تفضيلات كويك باسووردس">
-<!ENTITY tab.general "General">
-<!ENTITY tab.support "Advanced + Support">
+<!ENTITY tab.general "عام">
+<!ENTITY tab.support "متقدم + الدعم">
 <!ENTITY checkCopyShowMessage.label "عرض رسالة بعد نسخ كلمة السر إلى الحافظة">
 <!ENTITY checkCopyShowMessage.accesskey "ر">
 <!ENTITY checkLoginShowMessage.label "عرض رسالة بعد اختيار أمر الولوج">
 <!ENTITY checkLoginShowMessage.accesskey "و">
-<!ENTITY checkFillSearch.label "Fill Search box when opening Password Manager">
-<!ENTITY checkFillSearch.accesskey "F">
-<!ENTITY checkFillSearch.tooltip "Filters the list of passwords according to context.">
+<!ENTITY checkFillSearch.label "ملء حقل البحث عن فتح مدير كلمات السر">
+<!ENTITY checkFillSearch.accesskey "م">
+<!ENTITY checkFillSearch.tooltip "ترشيح قائمة كلمات السر وفقًا للسياق.">
 <!ENTITY checkDebug.label "نمط التنقيح">
 <!ENTITY checkDebug.accesskey "ت">
-<!ENTITY checkAustralis.label "Australis Theme Support">
-<!ENTITY checkAustralis.tooltip "Use this for better integration with monochrome themes">
+<!ENTITY checkAustralis.label "دعم سِمة أوستراليس">
+<!ENTITY checkAustralis.tooltip "استخدم هذا لتكامل أفضل مع السِمات أحادية اللون">
 <!ENTITY intMsgDelay.label "فترة التأخير لحقل البحث في مدير كلمات السر [بالمللي ثانية]">
 <!ENTITY intMsgDelay.tooltip "في بعض الأحيان، لا يُملأ حقل البحث آليا باسم الموقع - في هذه الحالة زِد هذه القيمة.">
 <!ENTITY intMsgDelay.accesskey "خ">
