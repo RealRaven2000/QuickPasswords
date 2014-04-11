@@ -13,6 +13,7 @@ pref("extensions.quickpasswords.displayContextMenuChoice",1);
 pref("extensions.quickpasswords.displayContextMenu", true); // obsolete
 pref("extensions.quickpasswords.donations.askOnUpdate", true);
 pref("extensions.quickpasswords.protectManagerOnClose", false);
+pref("extensions.quickpasswords.skin.australis", true);
 /* debugging prefs */
 pref("extensions.quickpasswords.debug", false);
 pref("extensions.quickpasswords.debug.default", true);
