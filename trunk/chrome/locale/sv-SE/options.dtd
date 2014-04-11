@@ -1,11 +1,18 @@
 <!ENTITY prefwindow.title "Inställningar för QuickPasswords">
 <!ENTITY pane1.title "Inställningar för QuickPasswords">
+<!ENTITY tab.general "Allmänt">
+<!ENTITY tab.support "Avancerat &amp; Hjälp">
 <!ENTITY checkCopyShowMessage.label "Visa meddelande när ett lösenord har kopierats till Urklipp">
 <!ENTITY checkCopyShowMessage.accesskey "m">
 <!ENTITY checkLoginShowMessage.label "Visa meddelande när ett inloggningskommando har valts">
 <!ENTITY checkLoginShowMessage.accesskey "l">
+<!ENTITY checkFillSearch.label "Fyll i sökrutan när Lösenordshanteraren öppnas">
+<!ENTITY checkFillSearch.accesskey "F">
+<!ENTITY checkFillSearch.tooltip "Filtrerar listan över lösenord efter det sammanhang i vilket hanteraren öppnades.">
 <!ENTITY checkDebug.label "Felsökningsläge">
 <!ENTITY checkDebug.accesskey "F">
+<!ENTITY checkAustralis.label "Stöd för Australis-teman">
+<!ENTITY checkAustralis.tooltip "Använd det här alternativet för bättre integrering av tillägget i monokroma teman.">
 <!ENTITY intMsgDelay.label "Väntetid för Lösenordshanterarens fönster [ms]">
 <!ENTITY intMsgDelay.tooltip "Ibland fylls inte sökrutan automatiskt i med webbplatsens domännamn. Om så sker, öka detta värde.">
 <!ENTITY intMsgDelay.accesskey "t">

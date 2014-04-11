@@ -8,6 +8,7 @@
 <!ENTITY quickPasswordsContext.cancelLogin.label "QuickPasswords bejelentkezés visszavonása">
 <!ENTITY quickPasswordsToolbarButton.label "QuickPasswords">
 <!ENTITY quickPasswordsToolbarButton.tooltip "Jelszavak másolása a vágólapra">
+<!ENTITY quickPasswordsRepairButton.label "Correct the Field Names">
 <!ENTITY quickPasswordsTreeContextMenuCopy.label "Jelszók másolása a vágólapra">
 <!ENTITY quickPasswordsTreeContextMenuCopy.accesskey "m">
 <!ENTITY quickPasswordsTreeContextMenuCopyUser.label "Felhasználónév másolása a vágólapra">

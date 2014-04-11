@@ -1,11 +1,18 @@
 <!ENTITY prefwindow.title "Préférences de QuickPasswords">
 <!ENTITY pane1.title "Préférences de QuickPasswords">
+<!ENTITY tab.general "General">
+<!ENTITY tab.support "Advanced + Support">
 <!ENTITY checkCopyShowMessage.label "Afficher un message après avoir copié les mots de passe dans le presse-papiers">
 <!ENTITY checkCopyShowMessage.accesskey "M">
 <!ENTITY checkLoginShowMessage.label "Afficher un message après sélection de la commande de connexion">
 <!ENTITY checkLoginShowMessage.accesskey "A">
+<!ENTITY checkFillSearch.label "Fill Search box when opening Password Manager">
+<!ENTITY checkFillSearch.accesskey "F">
+<!ENTITY checkFillSearch.tooltip "Filters the list of passwords according to context.">
 <!ENTITY checkDebug.label "Mode débogage">
 <!ENTITY checkDebug.accesskey "D">
+<!ENTITY checkAustralis.label "Australis Theme Support">
+<!ENTITY checkAustralis.tooltip "Use this for better integration with monochrome themes">
 <!ENTITY intMsgDelay.label "Temps d'attente pour la fenêtre du gestionnaire de mots de passe [ms]">
 <!ENTITY intMsgDelay.tooltip "Parfois, la boîte de recherche n'est pas automatiquement remplie avec le nom de domaine du site web - dans ce cas augmenter cette valeur.">
 <!ENTITY intMsgDelay.accesskey "T">
