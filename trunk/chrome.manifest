@@ -40,6 +40,7 @@ overlay   chrome://messenger/content/preferences/viewpasswords.xul  chrome://qui
 #######   STYLES
 style     chrome://global/content/customizeToolbar.xul     chrome://quickpasswords/skin/overlay.css
 style     chrome://messenger/content/messenger.xul         chrome://quickpasswords/skin/overlay.css
+##style     chrome://messenger/content/messenger.xul         chrome://quickpasswords/skin/no-australis.css application=postbox@postbox-inc.com
 
 #######   LEGACY RULES - these list deprecated css styles, for backwards compatibility with older versions of Gecko
 #######                  should be ignored by the validator (but probably aren't)
