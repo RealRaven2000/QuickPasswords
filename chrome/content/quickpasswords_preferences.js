@@ -5,6 +5,13 @@ QuickPasswords.Preferences = {
 	get ExtensionBranch() {
     return 	"extensions.quickpasswords.";
 	},
+  
+  updatePasswordWindow: function(chk) {  
+    let w = QuickPasswords.getPasswordManagerWindow();
+    if (w) {
+      QuickPasswords.prepareAustralis(w.document, !chk.checked);
+    }
+  } ,
 
 	getBoolPref: function(term) {
 	  let eBranch = this.ExtensionBranch + term;
