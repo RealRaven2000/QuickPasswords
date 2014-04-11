@@ -325,13 +325,13 @@ var QuickPasswords = {
 		QuickPasswords.getURIcontext('');
 	},
 
-	getPasswordManagerWindow: function(filterString) {
+	getPasswordManagerWindow: function(filterString, forceOpen) {
 		const name = "Toolkit:PasswordManager";
 		const uri = "chrome://passwordmgr/content/passwordManager.xul";
 
 		var win = QuickPasswords.getOpenWindow(name);
 
-		if (!win) {
+		if (forceOpen && !win) {
 			var argstring;
 			argstring = Components.classes["@mozilla.org/supports-string;1"]
 							.createInstance(Components.interfaces.nsISupportsString);
@@ -343,7 +343,7 @@ var QuickPasswords = {
 	},
 
 	showPasswords: function(filterString) {
-		let win = this.getPasswordManagerWindow(filterString);
+		let win = this.getPasswordManagerWindow(filterString, true);
 		this.PasswordManagerWindow = win;
 		if (!win) {
 		  setTimeout(function() {showPasswords(filterString);}, 1000);

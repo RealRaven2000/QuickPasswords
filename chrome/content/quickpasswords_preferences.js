@@ -6,8 +6,9 @@ QuickPasswords.Preferences = {
     return 	"extensions.quickpasswords.";
 	},
   
+  // function called from checkbox when Australis is changed
   updatePasswordWindow: function(chk) {  
-    let w = QuickPasswords.getPasswordManagerWindow();
+    let w = QuickPasswords.getPasswordManagerWindow('', false); // don't open manager unless shown
     if (w) {
       QuickPasswords.prepareAustralis(w.document, !chk.checked);
     }
