@@ -15,17 +15,24 @@
 
   <!-- Thunderbird (toolbar) -->
   <toolbarpalette id="MailToolbarPalette">
-	  <toolbarbutton id="QuickPasswords-toolbar-button" class="toolbarbutton-1 chromeclass-toolbar-additional custombutton"
-	    label="&quickPasswordsToolbarButton.label;" tooltiptext="&quickPasswordsToolbarButton.tooltip;"
+	  <toolbarbutton id="QuickPasswords-toolbar-button" 
+		  class="toolbarbutton-1 chromeclass-toolbar-additional custombutton"
+	    label="&quickPasswordsToolbarButton.label;" 
+			tooltiptext="&quickPasswordsToolbarButton.tooltip;"
 	    oncommand="QuickPasswords.onToolbarButtonCommand(event);"
+			oncontextmenu="QuickPasswords.Util.displayOptions();"
 	    />
   </toolbarpalette>
 
   <!-- SeaMonkey -->
   <vbox id="palette-box">
-	  <toolbarbutton id="QuickPasswords-toolbar-button" class="toolbarbutton-1 chromeclass-toolbar-additional"
-	    label="&quickPasswordsToolbarButton.label;" tooltiptext="&quickPasswordsToolbarButton.tooltip;"
-	    oncommand="QuickPasswords.onToolbarButtonCommand(event);"/>
+	  <toolbarbutton id="QuickPasswords-toolbar-button" 
+		  class="toolbarbutton-1 chromeclass-toolbar-additional"
+	    label="&quickPasswordsToolbarButton.label;" 
+			tooltiptext="&quickPasswordsToolbarButton.tooltip;"
+	    oncommand="QuickPasswords.onToolbarButtonCommand(event);"
+			oncontextmenu="QuickPasswords.Util.displayOptions();"
+			/>
   </vbox>
 
   <!-- Thunderbird -->

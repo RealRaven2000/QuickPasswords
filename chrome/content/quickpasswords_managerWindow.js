@@ -186,7 +186,7 @@ if (!QuickPasswords.Manager)
 		}
 		return cbProtect;
 	} ,
-	
+  
 	load: function () {
 		QuickPasswords.Util.logDebugOptional("Manager", "QuickPasswords.Manager.init()");
 		let signonsTree = document.getElementById("signonsTree");
@@ -248,8 +248,7 @@ if (!QuickPasswords.Manager)
 				break; // done
 			}  
 		}
-		
-
+		QuickPasswords.prepareAustralis(window.document, QuickPasswords.Preferences.getBoolPref('skin.australis'));
 	} ,
 	
 	get isMasterPasswordActive() {
