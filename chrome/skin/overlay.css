@@ -130,7 +130,12 @@ toolbarpaletteitem[place="palette"] > #QuickPasswords-toolbar-button.australis {
 
 #QuickPasswords-toolbar-button[cui-areatype="menu-panel"]:hover,
 toolbarpaletteitem[place="palette"] > #QuickPasswords-toolbar-button:hover {
-  -moz-image-region: rect(32px 32px 64px 0px);
+  -moz-image-region: rect(32px 32px 64px 0px) !important;
+}
+#QuickPasswords-toolbar-button[cui-areatype="menu-panel"].australis image,
+#QuickPasswords-toolbar-button[cui-areatype="menu-panel"].australis:hover image {
+  width: 32px;
+	height: 32px
 }
 
 /* small monochrome button */
