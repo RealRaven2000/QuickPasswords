@@ -163,18 +163,24 @@
 		Better heuristics to determine which fields are not visible to avoid filling the wrong logon fields
 		Added "Correct Field Names" button
 		
-	3.1 - WIP
+	3.1 - 16/12/2013
 		Fixed disabling (login / repair) buttons in IETabs - IE tabs do not support modifying the context menu
 		Improved filtering function (showPasswords) in order to always highlight the most correct domain match
 	  Added translations for toggle version and donation messages.
 		Now opens Security preferences when clicking the "Lock" button and no master password is set
-		Moved options css file into skins folder
 		Improved security of about:config dialogs
+		Moved options css file into skins folder
 		Removed obsolete buttons from passwordwindow overlay
 		Enabled decreasing amount of console messages making most messages dependant on debug.default (defaults to true)
 		Removed some global variables to avoid namespace pollution
 		
-	
+	3.2 - 13/04/2014
+    Australis Support - added new monochrome Icon set and big Icon for new Australis side panel customization
+    Options Dialog - is now easier to and split into General and Advanced+Support tabs.
+    Toolbar Icon - downresized + rerendered colored Toolbar button to 20px for large icons (non Australis)
+    Fixed: when no entry was selected and the was Edit Passwords button was pressed the error 
+           "TypeError: QuickPasswords.Properties is undefined" is shown. Instead QuickPasswords should 
+           prompt to select an entry
 		
 ===========================================================================================
 
@@ -202,8 +208,11 @@ var QuickPasswords = {
 	name: 'QuickPasswords',
 	signonsTree: null,
 	onLoad: function() {
-		if(this.initialized)
+		if(this.initialized) {
+      QuickPasswords.Util.logDebug('QuickPasswords.onLoad() - early exit - [initialized = true]');
 			return;
+    }
+    QuickPasswords.Util.logDebug('QuickPasswords.onLoad()');
 
 		QuickPasswords.Util.checkVersionFirstRun(); // asynchronous version check
 
@@ -222,9 +231,44 @@ var QuickPasswords = {
 			 + " running on " + QuickPasswords.Util.Application
 			 + " Version " + QuickPasswords.Util.AppVersionFull + "."
 			 + "\nOS: " + QuickPasswords.Util.HostSystem);
+       
+    setTimeout(function() {QuickPasswords.prepareAustralis(null, QuickPasswords.Preferences.getBoolPref('skin.australis'))}, 1000);
 		this.initialized = true;
 	},
-
+  
+  prepareAustralis: function (doc, toggle) {
+    function toggleElementAustralis(name, toggle) {
+      try {
+        let el = doc.getElementById(name);
+        if (el) {
+          if (toggle && el.className.indexOf('australis')==-1) {
+            el.className += " australis";
+          }
+          if (!toggle&& el.className.indexOf('australis')>=0) {
+            el.className = el.className.replace('australis','');
+          }
+        }
+      }
+      catch(ex) {
+         QuickPasswords.Util.logException("toggleElementAustralis(" + name + ", " + toggle + ")", ex);
+      }
+    }
+    let isAustralis = toggle;
+    QuickPasswords.Util.logDebug('QuickPasswords.prepareAustralis()\n'
+      + 'isAustralis=' + toggle + '\n'
+      + 'doc=' + (doc ? doc.documentURI : 'null'));
+    if (doc) { // passed only if passwords manager window it open
+      toggleElementAustralis('quickPasswordsUriFilterRefiner', isAustralis);
+      toggleElementAustralis('quickpasswords-toolbox', isAustralis);
+      toggleElementAustralis('quickPasswordsLockAfterClosing', isAustralis);
+    }
+    let win = QuickPasswords.Util.MainWindow;
+    if (win) {
+      doc = win.document;
+      toggleElementAustralis('QuickPasswords-toolbar-button', isAustralis);
+    }
+  } ,
+  
 	contextPopupShowing: function() {
 	  function showInMenu(contextMenu, visible) {
 			if (contextMenu) {
@@ -1636,14 +1680,15 @@ var QuickPasswords = {
 			let logins = []; // build an array of logins to defer processing...
 			let throbber = document.getElementById('quickPasswordsThrobber'); 
 
-			// let's overwrite the global signonsTree variable while we do our changes.
 			QuickPasswords.signonsTree = signonsTree;
-			signonsTree = null;
 			
 			pwd = filter;
 			if (!QuickPasswords.promptParentWindow.confirm( QuickPasswords.Bundle.GetStringFromName('changePasswordPrompt') + "\n" + sSites.substr(2))) 
 				return;
 				
+			// *************************************************************************
+			// let's overwrite the global signonsTree variable while we do our changes.
+			signonsTree = null;
 			throbber.hidden = false;
 			// let's do this asynchronous to give time for throbber to appear:
 			window.setTimeout(function()
@@ -1677,15 +1722,12 @@ var QuickPasswords = {
 					}
 				}
 
-				// the modificiation can take a kong time if MANY logins are selected!
-				
-				QuickPasswords.Util.logDebugOptional("changePasswords", "Modifying logins: Prepared " + countQueued + " logins.");
+				// the modificiation can take a long time if MANY logins are selected!
+				QuickPasswords.Util.logDebugOptional("changePasswords", "Modifying logins: Prepared " + countQueued + " logins from " + numRanges + " selected ranges.");
 				try {
 					while (logins.length) {
 						let lg = logins.pop();
-						//setTimeout (function() {
-							srvLoginManager.modifyLogin(lg.matchedLogin, lg.newLogin);
-						//}, countModifications * 30); // let's queue these up with some delay...
+						srvLoginManager.modifyLogin(lg.matchedLogin, lg.newLogin);
 						countModifications++;
 					}
 				}
@@ -1703,6 +1745,7 @@ var QuickPasswords = {
 				
 				// restore the variable so refreshes can happen again
 				signonsTree = QuickPasswords.signonsTree;
+				// *************************************************************************
 
 				// Clear the Tree Display
 				window.self.SignonClearFilter();
@@ -1722,6 +1765,7 @@ var QuickPasswords = {
 			if (!signonsTree) {
 				signonsTree = QuickPasswords.signonsTree;
 				QuickPasswords.signonsTree = null;
+				// *************************************************************************
 			}
 		
 			alert(ex);
@@ -1735,7 +1779,7 @@ var QuickPasswords = {
 			var tI = tree.currentIndex;
 
 			if (tree.view.selection.count==0 || ''==theSite)
-				alert(QuickPasswords.Properties.GetStringFromName("selectOneMessage"));
+				alert(QuickPasswords.Bundle.GetStringFromName("selectOneMessage"));
 			else
 			{
 				var theSite = QuickPasswords.getSite(tI);

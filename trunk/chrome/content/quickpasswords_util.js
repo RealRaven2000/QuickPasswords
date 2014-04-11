@@ -59,7 +59,7 @@ var QuickPasswords_TabURIopener = {
 };
 
 QuickPasswords.Util = {
-	QuickPasswords_CURRENTVERSION : '2.8', // just a fallback value
+	QuickPasswords_CURRENTVERSION : '3.2', // just a fallback value
 	get AddonId() {
 		return "QuickPasswords@axelg.com";
 	},
@@ -71,6 +71,20 @@ QuickPasswords.Util = {
 	lastTime: 0,
 	mExtensionVer: null,
 	VersionProxyRunning: false,
+  
+  get MainWindow() {
+    var wm = Components.classes["@mozilla.org/appshell/window-mediator;1"]
+                 .getService(Components.interfaces.nsIWindowMediator);
+    var mainWindow = wm.getMostRecentWindow("navigator:browser");
+    if (mainWindow) {
+      return mainWindow;
+    }  
+    var mail3PaneWindow = wm.getMostRecentWindow("mail:3pane");
+    if (mail3PaneWindow) {
+      return mail3PaneWindow;
+    }
+    return null;
+  } ,
 
   $: function(id) {
       return document.getElementById(id);
@@ -707,7 +721,7 @@ QuickPasswords.Util = {
 		setTimeout(
 			function() {
 		window.openDialog('chrome://quickpasswords/content/quickpassword_options.xul',
-				'quickpasswords-passwords','chrome,titlebar,centerscreen,modal,resizable',
+				'quickpasswords-passwords','dialog,chrome,titlebar,centerscreen,modal,resizable',
 				params).focus();
 			});
 	} ,

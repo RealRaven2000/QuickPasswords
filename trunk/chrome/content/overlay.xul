@@ -18,13 +18,17 @@
 
   <!-- Firefox -->
   <toolbarpalette id="BrowserToolbarPalette">
-	  <toolbarbutton id="QuickPasswords-toolbar-button" class="toolbarbutton-1 chromeclass-toolbar-additional"
-	    label="&quickPasswordsToolbarButton.label;" tooltiptext="&quickPasswordsToolbarButton.tooltip;"
-	    oncommand="QuickPasswords.onToolbarButtonCommand(event);"/>
+	  <toolbarbutton id="QuickPasswords-toolbar-button" 
+	    class="toolbarbutton-1 chromeclass-toolbar-additional australis"
+	    label="&quickPasswordsToolbarButton.label;" 
+			tooltiptext="&quickPasswordsToolbarButton.tooltip;"
+	    oncommand="QuickPasswords.onToolbarButtonCommand(event);"
+			oncontextmenu="QuickPasswords.Util.displayOptions();"/>
   </toolbarpalette>
   
   <menupopup id="menu_ToolsPopup">
-    <menuitem id="QuickPasswords-hello" label="&quickPasswords.label;" class="menuitem-iconic"
+    <menuitem id="QuickPasswords-hello" 
+							label="&quickPasswords.label;" class="menuitem-iconic"
               oncommand="QuickPasswords.onMenuItemCommand(event,'passwordManager');"/>
   </menupopup>
 
