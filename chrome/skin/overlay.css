@@ -1,3 +1,5 @@
+@import 'chrome://quickpasswords-ap/skin/overlay.css';
+
 #QuickPasswords-hello
 {
 	list-style-image: url('chrome://quickpasswords/skin/QuickPasswords-16x16.png')  !important;
@@ -15,6 +17,14 @@
 #quickPasswordsLockAfterClosing[checked]:active  { -moz-image-region: rect(32px, 16px, 48px, 0px); }  /* open */
 #quickPasswordsLockAfterClosing:not([checked]):active  { -moz-image-region: rect(48px, 16px, 64px, 0px); }  /* closed, strong */
 #quickPasswordsLockAfterClosing.disabled { -moz-image-region: rect(64px, 16px, 80px, 0px); }  /* gray */
+/* australis */
+#quickPasswordsLockAfterClosing.australis[checked]  { -moz-image-region: rect(16px, 32px, 32px, 16px); }  /* closed ! */
+#quickPasswordsLockAfterClosing.australis[checked]:hover  { -moz-image-region: rect(48px, 32px, 64px, 16px); } /* closed, strong */
+#quickPasswordsLockAfterClosing.australis:not([checked])  { -moz-image-region: rect(32px, 32px, 48px, 16px); } /* open */
+#quickPasswordsLockAfterClosing.australis[checked]:active  { -moz-image-region: rect(32px, 32px, 48px, 16px); }  /* open */
+#quickPasswordsLockAfterClosing.australis:not([checked]):active  { -moz-image-region: rect(48px, 32px, 64px, 16px); }  /* closed, strong */
+#quickPasswordsLockAfterClosing.australis.disabled { -moz-image-region: rect(64px, 32px, 80px, 16px); }  /* gray */
+
 
 #context-quickPasswords,
 #context-quickPasswords2,
@@ -67,21 +77,71 @@
 	list-style-image: url("chrome://quickpasswords/skin/login-small.png");
 }
 
-
 #context-quickPasswordChange
 {
 	list-style-image: url('chrome://quickpasswords/skin/QP-EditPassword.png')  !important;
 }
 
-
-#QuickPasswords-toolbar-button
+/* colorful large 20px */ 
+toolbar:not([iconsize="small"]) #QuickPasswords-toolbar-button:not(.australis)
 {
-  list-style-image: url("chrome://quickpasswords/skin/QuickPasswords-24x24.png");
-  -moz-image-region: rect(0px 24px 24px 0px);
+  list-style-image: url("chrome://quickpasswords/skin/QuickPasswords-20x20.png");
+  -moz-image-region: rect(0px 20px 20px 0px);
 }
-#QuickPasswords-toolbar-button:hover
+toolbar:not([iconsize="small"]) #QuickPasswords-toolbar-button:hover:not(.australis)
 {
-  -moz-image-region: rect(24px 24px 48px  0px);
+  -moz-image-region: rect(20px 20px 40px 0px);
+}
+toolbar[iconsize="small"] #QuickPasswords-toolbar-button:not(.australis) > image
+{
+  height:20px; /* resize for other themes */
+  border-top-width: 1px; /* fix for chrome theme */
+  border-bottom-width: 1px; /* fix for chrome theme */
+}
+
+/* colorful small */
+toolbar[iconsize="small"] #QuickPasswords-toolbar-button:not(.australis)
+{
+  list-style-image: url("chrome://quickpasswords/skin/QuickPasswords-buttonSmall.png");
+  -moz-image-region: rect(0px 16px 16px 0px);
+}
+toolbar[iconsize="small"] #QuickPasswords-toolbar-button:hover:not(.australis) {
+  -moz-image-region: rect(16px 16px 32px 0px);
+}
+toolbar[iconsize="small"] #QuickPasswords-toolbar-button:not(.australis) image {
+	height: 16px;
+	width: 16px;
+}
+
+
+/* New Australis Panel - Colorful */
+#QuickPasswords-toolbar-button[cui-areatype="menu-panel"],
+toolbarpaletteitem[place="palette"] > #QuickPasswords-toolbar-button {
+  list-style-image: url("chrome://quickpasswords/skin/quickPasswords-Colored.png")  !important;
+  -moz-image-region: rect(0px 32px 32px 0px);
+}
+
+/* New Australis Panel - Native (Australis) */
+#QuickPasswords-toolbar-button[cui-areatype="menu-panel"].australis,
+toolbarpaletteitem[place="palette"] > #QuickPasswords-toolbar-button.australis {
+  list-style-image: url("chrome://quickpasswords/skin/QuickPasswords-Australis.png") !important;
+  -moz-image-region: rect(0px 32px 32px 0px);
+}
+
+#QuickPasswords-toolbar-button[cui-areatype="menu-panel"]:hover,
+toolbarpaletteitem[place="palette"] > #QuickPasswords-toolbar-button:hover {
+  -moz-image-region: rect(32px 32px 64px 0px);
+}
+
+/* small monochrome button */
+#QuickPasswords-toolbar-button.australis
+{
+  list-style-image: url("chrome://quickpasswords/skin/QuickPasswords-buttonSmallAustralis.png");
+  -moz-image-region: rect(0px 16px 16px 0px);
+}
+#QuickPasswords-toolbar-button.australis:hover
+{
+  -moz-image-region: rect(16px 16px 32px 0px);
 }
 
 #quickPasswordsThrobber {
@@ -91,27 +151,26 @@
   background-image: url("chrome://quickpasswords/skin/orbit3-throbber.gif");
 }
 
-toolbar:not([iconsize="small"]) #QuickPasswords-toolbar-button image
+toolbar:not([iconsize="small"]) #QuickPasswords-toolbar-button:not(.australis) image
 {
-  width: 24px;
-  height: 24px;
+  width: 20px;
+  height: 20px;
 }
 
-[iconsize="small"] #QuickPasswords-toolbar-button
-{
-  list-style-image: url("chrome://quickpasswords/skin/QuickPasswords-buttonSmall.png");
+
+#quickPasswordsUriFilterRefiner {
+  list-style-image: url("chrome://quickpasswords/skin/wand.png");
   -moz-image-region: rect(0px 16px 16px 0px);
+  min-width: 16px !important;
 }
-[iconsize="small"] #QuickPasswords-toolbar-button:hover
-{
-  list-style-image: url("chrome://quickpasswords/skin/QuickPasswords-buttonSmall.png");
+#quickPasswordsUriFilterRefiner:hover {
   -moz-image-region: rect(16px 16px 32px 0px);
 }
-
-
-button#quickPasswordsUriFilterRefiner {
-	list-style-image: url("chrome://quickpasswords/skin/wand.png");
-	min-width: 16px !important;
+#quickPasswordsUriFilterRefiner.australis {
+  -moz-image-region: rect(0px 32px 16px 16px);
+}
+#quickPasswordsUriFilterRefiner.australis:hover {
+  -moz-image-region: rect(16px 32px 32px 16px);
 }
 
 /** OBSOLETE BUTTONS 
@@ -138,19 +197,25 @@ quickpasswords-tip-img1 {
 	background-color:transparent;
 	background-image: url("chrome://quickpasswords/skin/right-click-ani.gif") !important;
 }
+
+/**********************/
 /** Toolbar buttons ***/
 #quickpasswords-toolbox toolbarbutton {
   padding: 6px 5px;
 }
 
-#QuickPasswordsBtnLogin, #QuickPasswordsBtnRepair, #QuickPasswordsBtnCopyPassword, #QuickPasswordsBtnCopyUser, #QuickPasswordsBtnCopyURI, #QuickPasswordsBtnChangePasswords, #QuickPasswordsBtnSettings 
+#QuickPasswordsBtnLogin, #QuickPasswordsBtnRepair, #QuickPasswordsBtnCopyPassword, #QuickPasswordsBtnCopyUser, #QuickPasswordsBtnCopyURI, 
+#QuickPasswordsBtnChangePasswords, #QuickPasswordsBtnSettings 
 {
   display: -moz-box;
+  -moz-image-region: rect(0px, 24px, 24px, 0px); 
+}
+#quickpasswords-toolbox.australis toolbarbutton {
+  -moz-image-region: rect(0px, 48px, 24px, 24px) !important; 
 }
 
 #QuickPasswordsBtnLogin {
   list-style-image: url("chrome://quickpasswords/skin/login24.png");
-  -moz-image-region: rect(0px, 24px, 24px, 0px); 
 }
 
 #QuickPasswordsBtnLogin[disabled],
@@ -183,7 +248,7 @@ quickpasswords-tip-img1 {
 }
 
 #QuickPasswordsBtnSettings {
-	list-style-image: url("chrome://quickpasswords/skin/wrench.png");
+	list-style-image: url("chrome://quickpasswords/skin/options.png");
 }
 
 
