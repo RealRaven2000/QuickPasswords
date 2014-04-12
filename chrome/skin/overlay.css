@@ -1,9 +1,21 @@
 @import 'chrome://quickpasswords-ap/skin/overlay.css';
 
-#QuickPasswords-hello
+#QuickPasswords-toolsMenu,
+#context-quickPasswords,
+#context-quickPasswords2,
+#context-copypassword
 {
-	list-style-image: url('chrome://quickpasswords/skin/QuickPasswords-16x16.png')  !important;
+	list-style-image: url('chrome://quickpasswords/skin/quickPasswords16.png')  !important;
 }
+#QuickPasswords-toolsMenu.australis,
+#context-quickPasswords.australis,
+#context-quickPasswords2.australis,
+.australis #context-copypassword
+{
+	list-style-image: url('chrome://quickpasswords/skin/quickPasswords16-Australis.png')  !important;
+}
+
+
 
 #quickPasswordsLockAfterClosing { 
 	list-style-image: url("chrome://quickpasswords/skin/fugue-locks.png"); 
@@ -26,14 +38,6 @@
 #quickPasswordsLockAfterClosing.australis.disabled { -moz-image-region: rect(64px, 32px, 80px, 16px); }  /* gray */
 
 
-#context-quickPasswords,
-#context-quickPasswords2,
-#context-copyPassword,
-#context-copypassword
-{
-	list-style-image: url('chrome://quickpasswords/skin/QuickPasswords-16x16.png')  !important;
-}
-
 #context-quickPasswords-insertPassword
 {
 	list-style-image: url('chrome://quickpasswords/skin/insertPassword-small.png')  !important;
@@ -46,10 +50,13 @@
 }
 
 
-#context-copyusername
-{
-	list-style-image: url('chrome://quickpasswords/skin/copyUsrClipboard-small.png')  !important;
+#context-copyusername {
+	list-style-image: url('chrome://quickpasswords/skin/copyUsr16.png')  !important;
 }
+.australis #context-copyusername {
+	list-style-image: url('chrome://quickpasswords/skin/copyUsr16-Australis.png')  !important;
+}
+
 
 #context-quickPasswords-insertUser
 {
@@ -57,30 +64,47 @@
 }
 
 
-#context-copyUrl
-{
-	list-style-image: url('chrome://quickpasswords/skin/copyUriClipboard-small.png')  !important;
+#context-copyUrl {
+	list-style-image: url('chrome://quickpasswords/skin/copyUri16.png')  !important;
+}
+.australis #context-copyUrl {
+	list-style-image: url('chrome://quickpasswords/skin/copyUri16-Australis.png')  !important;
 }
 
-#context-copyPasswordRecord
-{
-	list-style-image: url('chrome://quickpasswords/skin/QuickPasswords-16x16-record.png')  !important;
+
+#context-copyPasswordRecord {
+	list-style-image: url('chrome://quickpasswords/skin/copyRecords16.png')  !important;
+}
+.australis #context-copyPasswordRecord {
+	list-style-image: url('chrome://quickpasswords/skin/copyRecords16-Australis.png')  !important;
 }
 
-#context-quickPasswordOptions
-{
-	list-style-image: url('chrome://quickpasswords/skin/QuickPasswords-Options.png')  !important;
+
+#context-quickPasswordOptions {
+	list-style-image: url('chrome://quickpasswords/skin/menuOptions.png')  !important;
+}
+.australis #context-quickPasswordOptions {
+	list-style-image: url('chrome://quickpasswords/skin/menuOptions-Australis.png')  !important;
 }
 
-#context-quickPasswordLogin /*, #context-quickPasswords-login */
-{
-	list-style-image: url("chrome://quickpasswords/skin/login-small.png");
+
+/*, #context-quickPasswords-login */
+#context-quickPasswordLogin {
+	list-style-image: url("chrome://quickpasswords/skin/login16.png");
+}
+.australis #context-quickPasswordLogin {
+	list-style-image: url("chrome://quickpasswords/skin/login16-Australis.png");
 }
 
-#context-quickPasswordChange
-{
-	list-style-image: url('chrome://quickpasswords/skin/QP-EditPassword.png')  !important;
+
+#context-quickPasswordChange {
+	list-style-image: url('chrome://quickpasswords/skin/editPwd16.png')  !important;
 }
+.australis #context-quickPasswordChange {
+	list-style-image: url('chrome://quickpasswords/skin/editPwd16-Australis.png')  !important;
+}
+
+
 
 /* colorful large 20px */ 
 toolbar:not([iconsize="small"]) #QuickPasswords-toolbar-button:not(.australis)
@@ -94,7 +118,7 @@ toolbar:not([iconsize="small"]) #QuickPasswords-toolbar-button:hover:not(.austra
 }
 toolbar[iconsize="small"] #QuickPasswords-toolbar-button:not(.australis) > image
 {
-  height:20px; /* resize for other themes */
+  /* height:20px; resize for other themes */
   border-top-width: 1px; /* fix for chrome theme */
   border-bottom-width: 1px; /* fix for chrome theme */
 }
@@ -108,9 +132,9 @@ toolbar[iconsize="small"] #QuickPasswords-toolbar-button:not(.australis)
 toolbar[iconsize="small"] #QuickPasswords-toolbar-button:hover:not(.australis) {
   -moz-image-region: rect(16px 16px 32px 0px);
 }
-toolbar[iconsize="small"] #QuickPasswords-toolbar-button:not(.australis) image {
-	height: 16px;
-	width: 16px;
+toolbar[iconsize="small"] #QuickPasswords-toolbar-button:not(.australis) > image {
+	min-height: 16px;
+	min-width: 16px;
 }
 
 
@@ -158,8 +182,8 @@ toolbarpaletteitem[place="palette"] > #QuickPasswords-toolbar-button:hover {
 
 toolbar:not([iconsize="small"]) #QuickPasswords-toolbar-button:not(.australis) image
 {
-  width: 20px;
-  height: 20px;
+  min-width: 20px;
+  min-height: 20px;
 }
 
 
@@ -178,22 +202,7 @@ toolbar:not([iconsize="small"]) #QuickPasswords-toolbar-button:not(.australis) i
   -moz-image-region: rect(16px 32px 32px 16px);
 }
 
-/** OBSOLETE BUTTONS 
-button#quickPasswordsLogin {
-	list-style-image: url("chrome://quickpasswords/skin/tool-login.gif");
-	min-width: 16px !important;
-}
 
-button#copyPasswordToClipboard {
-	list-style-image: url("chrome://quickpasswords/skin/copyPwdClipboard-small.png");
-	min-width: 16px !important;
-}
-
-button#quickPasswordsChangePasswords {
-	list-style-image: url("chrome://quickpasswords/skin/QP-EditPassword.png");
-	min-width: 16px !important;
-}
- **/
 
 
 quickpasswords-tip-img1 {
@@ -256,10 +265,11 @@ quickpasswords-tip-img1 {
 	list-style-image: url("chrome://quickpasswords/skin/options.png");
 }
 
-.australis #QuickPasswordsBtnSettings:hover image {
-   animation-duration: 3s;
-	 animation-name: rotate;
-	 animation-iteration-count: infinite;
+.australis #QuickPasswordsBtnSettings:hover image,
+.australis #context-quickPasswordOptions:hover image {
+  animation-duration: 3s;
+  animation-name: rotate;
+  animation-iteration-count: infinite;
 }
 
 @keyframes rotate {
