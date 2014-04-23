@@ -27,8 +27,9 @@
   </toolbarpalette>
   
   <menupopup id="menu_ToolsPopup">
-    <menuitem id="QuickPasswords-hello" 
-							label="&quickPasswords.label;" class="menuitem-iconic"
+    <menuitem id="QuickPasswords-toolsMenu" 
+			  label="&quickPasswords.label;" 
+			  class="menuitem-iconic australis"
               oncommand="QuickPasswords.onMenuItemCommand(event,'passwordManager');"/>
   </menupopup>
 
@@ -58,7 +59,7 @@
 
     <menuitem id="context-quickPasswords"
               label="&quickPasswordsContext.label;"
-              class="menuitem-iconic"
+              class="menuitem-iconic australis"
               accesskey="&quickPasswordsContext.accesskey;"
               insertafter="context-quickPasswords-cancelLogin"
               oncommand="QuickPasswords.onMenuItemCommand(event,'passwordManager');"/>
@@ -68,7 +69,7 @@
   <popup id="ietabTabbarContextMenu">
     <menuitem id="context-quickPasswords"
               label="&quickPasswordsContext.label;"
-              class="menuitem-iconic"
+              class="menuitem-iconic australis"
               accesskey="&quickPasswordsContext.accesskey;"
               insertafter="context-quickPasswords-cancelLogin"
               oncommand="QuickPasswords.onMenuItemCommand(event,'passwordManager');"/>

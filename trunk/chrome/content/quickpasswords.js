@@ -167,7 +167,7 @@
 		Fixed disabling (login / repair) buttons in IETabs - IE tabs do not support modifying the context menu
 		Improved filtering function (showPasswords) in order to always highlight the most correct domain match
 	  Added translations for toggle version and donation messages.
-		Now opens Security preferences when clicking the "Lock" button and no master password is set
+		[Bug 25642] Now opens Security preferences when clicking the "Lock" button and no master password is set
 		Improved security of about:config dialogs
 		Moved options css file into skins folder
 		Removed obsolete buttons from passwordwindow overlay
@@ -181,6 +181,19 @@
     Fixed: when no entry was selected and the was Edit Passwords button was pressed the error 
            "TypeError: QuickPasswords.Properties is undefined" is shown. Instead QuickPasswords should 
            prompt to select an entry
+           
+  3.2.1 - WIP
+    Fixed [Bug 25750] - OK,Cancel missing in Options Dialog on Mac
+    [Bug 25749] - "Fill search box when opening password manager" does not work - invalid
+                  (added detailed debug log to getURIcontext())
+    Copy records now shows throbber animation
+    Added copying passwordField, usernameField, formSubmitURL and httpRealm to copy records command
+    Disable donation page on prereleases
+    Made options window "alwaysRaised" to avoid confusion
+    Added "locked" status for showing the Master Password 
+    Updated tr and pt-BR locales
+    
+    
 		
 ===========================================================================================
 
@@ -214,13 +227,39 @@ var QuickPasswords = {
     }
     QuickPasswords.Util.logDebug('QuickPasswords.onLoad()');
 
-		QuickPasswords.Util.checkVersionFirstRun(); // asynchronous version check
-
 		//http://kb.mozillazine.org/Adding_items_to_menus
 		let menu = document.getElementById("contentAreaContextMenu");
 		if (QuickPasswords.Util.Application == 'Thunderbird' || QuickPasswords.Util.Application == 'Postbox')
 			menu = document.getElementById("mailContext");
 		QuickPasswords.Util.logDebugOptional ("contextMenu", "searched contentArea context menu: " + (menu ? 'found.' : 'not found.'));
+    let isMainWindow = false;
+    if (!menu) {
+      let winType = document.documentElement.getAttribute("windowtype");
+      switch (QuickPasswords.Util.Application) {
+        case 'Thunderbird':
+          if (winType == 'mail:3pane') isMainWindow = true;
+          break;
+        case 'Firefox':
+          if (winType == 'navigator:browser') isMainWindow = true;
+          break;
+        case 'Postbox':
+          if (winType == 'mail:3pane') isMainWindow = true;
+          break;
+        case 'SeaMonkey':
+          if (winType == 'navigator:browser') isMainWindow = true;
+          break;
+      }
+      if (isMainWindow) {
+        QuickPasswords.Util.logDebug('QuickPasswords.onLoad() did not find menu in windowType ' + winType + ' will retry later...');
+        setTimeout( function() { QuickPasswords.onLoad(); }, 2000);
+        return;
+      }
+    }
+    
+    if (isMainWindow)
+      QuickPasswords.Util.checkVersionFirstRun(); 
+    
+    // asynchronous version check
 		// no need to do this when coming back from password window, document context is wrong then and throws an error
 		if (menu) {
 			menu.addEventListener("popupshowing", QuickPasswords.contextPopupShowing, false);
@@ -236,21 +275,33 @@ var QuickPasswords = {
 		this.initialized = true;
 	},
   
+  initToolbarLock: function(doc, node) {
+    let btn = node;
+    let isLocked = QuickPasswords.Util.checkIsMasterLocked;
+    if (!btn) {
+      QuickPasswords.Util.logDebug('initToolbarLock()\n locked = ' + isLocked);
+      if (!doc) {
+        let win = QuickPasswords.Util.MainWindow;    
+        doc = win.document;
+      }
+      // add a "locked" icon:
+      btn = doc.getElementById('QuickPasswords-toolbar-button');
+    }
+    if (btn) {
+      btn.setAttribute('locked', isLocked);
+    }
+  } ,
+  
   prepareAustralis: function (doc, toggle) {
-    function toggleElementAustralis(name, toggle) {
+    function toggleElementAustralis(id, toggle) {
       try {
-        let el = doc.getElementById(name);
+        let el = doc.getElementById(id);
         if (el) {
-          if (toggle && el.className.indexOf('australis')==-1) {
-            el.className += " australis";
-          }
-          if (!toggle&& el.className.indexOf('australis')>=0) {
-            el.className = el.className.replace('australis','');
-          }
+          el.classList.toggle('australis', toggle);
         }
       }
       catch(ex) {
-         QuickPasswords.Util.logException("toggleElementAustralis(" + name + ", " + toggle + ")", ex);
+         QuickPasswords.Util.logException("toggleElementAustralis(" + id + ", " + toggle + ")", ex);
       }
     }
     let isAustralis = toggle;
@@ -258,15 +309,24 @@ var QuickPasswords = {
       + 'isAustralis=' + toggle + '\n'
       + 'doc=' + (doc ? doc.documentURI : 'null'));
     if (doc) { // passed only if passwords manager window it open
+      // password manager
       toggleElementAustralis('quickPasswordsUriFilterRefiner', isAustralis);
       toggleElementAustralis('quickpasswords-toolbox', isAustralis);
       toggleElementAustralis('quickPasswordsLockAfterClosing', isAustralis);
+      toggleElementAustralis('signonsTreeContextMenu', isAustralis);
     }
     let win = QuickPasswords.Util.MainWindow;
     if (win) {
+      // main windows
       doc = win.document;
       toggleElementAustralis('QuickPasswords-toolbar-button', isAustralis);
+      toggleElementAustralis('context-quickPasswords', isAustralis);
+      toggleElementAustralis('context-quickPasswords2', isAustralis);
+      toggleElementAustralis('QuickPasswords-toolsMenu', isAustralis);
+      toggleElementAustralis('context-quickPasswords-insertUser', isAustralis);
+      toggleElementAustralis('context-quickPasswords-insertPassword', isAustralis);
     }
+    QuickPasswords.initToolbarLock();
   } ,
   
 	contextPopupShowing: function() {
@@ -511,6 +571,17 @@ var QuickPasswords = {
 	isMailMessage : function() {
 
 	},
+  
+  getBrowser : function() {
+    let ret = null;
+    try {
+      ret = getBrowser();
+    }
+    catch(ex) {
+			QuickPasswords.Util.logException("Error trying to get current Browser window: ", ex);
+    }
+    return ret;
+  },
 
 	getCurrentBrowserWindow : function (evt) {
 		let ci = Components.interfaces;
@@ -521,34 +592,44 @@ var QuickPasswords = {
 			// find topmost navigator window
 			let mediator = Components.classes["@mozilla.org/appshell/window-mediator;1"].getService(ci.nsIWindowMediator);
 			let browsers = null;
+      
+      let getWindowEnumerator = 
+        (QuickPasswords.Util.isLinux) ?
+        mediator.getXULWindowEnumerator :
+        mediator.getZOrderXULWindowEnumerator;
 
 			switch (QuickPasswords.Util.Application) {
-				case 'Thunderbird': // Fall through
+				case 'Thunderbird': 
 				case 'Postbox':
-					browsers = mediator.getZOrderDOMWindowEnumerator ('mail:3pane', true);
-					break
+          browsers = getWindowEnumerator ('mail:3pane', true);
+					break;
 				case 'SeaMonkey':
 				  // check if click comes from mail window:
 					if (evt && evt.originalTarget && evt.originalTarget.baseURI == "chrome://messenger/content/messenger.xul"
 					    ||
 							content && content.window && content.window.name == 'messagepane')
-						browsers = mediator.getZOrderDOMWindowEnumerator ('mail:3pane', true);
+						browsers = getWindowEnumerator ('mail:3pane', true);
 					// navigator is the fallback case.
 					if (!browsers)
-						browsers = mediator.getZOrderDOMWindowEnumerator ('navigator:browser', true);
+						browsers = getWindowEnumerator ('navigator:browser', true);
 						
 					break;
 				default: // Firefox
-					browsers = mediator.getZOrderDOMWindowEnumerator ('navigator:browser', true);
+					browsers = getWindowEnumerator ('navigator:browser', true);
 					break;
 			}
-			theBrowser = browsers.getNext();
-			if (theBrowser && theBrowser.getInterface)
-				DomWindow = theBrowser.getInterface(interfaceType);
-			else {
-				browsers = mediator.getXULWindowEnumerator ('navigator:browser', true);
-				if (!browsers)
-					browsers = mediator.getXULWindowEnumerator ('mail:3pane', true);
+      if (browsers) {
+        theBrowser = browsers.getNext();
+        if (theBrowser.getInterface)
+          DomWindow = theBrowser.getInterface(interfaceType);
+        else // Linux
+          DomWindow = theBrowser.QueryInterface(ci.nsIInterfaceRequestor).getInterface(interfaceType)
+      }
+      
+			if (!DomWindow) {
+				browsers = getWindowEnumerator ('navigator:browser', true);
+				if (!browsers || !(QuickPasswords.Util.Application!='Firefox' && browsers.hasMoreElements()))
+					browsers = getWindowEnumerator ('mail:3pane', true);
 				if (!browsers)
 					return  null;
 				if (browsers.hasMoreElements()) {
@@ -559,13 +640,13 @@ var QuickPasswords = {
 						DomWindow = theBrowser.QueryInterface(ci.nsIInterfaceRequestor).getInterface(interfaceType)
 				}
 				else
-					DomWindow = getBrowser(); // Linux last resort
-
+					DomWindow = QuickPasswords.getBrowser(); // Linux last resort
 			}
 		}
 		catch(ex) {
-			// in Linux getZOrderDOMWindowEnumerator is currently broken
+			// in Linux getZOrderXULWindowEnumerator is currently broken
 			QuickPasswords.Util.logException("Error trying to get current Browser window: ", ex);
+      DomWindow = QuickPasswords.getBrowser();
 		}
 		finally {
 			if (!DomWindow)
@@ -797,13 +878,17 @@ var QuickPasswords = {
 
 	askSelectByPassword: function (win, pwdElement) {
 		if (pwdElement) {
+      //  [Bug 25750] Macs misbehave!
+      let targetWindow = QuickPasswords.Util.isMac ?
+		     QuickPasswords.getOpenWindow("chrome://passwordmgr/content/passwordManager.xul") :
+         win.opener;         
 			try {
 				if(pwdElement.value=='')
 					alert(QuickPasswords.Bundle.GetStringFromName("enterOriginalPasswordMessage"));
 				else {
 					var info = {'cmd':'selectByPassword', 'pwd':pwdElement.value}; // {'cmd': 'init', 'timestamp': Date.now()}
 					// second parameter for postMessage is probably completely random!
-					win.opener.postMessage(info, "*"); // TARGET: chrome://passwordmgr SOURCE://chrome://quickpasswords
+					targetWindow.postMessage(info, "*"); // TARGET: chrome://passwordmgr SOURCE://chrome://quickpasswords
 				}
 			}
 			catch(ex) {
@@ -840,6 +925,16 @@ var QuickPasswords = {
 		}
 	} ,
 
+  copyRecords: function() {
+    let cpy = this.copyToClipboard.bind(this);
+    let tb = this.throbber;
+    tb(true);
+    setTimeout(function(){ 
+     cpy('row'); 
+     tb(false);
+      }, 100); // wait for menu to close
+  } ,
+  
 	copyToClipboard : function(what) {
 
 		const name = "Toolkit:PasswordManager";
@@ -931,17 +1026,51 @@ var QuickPasswords = {
 				let numRanges = tree.view.selection.getRangeCount();
 				let sLine = '';
 				let sCopyText='';
+        let passwordField, usernameField, formSubmitURL, httpRealm;
+        let srvLoginManager =
+          Components.classes["@mozilla.org/login-manager;1"]
+            .getService(Components.interfaces.nsILoginManager);
 
 				for (let t = 0; t < numRanges; t++){
 					tree.view.selection.getRangeAt(t,start,end);
 					for (let v = start.value; v <= end.value; v++){
 						iPasswordsSelected++;
-						site = this.getSite(v);
+						site = this.getSite(v); // = hostname
 						user = this.getUser(v);
 						pwd = this.getPassword(v);
+            // we can find the real match maybe...
+            //  aActionURL  For form logins, this parameter should specify the URL to which the form will be submitted. 
+            //              For protocol logins, specify null. An empty string ("") will match any value (except null).
+            let logins = srvLoginManager.findLogins(
+              {},   // count
+              site, // aActionURL
+              '',   // aHttpRealm ''  form logins; use '' for  returns nsILoginInfo[]
+              null); 
+            passwordField=''; usernameField=''; formSubmitURL='';
+            for (let l = 0; l<logins.length; l++) {
+              if (logins[l].password == pwd
+                  && logins[l].username == user
+                  && site == logins[l].hostname.split(" ", 1).toString()) {
+                // match!
+                passwordField = logins[l].passwordField;
+                usernameField = logins[l].usernameField;
+                formSubmitURL = logins[l].formSubmitURL;
+                httpRealm = logins[l].httpRealm;
+                QuickPasswords.Util.logDebugOptional ("contextMenu", "Matched host(" + l + "): " + logins[l].hostname + " [" + user + "]\n"
+                  + "httpRealm=" + httpRealm + "\n"
+                  + "passwordField=" + passwordField + "\n"
+                  + "usernameField=" + usernameField + "\n"
+                  + "formSubmitURL=" + formSubmitURL + "\n");
+                  
+              }
+            }
+            
+            
 						sLine = site + '\t' + user + '\t' + pwd;
+            //extended info
+            sLine = sLine + '\t' + usernameField + '\t' + passwordField + '\t' + formSubmitURL + '\t' + httpRealm;
 						sCopyText = sCopyText + sLine + '\n';
-						sCopyDummy = sCopyDummy + site + '\t' + user + '\t' + '*********\n';
+						sCopyDummy = sCopyDummy + site + '\t' + user + '\t' + '*********\n'; // console output
 					}
 				}
 				if (iPasswordsSelected==0) {
@@ -951,8 +1080,11 @@ var QuickPasswords = {
 				}
 
 				if (iPasswordsSelected > 1) {
-					if (QuickPasswords.Preferences.isMultiRowHeader)
-						sCopyText = cs + '\t' + cu + '\t' + cp + '\n' + sCopyText;
+					if (QuickPasswords.Preferences.isMultiRowHeader) {
+            let extendedFields = '\t' + 'usernameField' + '\t' + 'passwordField' + '\t' + 'formSubmitURL' + '\t' + 'httpRealm';
+						sCopyText = cs + '\t' + cu + '\t' + cp + extendedFields + '\n' 
+                      + sCopyText;
+          }
 					sCopyDummy = cs + '\t' + cu + '\t' + cp + '\n' + sCopyDummy;
 
 					QuickPasswords.Util.copyStringToClipboard(sCopyText);
@@ -970,6 +1102,9 @@ var QuickPasswords = {
 					QuickPasswords.Util.logToConsole("Error getting String Bundle GetStringFromName\n" + e);
 					cm="Data copied to clipboard - see error console for detail";
 				}
+        finally {
+          this.throbber(false);
+        }
 				if (QuickPasswords.Preferences.isCopyMsg) {
 					alertShown = true;
 					alert (cm);
@@ -1008,39 +1143,55 @@ var QuickPasswords = {
 	// in a browser window we will get this from the global content let
 	// in a tabmail window, lets use the getActiveUri helper function
 	getURIcontext: function(currentFilter) {
-		let sBaseDomain;
+		let sBaseDomain = '';
+    let isprivate = QuickPasswords.Util.PrivateBrowsing;
+		if (!isprivate)
+			QuickPasswords.Util.logDebugOptional("default", "getURIcontext(" + currentFilter + ')');
 
-		if (content) {
-			let theHost = content.location.host;
-			if (theHost == "ietab2" 
-			   || theHost == "messenger"
-				 || (content.window && content.window.name == 'messagepane')
-				 ) {
-				theHost = this.getActiveUri(false, true);
-			}
-			QuickPasswords.lastContentLocation = theHost;
-			QuickPasswords.Preferences.setLastLocation(theHost);
-		}
-		else
-			QuickPasswords.lastContentLocation = QuickPasswords.Preferences.getLastLocation();
+    try {
+      if (content) {
+        if (!isprivate) {
+          QuickPasswords.Util.logDebugOptional("uriContext", "content.location = " + content.location);
+          QuickPasswords.Util.logDebugOptional("uriContext", "content.location.host = " + content.location.host);
+        }
+        let theHost = content.location.host;
+        if (theHost == "ietab2" 
+           || theHost == "messenger"
+           || (content.window && content.window.name == 'messagepane')
+           ) {
+          theHost = this.getActiveUri(false, true);
+        }
+        QuickPasswords.lastContentLocation = theHost;
+        QuickPasswords.Preferences.setLastLocation(theHost);
+      }
+      else
+        QuickPasswords.lastContentLocation = QuickPasswords.Preferences.getLastLocation();
 
-		let sHost = QuickPasswords.lastContentLocation ;
+      let sHost = QuickPasswords.lastContentLocation ;
+      if (!isprivate)
+        QuickPasswords.Util.logDebugOptional("uriContext", "lastContentLocation = " + sHost);
 
 
-		let pos = sHost.indexOf('.');
-		let s2 = sHost.substring(pos+1, sHost.length);
-		let pos2 = s2.indexOf('.');
-		// strip first word if second is long enough to be a domain; gets rid of stuff like www. login. etc.
-		if (pos2>3)
-			sHost=sHost.substring(pos+1,sHost.length);
-		// if currentFilter is passed in, lets refine it more!
-		if (sHost == currentFilter) {
-			sBaseDomain = QuickPasswords.lastContentLocation;
-		}
-		else
-			sBaseDomain = sHost;
-		if (!QuickPasswords.Util.PrivateBrowsing)
-			QuickPasswords.Util.logDebugOptional("default", "Determined Domain from Host String:" + sBaseDomain);
+      let pos = sHost.indexOf('.');
+      let s2 = sHost.substring(pos+1, sHost.length);
+      let pos2 = s2.indexOf('.');
+      // strip first word if second is long enough to be a domain; gets rid of stuff like www. login. etc.
+      if (pos2>3)
+        sHost=sHost.substring(pos+1,sHost.length);
+      // if currentFilter is passed in, lets refine it more!
+      if (sHost == currentFilter) {
+        sBaseDomain = QuickPasswords.lastContentLocation;
+      }
+      else
+        sBaseDomain = sHost;
+      if (!isprivate)
+        QuickPasswords.Util.logDebugOptional("default", "Determined Domain from Host String:" + sBaseDomain);
+    }
+    catch(ex) {
+      QuickPasswords.Util.logException('getURIcontext()', ex);
+    }
+    if (!isprivate)
+      QuickPasswords.Util.logDebugOptional("uriContext", "returning sBaseDomain = " + sBaseDomain);
 
 		return sBaseDomain;
 	},
@@ -1636,6 +1787,12 @@ var QuickPasswords = {
 		}
 	} ,
 
+  throbber: function(toggle) {
+    let throbber = document.getElementById('quickPasswordsThrobber'); 
+    if (throbber)
+      throbber.hidden = !toggle;
+  } ,
+  
   modifyPasswords: function(event) {
 		try {
 			// match password
@@ -1678,7 +1835,6 @@ var QuickPasswords = {
 			let countModifications = 0;
 			// change passwords
 			let logins = []; // build an array of logins to defer processing...
-			let throbber = document.getElementById('quickPasswordsThrobber'); 
 
 			QuickPasswords.signonsTree = signonsTree;
 			
@@ -1689,7 +1845,7 @@ var QuickPasswords = {
 			// *************************************************************************
 			// let's overwrite the global signonsTree variable while we do our changes.
 			signonsTree = null;
-			throbber.hidden = false;
+			QuickPasswords.throbber(true);
 			// let's do this asynchronous to give time for throbber to appear:
 			window.setTimeout(function()
 			{
@@ -1741,7 +1897,7 @@ var QuickPasswords = {
 					QuickPasswords.Util.stringFormat(
 						QuickPasswords.Bundle.GetStringFromName('successChangePasswordsMessage'), countModifications)
 				);
-				if (throbber) throbber.hidden = true;
+        QuickPasswords.throbber(false);
 				
 				// restore the variable so refreshes can happen again
 				signonsTree = QuickPasswords.signonsTree;
@@ -1795,8 +1951,12 @@ var QuickPasswords = {
 				};
 				window.addEventListener("message", this.receiveCommand, false);
 
+        //  [Bug 25750] Macs misbehave!
+        let parentWindow = QuickPasswords.Util.isMac ?
+           QuickPasswords.getCurrentBrowserWindow() :
+           window;         
 				// window name (2nd parameter) really has no function, do not confuse with windowtype!
-				window.openDialog('chrome://quickpasswords/content/changePassword.xul',
+				parentWindow.openDialog('chrome://quickpasswords/content/changePassword.xul',
 					'quickpasswords-editPassword',
 					'chrome,titlebar,resizable,dependent,alwaysRaised,top=' + window.screenY.toString() + ',left=' + (window.screenX + window.outerWidth).toString(),
 					params).focus();
@@ -1844,8 +2004,13 @@ var QuickPasswords = {
 			'pwd':pwdElement.value,
 			'newPwd':document.getElementById('txtNewPassword').value
 			};
+      
+    //  [Bug 25750] Macs misbehave!
+    let targetWindow = QuickPasswords.Util.isMac ?
+       QuickPasswords.getOpenWindow("chrome://passwordmgr/content/passwordManager.xul") :
+       window.opener;         
 		// second parameter for postMessage is probably completely random!
-		window.opener.postMessage(info, "*"); // TARGET: chrome://passwordmgr SOURCE://chrome://quickpasswords
+		targetWindow.postMessage(info, "*"); // TARGET: chrome://passwordmgr SOURCE://chrome://quickpasswords
 		return false;
 	}
 

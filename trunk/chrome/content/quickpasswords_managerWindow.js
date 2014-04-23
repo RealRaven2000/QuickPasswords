@@ -52,6 +52,8 @@ if (!QuickPasswords.Manager)
 		Components.classes["@mozilla.org/security/pk11tokendb;1"]
 			.getService(Components.interfaces.nsIPK11TokenDB)
 			.findTokenByName("").logoutAndDropAuthenticatedResources();
+      
+    QuickPasswords.initToolbarLock(); // visual clue
 	} ,
 
 	// since the passwords sub Tab has no Id we cannot use any built in helper from Thunderbird
@@ -171,17 +173,20 @@ if (!QuickPasswords.Manager)
   },
 	
 	initProtectionButton: function() {
-		// disable the security checkbox (Master Password) if no master password is used:
+		// disable the security checkbox (Master Password) if no master password is USED:
+    let isProtected = QuickPasswords.Manager.isMasterPasswordActive;
+    QuickPasswords.Util.logDebugOptional("Manager", "initProtectionButton() - protection = " + isProtected );
 		let cbProtect = document.getElementById('quickPasswordsLockAfterClosing');
 		if (cbProtect) {
-			if (!this.isMasterPasswordActive) {
+			if (!isProtected) {
 				// no masterpassword is set at the moment - need to change behavior
-				if (cbProtect.className.indexOf('disabled')==-1)
-					cbProtect.className += " disabled";
+        cbProtect.classList.toggle('disabled', true);
 			}
 			else {
-			  if (cbProtect.className.indexOf('disabled')>=0)
-			    cbProtect.className = cbProtect.className.replace('disabled','');
+        cbProtect.classList.toggle('disabled', false);
+        // now make sure the checked state is set correctly
+        // let isSessionProtected = false;
+        let chk = document.getElementById('quickpasswords_protectOnClose');
 			}
 		}
 		return cbProtect;
@@ -272,8 +277,9 @@ if (!QuickPasswords.Manager)
 			return;
 		let cbProtect = document.getElementById('quickPasswordsLockAfterClosing');
 		if (cbProtect) {
-			if (cbProtect.checked)
+			if (cbProtect.checked) {
 				this.logoutMaster();
+      }  
 		}
 	} 
 	

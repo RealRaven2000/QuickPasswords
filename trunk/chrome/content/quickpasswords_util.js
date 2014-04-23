@@ -58,8 +58,10 @@ var QuickPasswords_TabURIopener = {
 	}
 };
 
+Components.utils.import("resource://gre/modules/PrivateBrowsingUtils.jsm");
+
 QuickPasswords.Util = {
-	QuickPasswords_CURRENTVERSION : '3.2', // just a fallback value
+	QuickPasswords_CURRENTVERSION : '3.2.1', // just a fallback value
 	get AddonId() {
 		return "QuickPasswords@axelg.com";
 	},
@@ -71,6 +73,18 @@ QuickPasswords.Util = {
 	lastTime: 0,
 	mExtensionVer: null,
 	VersionProxyRunning: false,
+  get isMac() {
+    // https://developer.mozilla.org/en-US/docs/OS_TARGET
+    let xulRuntime = Components.classes["@mozilla.org/xre/app-info;1"]
+                 .getService(Components.interfaces.nsIXULRuntime);  
+    return (xulRuntime.OS.indexOf('Darwin')>=0);
+  } ,
+  get isLinux() {
+    // https://developer.mozilla.org/en-US/docs/OS_TARGET
+    let xulRuntime = Components.classes["@mozilla.org/xre/app-info;1"]
+                 .getService(Components.interfaces.nsIXULRuntime);  
+    return (xulRuntime.OS.indexOf('Linux')>=0);
+  } ,
   
   get MainWindow() {
     var wm = Components.classes["@mozilla.org/appshell/window-mediator;1"]
@@ -325,7 +339,6 @@ QuickPasswords.Util = {
 			QuickPasswords.Util.logDebugOptional ("firstRun","finally - firstRun=" + firstRun);
 
 			// AG if this is a pre-release, cut off everything from "pre" on... e.g. 1.9pre11 => 1.9
-			let pre = 0;
 			let pureVersion = this.getVersionSimple(current)
 			
 			QuickPasswords.Util.logDebugOptional ("firstRun","finally - pureVersion=" + pureVersion);
@@ -362,7 +375,7 @@ QuickPasswords.Util = {
 					}, 1500); //Firefox 2 fix - or else tab will get closed
 
 					// prereleases never open the donation page!
-					if (pre == 0) {
+					if (current.indexOf('pre')==-1) {
 						window.setTimeout(function(){
 							// display donation page (can be disabled; I will send out method to all donators and anyone who asks me for it)
 							if ((QuickPasswords.Preferences.getBoolPref("donateNoMore")) || (!QuickPasswords.Preferences.getBoolPref('donations.askOnUpdate')))
@@ -486,7 +499,7 @@ QuickPasswords.Util = {
 				item = notifyBox.getNotificationWithValue("quickpasswords-changeprompt.repairFields")
 				if(item) { notifyBox.removeNotification(item); }
 				
-				let icon = "repair24.png"; // default (blue arrow)
+				let icon = "repair-notification.png"; // default (blue arrow)
 				switch(insertType) {
 					case 'user':
 					  icon = "repairUser24.png"; 
@@ -668,12 +681,6 @@ QuickPasswords.Util = {
 	  this.logError(aMessage, fn, null, 0, 0, 0x1);
 	} ,
 
-	about: function() {
-		// show the built in about dialog:
-		//window.opener.gExtensionsView.builder.rebuild();
-		window.opener.gExtensionsViewController.doCommand('cmd_about');
-	},
-	
 	toggleDonations: function() {
 		let isAsk = QuickPasswords.Preferences.getBoolPref('donations.askOnUpdate');
 		let question = this.getBundleString("qpDonationToggle","Do you want to {0} the donations screen which is displayed whenever QuickPasswords updates?");
@@ -695,13 +702,8 @@ QuickPasswords.Util = {
 	onLoadOptions: function() {
 		this.onLoadVersionInfoDialog();
 		document.getElementById('qp-version-field').value=this.Version;
-		// hide about button...
-/* 		if (!window.opener.gExtensionsViewController) {
-			var about = document.getElementById("qp-About");
-			if (about)
-				about.style["visibility"]="hidden";
-		}
- */		// no donation loophoole
+    
+		// no donation loophoole
 		let donateButton = document.documentElement.getButton('extra2');
 		if (donateButton) {
 			// let donateButtons = Array.filter(dlgButtons, function(element) { return (element.dlgType=='extra2') });
@@ -718,10 +720,11 @@ QuickPasswords.Util = {
 
 	displayOptions: function() {
 		var params = {inn:{instance: QuickPasswords}, out:null};
+    var win = QuickPasswords.getCurrentBrowserWindow();
 		setTimeout(
 			function() {
-		window.openDialog('chrome://quickpasswords/content/quickpassword_options.xul',
-				'quickpasswords-passwords','dialog,chrome,titlebar,centerscreen,modal,resizable',
+      win.openDialog('chrome://quickpasswords/content/quickpassword_options.xul',
+				'quickpasswords-passwords','dialog,chrome,titlebar,alwaysRaised',
 				params).focus();
 			});
 	} ,
@@ -777,6 +780,22 @@ QuickPasswords.Util = {
 			QuickPasswords.Util.openURL(null, "http://quickpasswords.mozdev.org/version.html" + "#" + pureVersion);
 		}
 	},
+  
+  get checkIsMasterLocked() {
+    const Ci = Components.interfaces;
+    let secmodDB = Components.classes["@mozilla.org/security/pkcs11moduledb;1"].getService(Ci.nsIPKCS11ModuleDB);
+    let slot = secmodDB.findSlotByName("");
+    if (slot) {
+      let status = slot.status;
+      let hasMP = status != Ci.nsIPKCS11Slot.SLOT_UNINITIALIZED &&
+                  status != Ci.nsIPKCS11Slot.SLOT_READY;
+      if (hasMP) {
+        return (slot.status == Ci.nsIPKCS11Slot.SLOT_NOT_LOGGED_IN); // locked!
+      }
+      else return false;  // no Masterpassword = not locked
+    }  
+    return false;
+  } ,  
 
 	get PrivateBrowsing() {
 		if (QuickPasswords.Util.Application != "Firefox" && QuickPasswords.Util.Application !="Seamonkey")

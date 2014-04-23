@@ -17,8 +17,8 @@
   <toolbarpalette id="MailToolbarPalette">
 	  <toolbarbutton id="QuickPasswords-toolbar-button" 
 		  class="toolbarbutton-1 chromeclass-toolbar-additional custombutton"
-	    label="&quickPasswordsToolbarButton.label;" 
-			tooltiptext="&quickPasswordsToolbarButton.tooltip;"
+	      label="&quickPasswordsToolbarButton.label;" 
+		  tooltiptext="&quickPasswordsToolbarButton.tooltip;"
 	    oncommand="QuickPasswords.onToolbarButtonCommand(event);"
 			oncontextmenu="QuickPasswords.Util.displayOptions();"
 	    />
@@ -28,11 +28,11 @@
   <vbox id="palette-box">
 	  <toolbarbutton id="QuickPasswords-toolbar-button" 
 		  class="toolbarbutton-1 chromeclass-toolbar-additional"
-	    label="&quickPasswordsToolbarButton.label;" 
-			tooltiptext="&quickPasswordsToolbarButton.tooltip;"
-	    oncommand="QuickPasswords.onToolbarButtonCommand(event);"
-			oncontextmenu="QuickPasswords.Util.displayOptions();"
-			/>
+	      label="&quickPasswordsToolbarButton.label;" 
+		  tooltiptext="&quickPasswordsToolbarButton.tooltip;"
+	      oncommand="QuickPasswords.onToolbarButtonCommand(event);"
+		  oncontextmenu="QuickPasswords.Util.displayOptions();"
+		  />
   </vbox>
 
   <!-- Thunderbird -->
@@ -63,7 +63,7 @@
 			  
     <menuitem id="context-quickPasswords"
               label="&quickPasswordsContext.label;"
-              class="menuitem-iconic"
+              class="menuitem-iconic australis"
               accesskey="&quickPasswordsContext.accesskey;"
               insertafter="context-quickPasswords-cancelLogin"
               oncommand="QuickPasswords.onMenuItemCommand(event,'passwordManager');"/>
