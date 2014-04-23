@@ -9,9 +9,7 @@ QuickPasswords.Preferences = {
   // function called from checkbox when Australis is changed
   updatePasswordWindow: function(chk) {  
     let w = QuickPasswords.getPasswordManagerWindow('', false); // don't open manager unless shown
-    if (w) {
-      QuickPasswords.prepareAustralis(w.document, !chk.checked);
-    }
+    QuickPasswords.prepareAustralis((w ? w.document : null), !chk.checked);
   } ,
 
 	getBoolPref: function(term) {
@@ -112,7 +110,7 @@ QuickPasswords.Preferences = {
 	} ,
 	
 	contextMenuOption: function() {
-		return this.service.getIntPref(this.ExtensionBranch + "displayContextMenuChoice");
+		return QuickPasswords.Preferences.service.getIntPref(QuickPasswords.Preferences.ExtensionBranch + "displayContextMenuChoice");
 	},
 
 	waitForManager: function() {
