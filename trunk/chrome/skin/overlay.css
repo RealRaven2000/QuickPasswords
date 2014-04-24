@@ -199,11 +199,11 @@ toolbarpaletteitem[place="palette"] > #QuickPasswords-toolbar-button[locked=true
 #QuickPasswords-toolbar-button.australis:hover {
   -moz-image-region: rect(16px 16px 32px 0px);
 }
-#QuickPasswords-toolbar-button.australis[locked=true] {
+#QuickPasswords-toolbar-button[locked=true].australis {
   -moz-image-region: rect(0px 32px 16px 16px);
 }
-#QuickPasswords-toolbar-button.australis[locked=true]:hover {
-  -moz-image-region: rect(0px 32px 16px 16px);
+#QuickPasswords-toolbar-button[locked=true].australis:hover {
+  -moz-image-region: rect(16px 32px 32px 16px);
 }
 
 
