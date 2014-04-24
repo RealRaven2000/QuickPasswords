@@ -127,7 +127,6 @@ toolbar:not([iconsize="small"]) #QuickPasswords-toolbar-button[locked=true]:hove
   -moz-image-region: rect(20px 40px 40px 20px);
 }
 
-
 toolbar[iconsize="small"] #QuickPasswords-toolbar-button:not(.australis) > image
 {
   /* height:20px; resize for other themes */
@@ -204,6 +203,21 @@ toolbarpaletteitem[place="palette"] > #QuickPasswords-toolbar-button[locked=true
 }
 #QuickPasswords-toolbar-button[locked=true].australis:hover {
   -moz-image-region: rect(16px 32px 32px 16px);
+}
+
+/* large monochrome button (SeaMonkey + Nautipolis) 20px */
+toolbar:not([iconsize="small"]) #QuickPasswords-toolbar-button.australis {
+  list-style-image: url("chrome://quickpasswords/skin/QuickPasswords-20x20-Australis.png");
+  -moz-image-region: rect(0px 20px 20px 0px);
+}
+toolbar:not([iconsize="small"]) #QuickPasswords-toolbar-button.australis:hover {
+  -moz-image-region: rect(20px 20px 40px 0px);
+}
+toolbar:not([iconsize="small"]) #QuickPasswords-toolbar-button.australis[locked=true] {
+  -moz-image-region: rect(0px 40px 20px 20px);
+}
+toolbar:not([iconsize="small"]) #QuickPasswords-toolbar-button.australis[locked=true]:hover {
+  -moz-image-region: rect(20px 40px 40px 20px);
 }
 
 
