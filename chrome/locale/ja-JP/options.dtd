@@ -1,18 +1,18 @@
 <!ENTITY prefwindow.title "QuickPasswords設定">
 <!ENTITY pane1.title "QuickPasswords設定">
-<!ENTITY tab.general "General">
-<!ENTITY tab.support "Advanced + Support">
+<!ENTITY tab.general "一般">
+<!ENTITY tab.support "高度+サポート">
 <!ENTITY checkCopyShowMessage.label "クリップボードにコピーした後メッセージを表示する">
 <!ENTITY checkCopyShowMessage.accesskey "M">
 <!ENTITY checkLoginShowMessage.label "ログインコマンドを選択後メッセージを表示">
 <!ENTITY checkLoginShowMessage.accesskey "L">
-<!ENTITY checkFillSearch.label "Fill Search box when opening Password Manager">
+<!ENTITY checkFillSearch.label "パスワードマネージャを開いたとき検索ボックスに自動入力する">
 <!ENTITY checkFillSearch.accesskey "F">
-<!ENTITY checkFillSearch.tooltip "Filters the list of passwords according to context.">
+<!ENTITY checkFillSearch.tooltip "コンテキストに従ってパスワードリストを絞り込みます。">
 <!ENTITY checkDebug.label "デバッグモード">
 <!ENTITY checkDebug.accesskey "D">
-<!ENTITY checkAustralis.label "Australis Theme Support">
-<!ENTITY checkAustralis.tooltip "Use this for better integration with monochrome themes">
+<!ENTITY checkAustralis.label "Australisテーマ対応">
+<!ENTITY checkAustralis.tooltip "新テーマに合うよう調整します。">
 <!ENTITY intMsgDelay.label "パスワードマネージャーのウインドウの待機時間(ミリ秒)">
 <!ENTITY intMsgDelay.tooltip "検索ボックスが自動的に埋められない場合はこの値を増やしてください。">
 <!ENTITY intMsgDelay.accesskey "T">

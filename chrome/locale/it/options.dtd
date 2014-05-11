@@ -14,7 +14,7 @@
 <!ENTITY checkAustralis.label "Supporto del tema Australis">
 <!ENTITY checkAustralis.tooltip "Utilizzare questa opzione per migliorare l'integrazione con i temi monocromatici">
 <!ENTITY intMsgDelay.label "Tempo di ritardo [ms] della casella di ricerca del Password Manager:">
-<!ENTITY intMsgDelay.tooltip "Talvolta la casella di ricerca non si riempie automaticamente con il nome del dominio del sito web. In questi casi bisogna aumentare il valore predefinito del tempo di ritardo">
+<!ENTITY intMsgDelay.tooltip "Talvolta la casella di ricerca non si riempie automaticamente con il nome del dominio del sito web. In questi casi bisogna aumentare il valore predefinito del tempo di ritardo.">
 <!ENTITY intMsgDelay.accesskey "T">
 <!ENTITY about.label "Informazioni">
 <!ENTITY about.accesskey "I">
@@ -27,14 +27,14 @@
 <!ENTITY checkAutoCloseManager.accesskey "P">
 <!ENTITY checkDisplayContextMenuItem.label "Visualizza QuickPasswords nel menu contestuale del browser">
 <!ENTITY checkDisplayContextMenuItem.accesskey "V">
-<!ENTITY checkAutoLoginFill.label "Quando si accede ad un sito (Login), i campi delle credenziali si riempiono automaticamente">
+<!ENTITY checkAutoLoginFill.label "Quando si accede ad un sito [Login], i campi delle credenziali si riempiono automaticamente">
 <!ENTITY checkAutoLoginFill.accesskey "Q">
 <!ENTITY href.label.bugPage "Segnala un bug o suggerisci una nuova caratteristica…">
-<!ENTITY radioContextMenuAlways.label "Nel menu contestuale del browser visualizza sempre la voce relativa a QP">
+<!ENTITY radioContextMenuAlways.label "Visualizza sempre 'Richiama una password…' nel menu contestuale del browser">
 <!ENTITY radioContextMenuAlways.accesskey "R">
-<!ENTITY radioContextMenuSelective.label "Nel menu contestuale visualizza la voce relativa a QP solo quando si è in una casella di inserimento [predefinito]">
+<!ENTITY radioContextMenuSelective.label "Visualizza 'Richiama una password…' nel menu contestuale solo all'interno di una casella di inserimento dati [predefinito]">
 <!ENTITY radioContextMenuSelective.accesskey "V">
-<!ENTITY radioContextMenuOff.label "Nel menu contestuale del browser non visualizzare mai la voce relativa a QP">
+<!ENTITY radioContextMenuOff.label "Non visualizzare mai 'Richiama una password…' nel menu contestuale del browser">
 <!ENTITY radioContextMenuOff.accesskey "N">
 <!ENTITY donateButton.tooltip "Supporta lo sviluppo di QuickPasswords">
 <!ENTITY donateButton.label "Dona">

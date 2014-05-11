@@ -1,18 +1,18 @@
 <!ENTITY prefwindow.title "QuickPasswords Seçenekleri">
 <!ENTITY pane1.title "QuickPasswords seçenekleri">
-<!ENTITY tab.general "General">
-<!ENTITY tab.support "Advanced + Support">
+<!ENTITY tab.general "Genel">
+<!ENTITY tab.support "Gelişmiş + Destek">
 <!ENTITY checkCopyShowMessage.label "Şifreyi kopyaladıktan sonra bildirim göster">
 <!ENTITY checkCopyShowMessage.accesskey "M">
 <!ENTITY checkLoginShowMessage.label "Giriş komutunu seçtikten sonra bildirim göster">
 <!ENTITY checkLoginShowMessage.accesskey "G">
-<!ENTITY checkFillSearch.label "Fill Search box when opening Password Manager">
-<!ENTITY checkFillSearch.accesskey "F">
-<!ENTITY checkFillSearch.tooltip "Filters the list of passwords according to context.">
+<!ENTITY checkFillSearch.label "Şifre yöneticisini açarken arama kutusunu doldur.">
+<!ENTITY checkFillSearch.accesskey "D">
+<!ENTITY checkFillSearch.tooltip "Şifre listesini içeriğe göre süzgeçten geçirir.">
 <!ENTITY checkDebug.label "Debug Modu">
 <!ENTITY checkDebug.accesskey "D">
-<!ENTITY checkAustralis.label "Australis Theme Support">
-<!ENTITY checkAustralis.tooltip "Use this for better integration with monochrome themes">
+<!ENTITY checkAustralis.label "Australis Tema Desteği">
+<!ENTITY checkAustralis.tooltip "Monochrome temalarıyla daha iyi bütünleşmesi için bunu kullanın.">
 <!ENTITY intMsgDelay.label "Kayıtlı Parolalar Arama kutusu için gecikme süresi [ms]">
 <!ENTITY intMsgDelay.tooltip "Bazen Arama Kutusu sitelerin ismi ile otomatik doldurulmaz - bu durumda veriyi artırın.">
 <!ENTITY intMsgDelay.accesskey "Z">
@@ -29,12 +29,12 @@
 <!ENTITY checkDisplayContextMenuItem.accesskey "T">
 <!ENTITY checkAutoLoginFill.label "Formu Giriş komutuyla doldur">
 <!ENTITY checkAutoLoginFill.accesskey "F">
-<!ENTITY href.label.bugPage "Yeni bir özellik isteğinde bulunun veya hata bildirin">
+<!ENTITY href.label.bugPage "Yeni bir özellik önerin veya hata bildirin">
 <!ENTITY radioContextMenuAlways.label "Girdiyi her zaman sağ tık menüsünde göster">
 <!ENTITY radioContextMenuAlways.accesskey "E">
-<!ENTITY radioContextMenuSelective.label "Menüyü sadece girdi elemanlarında göster (varsayılan)">
+<!ENTITY radioContextMenuSelective.label "Menüyü sadece girdi öğelerinde göster (varsayılan)">
 <!ENTITY radioContextMenuSelective.accesskey "Y">
-<!ENTITY radioContextMenuOff.label "Asla girdileri sağ tık menüsünde gösterme">
+<!ENTITY radioContextMenuOff.label "Asla girdileri tarayıcının sağ tık menüsünde gösterme">
 <!ENTITY radioContextMenuOff.accesskey "N">
 <!ENTITY donateButton.tooltip "QuickPasswords yapımına destek">
 <!ENTITY donateButton.label "Bağış">
