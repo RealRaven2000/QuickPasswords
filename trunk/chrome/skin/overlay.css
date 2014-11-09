@@ -1,4 +1,4 @@
-@import 'chrome://quickpasswords-ap/skin/overlay.css';
+/* @import 'chrome://quickpasswords-ap/skin/overlay.css'; */
 
 #QuickPasswords-toolsMenu,
 #context-quickPasswords,
@@ -245,6 +245,7 @@ toolbar:not([iconsize="small"]) #QuickPasswords-toolbar-button.australis[locked=
 	to {transform: rotate(359deg);}
 }
 
+toolbar:not([iconsize="small"]) #QuickPasswords-toolbar-button.australis image,
 toolbar:not([iconsize="small"]) #QuickPasswords-toolbar-button:not(.australis) image
 {
   min-width: 20px;
