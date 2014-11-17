@@ -8,6 +8,7 @@
 <!ENTITY quickPasswordsContext.cancelLogin.label "取消 QuickPasswords 登入">
 <!ENTITY quickPasswordsToolbarButton.label "QuickPasswords">
 <!ENTITY quickPasswordsToolbarButton.tooltip "複製密碼到剪貼簿!">
+<!ENTITY quickPasswordsToolbarButton.tooltip1 "Log in safely; retrieve your passwords.">
 <!ENTITY quickPasswordsRepairButton.label "更正欄位名稱">
 <!ENTITY quickPasswordsTreeContextMenuCopy.label "複製密碼到剪貼簿">
 <!ENTITY quickPasswordsTreeContextMenuCopy.accesskey "P">

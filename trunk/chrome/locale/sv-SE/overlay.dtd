@@ -8,6 +8,7 @@
 <!ENTITY quickPasswordsContext.cancelLogin.label "Avbryt QuickPasswords-inloggning">
 <!ENTITY quickPasswordsToolbarButton.label "QuickPasswords">
 <!ENTITY quickPasswordsToolbarButton.tooltip "Kopierar lösenord till Urklipp!">
+<!ENTITY quickPasswordsToolbarButton.tooltip1 "Logga in säkert; hämta dina lösenord.">
 <!ENTITY quickPasswordsRepairButton.label "Korrigera fältnamn">
 <!ENTITY quickPasswordsTreeContextMenuCopy.label "Kopiera lösenord till Urklipp">
 <!ENTITY quickPasswordsTreeContextMenuCopy.accesskey "l">

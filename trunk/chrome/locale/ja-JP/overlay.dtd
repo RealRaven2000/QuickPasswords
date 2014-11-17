@@ -8,6 +8,7 @@
 <!ENTITY quickPasswordsContext.cancelLogin.label "QuickPasswordsのログインを中止">
 <!ENTITY quickPasswordsToolbarButton.label "このサイトのパスワード">
 <!ENTITY quickPasswordsToolbarButton.tooltip "クリップボードにパスワードをコピーします。">
+<!ENTITY quickPasswordsToolbarButton.tooltip1 "安全にログイン; パスワードを検索します。">
 <!ENTITY quickPasswordsRepairButton.label "フィールド名の修正">
 <!ENTITY quickPasswordsTreeContextMenuCopy.label "パスワードをコピー">
 <!ENTITY quickPasswordsTreeContextMenuCopy.accesskey "P">
