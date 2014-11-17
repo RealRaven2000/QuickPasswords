@@ -8,6 +8,7 @@
 <!ENTITY quickPasswordsContext.cancelLogin.label "Annulla l'accesso tramite QuickPasswords">
 <!ENTITY quickPasswordsToolbarButton.label "QuickPasswords">
 <!ENTITY quickPasswordsToolbarButton.tooltip "Copia le password nel blocco degli appunti">
+<!ENTITY quickPasswordsToolbarButton.tooltip1 "Autenticazione sicura; recupero delle password">
 <!ENTITY quickPasswordsRepairButton.label "Correzione del nome dei campi">
 <!ENTITY quickPasswordsTreeContextMenuCopy.label "Copia la password nel blocco degli appunti">
 <!ENTITY quickPasswordsTreeContextMenuCopy.accesskey "P">

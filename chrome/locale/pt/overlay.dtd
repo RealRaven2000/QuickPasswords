@@ -8,6 +8,7 @@
 <!ENTITY quickPasswordsContext.cancelLogin.label "Cancelar login no QuickPasswords">
 <!ENTITY quickPasswordsToolbarButton.label "QuickPasswords">
 <!ENTITY quickPasswordsToolbarButton.tooltip "Copia senhas para o clipboard!">
+<!ENTITY quickPasswordsToolbarButton.tooltip1 "Log in safely; retrieve your passwords.">
 <!ENTITY quickPasswordsRepairButton.label "Corrigir os nomes dos campos">
 <!ENTITY quickPasswordsTreeContextMenuCopy.label "Copiar senha para o clipboard">
 <!ENTITY quickPasswordsTreeContextMenuCopy.accesskey "e">

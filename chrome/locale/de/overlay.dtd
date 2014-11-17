@@ -8,6 +8,7 @@
 <!ENTITY quickPasswordsContext.cancelLogin.label "QuickPasswords Login Abbrechen">
 <!ENTITY quickPasswordsToolbarButton.label "QuickPasswords">
 <!ENTITY quickPasswordsToolbarButton.tooltip "Kopiert Passwörter in die Zwischenablage!">
+<!ENTITY quickPasswordsToolbarButton.tooltip1 "Sicher einloggen; Passwörter abrufen.">
 <!ENTITY quickPasswordsTreeContextMenuCopy.label "Passwort in die Zwischenablage kopieren">
 <!ENTITY quickPasswordsTreeContextMenuCopy.accesskey "P">
 <!ENTITY quickPasswordsTreeContextMenuCopyUser.label "Benutzername in die Zwischenablage kopieren">
