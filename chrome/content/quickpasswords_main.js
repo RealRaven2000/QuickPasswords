@@ -12,13 +12,17 @@ QuickPasswords.ToolbarListener = {
 QuickPasswords.Observer = function(subject, topic, data) {
   QuickPasswords.prepareAustralis(null, QuickPasswords.Preferences.getBoolPref('skin.australis'));
   Services.obs.removeObserver(QuickPasswords.Observer, "browser-delayed-startup-finished");
-  
-  if (QuickPasswords.Util.Application == 'Firefox') {
-    const { CustomizableUI } = Components.utils.import("resource:///modules/CustomizableUI.jsm", {});
+  // this code is Firefox specific:  
+  const { CustomizableUI } = Components.utils.import("resource:///modules/CustomizableUI.jsm", {});
+  if (CustomizableUI)
     CustomizableUI.addListener(QuickPasswords.ToolbarListener);
-  }
 }
-Services.obs.addObserver(QuickPasswords.Observer, "browser-delayed-startup-finished", false);
+
+if ((QuickPasswords.Util.Application === 'Firefox')
+   && (typeof Services !== 'undefined')) {  // Services only available in main window
+  // Australis UI panel fix.
+  Services.obs.addObserver(QuickPasswords.Observer, "browser-delayed-startup-finished", false);
+}
 
 window.addEventListener("load", QuickPasswords.onLoad, false);
 

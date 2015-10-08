@@ -58,10 +58,12 @@ var QuickPasswords_TabURIopener = {
 	}
 };
 
-Components.utils.import("resource://gre/modules/PrivateBrowsingUtils.jsm");
+// if (QuickPasswords.Util.Application !== 'Postbox') {
+  // Components.utils.import("resource://gre/modules/PrivateBrowsingUtils.jsm");
+// }
 
 QuickPasswords.Util = {
-	QuickPasswords_CURRENTVERSION : '3.2.1', // just a fallback value
+	QuickPasswords_CURRENTVERSION : '3.3', // just a fallback value
 	get AddonId() {
 		return "QuickPasswords@axelg.com";
 	},
@@ -292,7 +294,20 @@ QuickPasswords.Util = {
 	    // prevents runtime error on platforms that don't implement nsIAlertsService
 	  }
 	} ,
-
+  
+	get ToolbarName() {
+		switch (this.Application) {
+			case 'Thunderbird':
+				return 'mail-bar3';
+			case 'Firefox':
+				return 'nav-bar';
+			case 'Postbox': // not supported yet
+				return 'mail-bar7';
+			case 'SeaMonkey': // not supported yet
+				return 'nav-bar';
+		}
+	},
+	
 	checkfirstRun: function() {
 		QuickPasswords.Util.logDebugOptional("default", "checkfirstRun");
 		var prev = -1, firstRun = false;
@@ -358,6 +373,18 @@ QuickPasswords.Util = {
 				window.setTimeout(function() {
 					                             QuickPasswords.Util.openURL(null, "http://quickpasswords.mozdev.org/index.html");
 					                           }, 1500); //Firefox 2 fix - or else tab will get closed (leave it in....)
+                                     
+        // add button automatically
+        //   code by Leszek Zyczkowski
+        let toolbar = document.getElementById(this.ToolbarName);
+        if (!toolbar.currentSet.match('QuickPasswords-toolbar-button')) {
+            var newset = toolbar.currentSet.concat(',QuickPasswords-toolbar-button');
+            toolbar.currentSet = newset;
+            toolbar.setAttribute('currentset', newset);
+            document.persist(toolbar.id, "currentset");
+        }
+        this.service.setBoolPref('extensions.titlebarCleaner.firstRun', false);
+                                     
 			}
 			else {
 				// update or just new session?
@@ -456,30 +483,29 @@ QuickPasswords.Util = {
 		  if (!oldLoginInfo)
 				return; // no update possible!
 			let notifyBox = this.NotificationBox;
+
+      // prepare all Strings
+      // show loginPrepared.updateIdPrompt
+      let theText = QuickPasswords.Util.getBundleString("loginPrepared.updateIdPrompt",
+          "Update the {1} field name in login manager?\n" 
+          + "QuickPasswords searched for a field '{0}', but the field you selected to insert is '{2}'.");
+      let theText2 = QuickPasswords.Util.getBundleString("loginPrepared.updateIdPrompt.userOnly",
+            "This change only applies to {3} on this page.");
+      theText2 = theText2.replace("{3}", oldLoginInfo.username ? oldLoginInfo.username : 'n/a');
+
+      let theTypeLocalized = 
+        QuickPasswords.Util.getBundleString(insertType == 'user' ? 'copyMessageUser' : 'copyMessagePassword');
+            
+      theText = theText.replace('{0}', oldField);
+      theText = theText.replace('{1}', theTypeLocalized);
+      theText = theText.replace('{2}', newField);
+      theText = theText + ' ' + theText2.replace('{3}', oldLoginInfo ? oldLoginInfo.username : '');
+      
+      let btnYes = QuickPasswords.Util.getBundleString("loginPrepared.updateIdPrompt.Yes", "Update field");
+      let btnCancel = QuickPasswords.Util.getBundleString("loginPrepared.updateIdPrompt.Cancel", "Cancel");      
 				
 			// SeaMonkey currently has no matching notification mechanism, the only thing here possible is an alert box or confirm()
 			if (notifyBox) {
-				// show loginPrepared.updateIdPrompt
-				let theText = QuickPasswords.Util.getBundleString("loginPrepared.updateIdPrompt",
-						"Update the {1} field name in login manager?\n" 
-						+ "QuickPasswords searched for a field '{0}', but the field you selected to insert is '{2}'.");
-				let theText2 = QuickPasswords.Util.getBundleString("loginPrepared.updateIdPrompt.userOnly",
-							"This change only applies to {3} on this page.");
-				theText2 = theText2.replace("{3}", oldLoginInfo.username ? oldLoginInfo.username : 'n/a');
-
-				// we have 2 separate notifications - one for user names and one for passwords
-				let notificationKey = "quickpasswords-changeprompt." + insertType; 
-				let theTypeLocalized = 
-					QuickPasswords.Util.getBundleString(insertType == 'user' ? 'copyMessageUser' : 'copyMessagePassword');
-							
-				theText = theText.replace('{0}', oldField);
-				theText = theText.replace('{1}', theTypeLocalized);
-				theText = theText.replace('{2}', newField);
-				theText = theText + ' ' + theText2.replace('{3}', oldLoginInfo ? oldLoginInfo.username : '');
-				
-				let btnYes = QuickPasswords.Util.getBundleString("loginPrepared.updateIdPrompt.Yes", "Update field");
-				let btnCancel = QuickPasswords.Util.getBundleString("loginPrepared.updateIdPrompt.Cancel", "Cancel");
-				
 				let nbox_buttons = [
 					{
 						label: btnYes,
@@ -494,6 +520,9 @@ QuickPasswords.Util = {
 						popup: null
 					}				
 				];
+        
+				// we have 2 separate notifications - one for user names and one for passwords
+				let notificationKey = "quickpasswords-changeprompt." + insertType; 
 				let item = notifyBox.getNotificationWithValue(notificationKey)
 				if(item) { notifyBox.removeNotification(item); }
 				item = notifyBox.getNotificationWithValue("quickpasswords-changeprompt.repairFields")
@@ -515,9 +544,28 @@ QuickPasswords.Util = {
 						notifyBox.PRIORITY_INFO_HIGH, 
 						nbox_buttons );
 			}
+      else {  // SeaMonkey
+        let prompts = Components.classes["@mozilla.org/embedcomp/prompt-service;1"]
+                                      .getService(Components.interfaces.nsIPromptService);
+        let title ='QuickPasswords';
+        const BUTTON_POS_0 = 1;
+        const BUTTON_POS_1 = 256;
+        const BUTTON_TITLE_IS_STRING = 127;
+        const BUTTON_POS_0_DEFAULT = 0;
+        let aButtonFlags = (BUTTON_POS_0) * (BUTTON_TITLE_IS_STRING) 
+                         + (BUTTON_POS_1) * (BUTTON_TITLE_IS_STRING) 
+                         + BUTTON_POS_0_DEFAULT;
+        let input = {value: ""};
+        let checkState = {};
+        let result = prompts.confirmEx(window, title, theText, aButtonFlags, btnYes, btnCancel, null, null, checkState); // Ok = index 0
+        if (result == 0) {
+          QuickPasswords.Util.updateLogin(oldLoginInfo, insertType, newField);
+        }
+      
+      }
 		}
 		catch(ex) {
-			this.logException("notifyUpdateId()", ex);
+			QuickPasswords.Util.logException("notifyUpdateId()", ex);
 		}
 	} ,
 
@@ -661,7 +709,7 @@ QuickPasswords.Util = {
 		// const unsigned long exceptionFlag = 0x2;
 	  var consoleService = Components.classes["@mozilla.org/consoleservice;1"]
 	                                 .getService(Components.interfaces.nsIConsoleService);
-	  var aCategory = '';
+	  var aCategory = 'chrome javascript';
 
 	  var scriptError = Components.classes["@mozilla.org/scripterror;1"].createInstance(Components.interfaces.nsIScriptError);
 	  scriptError.init(aMessage, aSourceName, aSourceLine, aLineNumber, aColumnNumber, aFlags, aCategory);
@@ -861,7 +909,23 @@ QuickPasswords.Util = {
 		let versionComparator = Components.classes["@mozilla.org/xpcom/version-comparator;1"]
 														.getService(Components.interfaces.nsIVersionComparator);
 		 return (versionComparator.compare(a, b) < 0);
-	} 
+	} ,
+  
+  // helper function for POstbox where classList.toggle is broken
+  classListToggle: function(element, className, toggle) {
+    if (QuickPasswords.Util.Application != 'Postbox') {
+     element.classList.toggle(className, toggle);
+     return;
+    }
+    if (toggle) {
+      if (!element.classList.contains(className))
+        element.classList.add(className);
+    }
+    else {
+      if (element.classList.contains(className))
+        element.classList.remove(className);
+    }
+  }  
 
 
 };

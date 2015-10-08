@@ -7,7 +7,7 @@ if (!QuickPasswords.Manager)
 	LAST_TARGET: null,
 	MOVE_TARGET: null,
 
-	onMove: function(e){
+	onMove: function onMove(e){
 		var tooltip = true; // replace that with a pref later
 
 		var moveTarget = e.target;
@@ -47,7 +47,7 @@ if (!QuickPasswords.Manager)
 		}
 	} ,
 	
-	logoutMaster: function() {
+	logoutMaster: function logoutMaster() {
 		QuickPasswords.Util.logDebugOptional("Manager",  "logout Master Password");
 		Components.classes["@mozilla.org/security/pk11tokendb;1"]
 			.getService(Components.interfaces.nsIPK11TokenDB)
@@ -57,7 +57,7 @@ if (!QuickPasswords.Manager)
 	} ,
 
 	// since the passwords sub Tab has no Id we cannot use any built in helper from Thunderbird
-  openPasswordsTab: function(win, checkbox) {
+  openPasswordsTab: function openPasswordsTab(win, checkbox) {
     // find the passwords tab by looking for the tabpane that contains the checkbox
 		if (checkbox) {
 		  let p=checkbox.parentNode;
@@ -80,7 +80,7 @@ if (!QuickPasswords.Manager)
 		}
   }	,
 	
-	protectPasswordManager: function(checkbox) {
+	protectPasswordManager: function protectPasswordManager(checkbox) {
 	  if (!this.isMasterPasswordActive) {
 			let txtAlert;
 			try {
@@ -166,13 +166,13 @@ if (!QuickPasswords.Manager)
 		}
 	} ,
 	
-	keyListener: function(evt) {
+	keyListener: function keyListener(evt) {
 	  if (event.keyCode && event.keyCode  == 13) {
 			return;
 		}
   },
 	
-	initProtectionButton: function() {
+	initProtectionButton: function initProtectionButton() {
 		// disable the security checkbox (Master Password) if no master password is USED:
     let isProtected = QuickPasswords.Manager.isMasterPasswordActive;
     QuickPasswords.Util.logDebugOptional("Manager", "initProtectionButton() - protection = " + isProtected );
@@ -180,10 +180,10 @@ if (!QuickPasswords.Manager)
 		if (cbProtect) {
 			if (!isProtected) {
 				// no masterpassword is set at the moment - need to change behavior
-        cbProtect.classList.toggle('disabled', true);
+        QuickPasswords.Util.classListToggle(cbProtect, 'disabled', true);
 			}
 			else {
-        cbProtect.classList.toggle('disabled', false);
+        QuickPasswords.Util.classListToggle(cbProtect, 'disabled', false);
         // now make sure the checked state is set correctly
         // let isSessionProtected = false;
         let chk = document.getElementById('quickpasswords_protectOnClose');
@@ -192,7 +192,13 @@ if (!QuickPasswords.Manager)
 		return cbProtect;
 	} ,
   
-	load: function () {
+  isElementInViewport: function isElementInViewport(el) {
+    var rect = el.getBoundingClientRect();
+    QuickPasswords.Util.logDebug('rect: ' + rect.top + ', ' + rect.left + ', ' + rect.bottom + ', ' + rect.right);
+    return (rect.top < rect.bottom && rect.left < rect.right);
+  } ,
+  
+	load: function load() {
 		QuickPasswords.Util.logDebugOptional("Manager", "QuickPasswords.Manager.init()");
 		let signonsTree = document.getElementById("signonsTree");
 		if (signonsTree) {
@@ -217,11 +223,15 @@ if (!QuickPasswords.Manager)
 						evt.stopPropagation();
 					}					
 				}, false);
+      if (QuickPasswords.Util.checkIsMasterLocked) {
+        let lock = document.getElementById('quickPasswordsLockAfterClosing');
+        lock.checked = true;
+        lock.disabled = true; // you can't unlock password from here!
+      }
 		}
 		// move the wizard Button before the "Search" label
 		// where it logically belongs
-		if (QuickPasswords.Preferences.getBoolPref("wizardAbove"))
-		{
+		if (QuickPasswords.Preferences.getBoolPref("wizardAbove")) {
 			let filter = document.getElementById("filter");
 			if (filter) {
 				let wizardBtn = document.getElementById("quickPasswordsUriFilterRefiner");
@@ -236,12 +246,19 @@ if (!QuickPasswords.Manager)
 		// get container for close button
 		let actions = document.documentElement.getElementsByClassName('actionButtons');
 		let nodes = actions[0].getElementsByTagName('button');
+    let isCloseButton = false;
 		for (let i=0; i<nodes.length; i++) {
 			let button = nodes[i];
 			if (button.getAttribute('oncommand') == 'close();'
 			    ||
 					button.getAttribute('icon') == 'close')
 			{
+        if (button.collapsed
+          ||
+            !this.isElementInViewport(button)) break;  // in case Close is hidden
+        
+        QuickPasswords.Util.logDebug('Close button found - move lock button before it...');
+        isCloseButton = true;
 				// make sure we check protection code when close button is used!
 				// (this doesn't trigger window's close event)
 				button.addEventListener("click", 
@@ -253,7 +270,23 @@ if (!QuickPasswords.Manager)
 				break; // done
 			}  
 		}
+    // Mac case - no close button - insert before the [Show Passwords] button instead:
+    if (!isCloseButton) {
+      QuickPasswords.Util.logDebug('No close button - move lock button before show pwd');
+      let button = document.getElementById('togglePasswords');
+      if (button) {
+        let pr = button.parentNode;
+        pr.insertBefore(cbProtect, button); // before the label
+      }
+      else
+        QuickPasswords.Util.logDebug('No togglePasswords button found!');      
+    }
+    
 		QuickPasswords.prepareAustralis(window.document, QuickPasswords.Preferences.getBoolPref('skin.australis'));
+    if (QuickPasswords.Util.Application=='Postbox') {
+      let repairBtn = document.getElementById('QuickPasswordsBtnRepair');
+      if (repairBtn) repairBtn.collapsed = true;
+    }
 	} ,
 	
 	get isMasterPasswordActive() {
@@ -272,7 +305,7 @@ if (!QuickPasswords.Manager)
     }
  } ,
 		
-	close: function() {
+	close: function close() {
 		if (!this.isMasterPasswordActive)
 			return;
 		let cbProtect = document.getElementById('quickPasswordsLockAfterClosing');

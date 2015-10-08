@@ -8,8 +8,10 @@ QuickPasswords.Preferences = {
   
   // function called from checkbox when Australis is changed
   updatePasswordWindow: function(chk) {  
+    let australis = !chk.checked;
+    QuickPasswords.Util.logDebug('updatePasswordWindow() australis = ' + australis);
     let w = QuickPasswords.getPasswordManagerWindow('', false); // don't open manager unless shown
-    QuickPasswords.prepareAustralis((w ? w.document : null), !chk.checked);
+    QuickPasswords.prepareAustralis((w ? w.document : null), australis);
   } ,
 
 	getBoolPref: function(term) {
@@ -105,7 +107,7 @@ QuickPasswords.Preferences = {
 	  return this.getBoolPref("updateFieldsNotify");
 	} ,
 	
-	get isAutoFill() {
+	get isAutoFilter() {
 	  return this.getBoolPref("autofilter");
 	} ,
 	

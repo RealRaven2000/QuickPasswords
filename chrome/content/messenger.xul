@@ -19,8 +19,9 @@
 		  class="toolbarbutton-1 chromeclass-toolbar-additional custombutton"
 	      label="&quickPasswordsToolbarButton.label;" 
 		  tooltiptext="&quickPasswordsToolbarButton.tooltip;"
-	    oncommand="QuickPasswords.onToolbarButtonCommand(event);"
-			oncontextmenu="QuickPasswords.Util.displayOptions();"
+	      oncommand="QuickPasswords.onToolbarButtonCommand(event);"
+		  oncontextmenu="QuickPasswords.Util.displayOptions();"
+		  context="dummy"
 	    />
   </toolbarpalette>
 
@@ -29,9 +30,10 @@
 	  <toolbarbutton id="QuickPasswords-toolbar-button" 
 		  class="toolbarbutton-1 chromeclass-toolbar-additional"
 	      label="&quickPasswordsToolbarButton.label;" 
-		  tooltiptext="&quickPasswordsToolbarButton.tooltip;"
+		  tooltiptext="&quickPasswordsToolbarButton.tooltip1;"
 	      oncommand="QuickPasswords.onToolbarButtonCommand(event);"
 		  oncontextmenu="QuickPasswords.Util.displayOptions();"
+		  context="dummy"
 		  />
   </vbox>
 
