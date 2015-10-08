@@ -203,6 +203,12 @@
   3.4 - 06/12/2014
     [Bug 25909] Fixed http://bugzil.la/1001090 "temporal dead zone" fix breaks add-on in Firefox 35.0
   
+  3.5 - WIP
+	  [Bug 25935] "Unified password change" broken with Firefox 34.0.5
+    Improved SSO password change making it resilient against early exits caused by multiple users on the same domain
+    [Bug 25931] Added a switch for disabling version history tab
+
+  
 ===========================================================================================
 
 		Planned: adding option for configuring delimiter of multi line export. At the moment this is hard coded to tab.
@@ -691,7 +697,6 @@ var QuickPasswords = {
 
 			switch (QuickPasswords.Util.Application) {
 				case 'Thunderbird': 
-				case 'Postbox':
           browsers = getWindowEnumerator ('mail:3pane', true);
 					break;
 				case 'SeaMonkey':
@@ -711,14 +716,16 @@ var QuickPasswords = {
 			}
       if (browsers) {
         theBrowser = browsers.getNext();
-        if (theBrowser.getInterface)
-          DomWindow = theBrowser.getInterface(interfaceType);
-        else {
-          try {
-            // Linux
-            DomWindow = theBrowser.QueryInterface(ci.nsIInterfaceRequestor).getInterface(interfaceType);
+        if (theBrowser) {
+          if (theBrowser.getInterface)
+            DomWindow = theBrowser.getInterface(interfaceType);
+          else {
+            try {
+              // Linux
+              DomWindow = theBrowser.QueryInterface(ci.nsIInterfaceRequestor).getInterface(interfaceType);
+            }
+            catch(e) {;}
           }
-          catch(e) {;}
         }
       }
       
@@ -1742,7 +1749,7 @@ var QuickPasswords = {
 		}
 	},
 
-	processSelectedPassword: function processSelectedPassword(srvLoginManager, v, oldPassword, newPassword) {
+	processSelectedPassword: function processSelectedPassword(srvLoginManager, v, oldPassword, newPassword, selectedUser, modified) {
 		function displayLoginInfo(items) {
 			let str = '';
 			for (let i=0; i<items.length; i++) {
@@ -1760,13 +1767,9 @@ var QuickPasswords = {
 			}
 			return str;
 		}
-		// create a new wrapper for passing back login and modified clone
-		let resultLogin = {
-			oldPwd: oldPassword,
-			newPwd: newPassword,
-			matchedLogin: null,
-			newLogin: null
-		};
+		
+    let resultsArray = [];
+    // create a new wrapper for passing back login and modified clone
 
 //		from docs for nsILoginManager:
 // 		void searchLogins(
@@ -1779,7 +1782,10 @@ var QuickPasswords = {
 		                              "init");
 		let site = QuickPasswords.getSite(v);
 		let user = QuickPasswords.getUser(v);
-		let encryptedUser = ''; let encryptedPassword = '';
+    if (selectedUser != user)
+      return null;
+		let encryptedUser = ''; 
+    let encryptedPassword = '';
 
 // 		// try this one...
 // 		// see https://developer.mozilla.org/en/XPCOM_Interface_Reference/Using_nsILoginManager
@@ -1791,13 +1797,14 @@ var QuickPasswords = {
 
 		// add some properties to the bag - to filter out the correct credentials
 		bag.setProperty('hostname', site);
-		
+		// bag.setProperty('username', selectedUser); // test => Error: NS_ERROR_XPC_JS_THREW_STRING: Unexpected field: username'Unexpected field: username' when calling method: [nsILoginManagerStorage::searchLogins]
+    
     let cryptoService = Components.classes["@mozilla.org/login-manager/crypto/SDR;1"].getService(Components.interfaces.nsILoginManagerCrypto);																	
 		if (cryptoService) {
-			encryptedUser = cryptoService.encrypt(user);
-			encryptedPassword = cryptoService.encrypt(oldPassword);
+			encryptedUser = cryptoService.encrypt(selectedUser);
 			// unfortunately, we do not get any matches if we include these fields in the search
-			// bag.setProperty('encryptedUsername', user);  // encryptedUser
+			//bag.setProperty('encryptedUsername', encryptedUser);  // no matching entries are returned
+			//encryptedPassword = cryptoService.encrypt(oldPassword);
 			// bag.setProperty('encryptedPassword', encryptedPassword);
 		}
 // other Attributes:
@@ -1815,18 +1822,25 @@ var QuickPasswords = {
 			QuickPasswords.Util.logDebugOptional('changePasswords.detail', 'Found ' + count.value + ' match(es):');
 			let foundMatch = false
 			for (let i=0; i<matches.length; i++) { // was matches.length, but I only do the first one! TO DO later ( matches should be unique as we match usr, pwd + hostname
-				if (matches[i].username == user
+				if (matches[i].username == selectedUser
 				    &&
 				    matches[i].password == oldPassword)
 				{
-					QuickPasswords.Util.logDebugOptional('changePasswords.detail', 'Changing Login: ' + displayLoginInfo(matches));
-					resultLogin.matchedLogin = matches[i];
-					resultLogin.newLogin = matches[i].clone();
+					QuickPasswords.Util.logDebugOptional('changePasswords.detail', (modified+1).toString() + '. Changing Login: ' + displayLoginInfo(matches));
+          let resultLogin = {
+            oldPwd: oldPassword,
+            newPwd: newPassword,
+            matchedLogin: matches[i],
+            newLogin: matches[i].clone()
+          };
+          
 					/*******************************/
 					/*  MODIFIES THE PASSWORD!!    */
 					/*******************************/
 					resultLogin.newLogin.password = newPassword;
 					foundMatch = true;
+          modified ++;
+          resultsArray.push(resultLogin);
 					// overwrite with new Password
 					// after changes in code code - this refreshes the password list, 
 					// so it is not save to call within a loop from the password
@@ -1837,8 +1851,8 @@ var QuickPasswords = {
 				  let mismatchReason = '';
 					if (matches[i].password != oldPassword)
 						mismatchReason += '\nOld Password mismatched';
-					if (matches[i].username != user)
-						mismatchReason += '\nName {' + user + '} doesn\'t  match selected user';
+					if (matches[i].username != selectedUser)
+						mismatchReason += '\nUser Name {' + matches[i].username + '} doesn\'t  match.';
 					QuickPasswords.Util.logToConsole('Could not modify login for site: ' + site + mismatchReason);
 				}
 			}
@@ -1851,7 +1865,7 @@ var QuickPasswords = {
 		  return null;  // no matchy!
 		}
 
-		return resultLogin;
+		return resultsArray;
 	} ,
 
 	// setting up a message listener to wait for a password for bulk change;
@@ -1894,6 +1908,7 @@ var QuickPasswords = {
 			let filter = event.data.pwd;
 			let bMatch=true;
 			let newPassword = event.data.newPwd;
+      let selectedUser = event.data.usr; // add for better validation
 
 			// change password window: this is where we get this event from
 			let theWin = QuickPasswords.getOpenWindow("dlg:QuickPasswords_Change");
@@ -1915,9 +1930,13 @@ var QuickPasswords = {
 				for (let v = start.value; v <= end.value; v++){
 					iPasswordsSelected++;
 					pwd = QuickPasswords.getPassword(v);
-					if (filter != pwd)
+					if (filter != pwd) {
 						bMatch = false;
-					sSites = sSites + ', ' + QuickPasswords.getSite(v);
+            break;
+          }
+          user = QuickPasswords.getUser(v);
+          if (selectedUser == user)
+            sSites = sSites + ', ' + QuickPasswords.getSite(v);
 				}
 			}
 			
@@ -1955,12 +1974,17 @@ var QuickPasswords = {
 						for (let v = start.value; v <= end.value; v++)
 						{
 							iPasswordsSelected--;
-							let lg = QuickPasswords.processSelectedPassword (srvLoginManager, v, filter, newPassword);
-							// only push on match!
-							if (lg && lg.matchedLogin) {
-								logins.push(lg);
-								countQueued++;
-							}
+							let arr = QuickPasswords.processSelectedPassword (srvLoginManager, v, filter, newPassword, selectedUser, countQueued);
+              if (arr && arr.length) {
+                for (let ll=0; ll<arr.length; ll++) {
+                  // only push on match!
+                  let lg = arr[ll];
+                  if (lg && lg.matchedLogin) {
+                    logins.push(lg);
+                    countQueued++;
+                  }
+                }
+              }
 							
 						}
 					}
@@ -1975,16 +1999,25 @@ var QuickPasswords = {
 
 				// the modificiation can take a long time if MANY logins are selected!
 				QuickPasswords.Util.logDebugOptional("changePasswords", "Modifying logins: Prepared " + countQueued + " logins from " + numRanges + " selected ranges.");
-				try {
-					while (logins.length) {
-						let lg = logins.pop();
-						srvLoginManager.modifyLogin(lg.matchedLogin, lg.newLogin);
-						countModifications++;
-					}
+        let nonMatches = '';
+        while (logins.length) {
+          let lg = logins.pop();
+          try {
+            srvLoginManager.modifyLogin(lg.matchedLogin, lg.newLogin);
+            countModifications++;
+          }
+          catch (ex) {
+            if (!nonMatches) {
+              nonMatches = 'Some Changes failed:';
+            }
+            nonMatches += '\n';
+            nonMatches += ex.message;
+            nonMatches += '\nUser = ' + lg.matchedLogin.username;
+            nonMatches += '  hostname = ' + lg.matchedLogin.hostname;
+          }
 				}
-				catch (ex) {
-					QuickPasswords.Util.logException('changeBulkPasswords', ex);
-				}
+        if (nonMatches)
+          QuickPasswords.Util.logToConsole(nonMatches);
 				
 				QuickPasswords.Util.logDebugOptional("changePasswords", "Modifying logins complete. Changed " + countModifications + " logins.");
 				
@@ -2026,12 +2059,12 @@ var QuickPasswords = {
 		try {
 			let tree = window.signonsTree;
 			let tI = tree.currentIndex;
+      let theSite = QuickPasswords.getSite(tI);
 
 			if (tree.view.selection.count==0 || ''==theSite)
 				alert(QuickPasswords.Bundle.GetStringFromName("selectOneMessage"));
 			else
 			{
-				let theSite = QuickPasswords.getSite(tI);
 				let params =
 				{
 					inn:
@@ -2094,7 +2127,8 @@ var QuickPasswords = {
 		let info = {
 			'cmd':'changeBulkPasswords',
 			'pwd':pwdElement.value,
-			'newPwd':document.getElementById('txtNewPassword').value
+			'newPwd':document.getElementById('txtNewPassword').value,
+      'usr': document.getElementById('qp-User').value
 			};
       
     //  [Bug 25750] Macs misbehave!

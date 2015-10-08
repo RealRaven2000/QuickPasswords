@@ -63,7 +63,7 @@ var QuickPasswords_TabURIopener = {
 // }
 
 QuickPasswords.Util = {
-	QuickPasswords_CURRENTVERSION : '3.4', // just a fallback value
+	QuickPasswords_CURRENTVERSION : '3.5', // just a fallback value
 	get AddonId() {
 		return "QuickPasswords@axelg.com";
 	},
@@ -387,14 +387,17 @@ QuickPasswords.Util = {
 					ssPrefs.setCharPref("version", pureVersion);
 					
 					// version is different => upgrade (or conceivably downgrade)
-					QuickPasswords.Util.logDebugOptional ("firstRun","open tab for version history + browser for donation" + current);
-					window.setTimeout(function(){
-						// display version history
-						QuickPasswords.Util.openURL(null, versionPage);
-					}, 1500); //Firefox 2 fix - or else tab will get closed
+          if (QuickPasswords.Preferences.getBoolPref("update.showVersionPage")) {
+            QuickPasswords.Util.logDebugOptional ("firstRun","open tab for version history + browser for donation" + current);
+            window.setTimeout(function(){
+              // display version history
+              QuickPasswords.Util.openURL(null, versionPage);
+            }, 1500); //Firefox 2 fix - or else tab will get closed
+          }
 
 					// prereleases never open the donation page!
-					if (current.indexOf('pre')==-1) {
+          // 3.5 was a bugfixed version
+					if (current.indexOf('pre')==-1 && current!='3.5') {
 						window.setTimeout(function(){
 							// display donation page (can be disabled; I will send out method to all donators and anyone who asks me for it)
 							if ((QuickPasswords.Preferences.getBoolPref("donateNoMore")) || (!QuickPasswords.Preferences.getBoolPref('donations.askOnUpdate')))
