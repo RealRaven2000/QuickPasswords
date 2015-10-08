@@ -48,13 +48,13 @@ QuickPasswords.Preferences = {
 		if(!this.service.prefHasUserValue(branch))
 			return "";
 
-		var ll = this.service.getCharPref(branch).toString();
+		let ll = this.service.getCharPref(branch).toString();
 		return ll;
 	} ,
 
 
 	setUrlEntries: function(UrlEntries) { // store array as JSON string
-		var json = JSON.stringify(UrlEntries);
+		let json = JSON.stringify(UrlEntries);
 		QuickPasswords.Util.logDebug(json);
 		this.service.setCharPref(this.ExtensionBranch + "Urls",json);
 	} ,
@@ -65,7 +65,7 @@ QuickPasswords.Preferences = {
 			return [];
 		}
 
-		var Urls;
+		let Urls;
 
 		if((Urls = this.service.getCharPref(branch).toString())) {
 			return JSON.parse(Urls);

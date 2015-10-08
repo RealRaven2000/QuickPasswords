@@ -5,10 +5,10 @@
 <!ENTITY quickPasswordsContext.insertUser.accesskey "k">
 <!ENTITY quickPasswordsContext.insertPassword.label "Şifreyi gir">
 <!ENTITY quickPasswordsContext.insertPassword.accesskey "f">
-<!ENTITY quickPasswordsContext.cancelLogin.label "QuickPassword Girdisini iptal et">
+<!ENTITY quickPasswordsContext.cancelLogin.label "QuickPassword Girişini iptal et">
 <!ENTITY quickPasswordsToolbarButton.label "QuickPassword">
 <!ENTITY quickPasswordsToolbarButton.tooltip "Şifreleri panoya kopyala">
-<!ENTITY quickPasswordsToolbarButton.tooltip1 "Log in safely; retrieve your passwords.">
+<!ENTITY quickPasswordsToolbarButton.tooltip1 "Güvenli giriş yapın;şifrelerinizi getirir.">
 <!ENTITY quickPasswordsRepairButton.label "Yer isimlerini doğrula">
 <!ENTITY quickPasswordsTreeContextMenuCopy.label "Şifreyi panoya kopyala">
 <!ENTITY quickPasswordsTreeContextMenuCopy.accesskey "Ş">
@@ -22,6 +22,6 @@
 <!ENTITY quickPasswordsTreeContextMenuLogin.accesskey "G">
 <!ENTITY quickPasswordsManagerCopyButton.label "Şifreyi kopyala!">
 <!ENTITY quickPasswordsTreeContextMenuQuickPasswordsOptions.label "QuickPassswords Ayarları...">
-<!ENTITY quickPasswordsTreeContextMenuChangePasswords.label "Şifre değiştirici...">
+<!ENTITY quickPasswordsTreeContextMenuChangePasswords.label "Şifreyi değiştir...">
 <!ENTITY quickPasswordsManager.siteFilter "Site listesini daralt">
-<!ENTITY quickPasswordsManager.protection "Şifre yöneticisini kapadıktan sonra koru - sonraki açılışta Ana Şifreyi sor">
+<!ENTITY quickPasswordsManager.protection "Kayıtlı şifreleri kapadıktan sonra koru - sonraki açılışta Ana Şifreyi sor">

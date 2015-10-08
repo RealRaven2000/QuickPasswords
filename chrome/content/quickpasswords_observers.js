@@ -5,17 +5,17 @@ QuickPasswords.Observer = {
 	initObserver : function () {
 		try {
 
-			var ww = Components.classes["@mozilla.org/embedcomp/window-watcher;1"]
+			let ww = Components.classes["@mozilla.org/embedcomp/window-watcher;1"]
 			                   .getService(Components.interfaces.nsIWindowWatcher);
 
-			var watcher = {
+			let watcher = {
 				observe: function(subject, topic, data) {
 					if (topic == "domwindowopened") {
 						// unfortunately you can't get anything useful from subject here.
 						// You need to wait for it to load. The best way to do
 						// that is to hook it's load event:
-						var txt = "domwindow opened - subject..location: ";
-						var loc = subject.document ? (subject.document.location ? subject.document.location.toString() : "location not defined") : "subject.document not found";
+						let txt = "domwindow opened - subject..location: ";
+						let loc = subject.document ? (subject.document.location ? subject.document.location.toString() : "location not defined") : "subject.document not found";
 						// does this location end with passwordManager ?
 						if (/passwordManager.xul$/.test(subject.document.location.toString())) {
 							subject.addEventListener("load", QuickPasswords.loadPasswordManager, false);

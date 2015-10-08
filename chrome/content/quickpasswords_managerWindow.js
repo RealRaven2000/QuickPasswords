@@ -8,9 +8,9 @@ if (!QuickPasswords.Manager)
 	MOVE_TARGET: null,
 
 	onMove: function onMove(e){
-		var tooltip = true; // replace that with a pref later
-
-		var moveTarget = e.target;
+		let tooltip = true; // replace that with a pref later
+    let box;
+		let moveTarget = e.target;
 		QuickPasswords.Util.logDebugOptional("default", "QuickPasswords.Manager.onMove(" + e.toString() + ")");
 // 		while(){
 // 			moveTarget = moveTarget.parentNode;
@@ -21,12 +21,10 @@ if (!QuickPasswords.Manager)
 			box = new QuickPasswordsTooltip(e);
 		}
 
-		if(moveTarget.nodeName.toLowerCase() == "tree" && moveTarget.id == "signonsTree")
-		{
-			var iconSrc = QuickPasswords.Manager.getIcons(moveTarget);
-
-			var anyIcons = false;
-			for(var i = 0; i < iconSrc.length; i++){
+		if(moveTarget.nodeName.toLowerCase() == "tree" && moveTarget.id == "signonsTree") {
+			let iconSrc = QuickPasswords.Manager.getIcons(moveTarget);
+			let anyIcons = false;
+			for(let i = 0; i < iconSrc.length; i++){
 				if(iconSrc[i] != "") {
 					anyIcons = true;
 					break;
@@ -193,7 +191,7 @@ if (!QuickPasswords.Manager)
 	} ,
   
   isElementInViewport: function isElementInViewport(el) {
-    var rect = el.getBoundingClientRect();
+    let rect = el.getBoundingClientRect();
     QuickPasswords.Util.logDebug('rect: ' + rect.top + ', ' + rect.left + ', ' + rect.bottom + ', ' + rect.right);
     return (rect.top < rect.bottom && rect.left < rect.right);
   } ,
@@ -292,12 +290,12 @@ if (!QuickPasswords.Manager)
 	get isMasterPasswordActive() {
     // code from browser/components/preferences/security.js - _masterPasswordSet()
 		let Ci = Components.interfaces;
-    var secmodDB = Components.classes["@mozilla.org/security/pkcs11moduledb;1"].
+    let secmodDB = Components.classes["@mozilla.org/security/pkcs11moduledb;1"].
                    getService(Ci.nsIPKCS11ModuleDB);
-    var slot = secmodDB.findSlotByName("");
+    let slot = secmodDB.findSlotByName("");
     if (slot) {
-      var status = slot.status;
-      var hasMP = status != Ci.nsIPKCS11Slot.SLOT_UNINITIALIZED &&
+      let status = slot.status;
+      let hasMP = status != Ci.nsIPKCS11Slot.SLOT_UNINITIALIZED &&
                   status != Ci.nsIPKCS11Slot.SLOT_READY;
       return hasMP;
     } else {

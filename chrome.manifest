@@ -24,7 +24,7 @@ locale    quickpasswords   zh-TW      chrome/locale/zh-TW/
 
 #######   OVERLAYS - main window  Fx - Sm - Tb,Sm,Pb
 overlay   chrome://browser/content/browser.xul  chrome://quickpasswords/content/quickpasswords_browser.xul     
-# overlay   chrome://browser/content/browser.xul  chrome://quickpasswords/content/quickpasswords_browser.xul application={92650c4d-4b8e-4d2a-b7eb-24ecf4f6b63a}
+#sm
 overlay   chrome://navigator/content/navigator.xul chrome://quickpasswords/content/quickpasswords_browser.xul application={92650c4d-4b8e-4d2a-b7eb-24ecf4f6b63a}
 #tb, sm, pb
 overlay   chrome://messenger/content/messenger.xul         chrome://quickpasswords/content/messenger.xul  

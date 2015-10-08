@@ -240,10 +240,12 @@ toolbar:not([iconsize="small"]) #QuickPasswords-toolbar-button.australis[locked=
 	width: 22px;
 	/* animation: rot .6s infinite linear; */
 }
+/*
 @keyframes rot {
 	from {transform: rotate(0deg);}
 	to {transform: rotate(359deg);}
 }
+*/
 
 toolbar:not([iconsize="small"]) #QuickPasswords-toolbar-button.australis image,
 toolbar:not([iconsize="small"]) #QuickPasswords-toolbar-button:not(.australis) image
@@ -334,11 +336,11 @@ quickpasswords-tip-img1 {
 .australis #QuickPasswordsBtnSettings:hover image,
 .australis #context-quickPasswordOptions:hover image {
   animation-duration: 3s;
-  animation-name: rotate;
+  animation-name: quickPasswordRotate; /* name space polluting! */
   animation-iteration-count: infinite;
 }
 
-@keyframes rotate {
+@keyframes quickPasswordRotate {
   from {
 	  transform: rotate(0deg);
 	}

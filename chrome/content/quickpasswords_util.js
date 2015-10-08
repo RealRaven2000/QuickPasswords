@@ -14,22 +14,22 @@ var QuickPasswords_TabURIopener = {
 
 	openURLInTab: function (URL) {
 		try {
-			var sTabMode="";
-			var wm = Components.classes["@mozilla.org/appshell/window-mediator;1"]
+			let sTabMode="";
+			let wm = Components.classes["@mozilla.org/appshell/window-mediator;1"]
                    .getService(Components.interfaces.nsIWindowMediator);
-			var mainWindow = wm.getMostRecentWindow("navigator:browser");
+			let mainWindow = wm.getMostRecentWindow("navigator:browser");
 			if (mainWindow) {
-				var newTab = mainWindow.gBrowser.addTab(URL);
+				let newTab = mainWindow.gBrowser.addTab(URL);
 				mainWindow.gBrowser.selectedTab = newTab;
 				return true;
 			}
 
 
-			var tabmail;
+			let tabmail;
 			tabmail = document.getElementById("tabmail");
 			if (!tabmail) {
 				// Try opening new tabs in an existing 3pane window
-				var mail3PaneWindow = Components.classes["@mozilla.org/appshell/window-mediator;1"]
+				let mail3PaneWindow = Components.classes["@mozilla.org/appshell/window-mediator;1"]
 										 .getService(Components.interfaces.nsIWindowMediator)
 										 .getMostRecentWindow("mail:3pane");
 				if (mail3PaneWindow) {
@@ -63,7 +63,7 @@ var QuickPasswords_TabURIopener = {
 // }
 
 QuickPasswords.Util = {
-	QuickPasswords_CURRENTVERSION : '3.3', // just a fallback value
+	QuickPasswords_CURRENTVERSION : '3.4', // just a fallback value
 	get AddonId() {
 		return "QuickPasswords@axelg.com";
 	},
@@ -89,13 +89,13 @@ QuickPasswords.Util = {
   } ,
   
   get MainWindow() {
-    var wm = Components.classes["@mozilla.org/appshell/window-mediator;1"]
+    let wm = Components.classes["@mozilla.org/appshell/window-mediator;1"]
                  .getService(Components.interfaces.nsIWindowMediator);
-    var mainWindow = wm.getMostRecentWindow("navigator:browser");
+    let mainWindow = wm.getMostRecentWindow("navigator:browser");
     if (mainWindow) {
       return mainWindow;
     }  
-    var mail3PaneWindow = wm.getMostRecentWindow("mail:3pane");
+    let mail3PaneWindow = wm.getMostRecentWindow("mail:3pane");
     if (mail3PaneWindow) {
       return mail3PaneWindow;
     }
@@ -106,13 +106,13 @@ QuickPasswords.Util = {
       return document.getElementById(id);
   } ,
 
-  getAddon: function(aId) {
-    var em = Components.classes["@mozilla.org/extensions/manager;1"]
+  getAddon: function getAddon(aId) {
+    let em = Components.classes["@mozilla.org/extensions/manager;1"]
                 .getService(Components.interfaces.nsIExtensionManager);
-      return em.getItemForID(aId);
+    return em.getItemForID(aId);
   } ,
 
-	VersionProxy: function() {
+	VersionProxy: function VersionProxy() {
 		try {
 			if(this.mExtensionVer)
 				return; // early exit, we got the version!
@@ -133,7 +133,7 @@ QuickPasswords.Util = {
 						u.logDebugOptional("default", "QuickPasswords.VersionProxy() - DETECTED QuickPasswords Version " + u.mExtensionVer + "\n" + "Running on " + u.Application	 + " Version " + u.AppVersionFull);
 						u.logDebugOptional("default", "================================================\n" +
 						           "================================================");
-						var wd=window.document;
+						let wd=window.document;
 						if (wd) {
 							let elVersion = wd.getElementById("qp-version-field");
 							if (elVersion)
@@ -158,7 +158,8 @@ QuickPasswords.Util = {
 
 	get Version() {
 		//returns the current extension version number.
-		var bAddonManager = false;
+		let bAddonManager = false;
+		let current = null;
 		if(QuickPasswords.Util.mExtensionVer)
 			return QuickPasswords.Util.mExtensionVer;
 		if (!Components.classes["@mozilla.org/extensions/manager;1"]) {
@@ -168,9 +169,6 @@ QuickPasswords.Util = {
 			bAddonManager = true;
 		}
 
-		// --- older code
-		var current = null;
-
 		if (bAddonManager)
 			current = QuickPasswords.Util.QuickPasswords_CURRENTVERSION + "-AddonManagerVersionPending";
 		else {
@@ -178,7 +176,7 @@ QuickPasswords.Util = {
 			try {
 				if(Components.classes["@mozilla.org/extensions/manager;1"])
 				{
-					var gExtensionManager = Components.classes["@mozilla.org/extensions/manager;1"]
+					let gExtensionManager = Components.classes["@mozilla.org/extensions/manager;1"]
 						.getService(Components.interfaces.nsIExtensionManager);
 					current = gExtensionManager.getItemForID(QuickPasswords.Util.AddonId).version;
 					QuickPasswords.Util.mExtensionVer = current; // legal version (pre Tb3.3)
@@ -195,26 +193,22 @@ QuickPasswords.Util = {
 			}
 		}
 		return current;
-
 	} ,
 
-	onLoadVersionInfoDialog: function()
-	{
+	onLoadVersionInfoDialog: function onLoadVersionInfoDialog() {
 		if (window.arguments && window.arguments[0].inn)
 		{
 			QuickPasswords.Util.mExtensionVer = window.arguments[0].inn.instance.Util.Version;
 		}
-		var version=QuickPasswords.Util.Version; // local instance of
-		var wd=window.document;
+		let version=QuickPasswords.Util.Version; // local instance of
+		let wd=window.document;
 		if (version=="") version='version?';
 		wd.getElementById("qp-version-field").setAttribute("value", version);
-
 	} ,
-
 
 	// dedicated function for email clients which don't support tabs
 	// and for secured pages (donation page).
-	openLinkInBrowserForced: function(linkURI) {
+	openLinkInBrowserForced: function openLinkInBrowserForced(linkURI) {
 		try {
 			this.logDebugOptional("default", "openLinkInBrowserForced (" + linkURI + ")");
 			if (QuickPasswords.Util.Application=='SeaMonkey') {
@@ -229,24 +223,23 @@ QuickPasswords.Util = {
 
 				return;
 			}
-			var service = Components.classes["@mozilla.org/uriloader/external-protocol-service;1"]
+			let service = Components.classes["@mozilla.org/uriloader/external-protocol-service;1"]
 				.getService(Components.interfaces.nsIExternalProtocolService);
-			var ioservice = Components.classes["@mozilla.org/network/io-service;1"].
+			let ioservice = Components.classes["@mozilla.org/network/io-service;1"].
 						getService(Components.interfaces.nsIIOService);
-			var uri = ioservice.newURI(linkURI, null, null);
+			let uri = ioservice.newURI(linkURI, null, null);
 			service.loadURI(uri);
 		}
 		catch(e) { this.logException("openLinkInBrowserForced (" + linkURI + ") ", e); }
 	},
 
-
 	// moved from options.js
 	// use this to follow a href that did not trigger the browser to open (from a XUL file)
-	openLinkInBrowser: function(evt,linkURI) {
+	openLinkInBrowser: function openLinkInBrowser(evt,linkURI) {
 		if (QuickPasswords.Util.AppVersion>=3 && QuickPasswords.Util.Application=='Thunderbird') {
-			var service = Components.classes["@mozilla.org/uriloader/external-protocol-service;1"]
+			let service = Components.classes["@mozilla.org/uriloader/external-protocol-service;1"]
 				.getService(Components.interfaces.nsIExternalProtocolService);
-			var ioservice = Components.classes["@mozilla.org/network/io-service;1"].
+			let ioservice = Components.classes["@mozilla.org/network/io-service;1"].
 						getService(Components.interfaces.nsIIOService);
 			service.loadURI(ioservice.newURI(linkURI, null, null));
 			if(null!=evt)
@@ -257,8 +250,8 @@ QuickPasswords.Util = {
 	},
 
 	// moved from options.js (then called
-	openURL: function(evt,URL) { // workaround for a bug in TB3 that causes href's not be followed anymore.
-		var ioservice,iuri,eps;
+	openURL: function openURL(evt,URL) { // workaround for a bug in TB3 that causes href's not be followed anymore.
+		let ioservice,iuri,eps;
 
 		if (QuickPasswords.Util.AppVersion<3 && QuickPasswords.Util.Application=='Thunderbird'
 			|| QuickPasswords.Util.Application=='SeaMonkey'
@@ -275,7 +268,7 @@ QuickPasswords.Util = {
 		}
 	},
 	
-	getVersionSimple: function(ver) {
+	getVersionSimple: function getVersionSimple(ver) {
 	  let pureVersion = ver;  // default to returning unchanged
 		// get first match starting with numbers mixed with . 	
 		let reg = new RegExp("[0-9.]*");
@@ -285,7 +278,7 @@ QuickPasswords.Util = {
 		return pureVersion;
 	},
 
-	popupAlert: function (title, text) {
+	popupAlert: function popupAlert(title, text) {
 	  try {
 	    Components.classes['@mozilla.org/alerts-service;1'].
 	              getService(Components.interfaces.nsIAlertsService).
@@ -308,16 +301,15 @@ QuickPasswords.Util = {
 		}
 	},
 	
-	checkfirstRun: function() {
+	checkfirstRun: function checkfirstRun() {
 		QuickPasswords.Util.logDebugOptional("default", "checkfirstRun");
-		var prev = -1, firstRun = false;
-		var debugfirstRun = false;
+		let prev = -1, firstRun = false;
+		let debugfirstRun = false;
 
-		var svc = Components.classes["@mozilla.org/preferences-service;1"]
+		let svc = Components.classes["@mozilla.org/preferences-service;1"]
 			.getService(Components.interfaces.nsIPrefService);
-		var ssPrefs = svc.getBranch(QuickPasswords.Preferences.ExtensionBranch);
-
-		var current = QuickPasswords.Util.Version;
+		let ssPrefs = svc.getBranch(QuickPasswords.Preferences.ExtensionBranch);
+		let current = QuickPasswords.Util.Version;
 		QuickPasswords.Util.logDebugOptional("default", "Current QuickPasswords Version: " + current);
 		try {
 			QuickPasswords.Util.logDebugOptional ("firstRun","try to get setting: getCharPref(version)");
@@ -378,7 +370,7 @@ QuickPasswords.Util = {
         //   code by Leszek Zyczkowski
         let toolbar = document.getElementById(this.ToolbarName);
         if (!toolbar.currentSet.match('QuickPasswords-toolbar-button')) {
-            var newset = toolbar.currentSet.concat(',QuickPasswords-toolbar-button');
+            let newset = toolbar.currentSet.concat(',QuickPasswords-toolbar-button');
             toolbar.currentSet = newset;
             toolbar.setAttribute('currentset', newset);
             document.persist(toolbar.id, "currentset");
@@ -420,7 +412,7 @@ QuickPasswords.Util = {
 		}
 	} ,
 	
-	updateLogin: function(login, insertType, newField) {
+	updateLogin: function updateLogin(login, insertType, newField) {
 		let test = insertType + ' field update - \nnew field name = ' + newField + '\n'
 		  + 'RETRIEVED LOGIN INFORMATION\n'
 			+ 'formSubmitURL =' + login.formSubmitURL + '\n'
@@ -478,7 +470,7 @@ QuickPasswords.Util = {
 	*
 	* @return void
 	**/
-	notifyUpdateId: function(oldField, newField, insertType, userName, oldLoginInfo) {
+	notifyUpdateId: function notifyUpdateId(oldField, newField, insertType, userName, oldLoginInfo) {
 		try {
 		  if (!oldLoginInfo)
 				return; // no update possible!
@@ -569,7 +561,7 @@ QuickPasswords.Util = {
 		}
 	} ,
 
-	checkVersionFirstRun: function() {
+	checkVersionFirstRun: function checkVersionFirstRun() {
 		let utils = QuickPasswords.Util;
 		utils.logDebugOptional("firstRun", "Util.checkVersionFirstRun() - mExtensionVer = " + utils.mExtensionVer);
 		let aId = utils.AddonId;
@@ -605,7 +597,7 @@ QuickPasswords.Util = {
 	},
 
 	get AppVersionFull() {
-	  var appInfo = Components.classes["@mozilla.org/xre/app-info;1"]
+	  let appInfo = Components.classes["@mozilla.org/xre/app-info;1"]
 	                  .getService(Components.interfaces.nsIXULAppInfo);
 	    return appInfo.version;
 	},
@@ -620,7 +612,7 @@ QuickPasswords.Util = {
 
 	get Application() {
 		if (null == this.mAppName) {
-			var appInfo = Components.classes["@mozilla.org/xre/app-info;1"]
+			let appInfo = Components.classes["@mozilla.org/xre/app-info;1"]
 											.getService(Components.interfaces.nsIXULAppInfo);
 			const FIREFOX_ID = "{ec8030f7-c20a-464f-9b0e-13a3a9e97384}";
 			const THUNDERBIRD_ID = "{3550f703-e582-4d05-9a08-453d09bdfdc6}";
@@ -646,34 +638,33 @@ QuickPasswords.Util = {
 
 	get HostSystem() {
 		if (null == this.mHost) {
-			var osString = Components.classes["@mozilla.org/xre/app-info;1"]
+			let osString = Components.classes["@mozilla.org/xre/app-info;1"]
 										.getService(Components.interfaces.nsIXULRuntime).OS;
 			this.mHost = osString.toLowerCase();
 		}
 		return this.mHost; // linux - winnt - darwin
 	},
 
-	copyStringToClipboard: function(sString) {
+	copyStringToClipboard: function copyStringToClipboard(sString) {
 		let clipboardhelper = Components.classes["@mozilla.org/widget/clipboardhelper;1"].getService(Components.interfaces.nsIClipboardHelper);
 		clipboardhelper.copyString(sString);
 	},
 
-
-	debugVar: function(value) {
-			str = "Value: " + value + "\r\n";
-			for(prop in value) {
-					str += prop + " => " + value[prop] + "\r\n";
-			}
-
-			this.logDebug(str);
+	debugVar: function debugVar(value) {
+    let str = "Value: " + value + "\r\n";
+    for(prop in value) {
+        str += prop + " => " + value[prop] + "\r\n";
+    }
+    this.logDebug(str);
 	},
 
-	logTime: function() {
-		var timePassed = '';
+	logTime: function logTime() {
+		let timePassed = '';
+    let end;
 		try {
-			var end= new Date();
-			var endTime = end.getTime();
-			var elapsed = new String(endTime  - this.lastTime); // time in milliseconds
+			end= new Date();
+			let endTime = end.getTime();
+			let elapsed = new String(endTime  - this.lastTime); // time in milliseconds
 			timePassed = '[' + elapsed + ' ms]   ';
 			this.lastTime = endTime; // remember last time
 		}
@@ -681,7 +672,7 @@ QuickPasswords.Util = {
 		return end.getHours() + ':' + end.getMinutes() + ':' + end.getSeconds() + '.' + end.getMilliseconds() + '  ' + timePassed;
 	},
 
-	logToConsole: function (msg, optionTitle) {
+	logToConsole: function logToConsole(msg, optionTitle) {
 		if (this.ConsoleService == null)
 		  this.ConsoleService = Components.classes["@mozilla.org/consoleservice;1"]
 		                             .getService(Components.interfaces.nsIConsoleService);
@@ -691,33 +682,32 @@ QuickPasswords.Util = {
 		this.ConsoleService.logStringMessage(title + " " + this.logTime() + "\n"+ msg);
 	},
 
-	logDebug: function (msg) {
+	logDebug: function logDebug(msg) {
 	  if (QuickPasswords.Preferences.isDebug)
 	    this.logToConsole(msg);
 	},
 
-	logDebugOptional: function (option, msg) {
+	logDebugOptional: function logDebugOptional(option, msg) {
 	  if (QuickPasswords.Preferences.isDebugOption(option))
 	    this.logToConsole(msg, option);
 	},
 
-	logError: function (aMessage, aSourceName, aSourceLine, aLineNumber, aColumnNumber, aFlags)
-	{
+	logError: function logError(aMessage, aSourceName, aSourceLine, aLineNumber, aColumnNumber, aFlags) {
 	  // definition of flags, see flag constants:
 		// const unsigned long errorFlag = 0x0; /** message is warning */ 
 		// const unsigned long warningFlag = 0x1;  /** exception was thrown for this case - exception-aware hosts can ignore */ 
 		// const unsigned long exceptionFlag = 0x2;
-	  var consoleService = Components.classes["@mozilla.org/consoleservice;1"]
+	  let consoleService = Components.classes["@mozilla.org/consoleservice;1"]
 	                                 .getService(Components.interfaces.nsIConsoleService);
-	  var aCategory = 'chrome javascript';
+	  let aCategory = 'chrome javascript';
 
-	  var scriptError = Components.classes["@mozilla.org/scripterror;1"].createInstance(Components.interfaces.nsIScriptError);
+	  let scriptError = Components.classes["@mozilla.org/scripterror;1"].createInstance(Components.interfaces.nsIScriptError);
 	  scriptError.init(aMessage, aSourceName, aSourceLine, aLineNumber, aColumnNumber, aFlags, aCategory);
 	  consoleService.logMessage(scriptError);
 	} ,
 
 	logException: function (aMessage, ex) {
-		var stack = ''
+		let stack = ''
 		if (typeof ex.stack!='undefined')
 			stack= ex.stack.replace("@","\n  ");
 		// let's display a caught exception as a warning.
@@ -747,7 +737,7 @@ QuickPasswords.Util = {
 		}
 	},
 
-	onLoadOptions: function() {
+	onLoadOptions: function onLoadOptions() {
 		this.onLoadVersionInfoDialog();
 		document.getElementById('qp-version-field').value=this.Version;
     
@@ -766,9 +756,9 @@ QuickPasswords.Util = {
 		}
 	},
 
-	displayOptions: function() {
-		var params = {inn:{instance: QuickPasswords}, out:null};
-    var win = QuickPasswords.getCurrentBrowserWindow();
+	displayOptions: function displayOptions() {
+		let params = {inn:{instance: QuickPasswords}, out:null};
+    let win = QuickPasswords.getCurrentBrowserWindow();
 		setTimeout(
 			function() {
       win.openDialog('chrome://quickpasswords/content/quickpassword_options.xul',
@@ -777,22 +767,21 @@ QuickPasswords.Util = {
 			});
 	} ,
 
-	showAboutConfig: function(filter, owner, readOnly) {
-
+	showAboutConfig: function showAboutConfig(filter, owner, readOnly) {
 		const name = "Preferences:ConfigManager";
 		const uri = "chrome://global/content/config.xul";
 
-		var mediator = Components.classes["@mozilla.org/appshell/window-mediator;1"].getService(Components.interfaces.nsIWindowMediator);
-		var w = mediator.getMostRecentWindow(name);
+		let mediator = Components.classes["@mozilla.org/appshell/window-mediator;1"].getService(Components.interfaces.nsIWindowMediator);
+		let w = mediator.getMostRecentWindow(name);
 
 		if (!w) {
-			var watcher = Components.classes["@mozilla.org/embedcomp/window-watcher;1"].getService(Components.interfaces.nsIWindowWatcher);
+			let watcher = Components.classes["@mozilla.org/embedcomp/window-watcher;1"].getService(Components.interfaces.nsIWindowWatcher);
 			w = watcher.openWindow(owner || null, uri, name, "dependent,alwaysRaised,dialog,chrome,resizable,centerscreen,width=500px,height=350px", null);
 		}
 		w.focus();
 		w.addEventListener('load',
 			function () {
-				var flt = w.document.getElementById("textbox");
+				let flt = w.document.getElementById("textbox");
 				if (flt) {
 					flt.value=filter;
 				 	// make filter box readonly to prevent damage!
@@ -806,7 +795,7 @@ QuickPasswords.Util = {
 			});
 	},
 
-	getBundleString: function(id, defaultText) { // moved from local copies in various modules.
+	getBundleString: function getBundleString(id, defaultText) { // moved from local copies in various modules.
 		let s;
 		try {
 			s = QuickPasswords.Bundle.GetStringFromName(id);
@@ -881,7 +870,7 @@ QuickPasswords.Util = {
 	},
 
 	stringFormat : function stringFormat(str) {
-		var args = Array.slice(arguments, 1);
+		let args = Array.slice(arguments, 1);
 		return str.replace(/\{(\d+)\}/g, function ($0, $1) args[$1])
 	},
 	

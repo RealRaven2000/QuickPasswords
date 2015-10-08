@@ -6,7 +6,7 @@
 <!ENTITY checkCopyShowMessage.accesskey "M">
 <!ENTITY checkLoginShowMessage.label "Meldung anzeigen nach Einloggen Kommando">
 <!ENTITY checkLoginShowMessage.accesskey "E">
-<!ENTITY checkFillSearch.label "Beim öffnen von Passwort Manager Suchfeld automatisch ausfüllen">
+<!ENTITY checkFillSearch.label "Beim Öffnen von Passwort Manager Suchfeld automatisch ausfüllen">
 <!ENTITY checkFillSearch.accesskey "S">
 <!ENTITY checkFillSearch.tooltip "Filtert die Passwortliste je nach Kontext.">
 <!ENTITY checkDebug.label "Debug Modus">

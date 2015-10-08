@@ -13,13 +13,13 @@ function QuickPasswordsTooltip(e){
 
 QuickPasswordsTooltip.prototype.show = function(iconSrc)
 {
-	var useLarge = false;
-	var withMouse = true;
-	var offsetX = 10;
-	var offsetY = 10;
+	let useLarge = false;
+	let withMouse = true;
+	let offsetX = 10;
+	let offsetY = 10;
 
 	//Set icons to show
-	var iconImage = document.getElementById("quickPasswords-tip-img1");
+	let iconImage = document.getElementById("quickPasswords-tip-img1");
 	if(iconSrc[0] != ""){
 		if(useLarge == true){
 			iconImage.setAttribute("maxwidth", "32px");
@@ -29,7 +29,8 @@ QuickPasswordsTooltip.prototype.show = function(iconSrc)
 			iconImage.setAttribute("maxheight", "16px");
 		}
 		iconImage.src = iconSrc[i];
-	}else{
+	} 
+  else {
 		iconImage.src = "";
 		iconImage.setAttribute("maxwidth", "0px");
 	}
