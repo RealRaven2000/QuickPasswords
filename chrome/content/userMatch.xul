@@ -1,1 +1,55 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?xml-stylesheet href="chrome://global/skin/" type="text/css"?>
+<?xml-stylesheet href="chrome://quickpasswords/skin/quickpasswords_options.css" title="qpOptionsStyles" type="text/css"?>
+
+<!DOCTYPE dialog [
+   <!ENTITY % chgPwdDTD SYSTEM "chrome://QuickPasswords/locale/changePassword.dtd">  %chgPwdDTD;
+   <!ENTITY % ovlyDTD SYSTEM "chrome://QuickPasswords/locale/overlay.dtd"> %ovlyDTD;
+]>
+
+<!-- a future dialog for showing matching logons that might be candidates 
+     for the SSO password change. Often some SSO logons will add a domain name
+		 using  the pattern domain/user or even domain\user
+		 we should not be forced to change these passwords in a separated step.
+		 A regex might not be the safest way to deal with this.
+-->
+<dialog xmlns="http://www.mozilla.org/keymaster/gatekeeper/there.is.only.xul"
+	buttons="accept,cancel,extra2"
+	id="QuickPasswords-changePassword"
+	title="&editPasswordWindow.title;"
+	ondialogaccept="return QuickPasswords.onAcceptChangePasswords(document.getElementById('txtOldPassword'));"
+	onload="QuickPasswords.onLoadChangePassword();"
+	buttonlabelextra2="&donateButton.label;"
+	buttonaccesskeyextra2="&donateButton.shortcut;"
+	tooltipextra2="&donateButton.tooltip;"
+	ondialogextra2="QuickPasswords.Util.openURL(null,'http://quickpasswords.mozdev.org/donate.html');"
+	windowtype="dlg:QuickPasswords_Change"
+>
+<script type="application/x-javascript;version=1.7" src="chrome://quickpasswords/content/quickpasswords.js"/>
+<script type="application/x-javascript;version=1.7" src="chrome://quickpasswords/content/quickpasswords_util.js"/>
+<script type="application/x-javascript;version=1.7" src="chrome://quickpasswords/content/quickpasswords_preferences.js"/>
+<script type="application/x-javascript;version=1.7" src="chrome://quickpasswords/content/quickpasswords_main.js"/>
+<script type="application/x-javascript;version=1.7" src="chrome://mozapps/content/extensions/extensions.js"/>
+
+	<vbox id="qp-options-prefpane" label="">
+
+		<hbox id="qp-options-header" >
+			<label class="dialogheader-title"
+				value="&editPasswordWindow.caption;"
+				flex="1"/>
+
+			<label id="qp-version-field"
+			oncontextmenu="QuickPasswords.Util.showVersionHistory(this, true);return false;"
+			onclick="QuickPasswords.Util.showVersionHistory(this, true);return false;"/>
+		</hbox>
+
+		<vbox id="qp-edit-main" flex="10">
+		  <label value="List of Sites affected" />
+		  <listbox id="sites"></listbox>
+		  <label value="List of Logins (select the ones to modify)" />
+		  <listbox id="logins"></listbox>
+		</vbox>
+	</vbox>
+</dialog>
 
