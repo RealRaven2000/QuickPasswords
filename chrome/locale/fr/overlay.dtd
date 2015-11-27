@@ -8,6 +8,7 @@
 <!ENTITY quickPasswordsContext.cancelLogin.label "Annuler les identifiants">
 <!ENTITY quickPasswordsToolbarButton.label "QuickPasswords">
 <!ENTITY quickPasswordsToolbarButton.tooltip "Copie les mots de passe dans le presse-papiers !">
+<!ENTITY quickPasswordsToolbarButton.tooltip1 "Connectez-vous en toute sécurité; récupérer vos mots de passe.">
 <!ENTITY quickPasswordsRepairButton.label "Corrigez les noms de champs">
 <!ENTITY quickPasswordsTreeContextMenuCopy.label "Copier les mots de passe dans le presse-papiers">
 <!ENTITY quickPasswordsTreeContextMenuCopy.accesskey "P">
