@@ -68,8 +68,9 @@ QuickPasswords.showFirefoxContextMenu = function(event) {
   } catch(ex) {
     QuickPasswords.Util.logException('QuickPasswords.showFirefoxContextMenu()', ex);
   }
+  let cMenuOption = QuickPasswords.Preferences.contextMenuOption();
   QuickPasswords.Util.logDebug('QuickPasswords.showFirefoxContextMenu()\nisHidden = ' + isHidden);
-	document.getElementById("context-quickPasswords").hidden = isHidden;
+	document.getElementById("context-quickPasswords").hidden = (isHidden && (cMenuOption != 0)) || cMenuOption==2; // 0 = show always, 2 = never
 	document.getElementById("context-quickPasswords-insertUser").hidden = isHidden;
 	document.getElementById("context-quickPasswords-insertPassword").hidden = isHidden;
 	document.getElementById("context-quickPasswords-cancelLogin").hidden = isHidden;
