@@ -18,8 +18,8 @@
 	buttons="accept,cancel,extra2"
 	id="QuickPasswords-changePassword"
 	title="&editPasswordWindow.title;"
-	ondialogaccept="return QuickPasswords.onAcceptChangePasswords(document.getElementById('txtOldPassword'));"
-	onload="QuickPasswords.onLoadChangePassword();"
+	ondialogaccept="return QuickPasswords.UserMatch.onAcceptPassword();"
+	onload="QuickPasswords.UserMatch.onLoadUserMatch();"
 	buttonlabelextra2="&donateButton.label;"
 	buttonaccesskeyextra2="&donateButton.shortcut;"
 	tooltipextra2="&donateButton.tooltip;"
@@ -30,25 +30,53 @@
 <script type="application/x-javascript;version=1.7" src="chrome://quickpasswords/content/quickpasswords_util.js"/>
 <script type="application/x-javascript;version=1.7" src="chrome://quickpasswords/content/quickpasswords_preferences.js"/>
 <script type="application/x-javascript;version=1.7" src="chrome://quickpasswords/content/quickpasswords_main.js"/>
+<script type="application/x-javascript;version=1.7" src="chrome://quickpasswords/content/quickpasswords_usermatch.js"/>
+<!--
 <script type="application/x-javascript;version=1.7" src="chrome://mozapps/content/extensions/extensions.js"/>
+-->
 
 	<vbox id="qp-options-prefpane" label="">
-
 		<hbox id="qp-options-header" >
 			<label class="dialogheader-title"
-				value="&editPasswordWindow.caption;"
-				flex="1"/>
-
+						 value="&editPasswordWindow.caption;"
+						 flex="1" />
 			<label id="qp-version-field"
-			oncontextmenu="QuickPasswords.Util.showVersionHistory(this, true);return false;"
-			onclick="QuickPasswords.Util.showVersionHistory(this, true);return false;"/>
+						 oncontextmenu="QuickPasswords.Util.showVersionHistory(this, true);return false;"
+						 onclick="QuickPasswords.Util.showVersionHistory(this, true);return false;" />
 		</hbox>
 
 		<vbox id="qp-edit-main" flex="10">
-		  <label value="List of Sites affected" />
-		  <listbox id="sites"></listbox>
-		  <label value="List of Logins (select the ones to modify)" />
-		  <listbox id="logins"></listbox>
+		  <hbox align="center">
+				<label id="lblSites"
+							 value="&site.label;"/>
+				<spacer flex="1" />
+				<textbox id="txtOldPassword"  
+								 disabled="true"
+								 tooltiptext="&oldPassword.tooltip;"
+								 class="obscured"/>
+		  </hbox>
+		  <listbox id="sites" 
+			         seltype="multiple"
+			         rows="8" />
+			<hbox align="center">
+				<label value="&logins.label;" />
+				<button id="btnSelectAll" 
+				        label="All"
+								oncommand="QuickPasswords.UserMatch.selectAllUsers();"/>
+			</hbox>
+		  <listbox id="logins" 
+			         seltype="multiple"
+			         rows="3"/>
+			<hbox align="center">
+				<label control="txtUser">&user.label;</label>
+				<textbox id="txtUser" 
+				         disabled="true"/>
+				<spacer flex="1" />
+				<textbox id="txtNewPassword"  
+								 type="password"
+								 disabled="true" />
+			</hbox>
 		</vbox>
 	</vbox>
+	
 </dialog>
