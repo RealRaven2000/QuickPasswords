@@ -4,9 +4,9 @@
 <!ENTITY tab.support "Avanzate e Supporto">
 <!ENTITY checkCopyShowMessage.label "Dopo aver copiato la password nel 'Blocco degli appunti' viene visualizzato un messaggio">
 <!ENTITY checkCopyShowMessage.accesskey "B">
-<!ENTITY checkLoginShowMessage.label "Dopo aver selezionato l'accesso al sito (Login) viene visualizzato un messaggio">
+<!ENTITY checkLoginShowMessage.label "Dopo aver selezionato il comando di accesso al sito [Login] viene visualizzato un messaggio">
 <!ENTITY checkLoginShowMessage.accesskey "L">
-<!ENTITY checkFillSearch.label "Riempie la casella di Ricerca all'apertura del Password Manager">
+<!ENTITY checkFillSearch.label "All'apertura del Password Manager, riempie la casella di Ricerca">
 <!ENTITY checkFillSearch.accesskey "R">
 <!ENTITY checkFillSearch.tooltip "Filtra l'elenco delle password a seconda del contesto">
 <!ENTITY checkDebug.label "Modalità di debug">
@@ -27,8 +27,8 @@
 <!ENTITY checkAutoCloseManager.accesskey "P">
 <!ENTITY checkDisplayContextMenuItem.label "Visualizza QuickPasswords nel menu contestuale del browser">
 <!ENTITY checkDisplayContextMenuItem.accesskey "V">
-<!ENTITY checkAutoLoginFill.label "Quando si accede ad un sito [Login], i campi delle credenziali si riempiono automaticamente">
-<!ENTITY checkAutoLoginFill.accesskey "Q">
+<!ENTITY checkAutoLoginFill.label "Riempimento automatico al comando di accesso al sito [Login]">
+<!ENTITY checkAutoLoginFill.accesskey "L">
 <!ENTITY href.label.bugPage "Segnala un bug o suggerisci una nuova caratteristica…">
 <!ENTITY radioContextMenuAlways.label "Visualizza sempre 'Richiama una password…' nel menu contestuale del browser">
 <!ENTITY radioContextMenuAlways.accesskey "R">
