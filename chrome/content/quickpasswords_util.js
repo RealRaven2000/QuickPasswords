@@ -1,5 +1,6 @@
 "use strict";
 
+Components.utils.import('resource://gre/modules/Services.jsm');
 
 var QuickPasswords_TabURIregexp = {
 	get _thunderbirdRegExp() {
@@ -63,7 +64,7 @@ var QuickPasswords_TabURIopener = {
 // }
 
 QuickPasswords.Util = {
-	QuickPasswords_CURRENTVERSION : '3.5', // just a fallback value
+	QuickPasswords_CURRENTVERSION : '3.6', // just a fallback value
 	get AddonId() {
 		return "QuickPasswords@axelg.com";
 	},
@@ -288,6 +289,11 @@ QuickPasswords.Util = {
 	  }
 	} ,
   
+  alert: function alert(msg, caption) {
+    caption = caption ? caption : "QuickPasswords";
+    Services.prompt.alert(null, caption, msg);
+  } ,
+  
 	get ToolbarName() {
 		switch (this.Application) {
 			case 'Thunderbird':
@@ -303,12 +309,13 @@ QuickPasswords.Util = {
 	
 	checkfirstRun: function checkfirstRun() {
 		QuickPasswords.Util.logDebugOptional("default", "checkfirstRun");
-		let prev = -1, firstRun = false;
-		let debugfirstRun = false;
+		const Cc = Components.classes,
+          Ci = Components.interfaces,
+          svc = Cc["@mozilla.org/preferences-service;1"].getService(Ci.nsIPrefService),
+		      ssPrefs = svc.getBranch(QuickPasswords.Preferences.ExtensionBranch);
+		let prev = -1, firstRun = false,
+		    debugfirstRun = false;
 
-		let svc = Components.classes["@mozilla.org/preferences-service;1"]
-			.getService(Components.interfaces.nsIPrefService);
-		let ssPrefs = svc.getBranch(QuickPasswords.Preferences.ExtensionBranch);
 		let current = QuickPasswords.Util.Version;
 		QuickPasswords.Util.logDebugOptional("default", "Current QuickPasswords Version: " + current);
 		try {
@@ -621,8 +628,10 @@ QuickPasswords.Util = {
 			const THUNDERBIRD_ID = "{3550f703-e582-4d05-9a08-453d09bdfdc6}";
 			const SEAMONKEY_ID = "{92650c4d-4b8e-4d2a-b7eb-24ecf4f6b63a}";
 			const POSTBOX_ID = "postbox@postbox-inc.com";
+      const PALE_MOON = "{8de7fcbb-c55c-4fbe-bfc5-fc555c87dbc4}";
 			switch(appInfo.ID) {
 				case FIREFOX_ID:
+        case PALE_MOON:
 					return this.mAppName='Firefox';
 				case THUNDERBIRD_ID:
 					return this.mAppName='Thunderbird';
