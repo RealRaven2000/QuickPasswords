@@ -16,6 +16,7 @@ pref("extensions.quickpasswords.donations.askOnUpdate", true);
 pref("extensions.quickpasswords.update.showVersionPage", true);
 pref("extensions.quickpasswords.protectManagerOnClose", false);
 pref("extensions.quickpasswords.skin.australis", true);
+pref("extensions.quickpasswords.backup.path", ''); // default to extensions/quickpasswords
 /* debugging prefs */
 pref("extensions.quickpasswords.debug", false);
 pref("extensions.quickpasswords.debug.default", true);
