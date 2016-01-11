@@ -12,22 +12,24 @@ var QuickPasswords_TabURIregexp = {
 // open the new content tab for displaying support info, see
 // https://developer.mozilla.org/en/Thunderbird/Content_Tabs
 var QuickPasswords_TabURIopener = {
-
+	
 	openURLInTab: function (URL) {
+		const util = QuickPasswords.Util,
+		      prefs = QuickPasswords.Preferences;
 		try {
-			let sTabMode="";
-			let wm = Components.classes["@mozilla.org/appshell/window-mediator;1"]
-                   .getService(Components.interfaces.nsIWindowMediator);
-			let mainWindow = wm.getMostRecentWindow("navigator:browser");
+			let sTabMode="",
+			    wm = Components.classes["@mozilla.org/appshell/window-mediator;1"]
+                   .getService(Components.interfaces.nsIWindowMediator),
+			    mainWindow = wm.getMostRecentWindow("navigator:browser");
 			if (mainWindow) {
-				let newTab = mainWindow.gBrowser.addTab(URL);
-				mainWindow.gBrowser.selectedTab = newTab;
+				// Firefox:
+				if (!util.findTab(URL))
+				  mainWindow.gBrowser.selectedTab = mainWindow.gBrowser.addTab(URL);
+				mainWindow.focus();
 				return true;
 			}
 
-
-			let tabmail;
-			tabmail = document.getElementById("tabmail");
+			let tabmail = document.getElementById("tabmail");
 			if (!tabmail) {
 				// Try opening new tabs in an existing 3pane window
 				let mail3PaneWindow = Components.classes["@mozilla.org/appshell/window-mediator;1"]
@@ -38,10 +40,13 @@ var QuickPasswords_TabURIopener = {
 					mail3PaneWindow.focus();
 				}
 			}
+			if (prefs.isDebug) debugger;
 			if (tabmail) {
-				sTabMode = (QuickPasswords.Util.Application == "Thunderbird" && QuickPasswords.Util.AppVersion >= 3) ? "contentTab" : "3pane";
+				if (!util.findMailTab(tabmail, URL)) {
+				sTabMode = (util.Application == "Thunderbird" && util.AppVersion >= 3) ? "contentTab" : "3pane";
 				tabmail.openTab(sTabMode,
-				{contentPage: URL, clickHandler: "specialTabs.siteClickHandler(event, QuickPasswords_TabURIregexp._thunderbirdRegExp);"});
+					{contentPage: URL, clickHandler: "specialTabs.siteClickHandler(event, QuickPasswords_TabURIregexp._thunderbirdRegExp);"});
+				}
 			}
 			else
 				window.openDialog("chrome://messenger/content/", "_blank",
@@ -52,7 +57,7 @@ var QuickPasswords_TabURIopener = {
 			  } );
 		}
 		catch(e) {
-			this.logException("openURLInTab(" + URL + ")", e);
+			util.logException("openURLInTab(" + URL + ")", e);
 			return false;
 		}
 		return true;
@@ -72,6 +77,7 @@ QuickPasswords.Util = {
 	name: 'QuickPasswords.Util',
 	mAppver: null,
 	mAppName: null,
+	mPlatformVer: null,
 	mHost: null,
 	lastTime: 0,
 	mExtensionVer: null,
@@ -196,6 +202,100 @@ QuickPasswords.Util = {
 		return current;
 	} ,
 
+	getTabInfoLength: function getTabInfoLength(tabmail) {
+		if (tabmail.tabInfo)
+		  return tabmail.tabInfo.length;
+	  if (tabmail.tabOwners)
+		  return tabmail.tabOwners.length;
+		return null;
+	} ,	
+	
+	getTabInfoByIndex: function getTabInfoByIndex(tabmail, idx) {
+		if (tabmail.tabInfo)
+			return tabmail.tabInfo[idx];
+		if (tabmail.tabOwners)
+		  return tabmail.tabOwners[idx];
+		return null;
+	} ,
+	
+	getBaseURI: function baseURI(URL) {
+		let hashPos = URL.indexOf('#'),
+				queryPos = URL.indexOf('?'),
+				baseURL = URL;
+				
+		if (hashPos>0)
+			baseURL = URL.substr(0, hashPos);
+		else if (queryPos>0)
+			baseURL = URL.substr(0, queryPos);
+		if (baseURL.endsWith('/'))
+			return baseURL.substr(0, baseURL.length-1); // match "x.com" with "x.com/"
+		return baseURL;		
+	} ,
+	
+  // find an activate a tab if the URL is already open
+  findTab: function findTab(URL) {
+		const Cc = Components.classes,
+					Ci = Components.interfaces,
+		      util = QuickPasswords.Util;
+					
+		let wm = Cc["@mozilla.org/appshell/window-mediator;1"].getService(Ci.nsIWindowMediator),
+		    browserEnumerator = wm.getEnumerator("navigator:browser"),
+		    found = false,
+				baseURL = util.getBaseURI(URL);
+		// more tolerant URL match; cutting off anchors / queryString for better re-using of tabs!
+		
+		try {
+			while (!found && browserEnumerator.hasMoreElements()) {
+				let browserWin = browserEnumerator.getNext(),
+						tabbrowser = browserWin.gBrowser;
+
+				// Check each tab of this browser instance
+				let numTabs = tabbrowser.browsers.length;
+				for (let index = 0; index < numTabs; index++) {
+					let currentBrowser = tabbrowser.getBrowserAtIndex(index);
+					
+					if (baseURL == util.getBaseURI(currentBrowser.currentURI.spec)) {
+						// The URL is already opened. Select this tab.
+						tabbrowser.selectedTab = tabbrowser.tabContainer.childNodes[index];
+						// Focus *this* browser-window
+						browserWin.focus();
+						// reload with querystring #xyz
+						if (URL != currentBrowser.currentURI.spec)
+							tabbrowser.loadURI(URL);
+						found = true;
+						break;
+					}
+				}				
+			}
+		}
+		catch(ex) {
+			// a problem occurred
+			util.logException("findTab(" + URL + ")", ex);
+		}
+		return found;
+	} ,
+	
+	findMailTab: function findMailTab(tabmail, URL) {
+		const util = QuickPasswords.Util;
+		// mail: tabmail.tabInfo[n].browser		
+		let baseURL = util.getBaseURI(URL),
+				numTabs = util.getTabInfoLength(tabmail);
+		
+		for (let i = 0; i < numTabs; i++) {
+			let info = util.getTabInfoByIndex(tabmail, i);
+			if (info.browser && info.browser.currentURI) {
+				let tabUri = util.getBaseURI(info.browser.currentURI.spec);
+				if (tabUri == baseURL) {
+					tabmail.switchToTab(i);
+					// focus on tabmail ?
+					
+					return true;
+				}
+			}
+		}
+		return false;
+	} ,	
+	
 	onLoadVersionInfoDialog: function onLoadVersionInfoDialog() {
 		if (window.arguments && window.arguments[0].inn)
 		{
@@ -291,7 +391,12 @@ QuickPasswords.Util = {
   
   alert: function alert(msg, caption) {
     caption = caption ? caption : "QuickPasswords";
-    Services.prompt.alert(null, caption, msg);
+    Services.prompt.alert(null, caption, msg); // implements nsIPromptService
+  } ,
+	
+  confirm: function confirm(msg, caption) {
+    caption = caption ? caption : "QuickPasswords";
+    return Services.prompt.confirm(null, caption, msg); // implements nsIPromptService
   } ,
   
 	get ToolbarName() {
@@ -619,6 +724,19 @@ QuickPasswords.Util = {
 		}
 		return this.mAppver;
 	},
+	
+	get PlatformVersion() {
+		if (null==this.mPlatformVer)
+			try {
+				let appInfo = Components.classes["@mozilla.org/xre/app-info;1"]
+				                        .getService(Components.interfaces.nsIXULAppInfo);
+				this.mPlatformVer = parseFloat(appInfo.platformVersion);
+			}
+			catch(ex) {
+				this.mPlatformVer = 1.0; // just a guess
+			}
+		return this.mPlatformVer;
+	},
 
 	get Application() {
 		if (null == this.mAppName) {
@@ -769,8 +887,8 @@ QuickPasswords.Util = {
 	},
 
 	displayOptions: function displayOptions() {
-		let params = {inn:{instance: QuickPasswords}, out:null};
-    let win = QuickPasswords.getCurrentBrowserWindow();
+		let params = {inn:{instance: QuickPasswords}, out:null},
+        win = QuickPasswords.getCurrentBrowserWindow();
 		setTimeout(
 			function() {
       win.openDialog('chrome://quickpasswords/content/quickpassword_options.xul',

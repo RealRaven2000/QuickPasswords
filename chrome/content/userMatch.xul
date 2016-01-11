@@ -61,7 +61,7 @@
 			<hbox align="center">
 				<label value="&logins.label;" />
 				<button id="btnSelectAll" 
-				        label="All"
+				        label="&selectAllUsers.button;"
 								oncommand="QuickPasswords.UserMatch.selectAllUsers();"/>
 			</hbox>
 		  <listbox id="logins" 

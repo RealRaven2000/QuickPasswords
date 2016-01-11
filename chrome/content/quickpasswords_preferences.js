@@ -13,6 +13,22 @@ QuickPasswords.Preferences = {
     let w = QuickPasswords.getPasswordManagerWindow('', false); // don't open manager unless shown
     QuickPasswords.prepareAustralis((w ? w.document : null), australis);
   } ,
+	
+	getStringPref: function(term) {
+	  let eBranch = this.ExtensionBranch + term;
+		try {
+			return this.service.getCharPref(eBranch);
+		}
+		catch(ex) {
+			QuickPasswords.Util.logException("getStringPref(" + eBranch + ")", ex);
+			return false;
+		}
+	} ,
+	
+	setStringPref: function setStringPref(term, val) {
+		let eBranch = this.ExtensionBranch + term;
+		return this.service.setCharPref(eBranch, val);
+	},
 
 	getBoolPref: function(term) {
 	  let eBranch = this.ExtensionBranch + term;
