@@ -10,6 +10,10 @@
 <!ENTITY quickPasswordsToolbarButton.tooltip "¡Copia contraseñas al portapapeles!">
 <!ENTITY quickPasswordsToolbarButton.tooltip1 "Conéctese de forma segura; recupere sus contraseñas.">
 <!ENTITY quickPasswordsRepairButton.label "Corrige los nombres de los campos">
+<!ENTITY quickPasswordsBackupButton.label "Respaldo">
+<!ENTITY quickPasswordsBackupButton.tooltip "Respalde sus credenciales al archivo…">
+<!ENTITY quickPasswordsRestoreButton.label "Recuperación">
+<!ENTITY quickPasswordsRestoreButton.tooltip "Recupere sus credenciales desde el archivo…">
 <!ENTITY quickPasswordsTreeContextMenuCopy.label "Copia la contraseña al portapapeles">
 <!ENTITY quickPasswordsTreeContextMenuCopy.accesskey "P">
 <!ENTITY quickPasswordsTreeContextMenuCopyUser.label "Copiar el nombre de usuario al portapapeles">

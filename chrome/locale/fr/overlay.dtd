@@ -10,6 +10,10 @@
 <!ENTITY quickPasswordsToolbarButton.tooltip "Copie les mots de passe dans le presse-papiers !">
 <!ENTITY quickPasswordsToolbarButton.tooltip1 "Connectez-vous en toute sécurité; récupérer vos mots de passe.">
 <!ENTITY quickPasswordsRepairButton.label "Corrigez les noms de champs">
+<!ENTITY quickPasswordsBackupButton.label "Sauvegarder">
+<!ENTITY quickPasswordsBackupButton.tooltip "Sauvegarde d'identifiants dans un fichier…">
+<!ENTITY quickPasswordsRestoreButton.label "Restaurer">
+<!ENTITY quickPasswordsRestoreButton.tooltip "Restauration d'identifiants depuis un fichier…">
 <!ENTITY quickPasswordsTreeContextMenuCopy.label "Copier les mots de passe dans le presse-papiers">
 <!ENTITY quickPasswordsTreeContextMenuCopy.accesskey "P">
 <!ENTITY quickPasswordsTreeContextMenuCopyUser.label "Copier les noms d'utilisateurs dans le presse-papiers">
