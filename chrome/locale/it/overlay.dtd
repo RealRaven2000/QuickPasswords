@@ -10,6 +10,10 @@
 <!ENTITY quickPasswordsToolbarButton.tooltip "Copia le password nel blocco degli appunti">
 <!ENTITY quickPasswordsToolbarButton.tooltip1 "Autenticazione sicura; recuperate le vostre password">
 <!ENTITY quickPasswordsRepairButton.label "Correzione del nome dei campi">
+<!ENTITY quickPasswordsBackupButton.label "Backup">
+<!ENTITY quickPasswordsBackupButton.tooltip "Backup delle credenziali di accesso nel file…">
+<!ENTITY quickPasswordsRestoreButton.label "Ripristino">
+<!ENTITY quickPasswordsRestoreButton.tooltip "Ripristino delle credenziali di accesso dal file…">
 <!ENTITY quickPasswordsTreeContextMenuCopy.label "Copia la password nel blocco degli appunti">
 <!ENTITY quickPasswordsTreeContextMenuCopy.accesskey "P">
 <!ENTITY quickPasswordsTreeContextMenuCopyUser.label "Copia il nome utente nel blocco appunti">
