@@ -10,6 +10,10 @@
 <!ENTITY quickPasswordsToolbarButton.tooltip "Kopierer adgangskoder til udklipsholder!">
 <!ENTITY quickPasswordsToolbarButton.tooltip1 "Log ind sikkert; hent dine adgangskoder.">
 <!ENTITY quickPasswordsRepairButton.label "Ret feltnavne">
+<!ENTITY quickPasswordsBackupButton.label "Sikkerhedskopier">
+<!ENTITY quickPasswordsBackupButton.tooltip "Sikkerhedskopier logins til en fil…">
+<!ENTITY quickPasswordsRestoreButton.label "Gendan">
+<!ENTITY quickPasswordsRestoreButton.tooltip "Gendan logins fra fil…">
 <!ENTITY quickPasswordsTreeContextMenuCopy.label "Kopier adgangskode til udklipsholder">
 <!ENTITY quickPasswordsTreeContextMenuCopy.accesskey "a">
 <!ENTITY quickPasswordsTreeContextMenuCopyUser.label "Kopier brugernavn til udklipsholder">
