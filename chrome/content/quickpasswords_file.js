@@ -45,7 +45,7 @@ QuickPasswords.Persist = {
 			let metaInfo = login.QueryInterface(Ci.nsILoginMetaInfo);
 			if (metaInfo) {
 				PL.timeCreated = metaInfo.timeCreated;
-				PL.timeLastUsed = metaInfo.timePasswordChanged;
+				PL.timePasswordChanged = metaInfo.timePasswordChanged;
 				PL.guid = metaInfo.guid;
 			}
 
@@ -62,13 +62,150 @@ QuickPasswords.Persist = {
 	},
 	
 	set Entries(jRead) {
+		const util = QuickPasswords.Util,
+		      prefs = QuickPasswords.Preferences,
+		      Cc = Components.classes,
+          Ci = Components.interfaces;
+		let logins = Services.logins.getAllLogins(),  // nsLoginInfo[]
+		    cryptoService = Cc["@mozilla.org/login-manager/crypto/SDR;1"].getService(Ci.nsILoginManagerCrypto),
+				srvLoginManager = Cc["@mozilla.org/login-manager;1"].getService(Ci.nsILoginManager);
+
 		// wrapper for reading logins
 		// this is where we need to do merge etc.
-		let entries = JSON.parse(jRead);
-		for (let i=0; i<entries.length; i++) {
-			let e = entries[i];
-			
+		let persistedLogins = JSON.parse(jRead),
+				ctModified = 0,
+				ctUnmodified = 0,
+				ctNew = 0,
+				read = persistedLogins.length,
+				addedLogins = [],  // missing logins before restore; the others will be updated in place where appropriate
+				failedToAdd = [];
+		for (let j=0; j<read; j++) {
+			let record = persistedLogins[j],
+					isChanged = false,
+					exists = false,
+					userChanged = false,
+					login, metaInfo, pwd;
+			try { 
+			  // the decryption may fail! (to do: find out the conditions that can make it fail? 
+				// changing / restoring master password?
+			  pwd = cryptoService.decrypt (record.pwd);
+			}
+			catch (ex) {
+				record.exception = ex.message;
+				failedToAdd.push(record);
+				continue;
+			}
+			for (let i=0; i < logins.length; i++) {
+				login = logins[i];
+				// for a match, both formSubmitURL [alternatively hostName / httpRealm] and user have to match
+				if (login.userName == record.usr) { // match user name - note: changed user names are NOT caught
+					// match url
+					if (login.formSubmitURL) {
+						if (login.formSubmitURL == record.formSubmitURL)				    
+							exists = true;
+					}
+					else if (login.httpRealm) {
+						if (login.httpRealm == record.httpRealm)				    
+							exists = true;
+					}
+					else if (login.hostName) {
+						if (login.hostName == record.hostName)				    
+							exists = true;
+					}
+					break;
+				}
+				else { // special case - user was changed - we base this on GUID
+				  if (login.guid == record.guid) {
+  					userChanged = true;
+						exists = true;
+					}
+				}
+			}
+			if (exists) {
+				let isModified = false;
+				metaInfo = login.QueryInterface(Ci.nsILoginMetaInfo);
+				if (metaInfo) {
+					// do we know that it was changed, based on recorded time stamp
+					if (metaInfo.timePasswordChanged < record.timePasswordChanged)
+						isModified = true;
+				}
+				else {
+					if (login.password != pwd
+					    || login.passwordField != record.passwordField
+							|| login.usernameField != record.usrField)
+						isModified = true;
+				}
+				
+				if (isModified) {
+					let newLogin = login.clone();
+					if (userChanged) newLogin.username = record.usr;
+				  newLogin.hostname = record.hostname;
+					newLogin.formSubmitURL = record.formSubmitURL;
+					newLogin.httpRealm = record.httpRealm;
+					newLogin.password = pwd;
+					newLogin.passwordField = record.pwdField;
+					newLogin.username = record.usr;
+					newLogin.usernameField = record.usrField;
+					if (util.confirm(msgModExisting)) {
+					  srvLoginManager.modifyLogin(login, newLogin);
+						ctModified++;
+					}
+					else ctUnmodified++;
+				}
+				else ctUnmodified++;
+			}
+			else 
+				addedLogins.push(record);
 		}
+		// create a constructor for new logins
+		let nsLoginInfo = new Components.Constructor("@mozilla.org/login-manager/loginInfo;1", Ci.nsILoginInfo, "init");
+		for (let i=0; i < addedLogins.length; i++) {
+			let record = addedLogins[i];
+			try {
+				let createdLogin = new nsLoginInfo (
+					record.hostname, 
+					record.formSubmitURL, 
+					record.httpRealm, 
+					record.usr, 
+					pwd, 
+					record.usrField, 
+					record.pwdField
+				);
+				srvLoginManager.addLogin(createdLogin);
+				ctNew++;
+			}
+			catch(ex) {
+				record.exception = ex.message;
+				failedToAdd.push(record);
+			}
+		}
+		let msg = '{0} existing logins changed.\n{1} logins added.\n{2} logins were unchanged.';
+		msg = msg.replace('{0}', ctModified).replace('{1}', ctNew).replace('{2}', ctUnmodified);
+		
+		if (failedToAdd.length) {
+			let failMsg = "\nSome Addons could not be added, do you want to review these?";
+			if (util.confirm(msg + failMsg, 'QuickPasswords - Logins Restored')) {
+				let errList = 'FAILED LOGINS\n' +
+				          '=============\n';
+				for (let x=0; x<failedToAdd.length; x++) {
+					let record = failedToAdd[x];
+					errList += '\n' + (10000 + x).toString().slice(-4); // 4digit leading zeroes
+					        + '\n' + 'hostname = ' + record.hostname
+					        + '\n' + 'formSubmitURL = ' + record.formSubmitURL
+					        + '\n' + 'httpRealm = ' + record.httpRealm
+					        + '\n' + 'username = ' + record.usr
+					        + '\n' + 'usernameField = ' + record.usrField
+					        + '\n' + 'passwordField = ' + record.pwdField
+					        + '\n' + 'error = ' + record.exception
+									+ '\n ---------------------------';
+				}
+				util.copyStringToClipboard(errList);
+				util.alert('Information was copied to clipboard');
+			}
+		}
+		else
+			util.alert(msg, 'QuickPasswords - Logins Restored');
+		
 	},
 	
   // %file(filePath,encoding)%
@@ -105,8 +242,11 @@ QuickPasswords.Persist = {
     let fpCallback = function fpCallback_FilePicker(aResult) {
       if (aResult != Ci.nsIFilePicker.returnCancel) {  // returnOk=0 or returnReplace=2
         if (fp.file) {
-          let path = fp.file.path; 
-					prefs.setStringPref("backup.path", path);  // save path for next time
+          let path = fp.file.path,
+					    // workaround for getting folder path for file:
+					    folderPath = path.substr(0, path.lastIndexOf('\\'));
+					if (!folderPath) folderPath = path.substr(0, path.lastIndexOf('/'));
+					prefs.setStringPref("backup.path", folderPath);  // save path for next time
           //localFile = Components.classes["@mozilla.org/file/local;1"].createInstance(Ci.nsILocalFile);
           try {
 						// call the function that does something with the file name path
@@ -173,7 +313,8 @@ QuickPasswords.Persist = {
       promiseExists.then( 
         function backSuccess() {
 					let entries = QuickPasswords.Persist.Entries,
-              entity = entries.length ? entries : '',
+					    entryCount = entries.length,
+              entity = entryCount ? entries : '',
               outString = JSON.stringify(entity, null, '  '); // prettify
 					util.logDebug('backSuccess() \npath = ' + path);
           try {
@@ -182,10 +323,15 @@ QuickPasswords.Persist = {
             let promise = OS.File.writeAtomic(path, outString, { encoding: "utf-8"});
             promise.then(
               function saveSuccess(byteCount) {
-                util.logDebug ('successfully saved ' + entries.length + ' logins [' + byteCount + ' bytes] to file');
+								let msg = 'Successfully saved {0} logins [{1} bytes] to file';
+								msg = msg.replace('{0}',entryCount).replace('{1}',byteCount);
+                util.logDebug (msg);
+								util.alert(msg);
               },
               function saveReject(fileError) {  // OS.File.Error
-                util.logDebug ('logins.save error:' + fileError);
+							  let msg = 'An error occured while trying to save the logins:\n' + fileError;
+                util.logDebug (msg);
+								util.alert(msg);
               }
             );
           }
@@ -222,7 +368,14 @@ QuickPasswords.Persist = {
 			return;
 		}
 		
+		let managerWin;
     try {
+			// disable logins list
+			let mediator = Components.classes["@mozilla.org/appshell/window-mediator;1"].getService(Components.interfaces.nsIWindowMediator);
+			managerWin = mediator.getMostRecentWindow('Toolkit:PasswordManager');
+			if (managerWin) {
+				managerWin.document.getElementById('signonsTree').setAttribute("disabled", "true");
+			}
       const {OS} = Components.utils.import("resource://gre/modules/osfile.jsm", {});
 					
 			let	promiseExists = OS.File.exists(path);
@@ -258,6 +411,11 @@ QuickPasswords.Persist = {
     catch(ex) {
       util.logException('QuickPasswords.Persist.backupPasswords()', ex);
     }		
+		finally {
+			if (managerWin) {
+				managerWin.document.getElementById('signonsTree').removeAttribute("disabled");
+			}
+		}
 		
 		
 	} ,

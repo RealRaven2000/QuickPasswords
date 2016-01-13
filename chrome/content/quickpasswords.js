@@ -1475,11 +1475,11 @@ var QuickPasswords = {
 	attemptLogin: function attemptLogin(fillForm) {
     const Cc = Components.classes,
           Ci = Components.interfaces,
-					utils = QuickPasswords.Util,
+					util = QuickPasswords.Util,
 					prefs = QuickPasswords.Preferences;
 		let isRepairMode = !fillForm,
         prepareContextMenu = QuickPasswords.prepareContextMenu;
-		utils.logDebugOptional('formFill', 'attemptLogin() starts...');
+		util.logDebugOptional('formFill', 'attemptLogin() starts...');
 		let tree = window.signonsTree;
 		if (tree.currentIndex<0) {
 			let msg = QuickPasswords.Bundle.GetStringFromName("selectOneMessage");
@@ -1499,12 +1499,12 @@ var QuickPasswords = {
 		
 		// auto insert ...
 		if (prefs.isAutoInsert) {
-			utils.logDebugOptional('formFill', "browserWin: " + browserWin);
+			util.logDebugOptional('formFill', "browserWin: " + browserWin);
 
 			if (browserWin) {
 				let el;
 				
-			  utils.logDebugOptional('formFill', 
+			  util.logDebugOptional('formFill', 
 					'user from Manager: ' + (user ? 'yes' : 'no') +'\npassword from Manager: '  + (pwd ? 'yes' : 'no') + '\n');
 				/*******  NEW: auto-login   ******/
 				// automatic login
@@ -1528,7 +1528,7 @@ var QuickPasswords = {
 					
 					// matching browser URI?
 					if (theSite.indexOf(uri) >= 0) {
-						utils.logDebugOptional('formFill',
+						util.logDebugOptional('formFill',
 							'Searching forms for password field =' + passwordField + 
 							', username field =' + usernameField + '...');
 						let form = browserWin.gBrowser.contentDocument.querySelectorAll("form");
@@ -1542,38 +1542,38 @@ var QuickPasswords = {
 								let theForm = form[i];
 
 								try {
-									let id = utils.getIdentifier(theForm);
+									let id = util.getIdentifier(theForm);
 									if (!id) id='??';
 									let properties = '\nid: ' + id
 																 + '\nhas ' + theForm.elements.length + ' elements';
-									utils.logDebugOptional('formFill', 'Parsing Form [' + i.toString() + '] '+ properties + '...');
+									util.logDebugOptional('formFill', 'Parsing Form [' + i.toString() + '] '+ properties + '...');
 								}
 								catch(e) {;}
 									
 								if (theForm.visible == false) {
-									utils.logDebugOptional('formFill', 'Skipping Form (invisible form)');
+									util.logDebugOptional('formFill', 'Skipping Form (invisible form)');
 									continue;
 								}
 															 
 								let u = theForm.elements.namedItem(usernameField);
 								if (u) {
 									if (this.isVisible(browserWin, u)) {
-										utils.logDebugOptional('formFill', 'found user field [' + usernameField + '] in form[' + i + ']');
+										util.logDebugOptional('formFill', 'found user field [' + usernameField + '] in form[' + i + ']');
 										u.value = user;
 										usrFilled = true;
 									}
 									else
-										utils.logDebugOptional('formFill', 'not filling - invisible: ' + usernameField);
+										util.logDebugOptional('formFill', 'not filling - invisible: ' + usernameField);
 								}
 								let p = theForm.elements.namedItem(passwordField);
 								if (p) {
 									if (this.isVisible(browserWin, p)) {
-										utils.logDebugOptional('formFill', 'found password field [' + passwordField + '] in form[' + i + ']');
+										util.logDebugOptional('formFill', 'found password field [' + passwordField + '] in form[' + i + ']');
 										p.value = pwd;
 										pwdFilled = true;
 									}
 									else
-										utils.logDebugOptional('formFill', 'not filling - invisible: ' + passwordField);
+										util.logDebugOptional('formFill', 'not filling - invisible: ' + passwordField);
 								}
 								if (usrFilled && pwdFilled)
 									break;
@@ -1588,12 +1588,12 @@ var QuickPasswords = {
 					}
 				}
 				catch(ex) {
-					utils.logException('Error trying to get auto-login: ', ex);
+					util.logException('Error trying to get auto-login: ', ex);
 					// no match, no correction!!
 					foundLoginInfo = null;
 				}
 			}
-			utils.logDebugOptional('formFill', 
+			util.logDebugOptional('formFill', 
 				'attemptLogin() end of autoInsert:\n'
 				+ 'pwdFilled: ' + pwdFilled + '\n'
 				+ 'usrFilled: ' + usrFilled);
@@ -1623,9 +1623,9 @@ var QuickPasswords = {
 		// Right-click the User and Password boxes to insert the Information automatically. This operation is extra secure as it does not use the Clipboard at all.
 		if (!pwdFilled && !usrFilled && prefs.isLoginMsg) {
 			let prompts = Cc["@mozilla.org/embedcomp/prompt-service;1"].getService(Ci.nsIPromptService),  
-			    dontShowAgain = utils.getBundleString("dontShowAgain", "Do not show this message again."),
+			    dontShowAgain = util.getBundleString("dontShowAgain", "Do not show this message again."),
 			    check = {value: false},   // default the checkbox to true  
-			    title = utils.getBundleString("copyMessageTitle", "QuickPasswords"),
+			    title = util.getBundleString("copyMessageTitle", "QuickPasswords"),
 			    msg = QuickPasswords.Bundle.GetStringFromName('loginPrompt'), 
 			    result = prompts.alertCheck(null, title, msg, dontShowAgain, check);
 			if (check.value==true) {
@@ -1638,11 +1638,11 @@ var QuickPasswords = {
 			this.closePasswordManager();
 
 		let Message = QuickPasswords.Bundle.GetStringFromName(msgId),
-		    notifyBox = utils.NotificationBox;
+		    notifyBox = util.NotificationBox;
 		// just display a transient box in most cases. If there is no notifyBox available (SeaMonkey) we also use this function (but it disaplys an alert)
 		if (!isRepairMode || (isRepairMode && !notifyBox)) {
-			utils.logDebugOptional('formFill', 'popup alert:\n' + Message);
-			setTimeout(function() { utils.popupAlert('QuickPasswords', Message); }, 0);
+			util.logDebugOptional('formFill', 'popup alert:\n' + Message);
+			setTimeout(function() { util.popupAlert('QuickPasswords', Message); }, 0);
 		}
 
 		// In repair Mode, show a permanent sliding notification
@@ -1655,7 +1655,7 @@ var QuickPasswords = {
 			if (this.repairLoginTitle) {
 			  Message = this.repairLoginTitle + ": " + Message;
 			}
-			let btnCancel = utils.getBundleString("loginPrepared.updateIdPrompt.Cancel", "Cancel"),
+			let btnCancel = util.getBundleString("loginPrepared.updateIdPrompt.Cancel", "Cancel"),
 			    nbox_buttons = [
 				{
 					label: btnCancel,
