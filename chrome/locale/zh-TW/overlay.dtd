@@ -10,6 +10,10 @@
 <!ENTITY quickPasswordsToolbarButton.tooltip "複製密碼到剪貼簿!">
 <!ENTITY quickPasswordsToolbarButton.tooltip1 "安全地登入; 擷取密碼。">
 <!ENTITY quickPasswordsRepairButton.label "更正欄位名稱">
+<!ENTITY quickPasswordsBackupButton.label "備份">
+<!ENTITY quickPasswordsBackupButton.tooltip "備份登入到檔案...">
+<!ENTITY quickPasswordsRestoreButton.label "還原">
+<!ENTITY quickPasswordsRestoreButton.tooltip "從檔案還原登入...">
 <!ENTITY quickPasswordsTreeContextMenuCopy.label "複製密碼到剪貼簿">
 <!ENTITY quickPasswordsTreeContextMenuCopy.accesskey "P">
 <!ENTITY quickPasswordsTreeContextMenuCopyUser.label "複製使用者名稱到剪貼簿">
