@@ -10,6 +10,10 @@
 <!ENTITY quickPasswordsToolbarButton.tooltip "Kopieert wachtwoorden naar het Klembord!">
 <!ENTITY quickPasswordsToolbarButton.tooltip1 "Meld u veilig aan; haal uw wachtwoorden op.">
 <!ENTITY quickPasswordsRepairButton.label "Veldnamen corrigeren">
+<!ENTITY quickPasswordsBackupButton.label "Back-up">
+<!ENTITY quickPasswordsBackupButton.tooltip "Back-up van aanmeldgegevens naar een bestand…">
+<!ENTITY quickPasswordsRestoreButton.label "Herstellen">
+<!ENTITY quickPasswordsRestoreButton.tooltip "Aanmeldgegevens uit bestand herstellen…">
 <!ENTITY quickPasswordsTreeContextMenuCopy.label "Wachtwoord naar Klembord kopiëren">
 <!ENTITY quickPasswordsTreeContextMenuCopy.accesskey "W">
 <!ENTITY quickPasswordsTreeContextMenuCopyUser.label "Gebruikersnaam naar Klembord kopiëren">

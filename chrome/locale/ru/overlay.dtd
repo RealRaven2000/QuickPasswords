@@ -10,6 +10,10 @@
 <!ENTITY quickPasswordsToolbarButton.tooltip "Копирует пароли в буфер обмена!">
 <!ENTITY quickPasswordsToolbarButton.tooltip1 "Безопасно используйте ваши пароли.">
 <!ENTITY quickPasswordsRepairButton.label "Исправить имена полей ввода">
+<!ENTITY quickPasswordsBackupButton.label "Сохранить">
+<!ENTITY quickPasswordsBackupButton.tooltip "Сохранить записи в файл…">
+<!ENTITY quickPasswordsRestoreButton.label "Восстановить">
+<!ENTITY quickPasswordsRestoreButton.tooltip "Восстановить записи из файла…">
 <!ENTITY quickPasswordsTreeContextMenuCopy.label "Копировать пароль в буфер обмена.">
 <!ENTITY quickPasswordsTreeContextMenuCopy.accesskey "п">
 <!ENTITY quickPasswordsTreeContextMenuCopyUser.label "Копировать имя пользователя в буфер обмена.">

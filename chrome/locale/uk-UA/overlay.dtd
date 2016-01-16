@@ -1,27 +1,31 @@
 <!ENTITY quickPasswords.label "QuickPasswords">
-<!ENTITY quickPasswordsContext.label "Получить пароль…">
-<!ENTITY quickPasswordsContext.accesskey "П">
-<!ENTITY quickPasswordsContext.insertUser.label "Ввести имя пользователя">
-<!ENTITY quickPasswordsContext.insertUser.accesskey "и">
-<!ENTITY quickPasswordsContext.insertPassword.label "Ввести пароль">
-<!ENTITY quickPasswordsContext.insertPassword.accesskey "а">
-<!ENTITY quickPasswordsContext.cancelLogin.label "Прервать регистрацию">
+<!ENTITY quickPasswordsContext.label "Отримати пароль…">
+<!ENTITY quickPasswordsContext.accesskey "О">
+<!ENTITY quickPasswordsContext.insertUser.label "Вставити ім'я користувача">
+<!ENTITY quickPasswordsContext.insertUser.accesskey "к">
+<!ENTITY quickPasswordsContext.insertPassword.label "Вставити пароль">
+<!ENTITY quickPasswordsContext.insertPassword.accesskey "п">
+<!ENTITY quickPasswordsContext.cancelLogin.label "Скасувати вхід через QuickPasswords">
 <!ENTITY quickPasswordsToolbarButton.label "QuickPasswords">
-<!ENTITY quickPasswordsToolbarButton.tooltip "Копирует пароли в буфер обмена!">
-<!ENTITY quickPasswordsToolbarButton.tooltip1 "Безопасно используйте ваши пароли.">
-<!ENTITY quickPasswordsRepairButton.label "Исправить имена полей ввода">
-<!ENTITY quickPasswordsTreeContextMenuCopy.label "Копировать пароль в буфер обмена.">
+<!ENTITY quickPasswordsToolbarButton.tooltip "Копіює паролі до буферу обміну!">
+<!ENTITY quickPasswordsToolbarButton.tooltip1 "Безпечно використовуйте паролі.">
+<!ENTITY quickPasswordsRepairButton.label "Виправити імена полів введення">
+<!ENTITY quickPasswordsBackupButton.label "Архівувати">
+<!ENTITY quickPasswordsBackupButton.tooltip "Архівувати логіни у файл…">
+<!ENTITY quickPasswordsRestoreButton.label "Отримати">
+<!ENTITY quickPasswordsRestoreButton.tooltip "Отримати логіни з файлу…">
+<!ENTITY quickPasswordsTreeContextMenuCopy.label "Копіювати пароль до буферу обміну.">
 <!ENTITY quickPasswordsTreeContextMenuCopy.accesskey "п">
-<!ENTITY quickPasswordsTreeContextMenuCopyUser.label "Копировать имя пользователя в буфер обмена.">
-<!ENTITY quickPasswordsTreeContextMenuCopyUser.accesskey "и">
-<!ENTITY quickPasswordsTreeContextMenuCopyURI.label "Копировать адрес сайта в буфер обмена.">
-<!ENTITY quickPasswordsTreeContextMenuCopyURI.accesskey "с">
-<!ENTITY quickPasswordsTreeContextMenuCopyFull.label "Копировать выбранные записи в буфер обмена.">
+<!ENTITY quickPasswordsTreeContextMenuCopyUser.label "Копіювати ім'я користувача до буферу обміну.">
+<!ENTITY quickPasswordsTreeContextMenuCopyUser.accesskey "і">
+<!ENTITY quickPasswordsTreeContextMenuCopyURI.label "Копіювати адресу сайту до буферу обміну.">
+<!ENTITY quickPasswordsTreeContextMenuCopyURI.accesskey "а">
+<!ENTITY quickPasswordsTreeContextMenuCopyFull.label "Копіювати вибрані записи до буферу обміну.">
 <!ENTITY quickPasswordsTreeContextMenuCopyFull.accesskey "в">
-<!ENTITY quickPasswordsTreeContextMenuLogin.label "Зарегистрироваться на странице">
-<!ENTITY quickPasswordsTreeContextMenuLogin.accesskey "З">
-<!ENTITY quickPasswordsManagerCopyButton.label "Копировать пароль!">
-<!ENTITY quickPasswordsTreeContextMenuQuickPasswordsOptions.label "Настройки QuickPasswords…">
-<!ENTITY quickPasswordsTreeContextMenuChangePasswords.label "Массовое изменение паролей…">
-<!ENTITY quickPasswordsManager.siteFilter "Сузить список страниц">
-<!ENTITY quickPasswordsManager.protection "Спрашивать мастер-пароль перед открытием этого окна">
+<!ENTITY quickPasswordsTreeContextMenuLogin.label "Увійти на сайт">
+<!ENTITY quickPasswordsTreeContextMenuLogin.accesskey "У">
+<!ENTITY quickPasswordsManagerCopyButton.label "Копіювати пароль!">
+<!ENTITY quickPasswordsTreeContextMenuQuickPasswordsOptions.label "Параметри QuickPasswords…">
+<!ENTITY quickPasswordsTreeContextMenuChangePasswords.label "Групова зміна пароля…">
+<!ENTITY quickPasswordsManager.siteFilter "Звузити список сайтів">
+<!ENTITY quickPasswordsManager.protection "Захистити менеджер паролів після закриття - питати Головний пароль наступного разу">
