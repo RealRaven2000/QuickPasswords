@@ -2013,11 +2013,12 @@ var QuickPasswords = {
 		}
 	} ,
 
-  throbber: function throbber(toggle) {
-    let throbber = document.getElementById('quickPasswordsThrobber'); 
+  throbber: function throbber(toggle, win) {
+		let doc = win ? win.document : document,
+        throbber = document.getElementById('quickPasswordsThrobber'), 
+		    signonsTree = document.getElementById('signonsTree'); 
     if (throbber)
       throbber.hidden = !toggle;
-		let signonsTree = document.getElementById('signonsTree'); 
 		if (signonsTree)
 			signonsTree.disabled = toggle;
   } ,
