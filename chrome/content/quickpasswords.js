@@ -2016,12 +2016,30 @@ var QuickPasswords = {
   throbber: function throbber(toggle, win) {
 		let doc = win ? win.document : document,
         throbber = document.getElementById('quickPasswordsThrobber'), 
-		    signonsTree = document.getElementById('signonsTree'); 
+		    signonsTree = document.getElementById('signonsTree');
     if (throbber)
       throbber.hidden = !toggle;
 		if (signonsTree)
 			signonsTree.disabled = toggle;
+		throbber.getBoundingClientRect(); // make layouted.
+		signonsTree.getBoundingClientRect(); // make layouted.
+		return this.spinEventLoop();
   } ,
+	
+  /* 
+	 * Returns a promise that resolves after pending events have been processed.
+	 * from http://mxr.mozilla.org/comm-central/source/calendar/providers/gdata/modules/gdataUtils.jsm#1350
+	 * thanks to @Fallen
+	 */
+	spinEventLoop: function spinEventLoop() {
+		yield Promise.resolve();
+		/*
+		const {PromiseUtils} = Components.utils.import("resource://gre/modules/PromiseUtils.jsm", {});
+    let deferred = PromiseUtils.defer();
+    Services.tm.currentThread.dispatch({ run: function() { return deferred.resolve(true); } }, 0);
+    return deferred.promise;
+		*/
+	}	,
   
   modifyPasswords_Staging: function modifyPasswords_Staging(event) {
 		const util = QuickPasswords.Util;
