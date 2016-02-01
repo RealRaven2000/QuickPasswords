@@ -17,8 +17,11 @@ pref("extensions.quickpasswords.update.showVersionPage", true);
 pref("extensions.quickpasswords.protectManagerOnClose", false);
 pref("extensions.quickpasswords.skin.australis", true);
 pref("extensions.quickpasswords.backup.path", ''); // default to extensions/quickpasswords
+pref("extensions.quickpasswords.backup.pwd.encrypt", true);
+pref("extensions.quickpasswords.backup.encrypt.dontRemind", false);
 /* debugging prefs */
 pref("extensions.quickpasswords.debug", false);
+pref("extensions.quickpasswords.debug.backup", false);
 pref("extensions.quickpasswords.debug.default", true);
 pref("extensions.quickpasswords.debug.firstRun", false);
 pref("extensions.quickpasswords.debug.startup", false);
