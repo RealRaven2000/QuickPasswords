@@ -27,9 +27,9 @@
 <!ENTITY checkAutoCloseManager.accesskey "З">
 <!ENTITY checkDisplayContextMenuItem.label "Показувати у контекстному меню браузеру">
 <!ENTITY checkDisplayContextMenuItem.accesskey "П">
-<!ENTITY checkAutoLoginFill.label "Заповнювати форми при при входженні">
+<!ENTITY checkAutoLoginFill.label "Заповнювати форми при входженні">
 <!ENTITY checkAutoLoginFill.accesskey "ф">
-<!ENTITY href.label.bugPage "Сообщить об ошибке или запросить новые возможности…">
+<!ENTITY href.label.bugPage "Повідомити про помилку або запросити нові можливості…">
 <!ENTITY radioContextMenuAlways.label "Завжди показувати пункт у контекстному меню">
 <!ENTITY radioContextMenuAlways.accesskey "с">
 <!ENTITY radioContextMenuSelective.label "Показувати пункт в меню елементів введення (типово)">
