@@ -8,9 +8,11 @@
 <!ENTITY checkLoginShowMessage.accesskey "L">
 <!ENTITY checkFillSearch.label "Preencher a caixa de pesquisa ao abrir o Gestor de senhas">
 <!ENTITY checkFillSearch.accesskey "P">
+<!ENTITY checkFillSearch.tooltip "Filters the list of passwords according to context.">
 <!ENTITY checkDebug.label "Modo debug">
 <!ENTITY checkDebug.accesskey "D">
 <!ENTITY checkAustralis.label "Suporte ao tema Australis">
+<!ENTITY checkAustralis.tooltip "Use this for better integration with monochrome themes">
 <!ENTITY intMsgDelay.label "Tempo de espera para as janelas do gestor de senhas [ms]">
 <!ENTITY intMsgDelay.tooltip "Ás vezes a caixa de pesquisa não é preenchida automaticamente com o nome do domínio do sítio web - neste caso aumentar este valor.">
 <!ENTITY intMsgDelay.accesskey "T">

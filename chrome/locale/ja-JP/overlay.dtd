@@ -10,6 +10,10 @@
 <!ENTITY quickPasswordsToolbarButton.tooltip "クリップボードにパスワードをコピーします。">
 <!ENTITY quickPasswordsToolbarButton.tooltip1 "安全にログイン; パスワードを検索します。">
 <!ENTITY quickPasswordsRepairButton.label "フィールド名の修正">
+<!ENTITY quickPasswordsBackupButton.label "Backup">
+<!ENTITY quickPasswordsBackupButton.tooltip "Backup Logins to a File…">
+<!ENTITY quickPasswordsRestoreButton.label "Restore">
+<!ENTITY quickPasswordsRestoreButton.tooltip "Restore Logins from File…">
 <!ENTITY quickPasswordsTreeContextMenuCopy.label "パスワードをコピー">
 <!ENTITY quickPasswordsTreeContextMenuCopy.accesskey "P">
 <!ENTITY quickPasswordsTreeContextMenuCopyUser.label "ユーザー名をコピー">

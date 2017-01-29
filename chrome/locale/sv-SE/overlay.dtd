@@ -10,6 +10,10 @@
 <!ENTITY quickPasswordsToolbarButton.tooltip "Kopierar lösenord till Urklipp!">
 <!ENTITY quickPasswordsToolbarButton.tooltip1 "Logga in säkert; hämta dina lösenord.">
 <!ENTITY quickPasswordsRepairButton.label "Korrigera fältnamn">
+<!ENTITY quickPasswordsBackupButton.label "Backup">
+<!ENTITY quickPasswordsBackupButton.tooltip "Backup Logins to a File…">
+<!ENTITY quickPasswordsRestoreButton.label "Restore">
+<!ENTITY quickPasswordsRestoreButton.tooltip "Restore Logins from File…">
 <!ENTITY quickPasswordsTreeContextMenuCopy.label "Kopiera lösenord till Urklipp">
 <!ENTITY quickPasswordsTreeContextMenuCopy.accesskey "l">
 <!ENTITY quickPasswordsTreeContextMenuCopyUser.label "Kopiera användarnamn till Urklipp">

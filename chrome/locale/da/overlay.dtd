@@ -28,4 +28,4 @@
 <!ENTITY quickPasswordsTreeContextMenuQuickPasswordsOptions.label "QuickPasswords Indstillinger…">
 <!ENTITY quickPasswordsTreeContextMenuChangePasswords.label "Samlet ændring af adgangskoder…">
 <!ENTITY quickPasswordsManager.siteFilter "Indskrænk listen med websteder">
-<!ENTITY quickPasswordsManager.protection "Beskyt 'Gemte adgangskoder' efter lukning - spørg efter hovedadgangskode næste gang">
+<!ENTITY quickPasswordsManager.protection "Beskyt adgangskode-håndteringen efter lukning - spørg efter hovedadgangskode næste gang">

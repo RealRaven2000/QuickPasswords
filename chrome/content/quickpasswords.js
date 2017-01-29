@@ -221,12 +221,24 @@
 		Added brighttext support (for dark themes)
     Removed QueryInterface on boxObject because of https://bugzil.la/979835   
 
-	3.7 - WIP
+	3.7.1 - 02/02/2016
 	  [Bug 26132] Firefox 43: Master Password Setup not shown
 	  [Bug 26119] Exception thrown by Unified Pwd Change when nothing is selected
 		[Bug 26133] Support links always open new tabs
     [Bug 25937] Backup / restore feature
-	
+		
+	3.7.2 - 21/03/2016
+	  [Bug 26162] Automatic Field correction does not work anymore 
+		
+	3.8 - WIP
+    Fixed oversized sliding notification alert
+		Removed some of the code causing "unsafe CPOW usage" warnings
+		[Bug 26329] Copying / Autofilling stopped working in Fx 51  (e10s) - 
+		            caused by Firefox 51 stopping to expose signonsTree
+		[Bug 26330] Fx51: Firefox e10s may cause failure of "Login to Website".
+                to make e10s stays disabled, set browser.tabs.remote.autostart.2 = false		
+
+		
     ================
     Planned: automatically login when using context menu and only one login is available
     Planned: Also fill non-form objects (annotated login)? => test on clearquest site!
@@ -252,10 +264,19 @@ var QuickPasswords = {
 	strings:null,
 	initialized:false,
 	lastContentLocation:'',
-	PasswordManagerWindow: null,
+	_PasswordManagerWindow: null,
+	get PasswordManagerWindow() {
+		if (!this._PasswordManagerWindow)
+			this._PasswordManagerWindow = this.getPasswordManagerWindow("", false)
+		return this._PasswordManagerWindow;
+	},
 	promptParentWindow: null,
 	name: 'QuickPasswords',
-	signonsTree: null,
+	_signonsTree: null,
+	get signonsTree() {
+		let mwin = QuickPasswords.PasswordManagerWindow;
+		return mwin ? mwin.getElementById('signonsTree') : null;
+	},
   
 	onLoad: function onLoad() {
 		if(this.initialized) {
@@ -450,7 +471,7 @@ var QuickPasswords = {
 	showLogins: function showLogins(filterString) {
 		const util = QuickPasswords.Util;
 		let win = this.getPasswordManagerWindow(filterString, true);
-		this.PasswordManagerWindow = win;
+		this._PasswordManagerWindow = win;
 		if (!win) {
 		  setTimeout(function() {showLogins(filterString);}, 1000);
 			// if we have started Fx and are asked for the master password = no window, lets repeat!
@@ -465,7 +486,7 @@ var QuickPasswords = {
 		    theTime = QuickPasswords.Preferences.waitForManager();
 
 		util.logDebugOptional ("showLogins", "showLogins(" + fs + ") uri=" + serverURI + " time=" + theTime.toString());	
-		let theContent = null;
+		let theContent = null, contentLocation;
 		// global variable.
 		if (typeof content !== 'undefined') {
 			theContent = content;
@@ -479,19 +500,21 @@ var QuickPasswords = {
 				util.logDebugOptional ("showLogins", "START: doAutoFilter()");
 				// ieTab2 support - disable the login to page as we cannot control context menu of the IE container
 				if (theContent) {
-					let btnLogin = 	win.document.getElementById('QuickPasswordsBtnLogin');
+					contentLocation = gBrowser ? (gBrowser.selectedBrowser ? gBrowser.selectedBrowser.currentURI : theContent.location) : theContent.location;
+
+					let btnLogin = win.document.getElementById('QuickPasswordsBtnLogin');
 					if (btnLogin) {
-						let host = theContent.location.host; // todo: fix "unsafe CPOW usage"
+						let host = contentLocation.host; // todo: fix "unsafe CPOW usage"
 						btnLogin.disabled = (host == "ietab2" || host == "messenger");
 					}
 					let btnRepair = win.document.getElementById('QuickPasswordsBtnRepair');
 					if (btnRepair) {
-						let host = theContent.location.host; // todo: fix "unsafe CPOW usage"
+						let host = contentLocation.host; // todo: fix "unsafe CPOW usage"
 						btnRepair.disabled = (host == "ietab2" || host == "messenger");
 					}
 				}
 				if (win.self.setFilter) {
-					let tree = win.signonsTree;
+					let tree = QuickPasswords.signonsTree;
 				  try {
 						if (!tree.view.rowCount) { // throws if Thunderbird is not ready.
 							util.logDebugOptional ("showLogins", "no rows in tree, postponing doAutoFilter for 200ms...");
@@ -531,7 +554,7 @@ var QuickPasswords = {
 			}
 		}
 		// what if LoadSignons is called after doAutoFilter?
-		win.addEventListener('load', function() {win.setTimeout(doAutoFilter, theTime)});
+		win.addEventListener('load', function() {win.setTimeout(doAutoFilter, theTime);});
 		if (win.LoadSignons) {
       // avoid recursion!!
       if (typeof win.QuickFolders_AutoFilter == 'undefined') {
@@ -542,13 +565,14 @@ var QuickPasswords = {
         }
       }
 		}
+		// win.setTimeout(doAutoFilter, theTime);
 	},
   
   // Needs to be refined to auto-select the most recent login!
   autoSelectLogin: function autoSelectLogin(win, doAutoFilter, serverURI, prettyURI) {
 		const util = QuickPasswords.Util;
     if (!win) win = QuickPasswords.PasswordManagerWindow;
-    let tree = win.signonsTree;
+    let tree = QuickPasswords.signonsTree;
     if (tree.view.rowCount) {
       util.logDebugOptional ("showLogins.treeview", "start to enumerate " + tree.view.rowCount + " rows for selecting...");
       // find activeURI
@@ -608,7 +632,7 @@ var QuickPasswords = {
 		let isDebug = QuickPasswords.Preferences.isDebug;
     // select Most Recent Used login
     if (activeURI) { 
-			let treeView = window.signonsTree.view || QuickPasswords.signonsTree.view,
+			let treeView = QuickPasswords.signonsTree.view,
 			    selection = treeView.selection,
 					matches = [];
 		  selection.clearSelection();
@@ -667,9 +691,7 @@ var QuickPasswords = {
 	getManagerColumn: function getManagerColumn(idx, colName, tree) {
 		if (idx<0) return '';
 		if (!tree)
-			tree = self.signonsTree ? self.signonsTree : QuickPasswords.signonsTree;  // we might have hidden this for SSO password change!
-		if (!tree.view.rowCount)
-			return '';
+			tree = self.signonsTree || QuickPasswords.signonsTree;  // we might have hidden this for SSO password change!		if (!tree.view.rowCount)
 		try {
 			return tree.view.getCellText(idx, tree.columns.getNamedColumn(colName));
 		}
@@ -683,8 +705,8 @@ var QuickPasswords = {
   // we need the window handle to access signonsTreeView!
   // passing tree may be obsolete except - might not work in Postbox
   getSignOn: function getSignOn(idx, t, win) {
-    let signon;
-    let tv;
+    let signon,
+        tv;
     if (win.signonsTreeView) {
       tv = win.signonsTreeView;
     }
@@ -1121,7 +1143,7 @@ var QuickPasswords = {
 			try { newFilter = this.getURIcontext(filter); }
 			catch(er) { newFilter = ''; }
 
-			this.PasswordManagerWindow = win;
+			this._PasswordManagerWindow = win;
 			if (win.self.setFilter) {
 				win.self.setFilter(newFilter);
         // to do: select last used logon of filtered records
@@ -1131,8 +1153,8 @@ var QuickPasswords = {
 	} ,
   
   copyRecords: function() {
-    let cpy = this.copyToClipboard.bind(this);
-    let tb = this.throbber;
+    let cpy = this.copyToClipboard.bind(this),
+        tb = this.throbber;
 		if (!QuickPasswords.Manager.loginMaster(true))
 			return;
     tb(true);
@@ -1148,8 +1170,8 @@ var QuickPasswords = {
           Cc = Components.classes,
 					util = QuickPasswords.Util;
 		let lstPasswords = document.getElementById('signonsTree'), // password list
-		    treeView = self.signonsTreeView,
-		    tree = self.signonsTree;
+		    tree = self.signonsTree || QuickPasswords.signonsTree,
+				treeView = tree.view; // in Fx51, signonsTreeView is gone.
 
 		if (tree.currentIndex<0) {
 			alert (QuickPasswords.Bundle.GetStringFromName("selectOneMessage"));
@@ -1330,7 +1352,7 @@ var QuickPasswords = {
 			this.closePasswordManager();
 		// show sliding notification if no alert was shown.
 		if (!alertShown && (msg != '')) {
-		  setTimeout(function() { QuickPasswords.Util.popupAlert('QuickPasswords', msg); });
+		  setTimeout(function() { QuickPasswords.Util.slideAlert('QuickPasswords', msg); });
 		}
 
 		
@@ -1338,10 +1360,10 @@ var QuickPasswords = {
 
 	closePasswordManager: function() {
 		QuickPasswords.Manager.close();
-		if (null==this.PasswordManagerWindow)
-			this.PasswordManagerWindow = self;
+		if (null==this._PasswordManagerWindow)
+			this._PasswordManagerWindow = self;
 		this.PasswordManagerWindow.close();
-		this.PasswordManagerWindow=null;
+		this._PasswordManagerWindow=null;
 	} ,
 
 	// retrieves current URI from clicked context
@@ -1351,20 +1373,22 @@ var QuickPasswords = {
 		let sBaseDomain = '',
         util = QuickPasswords.Util,
         prefs = QuickPasswords.Preferences,
-        isprivate = util.PrivateBrowsing;
+        isprivate = util.PrivateBrowsing,
+				contentLocation;
 		if (!isprivate)
 			util.logDebugOptional("default", "getURIcontext(" + currentFilter + ')');
 
     try {
       if (content) {
-        let theHost = QuickPasswords.getDomain(content.location); // instead of location.host which doesn't work for about:XXX urls
+				contentLocation = gBrowser ? (gBrowser.selectedBrowser ? gBrowser.selectedBrowser.currentURI : content.location) : content.location;
+        let theHost = QuickPasswords.getDomain(contentLocation); // instead of location.host which doesn't work for about:XXX urls
         if (!isprivate) {
-          util.logDebugOptional("uriContext", "content.location = " + content.location);
+          util.logDebugOptional("uriContext", "content.location = " + contentLocation);
           util.logDebugOptional("uriContext", "determined Host " + theHost);
         }
         if (theHost == "ietab2" 
            || theHost == "messenger"
-           || (content.window && content.window.name == 'messagepane')
+           || (util.Application != 'Firefox' &&  content.window && content.window.name == 'messagepane')
            ) {
           theHost = this.getActiveUri(false, true);
         }
@@ -1476,18 +1500,35 @@ var QuickPasswords = {
     const Cc = Components.classes,
           Ci = Components.interfaces,
 					util = QuickPasswords.Util,
-					prefs = QuickPasswords.Preferences;
+					prefs = QuickPasswords.Preferences,
+					win = this.PasswordManagerWindow;
 		let isRepairMode = !fillForm,
         prepareContextMenu = QuickPasswords.prepareContextMenu;
 		util.logDebugOptional('formFill', 'attemptLogin() starts...');
-		let tree = window.signonsTree;
-		if (tree.currentIndex<0) {
-			let msg = QuickPasswords.Bundle.GetStringFromName("selectOneMessage");
-			alert (msg);
-			return;
+		
+		let selections = win.GetTreeSelections ? win.GetTreeSelections() : null,
+		    tree = QuickPasswords.signonsTree,
+				currentSelection;
+		if (selections) {
+			if (selections.length!=1) {
+				let msg = QuickPasswords.Bundle.GetStringFromName("selectOneMessage");
+				alert (msg);
+				return;
+			}
+			currentSelection = selections[0];
 		}
+		else {
+			if (tree.currentIndex<0) {
+				let msg = QuickPasswords.Bundle.GetStringFromName("selectOneMessage");
+				alert (msg);
+				return;
+			}
+			currentSelection = tree.currentIndex;
+		}
+		
+			
 		// get main window context menu and uncollapse the invisible login items.
-		let pwd = this.getPassword(tree.currentIndex, tree),
+		let pwd = this.getPassword(currentSelection, tree),
 		    // autofill
 		    usrFilled = false,
 		    pwdFilled = false,
@@ -1495,7 +1536,7 @@ var QuickPasswords = {
 		    usernameField = '',
 		    browserWin = QuickPasswords.getCurrentBrowserWindow(),
 		    foundLoginInfo = null,
-		    user = this.getUser(tree.currentIndex, tree);
+		    user = this.getUser(currentSelection, tree);
 		
 		// auto insert ...
 		if (prefs.isAutoInsert) {
@@ -1642,7 +1683,7 @@ var QuickPasswords = {
 		// just display a transient box in most cases. If there is no notifyBox available (SeaMonkey) we also use this function (but it disaplys an alert)
 		if (!isRepairMode || (isRepairMode && !notifyBox)) {
 			util.logDebugOptional('formFill', 'popup alert:\n' + Message);
-			setTimeout(function() { util.popupAlert('QuickPasswords', Message); }, 0);
+			setTimeout(function() { util.slideAlert('QuickPasswords', Message); }, 0);
 		}
 
 		// In repair Mode, show a permanent sliding notification
@@ -1728,17 +1769,16 @@ var QuickPasswords = {
 				    uMenu = QuickPasswords.getContextMenu(browserWin, 'insertUser'),
 				    cMenu = QuickPasswords.getContextMenu(browserWin, 'cancelLogin'),
 				    managerWin = QuickPasswords.PasswordManagerWindow;
-				if (managerWin && (!managerWin.signonsTree || managerWin.closed)) { //stale info?
-					managerWin=null;
-					QuickPasswords.PasswordManagerWindow=null; // should do this on pwd manager close!!
-
+				if (managerWin && (!managerWin.document.getElementById("signonsTree") || managerWin.closed)) { //stale info?
+					managerWin = null;
+					QuickPasswords._PasswordManagerWindow = null; // should do this on pwd manager close!!
 				}
 
 				// get password / username from selected row in Password Manager
 				// this has precedence over a previously selected login that might
 				// still be stored in the context menu item...
 				if (managerWin) {
-					let tree = managerWin.signonsTree;
+					let tree = managerWin.document.getElementById("signonsTree");
 					if (tree.currentIndex<0) {
 						let msg = QuickPasswords.Bundle.GetStringFromName('selectExactlyOneEntry');
 						alert (msg);
@@ -2016,30 +2056,19 @@ var QuickPasswords = {
   throbber: function throbber(toggle, win) {
 		let doc = win ? win.document : document,
         throbber = document.getElementById('quickPasswordsThrobber'), 
-		    signonsTree = document.getElementById('signonsTree');
+		    signonsTree = QuickPasswords.signonsTree;
     if (throbber)
       throbber.hidden = !toggle;
 		if (signonsTree)
 			signonsTree.disabled = toggle;
 		throbber.getBoundingClientRect(); // make layouted.
 		signonsTree.getBoundingClientRect(); // make layouted.
-		return this.spinEventLoop();
+		/* Resolve all promises before we continue; only necessary when we start the spinner.
+		 * was called spinEventLoop
+		 */
+		if (toggle)
+			yield Promise.resolve();
   } ,
-	
-  /* 
-	 * Returns a promise that resolves after pending events have been processed.
-	 * from http://mxr.mozilla.org/comm-central/source/calendar/providers/gdata/modules/gdataUtils.jsm#1350
-	 * thanks to @Fallen
-	 */
-	spinEventLoop: function spinEventLoop() {
-		yield Promise.resolve();
-		/*
-		const {PromiseUtils} = Components.utils.import("resource://gre/modules/PromiseUtils.jsm", {});
-    let deferred = PromiseUtils.defer();
-    Services.tm.currentThread.dispatch({ run: function() { return deferred.resolve(true); } }, 0);
-    return deferred.promise;
-		*/
-	}	,
   
   modifyPasswords_Staging: function modifyPasswords_Staging(event) {
 		const util = QuickPasswords.Util;
@@ -2055,7 +2084,7 @@ var QuickPasswords = {
 			QuickPasswords.promptParentWindow = changePasswordWindow ? changePasswordWindow : window;
 			
 			// iterate selection and make sure all passwords match
-			let tree = window.signonsTree,
+			let tree = QuickPasswords.signonsTree,
 			    selection = tree.view.selection,
           user, site, pwd,
 			    iPasswordsSelected = 0,
@@ -2090,7 +2119,7 @@ var QuickPasswords = {
 			}
 
 			// change passwords
-			QuickPasswords.signonsTree = signonsTree;
+			// QuickPasswords.signonsTree = signonsTree;
       /***** STAGING *******/
 			let parentWindow = util.isMac ?
 				 QuickPasswords.getCurrentBrowserWindow() :
@@ -2138,7 +2167,7 @@ var QuickPasswords = {
 			// *************************************************************************
 			// let's overwrite the global signonsTree variable while we do our changes.
 			if (signonsTree) {
-				QuickPasswords.signonsTree = signonsTree;
+				QuickPasswords._signonsTree = signonsTree;
 				signonsTree = null;
 			}
 			QuickPasswords.throbber(true);
@@ -2288,7 +2317,7 @@ var QuickPasswords = {
 
 	selectByPassword : function selectByPassword(thePassword) {
 		// get tree from PasswordManager window
-		let tree = window.signonsTree;
+		let tree = QuickPasswords.signonsTree;
 		tree.selectedIndex = tree.currentIndex; // only select one item!
 
 		let selection = tree.view.selection;

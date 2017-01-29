@@ -68,7 +68,7 @@ var QuickPasswords_TabURIopener = {
 // }
 
 QuickPasswords.Util = {
-	QuickPasswords_CURRENTVERSION : '3.7.1', // just a fallback value
+	QuickPasswords_CURRENTVERSION : '3.8', // just a fallback value
 	get AddonId() {
 		return "QuickPasswords@axelg.com";
 	},
@@ -387,7 +387,7 @@ QuickPasswords.Util = {
 		return pureVersion;
 	},
 
-	popupAlert: function popupAlert(title, text) {
+	slideAlert: function slideAlert(title, text) {
 	  try {
 	    Components.classes['@mozilla.org/alerts-service;1'].
 	              getService(Components.interfaces.nsIAlertsService).
@@ -452,9 +452,8 @@ QuickPasswords.Util = {
 		      ssPrefs = svc.getBranch(prefs.ExtensionBranch);
 		util.logDebugOptional("default", "checkfirstRun");
 		let prev = -1, firstRun = false,
-		    debugfirstRun = false;
-
-		let current = util.Version;
+		    debugfirstRun = false,
+				current = util.Version;
 		util.logDebugOptional("default", "Current QuickPasswords Version: " + current);
 		try {
 			util.logDebugOptional ("firstRun","try to get setting: getCharPref(version)");
@@ -541,8 +540,8 @@ QuickPasswords.Util = {
           }
 
 					// prereleases never open the donation page!
-          // 3.5 was a bugfixed version
-					if (current.indexOf('pre')==-1 && current!='3.5') {
+          // no bugfix donation screen
+					if (current.indexOf('pre')==-1 && pureVersion!='3.7.2') {
 						window.setTimeout(function(){
 							// display donation page (can be disabled; I will send out method to all donators and anyone who asks me for it)
 							if ((prefs.getBoolPref("donateNoMore")) || (!prefs.getBoolPref('donations.askOnUpdate')))
@@ -634,9 +633,8 @@ QuickPasswords.Util = {
 						"Update the {1} field name in login manager?\n" 
 						+ "QuickPasswords searched for a field '{0}', but the field you selected to insert is '{2}'."),
           theText2 = util.getBundleString("loginPrepared.updateIdPrompt.userOnly",
-            "This change only applies to {3} on this page.");
-					theTypeLocalized = 
-						util.getBundleString(insertType == 'user' ? 'copyMessageUser' : 'copyMessagePassword');	
+            "This change only applies to {3} on this page."),
+					theTypeLocalized = util.getBundleString(insertType == 'user' ? 'copyMessageUser' : 'copyMessagePassword');	
 			
 			theText = theText.replace('{0}', oldField) 
                        .replace('{1}', theTypeLocalized) 

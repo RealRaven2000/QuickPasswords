@@ -263,7 +263,8 @@ if (!QuickPasswords.Manager)
     function disableItem(item) {
       elem(item).setAttribute("disabled", "true");
     }
-    let elem = document.getElementById.bind(document);
+    let elem = document.getElementById.bind(document),
+		    signonsTreeView = elem("signonsTree").view;
     if (signonsTreeView.selection.count > 1) {
       disableItem('QuickPasswordsBtnLogin');
       disableItem('QuickPasswordsBtnCopyPassword');
@@ -292,6 +293,7 @@ if (!QuickPasswords.Manager)
       (typeof UpdateContextMenu != 'undefined') ? UpdateContextMenu :
       ((typeof UpdateCopyPassword  != 'undefined') ? UpdateCopyPassword : null);
     
+    let signonsTree = document.getElementById("signonsTree");
     if (OriginalUpdateFunction && !QuickPasswords.UpdateContextMenu_Orig) {
       QuickPasswords.UpdateContextMenu_Orig = OriginalUpdateFunction; // backup original update function
       // this will make sure the correct items are enabled again.
@@ -305,7 +307,8 @@ if (!QuickPasswords.Manager)
         QuickPasswords.UpdateContextMenu_Orig();
         // now undo the damage:
         if (prefs.isDebug) debugger;
-        let elem = document.getElementById.bind(document);
+        let elem = document.getElementById.bind(document),
+				    signonsTreeView = signonsTree.view;
         enableItem('context-quickPasswordOptions');
         if (signonsTreeView.selection.count > 1) {
           enableItem('context-copyPasswordRecord');
@@ -322,7 +325,6 @@ if (!QuickPasswords.Manager)
       if (typeof UpdateCopyPassword != 'undefined') UpdateCopyPassword = wrapperFunction; // Thunderbird, Suite
     }
     
-    let signonsTree = document.getElementById("signonsTree");
     if (signonsTree) {
       util.logDebugOptional("Manager", "Adding event listeners to signonsTree");
       // double click

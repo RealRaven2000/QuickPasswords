@@ -8,7 +8,12 @@
 <!ENTITY quickPasswordsContext.cancelLogin.label "取消 QuickPasswords 登录">
 <!ENTITY quickPasswordsToolbarButton.label "QuickPassword">
 <!ENTITY quickPasswordsToolbarButton.tooltip "复制密码到剪贴板！">
+<!ENTITY quickPasswordsToolbarButton.tooltip1 "Log in safely; retrieve your passwords.">
 <!ENTITY quickPasswordsRepairButton.label "更正域名称">
+<!ENTITY quickPasswordsBackupButton.label "Backup">
+<!ENTITY quickPasswordsBackupButton.tooltip "Backup Logins to a File…">
+<!ENTITY quickPasswordsRestoreButton.label "Restore">
+<!ENTITY quickPasswordsRestoreButton.tooltip "Restore Logins from File…">
 <!ENTITY quickPasswordsTreeContextMenuCopy.label "复制密码到剪贴板">
 <!ENTITY quickPasswordsTreeContextMenuCopy.accesskey "P">
 <!ENTITY quickPasswordsTreeContextMenuCopyUser.label "复制用户名到剪贴板">

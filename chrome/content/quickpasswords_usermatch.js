@@ -99,10 +99,10 @@ QuickPasswords.UserMatch = {
 	},
 	
 	notify: function notify(p) {
-	  QuickPasswords.Util.popupAlert('QuickPasswords', p);
+	  QuickPasswords.Util.slideAlert('QuickPasswords', p);
 	}
 	
 };
 
-// QuickPasswords.Util.popupAlert('QuickPasswords','quickpasswords_usermatch');
+// QuickPasswords.Util.slideAlert('QuickPasswords','quickpasswords_usermatch');
 

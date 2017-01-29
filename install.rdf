@@ -2,16 +2,18 @@
 <RDF xmlns="http://www.w3.org/1999/02/22-rdf-syntax-ns#" xmlns:em="http://www.mozilla.org/2004/em-rdf#">
   <Description about="urn:mozilla:install-manifest"
 	em:id="QuickPasswords@axelg.com"
-	em:version="3.5"
+	em:version="3.8"
 	em:creator="Axel Grude"
 	em:description="Quickly login and get Passwords into the clipboard. Never display them anymore!"
 	em:name="QuickPasswords"
-	em:optionsURL="chrome://quickpasswords/content/quickpassword_options.xul"  >
+	em:optionsURL="chrome://quickpasswords/content/quickpassword_options.xul" 
+  em:multiprocessCompatible = "false"	
+	>
     <em:type>2</em:type>
-    <em:updateInfoURL>http://quickpasswords.mozdev.org/version1.1.xhtml</em:updateInfoURL>
     <em:translator>(ar) Ibrahim Saed [ibraheem5000@gmail.com]</em:translator>
     <em:translator>(da) Jørgen Rasmussen</em:translator>
     <em:translator>(de) Axel Grude</em:translator>
+    <em:translator>(es) Alejandro Pérez Martín</em:translator>
     <em:translator>(es-AR) Eduardo Leon</em:translator>
     <em:translator>(es-MX) Angel F. Outón</em:translator>
     <em:translator>(fr) Bilouba [lionel.bijaoui.free.fr], Jean Michel Bourdé</em:translator>
@@ -20,50 +22,66 @@
     <em:translator>(it) Leopoldo Saggin</em:translator>
     <em:translator>(ja-JP) Noumi Ryoko [wiijpn.blog69.fc2.com]</em:translator>
     <em:translator>(nl) markh van BabelZilla.org</em:translator>
-	  <em:translator>(pl) hipogrys (Babelzilla)</em:translator>
+		<em:translator>(pl) hipogrys (Babelzilla)</em:translator>
     <em:translator>(pt) Carlos Simão</em:translator>
     <em:translator>(pt-BR) Marcelo Ghelman [ghelman.net]</em:translator>
     <em:translator>(ru) Anton Pinsky</em:translator>
     <em:translator>(sr) Rancher [BabelZilla.org]</em:translator>
     <em:translator>(sv-SE) Mikael Hiort af Ornäs</em:translator>
     <em:translator>(tr-TR) Nikneyim [BabelZilla.org]</em:translator>
+    <em:translator>(uk-UA) Volodymyr Savchuk</em:translator>
     <em:translator>(vi) Nguyen Hong Long [timelinelive.blogspot.com]</em:translator>
     <em:translator>(zh-CN) Loviny, Wang.H.K</em:translator>
     <em:translator>(zh-TW) Tang Kai Yiu</em:translator>
 	  <em:contributor>Avinash Kundaliya - Australis Icons</em:contributor>
-	  <em:contributor>Globe Icon http://thenounproject.com/andrewforrester/</em:contributor>
-	  
+		<em:contributor>Globe Icon http://thenounproject.com/andrewforrester/</em:contributor>
+	
     <em:iconURL>chrome://quickpasswords/skin/quickpasswords-Icon.png</em:iconURL>
     <em:icon64URL>chrome://quickpasswords/skin/QuickPassword-Icon64.png</em:icon64URL>
 
-     <em:homepageURL>http://quickpasswords.mozdev.org/index.html</em:homepageURL>
+    <em:homepageURL>http://quickpasswords.mozdev.org/index.html</em:homepageURL>
+		<!-- Firefox -->
     <em:targetApplication>
       <Description>
-        <em:id>{ec8030f7-c20a-464f-9b0e-13a3a9e97384}</em:id> <!-- Firefox -->
-        <em:minVersion>3.6</em:minVersion>
-        <em:maxVersion>35.*</em:maxVersion>
+        <em:id>{ec8030f7-c20a-464f-9b0e-13a3a9e97384}</em:id> 
+        <em:minVersion>22.0</em:minVersion>
+        <em:maxVersion>51.*</em:maxVersion>
       </Description>
     </em:targetApplication>
+		<!-- Firefox Pale Moon -->
     <em:targetApplication>
       <Description>
-        <em:id>{3550f703-e582-4d05-9a08-453d09bdfdc6}</em:id> <!-- Thunderbird -->
-        <em:minVersion>3.1</em:minVersion>
-        <em:maxVersion>35.*</em:maxVersion>
+        <em:id>{8de7fcbb-c55c-4fbe-bfc5-fc555c87dbc4}</em:id> 
+        <em:minVersion>22.0</em:minVersion>
+        <em:maxVersion>51.*</em:maxVersion>
       </Description>
-    </em:targetApplication>
+    </em:targetApplication>		
+		<!-- Thunderbird -->
     <em:targetApplication>
       <Description>
-        <em:id>{92650c4d-4b8e-4d2a-b7eb-24ecf4f6b63a}</em:id> <!-- SeaMonkey -->
-        <em:minVersion>2.0</em:minVersion>
-        <em:maxVersion>2.31.*</em:maxVersion>
+        <em:id>{3550f703-e582-4d05-9a08-453d09bdfdc6}</em:id> 
+        <em:minVersion>22.0</em:minVersion>
+        <em:maxVersion>47.*</em:maxVersion>
       </Description>
     </em:targetApplication>
+		<!-- SeaMonkey -->
     <em:targetApplication>
       <Description>
-        <em:id>postbox@postbox-inc.com</em:id> <!-- Postbox -->
-        <em:minVersion>2.0.0</em:minVersion>
-        <em:maxVersion>3.*</em:maxVersion>
+			  <!-- SeaMonkey 2.19 min = Gecko 22 to support Arrow function -->
+        <em:id>{92650c4d-4b8e-4d2a-b7eb-24ecf4f6b63a}</em:id> 
+        <em:minVersion>2.19</em:minVersion>
+        <em:maxVersion>2.46.*</em:maxVersion>
       </Description>
     </em:targetApplication>
+		 <!-- Postbox -->
+		<!--
+    <em:targetApplication>
+      <Description>
+        <em:id>postbox@postbox-inc.com</em:id>
+        <em:minVersion>4.0</em:minVersion>
+        <em:maxVersion>4.*</em:maxVersion>
+      </Description>
+    </em:targetApplication>
+		-->
   </Description>
 </RDF>

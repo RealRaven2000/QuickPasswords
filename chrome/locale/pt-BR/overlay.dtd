@@ -10,6 +10,10 @@
 <!ENTITY quickPasswordsToolbarButton.tooltip "Copia senhas para a área de transferência!">
 <!ENTITY quickPasswordsToolbarButton.tooltip1 "Faça login com segurança; recupere suas senhas.">
 <!ENTITY quickPasswordsRepairButton.label "Corrigir os nomes de campo">
+<!ENTITY quickPasswordsBackupButton.label "Backup">
+<!ENTITY quickPasswordsBackupButton.tooltip "Backup logins para um arquivo…">
+<!ENTITY quickPasswordsRestoreButton.label "Restaurar">
+<!ENTITY quickPasswordsRestoreButton.tooltip "Restaurar logins de um arquivo…">
 <!ENTITY quickPasswordsTreeContextMenuCopy.label "Copiar senha para a área de transferência">
 <!ENTITY quickPasswordsTreeContextMenuCopy.accesskey "C">
 <!ENTITY quickPasswordsTreeContextMenuCopyUser.label "Copiar nome de usuário para área de transferência">
