@@ -68,7 +68,7 @@ var QuickPasswords_TabURIopener = {
 // }
 
 QuickPasswords.Util = {
-	QuickPasswords_CURRENTVERSION : '3.8', // just a fallback value
+	QuickPasswords_CURRENTVERSION : '3.8.3', // just a fallback value
 	get AddonId() {
 		return "QuickPasswords@axelg.com";
 	},
@@ -459,13 +459,18 @@ QuickPasswords.Util = {
 			util.logDebugOptional ("firstRun","try to get setting: getCharPref(version)");
 			try {
 				prev = ssPrefs.getCharPref("version");
-			} catch (e) { prev = "?"; } ;
+			} catch (e) { 
+			  prev = "?"; 
+			} ;
 
 			util.logDebugOptional ("firstRun","try to get setting: getBoolPref(firstRun)");
 			try {
 				firstRun = ssPrefs.getBoolPref("firstRun");
+				if (firstRun) debugger;
 			}
-			catch (e) { firstRun = true; }
+			catch (e) { 
+			  firstRun = true; 
+			}
 
 			// enablefirstRuns=false - allows start pages to be turned off for partners
 			util.logDebugOptional ("firstRun","try to get setting: getBoolPref(enablefirstRuns)");

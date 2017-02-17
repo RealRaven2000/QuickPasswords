@@ -274,11 +274,14 @@ if (!QuickPasswords.Manager)
     }
     enableItem('context-quickPasswordOptions');
     if (signonsTreeView.selection.count == 1) {
-      enableItem('QuickPasswordsBtnLogin');
+			if (QuickPasswords.PasswordManagerWindow) {
+				// only allow these functions from XUL window!
+				enableItem('QuickPasswordsBtnLogin');
+				enableItem('QuickPasswordsBtnRepair');
+			}
       enableItem('QuickPasswordsBtnCopyPassword');
       enableItem('QuickPasswordsBtnCopyUser');
       enableItem('QuickPasswordsBtnCopyURI');
-      enableItem('QuickPasswordsBtnRepair');
     }   
   } ,
   
@@ -321,9 +324,16 @@ if (!QuickPasswords.Manager)
           enableItem('context-quickPasswordChange');
         }
       }
-      if (typeof UpdateContextMenu != 'undefined') UpdateContextMenu = wrapperFunction;  // Firefox
-      if (typeof UpdateCopyPassword != 'undefined') UpdateCopyPassword = wrapperFunction; // Thunderbird, Suite
+      if (typeof UpdateContextMenu == 'function') UpdateContextMenu = wrapperFunction;  // Firefox
+      if (typeof UpdateCopyPassword == 'function') UpdateCopyPassword = wrapperFunction; // Thunderbird, Suite
     }
+		
+		// when shown in tab, disable the login and SSO change functions!
+		if (!QuickPasswords.PasswordManagerWindow) {
+			document.getElementById('QuickPasswordsBtnLogin').setAttribute("disabled", "true");
+			document.getElementById('QuickPasswordsBtnChangePasswords').setAttribute("disabled", "true");
+			document.getElementById('QuickPasswordsBtnRepair').setAttribute("disabled", "true");
+		}
     
     if (signonsTree) {
       util.logDebugOptional("Manager", "Adding event listeners to signonsTree");

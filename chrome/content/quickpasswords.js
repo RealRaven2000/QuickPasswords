@@ -230,14 +230,20 @@
 	3.7.2 - 21/03/2016
 	  [Bug 26162] Automatic Field correction does not work anymore 
 		
-	3.8 - WIP
+	3.8.1 - 29/01/2017
     Fixed oversized sliding notification alert
 		Removed some of the code causing "unsafe CPOW usage" warnings
 		[Bug 26329] Copying / Autofilling stopped working in Fx 51  (e10s) - 
 		            caused by Firefox 51 stopping to expose signonsTree
 		[Bug 26330] Fx51: Firefox e10s may cause failure of "Login to Website".
                 to make e10s stays disabled, set browser.tabs.remote.autostart.2 = false		
-
+		
+	3.8.2 - 13/03/2017
+    [Bug 26338] Login to website not working in Seamonkey 2.46
+		
+	3.8.3 - WIP
+    [Bug 26343] Unified password change not working
+		
 		
     ================
     Planned: automatically login when using context menu and only one login is available
@@ -272,10 +278,10 @@ var QuickPasswords = {
 	},
 	promptParentWindow: null,
 	name: 'QuickPasswords',
-	_signonsTree: null,
 	get signonsTree() {
 		let mwin = QuickPasswords.PasswordManagerWindow;
-		return mwin ? mwin.getElementById('signonsTree') : null;
+		// if window is not open we are in a tabbed browser!
+		return mwin ? mwin.document.getElementById('signonsTree') : document.getElementById('signonsTree');
 	},
   
 	onLoad: function onLoad() {
@@ -707,7 +713,7 @@ var QuickPasswords = {
   getSignOn: function getSignOn(idx, t, win) {
     let signon,
         tv;
-    if (win.signonsTreeView) {
+    if (win && typeof win.signonsTreeView !== 'undefined') {
       tv = win.signonsTreeView;
     }
     else {
@@ -1495,6 +1501,34 @@ var QuickPasswords = {
 		}
 		this.attemptLogin(false);
 	} ,
+	
+	getTreeSelection: function getTreeSelection(tree) {
+		const util = QuickPasswords.Util,
+					prefs = QuickPasswords.Preferences;
+		if (prefs.isDebugOption('formFill')) debugger;
+		try {
+			let selections = [],
+			    select = tree.view.selection;
+			if (select) {
+				let count = select.getRangeCount(),
+				    min = {},
+				    max = {};
+				for (let i = 0; i < count; i++) {
+					select.getRangeAt(i, min, max);
+					for (let k = min.value; k <= max.value; k++) {
+						if (k != -1) {
+							selections[selections.length] = k;
+						}
+					}
+				}
+			}
+			return selections;		
+		}
+		catch(ex) {
+			util.logException('getTreeSelection: ', ex);
+			return null;
+		}
+	},
 
 	attemptLogin: function attemptLogin(fillForm) {
     const Cc = Components.classes,
@@ -1506,8 +1540,9 @@ var QuickPasswords = {
         prepareContextMenu = QuickPasswords.prepareContextMenu;
 		util.logDebugOptional('formFill', 'attemptLogin() starts...');
 		
-		let selections = win.GetTreeSelections ? win.GetTreeSelections() : null,
-		    tree = QuickPasswords.signonsTree,
+		if (prefs.isDebugOption('formFill')) debugger;
+		let tree = QuickPasswords.signonsTree,
+		    selections =  this.getTreeSelection(tree), // win.GetTreeSelections ? win.GetTreeSelections() : null,
 				currentSelection;
 		if (selections) {
 			if (selections.length!=1) {
@@ -2155,6 +2190,7 @@ var QuickPasswords = {
 	modifyPasswords_Complete: function modifyPasswords_Complete(event) {
 		const util = QuickPasswords.Util,
 		      prefs = QuickPasswords.Preferences;
+		let _loadSignons = null;  
 		try {
 			let info = event.data,
 			    oldPassword = info.pwd, 
@@ -2165,11 +2201,15 @@ var QuickPasswords = {
 			if (!newPassword) throw('Missing new Password');
 			if (!selectedUsers) throw('Missing selected Users Array');
 			// *************************************************************************
-			// let's overwrite the global signonsTree variable while we do our changes.
-			if (signonsTree) {
-				QuickPasswords._signonsTree = signonsTree;
-				signonsTree = null;
+			// let's overwrite the global LoadSignons function while we do our changes,
+			// because signonReloadDisplay.observer will call it on every modified login
+			// => big speed penalty!
+			// see mozilla/toolkit/components/passwordmgr/content/passwordManager.js
+			if (typeof LoadSignons !=='undefined') {
+				_loadSignons = LoadSignons;
+				LoadSignons = function() { ; }  // do nothing because of the speed penalty involved
 			}
+			
 			QuickPasswords.throbber(true);
 			// let's do this asynchronous to give time for throbber to appear:
 			let passwordWindow = window;
@@ -2244,8 +2284,12 @@ var QuickPasswords = {
 				util.alert(msg);
         QuickPasswords.throbber(false);
 				
-				// restore the variable so refreshes can happen again
-				signonsTree = QuickPasswords.signonsTree;
+				// restore the function  so refreshes can happen again - restore with local variable
+				if (typeof LoadSignons !=='undefined') {
+					LoadSignons = _loadSignons;
+				}
+
+				
 				// *************************************************************************
 
 				// Clear the Tree Display
@@ -2261,22 +2305,22 @@ var QuickPasswords = {
 			} , 100);  //end of setTimeout
 		}
 		catch(ex) {
-      // signonsTree is a global variable!
-			if (!signonsTree) {
-				signonsTree = QuickPasswords.signonsTree;
-				QuickPasswords.signonsTree = null;
-				// *************************************************************************
-			}
+			// restore function in global (window) scope
+			if (typeof LoadSignons !=='undefined' && _loadSignons) 
+				LoadSignons = _loadSignons;
       util.logException("modifyPassword_Complete()", ex);
 			util.alert(ex);
 			QuickPasswords.throbber(false);
+		}
+		finally {
+			;  // check if LoadSignons is defined? If not close password managerr window to be safe?
 		}
 	} ,
 
 	displayChangePassword: function displayChangePassword(that) {
 		const util = QuickPasswords.Util;
 		try {
-			let tree = window.signonsTree,
+			let tree = QuickPasswords.signonsTree,
 			    tI = tree.currentIndex,
           theSite = QuickPasswords.getSite(tI);
 
