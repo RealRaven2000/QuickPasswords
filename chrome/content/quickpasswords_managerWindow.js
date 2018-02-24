@@ -46,10 +46,20 @@ if (!QuickPasswords.Manager)
   } ,
   
   logoutMaster: function logoutMaster() {
+		const Ci = Components.interfaces,
+          Cc = Components.classes,
+					tokenDB = Cc["@mozilla.org/security/pk11tokendb;1"].getService(Ci.nsIPK11TokenDB);
+		if (QuickPasswords.Preferences.isDebugOption("Manager.protection")) debugger;			
     QuickPasswords.Util.logDebugOptional("Manager",  "logout Master Password");
-    Components.classes["@mozilla.org/security/pk11tokendb;1"]
-      .getService(Components.interfaces.nsIPK11TokenDB)
-      .findTokenByName("").logoutAndDropAuthenticatedResources();
+		
+		try {
+			let token = tokenDB.getInternalKeyToken();
+			token.logoutSimple();
+		}
+		catch (ex) {
+			// old code
+			tokenDB.findTokenByName("").logoutAndDropAuthenticatedResources();
+	  }
       
     QuickPasswords.initToolbarLock(); // visual clue
   } ,
@@ -200,7 +210,9 @@ if (!QuickPasswords.Manager)
   
   protectPasswordManager: function protectPasswordManager(checkbox) {
     const util = QuickPasswords.Util,
-          manager = QuickPasswords.Manager;
+          manager = QuickPasswords.Manager,
+					prefs = QuickPasswords.Preferences;
+		if (prefs.isDebugOption("Manager.protection")) debugger;			
     if (!manager.isMasterPasswordActive) {
       let txtAlert;
       try {
@@ -219,7 +231,7 @@ if (!QuickPasswords.Manager)
     else {
       let toggleProtect = checkbox.checked,
           pref = document.getElementById('quickpasswords_protectOnClose');
-      QuickPasswords.Preferences.service.setBoolPref(pref.name, toggleProtect);
+      prefs.service.setBoolPref(pref.name, toggleProtect);
     }
   } ,
   
@@ -361,11 +373,6 @@ if (!QuickPasswords.Manager)
         function(evt) {
           setTimeout(QuickPasswords.Manager.updateButtons, 100);
         }, false);
-      if (util.checkIsMasterLocked) {
-        let lock = document.getElementById('quickPasswordsLockAfterClosing');
-        lock.checked = true;
-        lock.disabled = true; // you can't unlock password from here!
-      }
     }
     // move the wizard Button before the "Search" label
     // where it logically belongs
@@ -378,6 +385,12 @@ if (!QuickPasswords.Manager)
           par.insertBefore(wizardBtn, par.firstChild); // before the label
       }
     }
+		
+		if (util.checkIsMasterLocked) {
+			let lock = document.getElementById('quickPasswordsLockAfterClosing');
+			lock.checked = true;
+			lock.disabled = true; // you can't unlock password from here!
+		}
     
     let cbProtect = this.initProtectionButton(),
         // get container for close button
@@ -428,6 +441,14 @@ if (!QuickPasswords.Manager)
   } ,
   
   get isMasterPasswordActive() {
+		try {
+			// XPCOMUtils.defineLazyModuleGetter(this, "LoginHelper", "resource://gre/modules/LoginHelper.jsm");
+			const {LoginHelper} = Components.utils.import("resource://gre/modules/LoginHelper.jsm");
+			let isMpSet = LoginHelper.isMasterPasswordSet();
+			return isMpSet;
+		}
+		catch (ex) {;}					
+					
     // code from browser/components/preferences/security.js - _masterPasswordSet()
     const Ci = Components.interfaces,
           Cc = Components.classes;
@@ -444,6 +465,7 @@ if (!QuickPasswords.Manager)
  } ,
     
   close: function close() {
+		if (QuickPasswords.Preferences.isDebugOption("Manager.protection")) debugger;			
     if (!this.isMasterPasswordActive)
       return;
     let cbProtect = document.getElementById('quickPasswordsLockAfterClosing');

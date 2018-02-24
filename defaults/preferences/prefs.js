@@ -10,7 +10,7 @@ pref("extensions.quickpasswords.updateFieldsNotify", true);
 pref("extensions.quickpasswords.autoCloseManager", true);
 pref("extensions.quickpasswords.autoCloseLogin", true);
 pref("extensions.quickpasswords.autoInsertCredentials", true);
-pref("extensions.quickpasswords.displayContextMenuChoice",1);
+pref("extensions.quickpasswords.displayContextMenuChoice", 1);
 pref("extensions.quickpasswords.displayContextMenu", true); // obsolete
 pref("extensions.quickpasswords.donations.askOnUpdate", true);
 pref("extensions.quickpasswords.update.showVersionPage", true);
@@ -28,6 +28,7 @@ pref("extensions.quickpasswords.debug.startup", false);
 pref("extensions.quickpasswords.debug.showLogins", false);
 pref("extensions.quickpasswords.debug.showLogins.treeview", false);
 pref("extensions.quickpasswords.debug.Manager", false);
+pref("extensions.quickpasswords.debug.Manager.protection", false);
 pref("extensions.quickpasswords.debug.uriContext", false);
 pref("extensions.quickpasswords.debug.contextMenu", false);
 pref("extensions.quickpasswords.debug.formFill", false);

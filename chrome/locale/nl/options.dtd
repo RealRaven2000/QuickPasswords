@@ -8,7 +8,7 @@
 <!ENTITY checkLoginShowMessage.accesskey "g">
 <!ENTITY checkFillSearch.label "Zoekveld vullen bij openen Wachtwoordbeheerder">
 <!ENTITY checkFillSearch.accesskey "u">
-<!ENTITY checkFillSearch.tooltip "Filters de lijst met wachtwoorden op context.">
+<!ENTITY checkFillSearch.tooltip "Filtert de lijst met wachtwoorden op context.">
 <!ENTITY checkDebug.label "Foutopsporingsmodus">
 <!ENTITY checkDebug.accesskey "F">
 <!ENTITY checkAustralis.label "Ondersteuning Australis-thema">

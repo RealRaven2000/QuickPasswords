@@ -68,7 +68,7 @@ var QuickPasswords_TabURIopener = {
 // }
 
 QuickPasswords.Util = {
-	QuickPasswords_CURRENTVERSION : '3.8.3', // just a fallback value
+	QuickPasswords_CURRENTVERSION : '3.10', // just a fallback value
 	get AddonId() {
 		return "QuickPasswords@axelg.com";
 	},
@@ -995,18 +995,38 @@ QuickPasswords.Util = {
 	},
   
   get checkIsMasterLocked() {
-    const Ci = Components.interfaces;
-    let secmodDB = Components.classes["@mozilla.org/security/pkcs11moduledb;1"].getService(Ci.nsIPKCS11ModuleDB);
-    let slot = secmodDB.findSlotByName("");
-    if (slot) {
-      let status = slot.status;
-      let hasMP = status != Ci.nsIPKCS11Slot.SLOT_UNINITIALIZED &&
-                  status != Ci.nsIPKCS11Slot.SLOT_READY;
-      if (hasMP) {
-        return (slot.status == Ci.nsIPKCS11Slot.SLOT_NOT_LOGGED_IN); // locked!
-      }
-      else return false;  // no Masterpassword = not locked
-    }  
+    const Ci = Components.interfaces,
+					Cc = Components.classes,
+		      prefs = QuickPasswords.Preferences,
+					util = QuickPasswords.Util;
+    if (prefs.isDebugOption("Manager.protection")) debugger;
+		
+		try {
+			let tokenDB = Cc["@mozilla.org/security/pk11tokendb;1"]
+                  .getService(Ci.nsIPK11TokenDB);
+			let token = tokenDB.getInternalKeyToken();
+			return !token.isLoggedIn();
+		}
+		catch(e) {
+			util.logException("checkIsMasterLocked()", e);
+		}
+		
+		try {
+			let secmodDB = Components.classes["@mozilla.org/security/pkcs11moduledb;1"].getService(Ci.nsIPKCS11ModuleDB),
+			    slot = secmodDB.findSlotByName("");
+			if (slot) {
+				let status = slot.status;
+				let hasMP = status != Ci.nsIPKCS11Slot.SLOT_UNINITIALIZED &&
+										status != Ci.nsIPKCS11Slot.SLOT_READY;
+				if (hasMP) {
+					return (slot.status == Ci.nsIPKCS11Slot.SLOT_NOT_LOGGED_IN); // locked!
+				}
+				else return false;  // no Masterpassword = not locked
+			}  
+		}
+		catch (ex) {
+			util.logException("checkIsMasterLocked()", ex);
+		}
     return false;
   } ,  
 
@@ -1051,7 +1071,7 @@ QuickPasswords.Util = {
 
 	stringFormat : function stringFormat(str) {
 		let args = Array.slice(arguments, 1);
-		return str.replace(/\{(\d+)\}/g, function ($0, $1) args[$1])
+		return str.replace(/\{(\d+)\}/g, function ($0, $1) { return args[$1] });
 	},
 	
 	versionGreaterOrEqual: function(a, b) {
