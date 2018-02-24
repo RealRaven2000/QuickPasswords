@@ -241,8 +241,18 @@
 	3.8.2 - 13/03/2017
     [Bug 26338] Login to website not working in Seamonkey 2.46
 		
-	3.8.3 - WIP
+	3.9 - 26/11/2017
     [Bug 26343] Unified password change not working
+		[Bug 26443] Thunderbird 57 hangs on start with QuickPasswords enabled.
+	  [Bug 26365] Firefox 53.0 Magic Wand misplaced. The button shows too far down in the dialog.		
+		AutoLocking the Masterpassword broken
+		Spanish Argentinian Locale added: Thanks to Eduardo Leon at Babelzilla.org
+		Polish Locale added: Thanks to Gabry$ at Babelzilla.org
+		Removed support for Firefox 57+; PLans for Fx Quantum
+	
+	3.10 - WIP
+	  [Bug 26491] ESR 2018 readiness - Make QuickPasswords compatible with Tb 60
+		
 		
 		
     ================
@@ -2101,8 +2111,8 @@ var QuickPasswords = {
 		/* Resolve all promises before we continue; only necessary when we start the spinner.
 		 * was called spinEventLoop
 		 */
-		if (toggle)
-			yield Promise.resolve();
+		// Thunderbird 57 generated SyntaxError: yield is a reserved identifier[Learn More]
+		// if (toggle) yield Promise.resolve();
   } ,
   
   modifyPasswords_Staging: function modifyPasswords_Staging(event) {

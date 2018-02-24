@@ -364,7 +364,9 @@ QuickPasswords.Persist = {
 					strBndlSvc = Cc["@mozilla.org/intl/stringbundle;1"].getService(Ci.nsIStringBundleService),
 					bundle = strBndlSvc.createBundle("chrome://quickpasswords/locale/overlay.properties"),
 					filterText = bundle.GetStringFromName("fpJSONFile"),
-					{OS} = Components.utils.import("resource://gre/modules/osfile.jsm", {}),
+					{OS} = (typeof ChromeUtils.import == "undefined") ?
+						Components.utils.import("resource://gre/modules/osfile.jsm", {}) :
+						ChromeUtils.import("resource://gre/modules/osfile.jsm", {}),
 					isDebugDetail = prefs.isDebugOption('backup');
 
 			function twodigits(num) {
@@ -409,7 +411,8 @@ QuickPasswords.Persist = {
     }
     
 		if (fp.open) {
-			let file = Cc["@mozilla.org/file/local;1"].createInstance(Ci.nsILocalFile);
+			const NSIFILE = Ci.nsILocalFile || Ci.nsIFile;
+			let file = Cc["@mozilla.org/file/local;1"].createInstance(NSIFILE);
 			defaultPath = defaultPath || OS.Path.join(profileDir, "extensions", "QuickPasswords");
 			file.initWithPath(defaultPath);
 			fp.displayDirectory = file;
@@ -437,7 +440,10 @@ QuickPasswords.Persist = {
 			return;
 		}
     try {
-      const {OS} = Components.utils.import("resource://gre/modules/osfile.jsm", {});
+			const {OS} = (typeof ChromeUtils.import == "undefined") ?
+				Components.utils.import("resource://gre/modules/osfile.jsm", {}) :
+				ChromeUtils.import("resource://gre/modules/osfile.jsm", {});		
+
 			let mediator = Cc["@mozilla.org/appshell/window-mediator;1"].getService(Ci.nsIWindowMediator),
 					managerWin = mediator.getMostRecentWindow('Toolkit:PasswordManager'),
 			    promiseBackup;
@@ -514,8 +520,13 @@ QuickPasswords.Persist = {
 	
 	readStringFile: function readStringFile(path) {
     // To read content from file
-    const {TextDecoder,OS} = Components.utils.import("resource://gre/modules/osfile.jsm", {});
-    let decoder = new TextDecoder(),        // This decoder can be reused for several reads
+    // const {TextDecoder,OS} = Components.utils.import("resource://gre/modules/osfile.jsm", {});
+		
+		const {OS} = (typeof ChromeUtils.import == "undefined") ?
+			Components.utils.import("resource://gre/modules/osfile.jsm", {}) :
+			ChromeUtils.import("resource://gre/modules/osfile.jsm", {});		
+		
+    let // decoder = new TextDecoder(),        // This decoder can be reused for several reads
         promise = OS.File.read(path, { encoding: "utf-8" }); // Read the complete file as an array - returns Uint8Array 
     return promise;
   } ,
@@ -538,7 +549,9 @@ QuickPasswords.Persist = {
 			let mediator = Components.classes["@mozilla.org/appshell/window-mediator;1"].getService(Components.interfaces.nsIWindowMediator);
 			managerWin = mediator.getMostRecentWindow('Toolkit:PasswordManager');
 			QuickPasswords.throbber(true, managerWin);
-      const {OS} = Components.utils.import("resource://gre/modules/osfile.jsm", {});
+			const {OS} = (typeof ChromeUtils.import == "undefined") ?
+				Components.utils.import("resource://gre/modules/osfile.jsm", {}) :
+				ChromeUtils.import("resource://gre/modules/osfile.jsm", {});		
 					
 			let	promiseExists = OS.File.exists(path);
 			promiseExists.then(
