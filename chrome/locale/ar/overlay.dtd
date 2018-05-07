@@ -10,10 +10,10 @@
 <!ENTITY quickPasswordsToolbarButton.tooltip "نسخ كلمات السر إلى الحافظة!">
 <!ENTITY quickPasswordsToolbarButton.tooltip1 "الولوج بأمان، استعد كلمات السر خاصتك.">
 <!ENTITY quickPasswordsRepairButton.label "صحّح أسماء الحقول">
-<!ENTITY quickPasswordsBackupButton.label "Backup">
-<!ENTITY quickPasswordsBackupButton.tooltip "Backup Logins to a File…">
-<!ENTITY quickPasswordsRestoreButton.label "Restore">
-<!ENTITY quickPasswordsRestoreButton.tooltip "Restore Logins from File…">
+<!ENTITY quickPasswordsBackupButton.label "النسخ الاحتياطي">
+<!ENTITY quickPasswordsBackupButton.tooltip "نسخ عمليات الولوج احتياطياإلى ملف...">
+<!ENTITY quickPasswordsRestoreButton.label "استعادة">
+<!ENTITY quickPasswordsRestoreButton.tooltip "استعادة عمليات الولوج من ملف...">
 <!ENTITY quickPasswordsTreeContextMenuCopy.label "انسخ كلمة السر إلى الحافظة">
 <!ENTITY quickPasswordsTreeContextMenuCopy.accesskey "س">
 <!ENTITY quickPasswordsTreeContextMenuCopyUser.label "انسخ اسم المستخدم إلى الحافظة">

@@ -250,9 +250,8 @@
 		Polish Locale added: Thanks to Gabry$ at Babelzilla.org
 		Removed support for Firefox 57+; PLans for Fx Quantum
 	
-	3.10 - WIP
+	3.10 - 07/05/2018
 	  [Bug 26491] ESR 2018 readiness - Make QuickPasswords compatible with Tb 60
-		
 		
 		
     ================
