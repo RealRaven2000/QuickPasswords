@@ -1,0 +1,25 @@
+<!ENTITY quickPasswords.label "QuickPassword">
+<!ENTITY quickPasswordsContext.label "检索密码(P)...">
+<!ENTITY quickPasswordsContext.accesskey "P">
+<!ENTITY quickPasswordsContext.insertUser.label "Insert User Id">
+<!ENTITY quickPasswordsContext.insertUser.accesskey "U">
+<!ENTITY quickPasswordsContext.insertPassword.label "Insert Password">
+<!ENTITY quickPasswordsContext.insertPassword.accesskey "P">
+<!ENTITY quickPasswordsContext.cancelLogin.label "Cancel QuickPasswords Login">
+<!ENTITY quickPasswordsToolbarButton.label "QuickPassword">
+<!ENTITY quickPasswordsToolbarButton.tooltip "密码已复制到剪贴板！">
+<!ENTITY quickPasswordsSidebar.label "侧栏">
+<!ENTITY quickPasswordsTreeContextMenuCopy.label "复制密码到剪贴板(P)">
+<!ENTITY quickPasswordsTreeContextMenuCopy.accesskey "P">
+<!ENTITY quickPasswordsTreeContextMenuCopyUser.label "复制用户名到剪贴板(U)">
+<!ENTITY quickPasswordsTreeContextMenuCopyUser.accesskey "U">
+<!ENTITY quickPasswordsTreeContextMenuCopyURI.label "复制网址到剪贴板(S)">
+<!ENTITY quickPasswordsTreeContextMenuCopyURI.accesskey "S">
+<!ENTITY quickPasswordsTreeContextMenuCopyFull.label "复制选中项到剪贴板(L)">
+<!ENTITY quickPasswordsTreeContextMenuCopyFull.accesskey "L">
+<!ENTITY quickPasswordsTreeContextMenuLogin.label "Login to Website">
+<!ENTITY quickPasswordsTreeContextMenuLogin.accesskey "L">
+<!ENTITY quickPasswordsManagerCopyButton.label "复制密码!">
+<!ENTITY quickPasswordsTreeContextMenuQuickPasswordsOptions.label "QuickPasswords 选项...">
+<!ENTITY quickPasswordsTreeContextMenuChangePassword.label "Change multiple Passwords…">
+<!ENTITY quickPasswordsManager.siteFilter "Narrow down List of Sites">

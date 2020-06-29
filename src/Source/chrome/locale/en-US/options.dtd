@@ -1,0 +1,30 @@
+<!ENTITY prefwindow.title "QuickPasswords Preferences">
+<!ENTITY pane1.title "QuickPasswords preferences">
+<!ENTITY checkCopyShowMessage.label "Display Message after copying Password to Clipboard">
+<!ENTITY checkCopyShowMessage.accesskey "M">
+<!ENTITY checkLoginShowMessage.label "Display Message after selecting Login command">
+<!ENTITY checkLoginShowMessage.accesskey "L">
+<!ENTITY checkDebug.label "Debug Mode">
+<!ENTITY checkDebug.accesskey "D">
+<!ENTITY intMsgDelay.label "Delay Time for Password Manager Search Box [ms]">
+<!ENTITY intMsgDelay.tooltip "Sometimes the Search Box is not automatically filled with the web site's domain name - in this case increase this value.">
+<!ENTITY intMsgDelay.accesskey "T">
+<!ENTITY about.label "About">
+<!ENTITY about.accesskey "A">
+<!ENTITY checkMultirowHeader.label "Add Header row when copying multiple rows">
+<!ENTITY checkMultirowHeader.accesskey "H">
+<!ENTITY href.label.homePage "Visit the QuickPasswords homepage at mozdev.org!">
+<!ENTITY checkAutoCloseManager.label "Automatically Close Password Manager after copying">
+<!ENTITY checkAutoCloseManager.accesskey "C">
+<!ENTITY checkDisplayContextMenuItem.label "Display in Browser Context Menu">
+<!ENTITY checkDisplayContextMenuItem.accesskey "M">
+<!ENTITY href.label.bugPage "Submit a bug report or suggest a new feature...">
+<!ENTITY radioContextMenuAlways.label "Always display entry in browser context menu">
+<!ENTITY radioContextMenuAlways.accesskey "A">
+<!ENTITY radioContextMenuSelective.label "Only display menu item on input elements (default)">
+<!ENTITY radioContextMenuSelective.accesskey "O">
+<!ENTITY radioContextMenuOff.label "Never display entry in browser context menu">
+<!ENTITY radioContextMenuOff.accesskey "N">
+<!ENTITY donateButton.tooltip "Support development of QuickPasswords">
+<!ENTITY donateButton.label "Donate">
+<!ENTITY donateButton.shortcut "D">

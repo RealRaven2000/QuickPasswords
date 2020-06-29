@@ -1,0 +1,30 @@
+<!ENTITY prefwindow.title "Preferencias de QuickPasswords">
+<!ENTITY pane1.title "Preferencias de QuickPasswords">
+<!ENTITY checkCopyShowMessage.label "Mostrar mensaje después de copiar la contraseña al portapapeles">
+<!ENTITY checkCopyShowMessage.accesskey "M">
+<!ENTITY checkLoginShowMessage.label "Display Message after selecting Login command">
+<!ENTITY checkLoginShowMessage.accesskey "L">
+<!ENTITY checkDebug.label "Modo de depuración">
+<!ENTITY checkDebug.accesskey "d">
+<!ENTITY intMsgDelay.label "Tiempo de espera para la ventana del Gestor de contraseñas [ms]">
+<!ENTITY intMsgDelay.tooltip "A veces la Caja de búsqueda no se rellena automáticamente con el nombre de dominio del sitio web - en este caso aumentar este valor.">
+<!ENTITY intMsgDelay.accesskey "T">
+<!ENTITY about.label "Acerca de">
+<!ENTITY about.accesskey "A">
+<!ENTITY checkMultirowHeader.label "Agregar fila de encabezado al copiar varias filas">
+<!ENTITY checkMultirowHeader.accesskey "A">
+<!ENTITY href.label.homePage "¡Visite la página de QuickPasswords en mozdev.org!">
+<!ENTITY checkAutoCloseManager.label "Cerrar el Gestor de contraseñas automáticamente después de copiar">
+<!ENTITY checkAutoCloseManager.accesskey "C">
+<!ENTITY checkDisplayContextMenuItem.label "Mostrar en el menú contextual del navegador">
+<!ENTITY checkDisplayContextMenuItem.accesskey "o">
+<!ENTITY href.label.bugPage "Enviar informe de error o sugerir una nueva característica...">
+<!ENTITY radioContextMenuAlways.label "Siempre mostrar entrada en el menú contextual del navegador">
+<!ENTITY radioContextMenuAlways.accesskey "a">
+<!ENTITY radioContextMenuSelective.label "Sólo mostrar ítems de menú en elementos entrados (por defecto)">
+<!ENTITY radioContextMenuSelective.accesskey "o">
+<!ENTITY radioContextMenuOff.label "Nunca mostrar entrada en el menú contextual del navegador">
+<!ENTITY radioContextMenuOff.accesskey "N">
+<!ENTITY donateButton.tooltip "Support development of QuickPasswords">
+<!ENTITY donateButton.label "Donate">
+<!ENTITY donateButton.shortcut "D">

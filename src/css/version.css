@@ -1,0 +1,120 @@
+td.navigation-list a[href$='version.html'], td.navigation-list a[href$='version.html']:visited {
+    background: rgb(208,228,247);
+    background: linear-gradient(to bottom, rgba(208,228,247,1) 0%, rgba(115,177,231,1) 24%, rgba(10,119,213,1) 50%, rgba(83,159,225,1) 79%, rgba(135,188,234,1) 100%);
+    background: -moz-linear-gradient(top, rgba(208,228,247,1) 0%, rgba(115,177,231,1) 24%, rgba(10,119,213,1) 50%, rgba(83,159,225,1) 79%, rgba(135,188,234,1) 100%);
+    background: -webkit-linear-gradient(top, rgba(208,228,247,1) 0%, rgba(115,177,231,1) 24%, rgba(10,119,213,1) 50%, rgba(83,159,225,1) 79%, rgba(135,188,234,1) 100%);
+    border-bottom-color:  #26558b !important;
+    color: #FFF !important;
+    height: 27px !important;
+    font-weight: bold;
+}
+.inline-donate {
+	display: inline-block;
+	vertical-align: middle;
+	margin-left: 2em;
+	margin-bottom: 0.5em;
+}
+
+table.screens {
+	border: 1px solid #ddd;
+	border-radius: 0.5em;
+	padding: 1em;
+	width: auto;
+	-moz-border-radius: 0.5em;
+	background: rgba(230,230,250,0.6)
+}
+
+table.screens td {
+	vertical-align: top;
+}
+
+/* version history headings */
+ul#version-history > li: hover {
+  border-radius: 1em;
+  padding-top: 0.2em;
+  padding-bottom: 2em;
+  border-radius: 1em;
+  border: 1px dashed rgba(100,100,100,0.4);
+  box-shadow: 4px 4px 2px rgba(80,80,80,0.5);
+}
+
+
+ul#version-history > li {
+  list-style: none;
+  padding-top: 0.2em;
+  padding-bottom: 2em;
+}
+ul#version-history > li ul li {
+  list-style: square inside url("/img/square-small.png");
+  margin-bottom: 1em; 
+} 
+
+
+#version-history li > h4 {
+  cursor: default;
+  font-weight: normal;
+  font-size: 10pt;
+  margin-right: auto !important;
+  padding-bottom: 0.3em;
+}
+
+#version-history li > h4 > a,
+#version-history li > h4 > a[href] {
+  cursor: pointer;
+  display: inline-block;
+  font-size: 12pt;
+  color: #ffffff !important;
+  margin-right: 0.5em;
+  margin-top: 0.3em;
+  padding-bottom: 0;
+  font-weight:450;
+  text-decoration: none;
+}
+#version-history li > h4 > a:hover {
+  text-decoration: underline;
+}
+
+#version-history li > h4:before {
+  content: url("/img/QuickPasswords-24x24.png");
+  float: left;
+  margin-left: 0.5em;
+  margin-right: 0.5em;
+  margin-top: 0.5em;
+}
+
+#version-history li > h4,.versionLink {
+	color: #fff;
+}
+
+
+table.screens td:nth-child(2) {
+	padding-left: 3em;
+	padding-right: 3em;
+	min-width: 15em;
+}
+
+.pleaseDonate
+{
+	background: rgba(250,250,250,0.9);
+  border: 2px solid rgba(60,60,60,0.5);
+	border-radius: 10px;
+	box-shadow: 4px 4px 3px rgba(20,20,20,0.3);
+	margin-left: 30px;
+	margin-bottom: 1.3em;
+	max-width: 800px;
+	padding: 0.5em 0.8em;
+}
+
+div.note {
+	border: 1px solid rgb (120,120,120,0.5);
+	padding: 0.5em;
+	margin-bottom: 0.5em;
+	margin-top: 0;
+}
+div.note p {
+	color: rgb (40,40,40,0.9) !important;
+	margin-left: 1em;
+	font-size: 0.95em;
+	font-weight: normal;
+	text-align: justify;
+}

@@ -1,0 +1,25 @@
+<!ENTITY quickPasswords.label "QuickPasswords">
+<!ENTITY quickPasswordsContext.label "Recuperar una contraseña...">
+<!ENTITY quickPasswordsContext.accesskey "R">
+<!ENTITY quickPasswordsContext.insertUser.label "Insert User Id">
+<!ENTITY quickPasswordsContext.insertUser.accesskey "U">
+<!ENTITY quickPasswordsContext.insertPassword.label "Insert Password">
+<!ENTITY quickPasswordsContext.insertPassword.accesskey "P">
+<!ENTITY quickPasswordsContext.cancelLogin.label "Cancel QuickPasswords Login">
+<!ENTITY quickPasswordsToolbarButton.label "QuickPasswords">
+<!ENTITY quickPasswordsToolbarButton.tooltip "¡Copiar contraseñas al portapapeles!">
+<!ENTITY quickPasswordsSidebar.label "Su barra lateral">
+<!ENTITY quickPasswordsTreeContextMenuCopy.label "Copiar contraseña al portapapeles">
+<!ENTITY quickPasswordsTreeContextMenuCopy.accesskey "C">
+<!ENTITY quickPasswordsTreeContextMenuCopyUser.label "Copiar nombre de usuario al portapapeles">
+<!ENTITY quickPasswordsTreeContextMenuCopyUser.accesskey "n">
+<!ENTITY quickPasswordsTreeContextMenuCopyURI.label "Copiar URI del sitio">
+<!ENTITY quickPasswordsTreeContextMenuCopyURI.accesskey "U">
+<!ENTITY quickPasswordsTreeContextMenuCopyFull.label "Copiar líneas seleccionadas al portapapeles">
+<!ENTITY quickPasswordsTreeContextMenuCopyFull.accesskey "o">
+<!ENTITY quickPasswordsTreeContextMenuLogin.label "Login to Website">
+<!ENTITY quickPasswordsTreeContextMenuLogin.accesskey "L">
+<!ENTITY quickPasswordsManagerCopyButton.label "¡Copiar contraseña!">
+<!ENTITY quickPasswordsTreeContextMenuQuickPasswordsOptions.label "Opciones de QuickPasswords...">
+<!ENTITY quickPasswordsTreeContextMenuChangePassword.label "Change multiple Passwords…">
+<!ENTITY quickPasswordsManager.siteFilter "Narrow down List of Sites">

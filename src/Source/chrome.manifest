@@ -1,0 +1,38 @@
+content   quickpasswords   chrome/content/
+skin      quickpasswords   classic/1.0   chrome/skin/
+locale    quickpasswords   de         chrome/locale/de/
+locale    quickpasswords   da         chrome/locale/da/
+locale    quickpasswords   fr         chrome/locale/fr/
+locale    quickpasswords   en-US      chrome/locale/en-US/
+locale    quickpasswords   es-AR      chrome/locale/es-AR/
+locale    quickpasswords   es-MX      chrome/locale/es-MX/
+locale    quickpasswords   he-IL      chrome/locale/he-IL/
+locale    quickpasswords   hu-HU      chrome/locale/hu-HU/
+locale    quickpasswords   ja-JP      chrome/locale/ja-JP/
+locale    quickpasswords   nl         chrome/locale/nl/
+locale    quickpasswords   pt         chrome/locale/pt/
+locale    quickpasswords   pt-BR      chrome/locale/pt-BR/
+locale    quickpasswords   ru         chrome/locale/ru/
+locale    quickpasswords   sv-SE      chrome/locale/sv-SE/
+locale    quickpasswords   sr         chrome/locale/sr/
+locale    quickpasswords   tr         chrome/locale/tr/
+locale    quickpasswords   vi         chrome/locale/vi/
+locale    quickpasswords   zh-CN      chrome/locale/zh-CN/
+locale    quickpasswords   zh-TW      chrome/locale/zh-TW/
+
+
+style     chrome://global/content/customizeToolbar.xul     chrome://quickpasswords/skin/overlay.css
+overlay   chrome://browser/content/browser.xul             chrome://quickpasswords/content/overlay.xul
+overlay   chrome://messenger/content/messenger.xul  chrome://quickpasswords/content/overlay.xul
+style     chrome://messenger/content/messenger.xul  chrome://quickpasswords/skin/overlay.css
+overlay   chrome://navigator/content/navigator.xul         chrome://quickpasswords/content/overlay.xul
+overlay   chrome://passwordmgr/content/passwordManager.xul chrome://quickpasswords/content/passwordwindow.xul
+overlay   chrome://communicator/content/wallet/SignonViewer.xul     chrome://quickpasswords/content/passwordwindow.xul
+overlay   chrome://messenger/content/preferences/viewpasswords.xul  chrome://quickpasswords/content/passwordwindow.xul
+
+#Tb legacy
+style chrome://quickpasswords/content/changePassword.xul  chrome://quickpasswords/skin/qp_legacy4.css application={3550f703-e582-4d05-9a08-453d09bdfdc6} appversion<4.0
+#Fx legacy
+style chrome://quickpasswords/content/changePassword.xul  chrome://quickpasswords/skin/qp_legacy4.css application={ec8030f7-c20a-464f-9b0e-13a3a9e97384} appversion<4.0
+
+

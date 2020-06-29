@@ -1,0 +1,25 @@
+<!ENTITY quickPasswords.label "QuickPassword">
+<!ENTITY quickPasswordsContext.label "Khôi phục lại Mật Khẩu...">
+<!ENTITY quickPasswordsContext.accesskey "M">
+<!ENTITY quickPasswordsContext.insertUser.label "Điền Tên Đăng Nhập">
+<!ENTITY quickPasswordsContext.insertUser.accesskey "T">
+<!ENTITY quickPasswordsContext.insertPassword.label "Điền Mật Khẩu">
+<!ENTITY quickPasswordsContext.insertPassword.accesskey "M">
+<!ENTITY quickPasswordsContext.cancelLogin.label "Hủy bỏ Đăng Nhập QuickPasswords">
+<!ENTITY quickPasswordsToolbarButton.label "QuickPassword">
+<!ENTITY quickPasswordsToolbarButton.tooltip "Ghi nhớ các Mật Khẩu vào bộ nhớ tạm!">
+<!ENTITY quickPasswordsSidebar.label "Thanh công cụ">
+<!ENTITY quickPasswordsTreeContextMenuCopy.label "Ghi nhớ Mật Khẩu vào bộ nhớ tạm">
+<!ENTITY quickPasswordsTreeContextMenuCopy.accesskey "G">
+<!ENTITY quickPasswordsTreeContextMenuCopyUser.label "Sao chép Tên Sử Dụng vào bộ nhớ tạm">
+<!ENTITY quickPasswordsTreeContextMenuCopyUser.accesskey "U">
+<!ENTITY quickPasswordsTreeContextMenuCopyURI.label "Sao chép địa chỉ Trang Web">
+<!ENTITY quickPasswordsTreeContextMenuCopyURI.accesskey "S">
+<!ENTITY quickPasswordsTreeContextMenuCopyFull.label "Sao chép các dòng đã chọn vào bộ nhớ tạm">
+<!ENTITY quickPasswordsTreeContextMenuCopyFull.accesskey "S">
+<!ENTITY quickPasswordsTreeContextMenuLogin.label "Đăng nhập vào trang web">
+<!ENTITY quickPasswordsTreeContextMenuLogin.accesskey "L">
+<!ENTITY quickPasswordsManagerCopyButton.label "Sao chép Mật Khẩu!">
+<!ENTITY quickPasswordsTreeContextMenuQuickPasswordsOptions.label "Tùy chọn QuickPasswords...">
+<!ENTITY quickPasswordsTreeContextMenuChangePassword.label "Đổi nhiều Mật Khẩu đồng thời…">
+<!ENTITY quickPasswordsManager.siteFilter "Thu hẹp danh sách các trang">

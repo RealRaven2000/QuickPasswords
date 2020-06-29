@@ -1,0 +1,30 @@
+<!ENTITY prefwindow.title "Preferências do QuickPasswords">
+<!ENTITY pane1.title "Preferências do QuickPasswords">
+<!ENTITY checkCopyShowMessage.label "Mostrar mensagem depois de copiar para o clipboard">
+<!ENTITY checkCopyShowMessage.accesskey "M">
+<!ENTITY checkLoginShowMessage.label "Display Message after selecting Login command">
+<!ENTITY checkLoginShowMessage.accesskey "L">
+<!ENTITY checkDebug.label "Debug Mode">
+<!ENTITY checkDebug.accesskey "D">
+<!ENTITY intMsgDelay.label "Tempo de espera para as janelas do gestor de senhas [ms]">
+<!ENTITY intMsgDelay.tooltip "Ás vezes a caixa de pesquisa não é preenchida automaticamente com o nome do domínio do sítio web - neste caso aumentar este valor.">
+<!ENTITY intMsgDelay.accesskey "T">
+<!ENTITY about.label "Sobre">
+<!ENTITY about.accesskey "S">
+<!ENTITY checkMultirowHeader.label "Adicionar coluna do cabeçalho ao copiar múltiplas colunas">
+<!ENTITY checkMultirowHeader.accesskey "ç">
+<!ENTITY href.label.homePage "Visite a página do QuickPasswords em mozdev.org!">
+<!ENTITY checkAutoCloseManager.label "Fechar automaticamente o gestor de senhas após copiar">
+<!ENTITY checkAutoCloseManager.accesskey "u">
+<!ENTITY checkDisplayContextMenuItem.label "Mostrar no menu de contexto do navegador">
+<!ENTITY checkDisplayContextMenuItem.accesskey "m">
+<!ENTITY href.label.bugPage "Envie um bug ou sugira uma nova funcionalidade...">
+<!ENTITY radioContextMenuAlways.label "Mostrar sempre entrada no menu de contexto do navegador">
+<!ENTITY radioContextMenuAlways.accesskey "a">
+<!ENTITY radioContextMenuSelective.label "Mostrar apenas o item do menu ao introduzir elementos (pré-definido)">
+<!ENTITY radioContextMenuSelective.accesskey "o">
+<!ENTITY radioContextMenuOff.label "Nunca apresentar a entrada no menu de contexto do navegador">
+<!ENTITY radioContextMenuOff.accesskey "N">
+<!ENTITY donateButton.tooltip "Support development of QuickPasswords">
+<!ENTITY donateButton.label "Donate">
+<!ENTITY donateButton.shortcut "D">

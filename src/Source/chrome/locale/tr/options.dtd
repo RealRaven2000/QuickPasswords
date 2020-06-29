@@ -1,0 +1,30 @@
+<!ENTITY prefwindow.title "QuickPasswords Seçenekleri">
+<!ENTITY pane1.title "QuickPasswords seçenekleri">
+<!ENTITY checkCopyShowMessage.label "Şifreyi panoya kopyalamadan sonra mesaj göster">
+<!ENTITY checkCopyShowMessage.accesskey "M">
+<!ENTITY checkLoginShowMessage.label "Giriş komutunun seçtikten sonra mesaj göster">
+<!ENTITY checkLoginShowMessage.accesskey "G">
+<!ENTITY checkDebug.label "Debug Modu">
+<!ENTITY checkDebug.accesskey "D">
+<!ENTITY intMsgDelay.label "Kayıtlı Parolalarda geçen zaman [ms]">
+<!ENTITY intMsgDelay.tooltip "Bazen Arama Kutusunda sitelerin ismi gözükmez - bu durumda değeri artırın.">
+<!ENTITY intMsgDelay.accesskey "Z">
+<!ENTITY about.label "Hakkında">
+<!ENTITY about.accesskey "H">
+<!ENTITY checkMultirowHeader.label "Çoklu satır kopyalamada satıra başlık ekle">
+<!ENTITY checkMultirowHeader.accesskey "B">
+<!ENTITY href.label.homePage "QuickPassword anasayfasını mozdev.org dan ziyaret edin!">
+<!ENTITY checkAutoCloseManager.label "Kopyalamadan sonra Kayıtlı Parolaları hemen kapat">
+<!ENTITY checkAutoCloseManager.accesskey "K">
+<!ENTITY checkDisplayContextMenuItem.label "Sağ tık menüsünde göster">
+<!ENTITY checkDisplayContextMenuItem.accesskey "T">
+<!ENTITY href.label.bugPage "Yeni bir özellik isteğinde bulunun veya hata raporlayın">
+<!ENTITY radioContextMenuAlways.label "Girdiyi her zaman sağ tık menüsünde göster">
+<!ENTITY radioContextMenuAlways.accesskey "E">
+<!ENTITY radioContextMenuSelective.label "Sadece girdi elemanlarında menüyü göster (varsayılan)">
+<!ENTITY radioContextMenuSelective.accesskey "Y">
+<!ENTITY radioContextMenuOff.label "Asla sağ tık menüsünde gösterme">
+<!ENTITY radioContextMenuOff.accesskey "N">
+<!ENTITY donateButton.tooltip "QuickPasswords yapımına destek">
+<!ENTITY donateButton.label "Bağış">
+<!ENTITY donateButton.shortcut "B">

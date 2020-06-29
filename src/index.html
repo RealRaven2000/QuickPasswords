@@ -1,0 +1,238 @@
+---
+layout: base.njk
+title: Home
+---
+<!-- ***************** INFO/NEWS *************** -->
+
+<link rel="stylesheet" href="/css/myProjects.css?v1" type="text/css">
+<link rel="stylesheet" href="/css/index.css" type="text/css">
+
+  <div id="infoTabs">
+    <div class="infoTab" id="whats-new">
+      <h5 class="infoHeader">What's New</h5>
+
+      <ul  class="infoItems">
+			  <li><a href="https://addons.mozilla.org/firefox/addons/versions/75777#version-3.7">Version 3.7 of QuickPasswords</a> 
+				  this has a <a href="#backupRestore">backup / restore feature</a> for logins and passwords.</li>
+				<li><a href="https://addons.mozilla.org/firefox/addons/versions/75777#version-3.6">Version 3.6 of QuickPasswords</a> 
+					Unified Password (SSO passwords) improvement: it now has a step for selecting affected user names.</li>
+			  <li><a href="https://addons.mozilla.org/firefox/addons/versions/75777#version-3.2.1">Version 3.2.1 of QuickPasswords</a> 
+				    Added Icons for supporting the new Firefox skin Australis.</li>
+        <li><a href="https://addons.mozilla.org/firefox/addons/versions/75777#version-2.7">Version 2.7 of QuickPasswords</a> can correct login information. New Lock Icon.</li>	  
+		
+        <li><a href="https://addons.mozilla.org/firefox/addons/versions/75777#version-2.5">Version 2.5 of QuickPasswords</a> can now fill the login form of a web page for you.</li>	  
+	  
+        <li><a href="https://addons.mozilla.org/firefox/addons/versions/75777#version-1.6">Version 1.6 of QuickPasswords</a> has an additional new method for logging in
+        without using the clipboard. Also, you can now change a common password for multiple sites really easily.</li>
+
+      </ul>
+    </div>
+
+    <div class="infoTab" id="other-stuff">
+      <h5 class="infoHeader">Other Stuff</h5>
+
+      <ul>
+        <li>Check out my awesome Thunderbird extension <a href="https://addons.mozilla.org/thunderbird/addon/3254">QuickFolders</a></li>
+
+        <li>also, give <a href="https://addons.mozilla.org/thunderbird/addon/2335">Zombiekeys</a> a try!</li>
+      </ul>
+    </div>
+    <!-- alternative image/table base tab works better in NS4 -->
+    <!--
+<div class="infoTab" id="whats-new-image">
+<h5 class="infoHeader"><img src="http://www.mozdev.org/sharedimages/whatsnew_top.gif" width="154" alt="What's New"></h5>
+<div class="infoItems">
+<div>News item goes here</div>
+<div>More news item goes here</div>
+<div><a href="http://mozdev.org/">mozdev.org</a></div>
+</div>
+</div>
+-->
+  </div><!-- ***************** INFO/NEWS *************** -->
+  <!-- MAIN CONTENT -->
+
+  <h2 class="page-header">QuickPasswords</h2>
+
+  <p>Welcome to the new home of the <strong>QuickPasswords</strong>
+  project. If your looking for the latest version you can <a href=
+  "https://addons.mozilla.org/firefox/addon/quickpasswords/"
+  target="_blank">download it</a> at Mozilla</p>
+
+<p class="scream">Please, <a href="https://addons.mozilla.org/firefox/addon/75777#reviews">leave some feedback</a> at the mozilla addons page - spread the word so more people start using it!</P>
+
+  <h3>About QuickPasswords</h3>
+
+  <p>Quickly retrieve your Passwords from Password Manager to the clipboard. No need to display them on screen anymore! </p>
+  <br/>
+
+  <p>Instead of displaying a password, when you need one, use this nifty toolbar button to jump straight to the password manager and copy it to the clipboard.</p>
+<p>I was always annoyed by the fact that the Password Manage displays not just one Password but a whole list - this extension removes the need to display any password on screen, and gets rid of the inconvenient "typing off screen". Now your passwords can be as complicated and secure as you always wanted!</p>
+<p>Also, it fills in the domain name so you don't have to look quite so hard. Especially useful for developers who have to work a lot with different login pages. </p>
+
+  <h3 class="page-header">How to Use QuickPasswords</h3>
+
+<p>You can either use the toolbar button: <img src="img/QuickPasswords-32x32.png" /></p>
+<p>Or right-click any textbox on the page <br/><img class="screenshot" src="img/context-menu-default.png" alt="QuickPasswords Context Menu" /></p>
+
+  <a name="login" /></a>
+	<h4><a href="#login">Logging in with QuickPasswords</a></h4>
+	<p>Now that we are in the Password Manager, a login line is automatically selected. Either leave it there or select a different login. Then:</p>
+	<p>Click on the Login button:<br/>
+		<img src="img/QP_Manager-Login.png" alt="login button">
+	</p>
+	
+	<p>Or use the context menu - "Login to WebSite" is the top command, once we click this...</p>
+		<img src="img/Login-Command.png" alt="context menu">
+    <p>Once the login command is selected the Password Manager window closes (there is an option for disabling this). If the option to "Fill form on Login command" is active,
+	the user name and password are filled in automatically. Without this option (or if the automatic filling fails for some reason) there are now 2 new items in the context menu:
+	</p>
+	<img src="img/fillUser.png" alt="insert user">
+	<p>You can insert both User Id and Password with a simple right-click. The clipboard is not used
+	during this operation. For security reasons, the items are removed from the menu as soon as you use them.</p>
+	<img src="img/fillPassword.png" alt="insert password">
+	
+	<p>If have not used these for some reason, you can remove them from the context menu using "Cancel QuickPassword Login"</p>
+	<img src="img/cancelLogin.png" alt="cancel login">
+
+	<a name="toolbarButton" /></a>
+	<div><h4>Adding the toolbar button</h4></div>
+
+<p>Make sure to add it to your toolbar, the usual way - View / Toolbars / Customize. 
+   Or if the "view" menu is not visible because the main Firefox menu is hidden, 
+   use the "Firefox" button instead: Firefox Button > Options > Toolbar Layout...
+
+<br/>Just pull it where  you want it and click Done or Ok. Then, your Firefox / SeaMonkey / Thunderbird should look something like this:</P>
+<p><img class="screenshot" src="img/quickpassword-drag-toolbar.png"></p>
+
+<p>After clicking the button the Password Manager is opened. This will now show a filtered list based on the web page you are on when you clicked it:</p>
+
+<p><img class="screenshot" src="img/Password-Manager-3.png"></p>
+<p>Now, click on the line for the user credentials you are interested in. Too many different matches? this can happen if you have passwords on a big site that has a lot of sub-sites<p>
+
+<a name="magic_wand" /></a>
+<div><h4>The Magic Wand</h4></div>
+
+<p>In this case, you can click the magic wand, to narrow down the number of matches:</p>
+
+<p><img class="screenshot" src="img/Sites-Filter-1.png"> <img class="screenshot" src="img/Sites-Filter-2.png"></p>
+
+<a name="clipboard" /></a>
+<h4>Copy Passwords to the Clipboard</h4>
+
+<p>Click the [Copy Password!] button.</p>
+<p><img class="screenshot" src="img/quickpassword-copymsg.png">
+<br/>As the message says, the password is now in your clipboard so you can click the password field and paste (CTRL+V).
+For streamlined operation, you can configure QuickPasswords to suppress this message as well - go to Tools / Add-Ons and find the entry for QuickPasswords, then click Options.</p>
+
+<p>Like the message says, you now have the password in your clipboard - just paste it whereever you need it. Be it on another web form, in a different browser or in a text file.
+This also removes the need to ever "Show Passwords" on screen.<p>
+
+
+<p>
+Alternatively, use the context menu by right-clicking the entry you want: This will give you the following 4 options:
+</p>
+<p><img class="screenshot" src="img/context-menu.png"></p>
+<ul>
+<li>Copy Password to Clipboard (same as clicking the button)
+<li>Copy User Name to  Clipboard
+<li>Copy Site URI
+<li>Copy Selected Lines to the Clipboard (useful if you want to export a whole list of logins / passwords) - especially handy for developers and testers.
+</ul>
+<p>As for the last option you can also include a header line for convenient use in spread sheets.</p>
+
+<p><img class="screenshot" src="/img/quickpassword-options-2.7.png"></p>
+
+<a name="change_passwords" /></a>
+<h4>Changing Passwords</h4>
+	<p>You can now change the password to one web site or multiple sites of a Single Signon Domain (provided they have matching passwords). 
+	   Simply use the magic wand in the password manager first to display all sites of your domain (e.g. google.com). </p>
+	<p>Then press the [change multiple passwords] button. <img src="img/editPassword.png">
+	</p>
+	<img src="img/QP_ChangePasswords.png">
+	<p>The "old password" field will be pre-filled correctly. Now click on [Select all entries that match]. This will highlight all items that satisfy the filter in the 
+	Password Manager (in this example, all ending with google.com) AND have the same password. Enter a new one below.
+	Now you can change passwords for all these entries by clicking on [Ok]!</p>
+	
+	<img src="img/SSO-dialog.png">	<br>
+	<p>in the next step, all affected sites are displayed (top list). QuickPasswords will also extract all user names 
+	   in case you have variations within the SSO domain, such as "user", "domain\user", "domain\User". You simply select
+		 the user names from the bottom list so only those are affected.</p>
+
+<a name="edit_password" /></a>
+<h4>Editing Passwords / Adding Logins</h4>
+
+  <p>The very clever <a href="https://addons.mozilla.org/firefox/addon/60265/">Saved Password Editor</a> Extension is highly recommended and can be used in conjunction with the QuickPasswords extension.
+  It basically allows to edit existing password (and the related form information), but also add new ones or clone existing ones.</p>
+  <p><img class="screenshot" src="img/SPE.png"></p>
+
+<a name="backupRestore" /></a>
+	<h4>Backup / Restore Passwords</h4>
+	<br> <img src="img/Backup.png" alt="Backup and  Restore buttons"/>
+	<p>Use this to backup / restore passwords to file. Could be used as a rescue 
+		 method if Sync malfunctions. This is protected with Firefox's master password.</p>
+	<p>I don't want QuickPasswords to be the one simple way to steal your friend's passwords, 
+		 so the backup / restore features are protected with the master password. Secondly, 
+		 we cannot have files full of unencrypted passwords on some local storage. 
+		 It's just not safe at all. So by default, QuickPasswords uses Firefox
+		 built in keystore which is a unique personalized encryption platform generated 
+		 when you create a new Firefox profile or install Firefox for the first time.
+		</p>
+				<br> <img src="img/encryption-reminder.png" alt="Encryption Reminder"/>
+  <p>This also means that you won't be able to restore the passwords on another Firefox
+			/ Profile unless you have a copy of the same keystore. 
+			Same is stored in a file called key3.db and should be backed up somewhere to 
+			read the passwords again. If you loose or break this file 
+			you will also simply not be able to read your passwords on your Firefox anymore.
+			As long as you use the same Firefox on the same Computer this won't present
+			a problem unless there is a file corruption. To transfer to a different
+			machine simply copy the relevant profile folder or at least key3.db.</p>
+	<p>All of these stipulations aside, there as a couple of things that the new backup
+			restore does well (and may be better than others). First of all, when you restore
+			your passwords, there is one thing it does NOT do: it will not DELETE all your
+			passwords. Instead it will merge in the passwords, carefully checking the backed up
+			logins and the time stamps (when was it last changed). If you want to start from zero, 
+			you have to delete all passwords manually. (Make sure to back up beforehand!)</p>
+		<br> <img src="img/modify-prompt.png" alt="Password Modification Prompt"/>
+	<p>Modified passwords: Restore will only <i>change</i> a password if it
+		wasn't changed in the meantime. This way you won't accidentally overwrite
+		a password you may have changed online into an older version. 
+		However, if this is what you <i>actually want</i> to do with a particular login,
+		[maybe because a password change online didn't propagate into the web]
+		you can simply delete that one manually before doing the restore.</p>
+	<p>File handling: you can store your files wherever you like, but I would still recommend
+		not putting them on a public folder or shared drive, unless you have set up 
+		correct access permissions. Better safe than sorry!
+  	<br> <img src="img/restore-results.png" alt="Results after Restore"/>
+	</p>
+
+<h2 class="page-header">Other Useful Extensions</h2>
+<br>
+	
+<div id='myProjects'>
+	<h4 class="ZombieKeys">Zombie Keys</h4>
+	<p>
+	<a href="https://addons.mozilla.org/firefox/addon/zombie-keys/">Zombie Keys for Firefox / SeaMonkey</a> ; 
+	<a href="https://addons.mozilla.org/thunderbird/addon/zombie-keys/">Zombie Keys for Thunderbird / Postbox</a>
+	<br>
+	<p>Entering European languages (which include diacritics (accented characters, diaeresis, umlauts, etc.), ligatures, the Euro sign, etc.) 
+	into Mozilla applications using a non-native keyboards doesn't have to be a pain any more! 
+	</p>
+
+	<h4 class="QuickFolders">QuickFolders</h4>
+	<p>
+	<a href="https://addons.mozilla.org/thunderbird/addon/quickfolders-tabbed-folders/">QuickFolders</a>
+	(Thunderbird / Postbox) takes the pain out of working with many mail folders; has currently 22,000 daily users and the top rated message reading extensions.<br>
+	</p>
+
+	<h4 class="QuickFilters">quickFilters</h4>
+	<p>
+	<a href="https://addons.mozilla.org/thunderbird/addon/quickfilters/">quickFilters</a>
+	(Thunderbird / Postbox) Quickly generate mail filters on the fly, by dragging and dropping mails and analyzing their attributes.
+	</p>
+
+	<h4 class="SmartTemplate">SmartTemplate4</h4>
+	<p>
+	<a href="https://addons.mozilla.org/thunderbird/addon/quickfilters/">SmartTemplate4</a>
+	(Thunderbird / Postbox) SmartTemplate4 offers an easy way to customize Thunderbirds default quote header by using templates.
+	</p>
+</div>
