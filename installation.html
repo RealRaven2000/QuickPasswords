@@ -1,0 +1,310 @@
+<!doctype html>
+<html>
+  <head>
+    <title>Quick Passwords - Installation</title>
+   <!-- LOCAL HEAD.TXT -->
+
+   <!-- META-KEYWORDS BEGIN -->
+   <meta charset="UTF-8">
+   <!-- LOCAL HEAD.TXT -->
+   <meta name="google-site-verification" content="LTKICtodcLDl0nhBl2mUiXWMJbOtmEJmhYXVAqm_mJM" />
+   <link rel="stylesheet" href="/css/project.css?v15" type="text/css" />
+   <!-- <link rel="alternate" type="application/rss+xml" title="News" href="/drupal/rss.xml" /> -->
+   <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
+   <meta content="text/css" http-equiv="Content-Style-Type" />
+   <link rel="stylesheet" href="/css/footer.css" type="text/css">
+   <link rel="icon" href="img/QuickPasswords-16x16.png" type="image/png"> 
+   <script src="js/ga.js"> </script>
+ </head>
+ <!-- END LOCAL HEAD.TXT -->
+
+<!-- HTML_BODY.HTML -->
+<body>
+
+<noscript>
+	<div class="msgBox error" id="msgBox_error">
+		<h1>Our website required Javascript.</h1>
+		The instruction how to enable Javascript in your browser, you can find <a href="http://www.enable-javascript.com/" rel="nofollow" title="How to enable Javascript in your browser" target="_blank">here</a>.
+	</div>
+</noscript>
+
+<!-- ####################### BEGIN MAIN CONTENT ########################## -->
+<div id="main-content-no-nav">
+<!-- PROJECT_NAV.HTML -->
+<h1 class="project-name" id="content">quickpasswords</h1>
+
+<table id="project-navigation">
+
+<!--
+  <tbody id="sub-projects" class="project-navigations">
+  <tr>
+  <th scope="row">subprojects:</th>
+  <td class="navigation-list">
+  <a class="first-item" href="/subprojectdir/index.html">subproject name</a>
+  <a href="/subprojectpage.html">subproject name</a>
+  </td>
+  </tr>
+  </tbody>
+-->
+
+  <tbody id="resources" class="project-navigations">
+  <tr>
+  <th scope="row">resources:</th>
+  <td class="navigation-list">
+  <a class="first-item" href="/index.html">Home</a>
+<!--  <a href="/list.html">Mailing List</a> -->
+  <a href="/installation.html">Getting Started</a>
+  <a href="/version.html">Version History</a>
+  <a href="/screenshots.html">Screenshots</a>
+  <a href="/donate.html">Donations</a>
+  <a href="/bugs.html">Bugs</a>
+  <a href="/source.html">Source Code</a>
+  <a href="/members.html">Members</a>
+<!--
+  <a href="/drupal/blog">Blog</a>
+  <a href="/drupal/forum">Forum</a>
+  <a href="/drupal/wiki">Wiki</a>
+-->
+  </td>
+  </tr>
+  </tbody>
+</table>
+
+
+<style >
+.censorship div *,
+.censorship:hover div * {
+  text-decoration:none !important;
+  font-family: Calibri,Sans_Serif;
+  font-weight: normal;
+  font-size: 12pt;
+}
+
+.censorship {
+  width: 50%;
+  height: 30px;
+  vertical-align:middle;text-align:center;
+  background-color:#000;
+  position:absolute;
+  z-index:5555;
+  top:220px;
+  left:240px;
+  box-shadow: 2px 2px 6px -1px rgba(0,0,0,0.4);
+  -moz-transition-property: width, height, min-height, left, top,  box-shadow;
+  -moz-transition-duration: 0.8s,  0.5s,   0.5s,       1.2s, 0.8s, 2s;
+  -webkit-transition-property: width, height, min-height, left, top,  box-shadow;
+  -webkit-transition-duration: 0.8s,  0.5s,   0.5s,       1.2s, 0.8s, 2s;
+  -o-transition-property: width, height, min-height, left, top,  box-shadow;
+  -o-transition-duration: 0.8s,  0.5s,   0.5s,       1.2s, 0.8s, 2s;
+  opacity: 0.7;
+  -moz-border-radius: 2px;
+
+}
+.censorship div {
+  height: 100%;
+  background-image:url(http://americancensorship.org/images/stop-censorship-small.png);
+  background-position:center center;
+  background-repeat:no-repeat;
+  text-align: center;
+  color: #fff;
+  font-size: 14px;
+  vertical-align: middle;
+}
+.censorship:hover {
+  width:80%;
+  height:auto;
+  min-height:120px;
+  top:200px;
+  left:120px;
+  background-color: rgb(169,3,41);
+	background: linear-gradient(to bottom,  rgba(169,3,41,1) 0%, rgba(143,2,34,1) 44%, rgba(109,0,25,1) 100%);
+	background: -moz-linear-gradient(top,  rgba(169,3,41,1) 0%, rgba(143,2,34,1) 44%, rgba(109,0,25,1) 100%);
+	background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,rgba(169,3,41,1)), color-stop(44%,rgba(143,2,34,1)), color-stop(100%,rgba(109,0,25,1)));
+	background: -webkit-linear-gradient(top,  rgba(169,3,41,1) 0%,rgba(143,2,34,1) 44%,rgba(109,0,25,1) 100%);
+	background: -o-linear-gradient(top,  rgba(169,3,41,1) 0%,rgba(143,2,34,1) 44%,rgba(109,0,25,1) 100%);
+	background: -ms-linear-gradient(top,  rgba(169,3,41,1) 0%,rgba(143,2,34,1) 44%,rgba(109,0,25,1) 100%);
+	background: linear-gradient(top,  rgba(169,3,41,1) 0%,rgba(143,2,34,1) 44%,rgba(109,0,25,1) 100%);
+	filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#a90329', endColorstr='#6d0019',GradientType=0 );
+  box-shadow: 0px 0px 30px 30px rgba(0, 0, 0, 0.9);
+  opacity: 0.9;
+  -moz-border-radius: 1em;
+}
+.censorship span { display:none; padding: 1em 2em;}
+.censorship:hover span { display:block; text-decoration: none;}
+.censorship:hover div {background-image:none;}
+.stop { text-align:center; }
+</style>
+<!--
+<a class="censorship" href="http://americancensorship.org" target=_blank
+title="On Thur. Nov. 16th, the U.S. Congress holds hearings on the first American Internet censorship system. This bill can pass. If it does the Internet and free speech will never be the same. Join all of us to stop this bill.">
+<div>
+<span>On Thur. Nov. 16th, the U.S. Congress holds hearings on the first American Internet censorship system. This bill can pass.<br/>
+If it does, the Internet and free speech will never be the same.
+<br/><br/><div class="stop">Join all of us to stop this bill. STOP CENSORSHIP &gt;</div></span>
+</div>
+</a>
+-->
+
+<!-- MAIN CONTENT -->
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01//EN">
+
+<html>
+<head>
+  <meta name="generator" content=
+  "HTML Tidy for Windows (vers 14 February 2006), see www.w3.org">
+  <style type="text/css">
+td.navigation-list a[href$='installation.html'], td.navigation-list a[href$='installation.html']:visited {
+    background: rgb(208,228,247); /* Old browsers */
+    background: linear-gradient(to bottom, rgba(208,228,247,1) 0%, rgba(115,177,231,1) 24%, rgba(10,119,213,1) 50%, rgba(83,159,225,1) 79%, rgba(135,188,234,1) 100%);
+    background: -moz-linear-gradient(top, rgba(208,228,247,1) 0%, rgba(115,177,231,1) 24%, rgba(10,119,213,1) 50%, rgba(83,159,225,1) 79%, rgba(135,188,234,1) 100%);
+    background: -webkit-linear-gradient(top, rgba(208,228,247,1) 0%, rgba(115,177,231,1) 24%, rgba(10,119,213,1) 50%, rgba(83,159,225,1) 79%, rgba(135,188,234,1) 100%);
+    border-bottom-color:  #26558b !important;
+    color: #FFF !important;
+    height: 27px !important;
+    font-weight: bold;
+  }
+  .tiny {
+	font-size: small;
+	font-weight: normal;
+  }
+  </style>
+
+  <title>QuickPasswords :: Getting Started</title>
+</head>
+
+<body>
+  <a id="content" name="content"> </a>
+  <h2 class="page-header">QuickPasswords :: Getting Started</h2>
+
+  <p> <p>To download the latest released version of QuickPasswords, head
+  on over to
+<a href=
+  "https://addons.mozilla.org/firefox/addon/75777">Download latest Releases</a>
+of QuickPasswords</p>
+
+<p>
+To get started, simply install the version above. After restart you will have a new context menu entry "Retrieve a Password" in all edit boxes:
+<br/>
+<img class="screenshot" src="img/context-menu-default.png" alt="QuickPasswords Context Menu" />
+<br/>
+This will be displayed as soon as you right-click in any textbox.
+</p>
+<p>Clicking the button will open the built-in (Firefox / Thunderbird / SeaMonkey) Password Manager window.
+QuickPasswords will also try to fill the password filter dialog with a suitable text so that only relevant entries should be displayed.</p>
+
+<img class="screenshot" src="img/Password-Manager-3.png" alt="The Password Manager">
+
+<p>When invoking it from a web page, then the easiest way to use QuickPasswords is to double-click on the highlighted item - 
+this will attempt to log you in by matching the stored information from Firefox's built in login manager. Should this fail to find a suitable 
+form field then appropriate context menu items will be created</p>
+<p>Any password can also be copied by pressing the [Copy Password!] button. Obviously this will only be useful if you have already stored
+passwords in the password manager. You can check that the option Tools / Options / Security > Remember Passwords for Sites is enabled.</p>
+
+<a name="whatsThePasswordManager" /><h3>I don't know how to store passwords! <a href="#iAmClever" class="tiny">(skip this, I already know!)</a></h3>
+<br/>
+<h4>How do I make Firefox remember my usernames and passwords?</h4>
+<p>QuickPasswords will only be able to find passwords that are previously stored, which can be easily done with the built in
+functionality - if you are not sure, please have a look at the following article first:
+<br/>
+<a href="http://support.mozilla.org/en-US/kb/make-firefox-remember-usernames-and-passwords" target="_blank">
+Firefox Support: How do I make Firefox remember my usernames and passwords?
+</a> </p>
+</p>
+There also is more detailed info on various related settings here: <a href="https://support.mozilla.org/en-US/kb/Options%20window%20-%20Security%20panel" target="_blank">Options window - Security panel</a>.
+</p>
+
+<h4>But Firefox doesn't prompt me for storing passwords!</h4>
+<p>First check that the option Tools / Options / Security > Remember Passwords for Sites is enabled.</p>
+<p>Not prompting for password storage can also be caused by a site that has a non-standard way of asking for passwords.
+For instance the site might use Flash or some clever Javascript preventing you from using the built in Password Manager. In that case, I highly recommend
+using the <a target="_blank" href="https://addons.mozilla.org/firefox/addon/60265/">Saved Password Editor extension</a>, which gives
+you full control on creating passwords and all aspects of how they are inserted into a page. It is an ideal companion to QuickPasswords.</p>
+
+
+<a name="iAmClever"> </a>
+<h3>Logging in with QuickPassword</h3>
+	<p>Now that we are in the Password Manager, we have several choices:</p>
+	<ul>
+	<style type="text/css"> img.bullet { margin-right:1em; }</style>
+	<ul>
+		<li><img src="img/Btn_Filter.png" alt="filter" class="bullet">Magic Wand - use to restrict list to items related to current tab / email / account.
+		Which of the 2 states is best really depends on the site. Some will use the same password on www.fred.com, support.fred.com, product.fred.com;
+		other (mostly big corporate) sites might have specific passwords for specific areas. Therefore this button alternates the password filter between fred.com and <i>subsite</i>.fred.com.
+		It might take a bit of experimentation to find out about which one is more useful to you.
+		<li><img src="img/Btn_Login.png" alt="login" class="bullet">Login - most of times this is what you want.  
+		    It will find the relevant form items and insert password and user name for you. Normally all you need to do then
+			is click on the Website's Login button. 
+		    <br/><img class="screenshot" src="img/QP_Manager-Login.png" alt="Login Button">
+			<br/>
+			Should auto-filling the form fail, then QuickPassword will insert the Password and/or User Name on the top of your right-click menu.
+		
+		<li><img src="img/Btn_Copy.png" alt="copy" class="bullet">Copy Password - if you only need the password, or you want to paste it to a different window or application
+		    <br/><img class="screenshot" src="img/QP_Manager-Copy.png" alt="Copy to Clipboard">
+			
+		<li><img src="img/Btn_ChangePasswords.png" alt="change passwords" class="bullet">Changing a password for multiple sites. 
+		  This can sometimes be really handy when you have a set of different pages that use a global password - the term for this 
+		  mechanism is SSO (Single Sign On).
+	</ul>
+
+	<p>Right-clicking the relevant line, "Login to WebSite" is now the new top command, as it is probably the most frequent use case. Once we click this...</p>
+		<img src="img/Login-Command.png"><br>
+		
+<h4>Using the right-click Menu on a Web Page</h4>		
+	<p>Once the login command is selected the Password Manager window closes (there is an option for disabling this). If the option to "Fill form on Login command" is active,
+	the user name and password are filled in automatically. Without this option (or if the automatic filling fails for some reason) there are now 2 new items in the context menu:</p>
+	<img src="img/fillUser.png" alt="insert user">
+	<p>You can insert both User Id and Password with a simple right-click. The clipboard is not used
+	during this operation. For security reasons, the items are removed from the menu as soon as you use them.</p>
+	<img src="img/fillPassword.png" alt="insert password">
+	
+	<p>If have not used these for some reason, you can remove them from the context menu using "Cancel QuickPassword Login"</p>
+	<img src="img/cancelLogin.png" alt="cancel login">
+	
+<p>
+<a name="toolbarButton" /></a><h4>The Toolbar Button</h4>
+<p>
+I also recommend to add the QuickPasswords button to your toolbar.
+Click View / Toolbars / Customize... and then drag and drop the QuickPasswords button onto a toolbar area. 
+In case the "view" menu is not visible because the main Firefox menu is hidden, you can use the "Firefox" button instead: Firefox  Button > Options > Toolbar Layout...
+</p>
+<img class="screenshot" src="img/quickpassword-drag-toolbar.png" alt="QuickPasswords Toolbar button" />
+</p>
+
+</body>
+</html>
+
+    <p>
+    For questions or comments about QuickPasswords, please send a message to 
+    </p>
+    
+	<p class=mail_link>
+		<SCRIPT LANGUAGE="JavaScript">
+		u1 = '&#97;&#120;&#101;l.gru';
+		u2 = 'de@'
+		u3 = 'gma';
+		u4 = 'il.com';
+		document.write('<a href=\"mailto:' + u1 + u2 + u3 +  u4 +'?subject=[QuickPasswords] - &lt;your subject line here&gt;\">');
+		document.write('Mail To Axel Grude</a>');
+		</SCRIPT>
+		
+		<NOSCRIPT>You need to enable javascript for the email link to work!</NOSCRIPT>
+	</p>
+
+    <!-- For general site related questions or comments, -->
+    For questions or comments <em>not</em> about a specific project,
+    please read our <a href="http://www.mozdev.org/feedback.html">feedback</a> page.<br>
+    <a href="http://www.mozdev.org/copyright.html">Copyright</a> © 2000-2011. All rights reserved.
+    <a href="http://www.mozdev.org/community/terms.html">Terms of Use</a> &amp;
+    <a href="http://www.mozdev.org/community/privacy.html">Privacy Policy</a>.
+    </p>
+    
+	<div class=attribution> Attributions:
+	<BR>bullets, mailto, key and mouse icons by Yusuke Kamiyamane under Creative Commons, see: <a href="http://p.yusukekamiyamane.com/">http://p.yusukekamiyamane.com/</a>
+	<BR>X-mas decorations (baubles) by <a href="http://www.rgbstock.com/user/fangol">Robert Proksa (fangol) from rgbstock.com</a>
+	</div>
+
+	</div><!-- CLOSE <div id="main-content-no-nav"> with the blue box -->
+	<div id="downPusher"></div><!-- push down the black main background -->
+</body>
+</html>
+

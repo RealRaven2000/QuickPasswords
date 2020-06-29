@@ -1,0 +1,1158 @@
+<!doctype html>
+<html>
+  <head>
+    <title>Quick Passwords - Version</title>
+   <!-- LOCAL HEAD.TXT -->
+
+   <!-- META-KEYWORDS BEGIN -->
+   <meta charset="UTF-8">
+   <!-- LOCAL HEAD.TXT -->
+   <meta name="google-site-verification" content="LTKICtodcLDl0nhBl2mUiXWMJbOtmEJmhYXVAqm_mJM" />
+   <link rel="stylesheet" href="/css/project.css?v15" type="text/css" />
+   <!-- <link rel="alternate" type="application/rss+xml" title="News" href="/drupal/rss.xml" /> -->
+   <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
+   <meta content="text/css" http-equiv="Content-Style-Type" />
+   <link rel="stylesheet" href="/css/footer.css" type="text/css">
+   <link rel="icon" href="img/QuickPasswords-16x16.png" type="image/png"> 
+   <script src="js/ga.js"> </script>
+ </head>
+ <!-- END LOCAL HEAD.TXT -->
+
+<!-- HTML_BODY.HTML -->
+<body>
+
+<noscript>
+	<div class="msgBox error" id="msgBox_error">
+		<h1>Our website required Javascript.</h1>
+		The instruction how to enable Javascript in your browser, you can find <a href="http://www.enable-javascript.com/" rel="nofollow" title="How to enable Javascript in your browser" target="_blank">here</a>.
+	</div>
+</noscript>
+
+<!-- ####################### BEGIN MAIN CONTENT ########################## -->
+<div id="main-content-no-nav">
+<!-- PROJECT_NAV.HTML -->
+<h1 class="project-name" id="content">quickpasswords</h1>
+
+<table id="project-navigation">
+
+<!--
+  <tbody id="sub-projects" class="project-navigations">
+  <tr>
+  <th scope="row">subprojects:</th>
+  <td class="navigation-list">
+  <a class="first-item" href="/subprojectdir/index.html">subproject name</a>
+  <a href="/subprojectpage.html">subproject name</a>
+  </td>
+  </tr>
+  </tbody>
+-->
+
+  <tbody id="resources" class="project-navigations">
+  <tr>
+  <th scope="row">resources:</th>
+  <td class="navigation-list">
+  <a class="first-item" href="/index.html">Home</a>
+<!--  <a href="/list.html">Mailing List</a> -->
+  <a href="/installation.html">Getting Started</a>
+  <a href="/version.html">Version History</a>
+  <a href="/screenshots.html">Screenshots</a>
+  <a href="/donate.html">Donations</a>
+  <a href="/bugs.html">Bugs</a>
+  <a href="/source.html">Source Code</a>
+  <a href="/members.html">Members</a>
+<!--
+  <a href="/drupal/blog">Blog</a>
+  <a href="/drupal/forum">Forum</a>
+  <a href="/drupal/wiki">Wiki</a>
+-->
+  </td>
+  </tr>
+  </tbody>
+</table>
+
+
+<style >
+.censorship div *,
+.censorship:hover div * {
+  text-decoration:none !important;
+  font-family: Calibri,Sans_Serif;
+  font-weight: normal;
+  font-size: 12pt;
+}
+
+.censorship {
+  width: 50%;
+  height: 30px;
+  vertical-align:middle;text-align:center;
+  background-color:#000;
+  position:absolute;
+  z-index:5555;
+  top:220px;
+  left:240px;
+  box-shadow: 2px 2px 6px -1px rgba(0,0,0,0.4);
+  -moz-transition-property: width, height, min-height, left, top,  box-shadow;
+  -moz-transition-duration: 0.8s,  0.5s,   0.5s,       1.2s, 0.8s, 2s;
+  -webkit-transition-property: width, height, min-height, left, top,  box-shadow;
+  -webkit-transition-duration: 0.8s,  0.5s,   0.5s,       1.2s, 0.8s, 2s;
+  -o-transition-property: width, height, min-height, left, top,  box-shadow;
+  -o-transition-duration: 0.8s,  0.5s,   0.5s,       1.2s, 0.8s, 2s;
+  opacity: 0.7;
+  -moz-border-radius: 2px;
+
+}
+.censorship div {
+  height: 100%;
+  background-image:url(http://americancensorship.org/images/stop-censorship-small.png);
+  background-position:center center;
+  background-repeat:no-repeat;
+  text-align: center;
+  color: #fff;
+  font-size: 14px;
+  vertical-align: middle;
+}
+.censorship:hover {
+  width:80%;
+  height:auto;
+  min-height:120px;
+  top:200px;
+  left:120px;
+  background-color: rgb(169,3,41);
+	background: linear-gradient(to bottom,  rgba(169,3,41,1) 0%, rgba(143,2,34,1) 44%, rgba(109,0,25,1) 100%);
+	background: -moz-linear-gradient(top,  rgba(169,3,41,1) 0%, rgba(143,2,34,1) 44%, rgba(109,0,25,1) 100%);
+	background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,rgba(169,3,41,1)), color-stop(44%,rgba(143,2,34,1)), color-stop(100%,rgba(109,0,25,1)));
+	background: -webkit-linear-gradient(top,  rgba(169,3,41,1) 0%,rgba(143,2,34,1) 44%,rgba(109,0,25,1) 100%);
+	background: -o-linear-gradient(top,  rgba(169,3,41,1) 0%,rgba(143,2,34,1) 44%,rgba(109,0,25,1) 100%);
+	background: -ms-linear-gradient(top,  rgba(169,3,41,1) 0%,rgba(143,2,34,1) 44%,rgba(109,0,25,1) 100%);
+	background: linear-gradient(top,  rgba(169,3,41,1) 0%,rgba(143,2,34,1) 44%,rgba(109,0,25,1) 100%);
+	filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#a90329', endColorstr='#6d0019',GradientType=0 );
+  box-shadow: 0px 0px 30px 30px rgba(0, 0, 0, 0.9);
+  opacity: 0.9;
+  -moz-border-radius: 1em;
+}
+.censorship span { display:none; padding: 1em 2em;}
+.censorship:hover span { display:block; text-decoration: none;}
+.censorship:hover div {background-image:none;}
+.stop { text-align:center; }
+</style>
+<!--
+<a class="censorship" href="http://americancensorship.org" target=_blank
+title="On Thur. Nov. 16th, the U.S. Congress holds hearings on the first American Internet censorship system. This bill can pass. If it does the Internet and free speech will never be the same. Join all of us to stop this bill.">
+<div>
+<span>On Thur. Nov. 16th, the U.S. Congress holds hearings on the first American Internet censorship system. This bill can pass.<br/>
+If it does, the Internet and free speech will never be the same.
+<br/><br/><div class="stop">Join all of us to stop this bill. STOP CENSORSHIP &gt;</div></span>
+</div>
+</a>
+-->
+
+<link rel="stylesheet" href="/css/version.css?v7" type="text/css" />
+
+<style type="text/css">
+  #australisCompare td, #australisCompare th {
+		background-color: rgba(250,250,250,0.8);
+	}
+	#australisCompare td.hdr {
+		text-align: center !important;
+		background-color: rgba(180,180,180,0.5);
+		border-top: 2px solid #607080;
+	}
+	#australisCompare {
+	  box-shadow: 9px 9px 3px rgba(40,40,80, 0.3);
+		border-radius: 10px !important;
+		margin-top: 1em;
+		margin-bottom: 1em;
+	}
+	#australisCompare, #australisCompare td, #australisCompare th {
+		border: 1px solid rgba(180,180,180,0.5);
+		border-collapse: collapse;
+		padding: 0.8em;
+		
+	}
+	.lockLegend {
+		display: inline-block;
+		vertical-align: top;
+	}
+	.lockLegend li {
+		line-height: 32x;
+		list-style: none !important;
+		color: rgba(90, 90, 90, 0.6);
+		margin: 0;
+		height: 19px;
+	}
+	.pictureLegend {
+		color: rgba(30, 30, 60, 0.8) !important;
+		font-style: italic;
+	}
+	.emphasizeNote {
+		background-color: white;
+		border: 2px solid rgb(128, 0, 0);
+		border-radius: 0.7em;
+		box-shadow: 3px 3px 2px 1px rgba(0, 0, 0, 0.5);
+		padding: 1em;
+		margin: 0.5em 2em 1.5em 1em;
+		max-width: 60em;
+	}
+	
+	div.alert {
+		background: rgba(0,0,0,0.9) !important;
+		color: white !important;
+		border-radius: 10px;
+		box-shadow: 4px 4px 3px rgba(20,20,20,0.3);
+		margin-left: 30px;
+		margin-bottom: 1.3em;
+		max-width: 800px;
+		padding: 0.5em 0.8em;
+		line-height: 1.7em;
+	}
+
+	.alert {
+		font-size: 1.3em !important;
+	}
+	.alert em {
+		font-weight: bold;
+	}		
+	
+	.alert a[href]:visited, 
+	.alert a[href] {
+		color: rgb(249, 113, 39) !important;
+		white-space: nowrap; 
+	}	
+</style>
+
+<h2 class="page-header">QuickPasswords :: Version History</h2>
+
+<div class="note">
+	<p> Please note that dates are given in UK format: dd/mm/yyyy :) </p>
+	<p> Prereleases and old versions <a href="http://downloads.mozdev.org/quickpasswords/">can also be downloaded here.</a></p>
+	<p> You can also request any version that is marked as not released or any old version listed; just send me a personal email:</p>
+</div>
+
+<p class="mail_link">
+<SCRIPT LANGUAGE="JavaScript">
+u1 = '&#97;&#120;&#101;l.gru';
+u2 = 'de@'
+u3 = 'gma';
+u4 = 'il.com';
+document.write('<a href=\"mailto:' + u1 + u2 + u3 +  u4 +'?subject=[QuickPasswords] - &lt;your subject line here&gt;\">');
+document.write('Mail To Axel Grude</a>');
+</SCRIPT>
+
+<NOSCRIPT>You need to enable JavaScript for this thing to work!</NOSCRIPT>
+</p>
+
+<h3>Change Log</h3>
+<ul id="version-history">
+
+<!--
+	<a name="3.*"></a>
+	<li>
+		<h4>
+		<a href="#" onclick="alert('This is still Work in Progress!\nPlease mail me if you want a preview version for testing.')">Version 3.*</a>
+		</h4>
+		<ul>
+			<li>  </li>
+			<li>  </li>
+			<li>  </li>
+		</ul>
+	</li>
+	-->
+
+
+	<a name="3.11"></a>
+	<li>
+		<h4>
+		<a onclick="alert('Released on Pale Moon!\nPlease mail me if you want a version for testing on other browsers.')">Version 3.11 - 19/02/2019</a>
+		</h4>
+		<ul>
+			<li> Made compatible with Pale Moon and released on https://addons.palemoon.org to make available to alternative XUL platforms</li>
+		</ul>
+	</li>
+
+	
+	<a name="3.10"></a>
+	<li>
+		<h4>
+		<a href="https://addons.mozilla.org/firefox/addons/versions/75777#version-3.10" >Version 3.10 - 07/05/2018</a>
+		</h4>
+		<ul>
+			<li><a href="https://www.mozdev.org/bugs/show_bug.cgi?id=26491" target="_blank">[Bug 26491]</a>
+    			ESR 2018 readiness - Make QuickPasswords compatible with Thunderbird 60.
+					<br>Sorry but this is likely not going to happen. 
+					  Too much work for QuickPasswords and I rather concentrate on my Thunderbird Extensions instead.
+			</li>
+			<li> Updated Arabic and Serbian locales.</li>
+			<li> To use in Waterfox, open about:config and set extensions.legacy.enabled = true </li>
+		</ul>
+	</li>
+	
+	<a name="3.8.4"></a>
+	<a name="3.9"></a>
+
+	<li>
+		<h4>
+			<a href="https://addons.mozilla.org/firefox/addons/versions/75777#version-3.9">Version 3.9 - 26/11/2017</a>
+			<a href="donate.html"><img src="https://www.paypal.com/en_US/i/btn/btn_donate_LG.gif" alt="Please Support QuickPasswords" class="inline-donate" /></a>
+		</h4>
+		<div class="alert">
+			From Firefox version 57.0 on, Mozilla has terminated legacy based addons, to keep using QuickPasswords 
+			you can install either of Mozilla-based 
+			<a href="https://www.waterfoxproject.org">Waterfox</a>,
+			<a href="http://www.palemoon.org/">Firefox Pale Moon</a> 
+			or <a href="https://www.seamonkey-project.org/">SeaMonkey</a>. 
+					
+			Here is a <a href="https://blog.mozilla.org/addons/2016/11/23/add-ons-in-2017/">Mozilla blog post</a> 
+			explaining Mozilla's rationale. From Firefox version 57 no new XUL addons will be accepted by 
+			<a href="https://addons.mozilla.org">AMO</a>, 
+			however I will still be able to maintain / update my existing Firefox addons, until Mozilla decides
+			that they will not be supported by Firefox anymore.
+			<br>
+			Some more information what changed in Firefox Quantum and how to get your Addons back<br>
+			<iframe width="560" height="315" src="https://www.youtube.com/embed/4xWn5NWlLmE" frameborder="0" allowfullscreen></iframe>
+		</div>
+		<ul>
+			<li>Fixed: <a href="https://www.mozdev.org/bugs/show_bug.cgi?id=26443">[Bug 26443]</a> Thunderbird 57 
+			    hangs on start with QuickPasswords enabled. 
+				<p>
+					Thunderbird 57 did not show its main window if any of my XUL based addons are loaded.
+					A number of changes to the JavaScript engine necessitate various changes to  code. <br>
+					See also the <a href="https://bugzilla.mozilla.org/show_bug.cgi?id=1417209">Related Thunderbird bug </a>
+				</p>
+			</li>
+			<li><a href="https://www.mozdev.org/bugs/show_bug.cgi?id=26365">[Bug 26365]</a>Firefox 53.0 Magic Wand misplaced. 
+			The button shows too far down in the dialog.
+			</li>		
+			<li>AutoLocking the Masterpassword broken</li>
+			<li>Spanish Argentinian Locale added: Thanks to Eduardo Leon at Babelzilla.org</li>
+			<li>Polish Locale added: Thanks to Gabry$ at Babelzilla.org</li>
+			<li>Removed support for Firefox 57+ - legacy addons do not work with Firefox. 
+			    I am currently working with another developer to find a solution for Firefox Quantum.
+					If it is at all possible we will release it under the code namee Quantum Passwords.
+			</li>
+		</ul>
+	</li>
+
+	
+	<li>
+		<h4>
+			<a name="3.8.3" href="https://addons.mozilla.org/firefox/addons/versions/75777#version-3.8.3" >Version 3.8.3 - 17/02/2017</a>
+			<a href="donate.html"><img src="https://www.paypal.com/en_US/i/btn/btn_donate_LG.gif" alt="Please Support QuickPasswords" class="inline-donate" /></a>
+		</h4>
+		<div class="emphasizeNote">
+			Mozilla is going to eventually terminate XUL based addons, so it is important that our functionality
+			stays supported <a href="http://www.palemoon.org/">on this Firefox fork</a>. Here is a 
+			<a href="https://blog.mozilla.org/addons/2016/11/23/add-ons-in-2017/">Mozilla blog post</a> 
+			explaining their plans. Although from Firefox version 57 no new XUL addons will be accepted, 
+			but I will still be able to maintain / update my existing Firefox addons, until Mozilla decides
+			that they will not be supported by Firefox anymore.
+		</div>
+		<ul>
+			<li><a href="https://www.mozdev.org/bugs/show_bug.cgi?id=26343">[Bug 26343]</a>  Unified password change not working.
+			    when the Change password button is clicked, instead there is an error message, "tree is not defined".
+					Note: you cannot use the login and repair buttons when the logins are shown within the <i>about:preferences#security</i>
+					browser tab; therefore I disabled these buttons unless the dialog window is shown (by clicking on the 
+					QuickPasswords toolbar button or context menu from a website).
+			</li>
+			<li>Disabled Login and Repair buttons when the login list is shown from the Options tab 
+			    which is shown at the URI <i>about:preferences#security</i></li>
+		</ul>
+	</li>
+
+
+	<li>
+		<h4>
+			<a name="3.8.2" href="https://addons.mozilla.org/firefox/addons/versions/75777#version-3.8.2">Version 3.8.2 - 13/02/2017</a>
+			<a href="donate.html"><img src="https://www.paypal.com/en_US/i/btn/btn_donate_LG.gif" alt="Please Support QuickPasswords" class="inline-donate" /></a>
+		</h4>
+		<div class="emphasizeNote">
+			Mozilla is going to eventually terminate XUL based addons, so it is important that our functionality
+			stays supported <a href="http://www.palemoon.org/">on this Firefox fork</a>. Here is a 
+			<a href="https://blog.mozilla.org/addons/2016/11/23/add-ons-in-2017/">Mozilla blog post</a> 
+			explaining their plans. Although from Firefox version 57 no new XUL addons will be accepted, 
+			but I will still be able to maintain / update my existing Firefox addons, until Mozilla decides
+			that they will not be supported by Firefox anymore.
+		</div>
+		<ul>
+			<li><a href="https://www.mozdev.org/bugs/show_bug.cgi?id=26338">[Bug 26338]</a> Login to website not working in Seamonkey 2.46</li>
+		</ul>
+	</li>
+
+	
+	<li>
+		<h4>
+			<a name="3.8.1" href="https://addons.mozilla.org/firefox/addons/versions/75777#version-3.8.1" >Version 3.8.1 - 29/01/2017</a>
+			<a href="donate.html"><img src="https://www.paypal.com/en_US/i/btn/btn_donate_LG.gif" alt="Please Support QuickPasswords" class="inline-donate" /></a>
+		</h4>
+		<div class="emphasizeNote">
+			Mozilla is going to eventually terminate XUL based addons, so it is important that our functionality
+			stays supported <a href="http://www.palemoon.org/">on this Firefox fork</a>. Here is a 
+			<a href="https://blog.mozilla.org/addons/2016/11/23/add-ons-in-2017/">Mozilla blog post</a> 
+			explaining their plans. Although from Firefox version 57 no new XUL addons will be accepted, 
+			but I will still be able to maintain / update my existing Firefox addons, until Mozilla decides
+			that they will not be supported by Firefox anymore.
+		</div>
+		<ul>
+			<li>Fixed oversized sliding notification alert</li>
+			<li>Removed some of the code causing "unsafe CPOW usage" warnings</li>
+			<li><a href="https://www.mozdev.org/bugs/show_bug.cgi?id=26329">[Bug 26329]</a> 
+			    Copying / Autofiltering stopped working in Fx 51 - 
+					This was caused by Firefox 51 stopping to expose the signonsTree in the 
+					saved logins window.
+			</li>
+			<li><a href="https://www.mozdev.org/bugs/show_bug.cgi?id=26330">[Bug 26330]</a> 
+			    Fx51: Firefox e10s may cause failure of "Login to Website". <br>
+					to make sure e10s stays disabled, set <br>
+					<i>browser.tabs.remote.autostart.2</i> = <b>false</b><br>
+			    As a workaround I added flag for e10s compatibility; once Firefox completely
+					forces multiprocess on its users this won't work anymore. I am currently trying 
+					to find a paid developer who can help rewriting the addon to make it multi-process
+					compatible, while maintaining compatibility with the other host apps (Thunderbird / Seamonkey)
+					that do not need multiprocess.
+			</li>
+		</ul>
+		<div class="pleaseDonate">
+		  <h5>Disabling Multiprocess Windows (Firefox only)</h5>
+			<p>To check whether Multiprocess is disabled in your version of Firefox, open the Help menu and click on 
+			   Troubleshooting. The help menu is opened with the question mark on the main firefox menu.<br>
+				 <img src="img/fx-helpmenu.png" alt="Firefox help menu"/><br>
+				 Alternatively, visit the url <i>about:support</i>
+			</p>
+			<p>Under Application Basics you will find a section Multiprocess Windows:<br>
+				 <img src="img/multiprocess-disabled.png" alt="Multiprocess disabled"/><br>
+				 This should be disabled. In Firefox 51, incompatible addons are able to disable Multiprocess, but this may
+				 likely change in future versions. For these you may need to adjust the <i>about:config</i> setting
+				 <i>browser.tabs.remote.autostart.2</i> to <i>false</i>.
+			</p>
+		</div>
+		
+		
+	</li>
+
+	<a name="3.7"> </a>
+	<a name="3.7.1"> </a>
+	<li>
+		<h4>
+			<a name="3.7.2" href="https://addons.mozilla.org/firefox/addons/versions/75777#version-3.7.2">Version 3.7.2 - 20/03/2016</a>
+			<a href="donate.html"><img src="https://www.paypal.com/en_US/i/btn/btn_donate_LG.gif" alt="Please Support QuickPasswords" class="inline-donate" /></a>
+		</h4>
+		<div class="pleaseDonate">
+			Please <a href="donate.html">donate some money</a>. We have a bad month - please help out if you can, my wife can't work due to back injury and 
+			invalidity claims may take a long time, on top of that the car had to be repaired because we have a bad private 
+			road which the council won't fix. <br>
+			If you like the new backup / restore feature, please <a href="donate.html">throw us some change</a>. 
+			Also remember that you can request new features and <a href="bugs.html">report bugs here</a>.
+		</div>
+		<ul>
+			<li>3.7.2 - Fixed <a href="https://www.mozdev.org/bugs/show_bug.cgi?id=26162">[Bug 26162]</a> Automatic Field correction does not work anymore</li>
+			<li><a href="https://www.mozdev.org/bugs/show_bug.cgi?id=25937">[Bug 25937]</a> 
+					Added Backup / restore feature
+					<br> <img src="img/Backup.png" alt="Backup and  Restore buttons"/>
+					<p>This was quite a complicated implementation (probably 2 weeks of coding), 
+						 but hopefully it was worth it. I started to write this after I managed 
+						 to delete all my sync'ed passwords one night when I visited a friend and tried to 
+						 log in from his machine. Somehow this propagated quickly to my 
+						 home machine from the Sync store so I had to restore an older profile. Since Sync 
+						 doesn't explain where it takes "the latest password state" from and there is no 
+						 "yesterday's good logins" I decided it was time to support a local backup.</p>
+					<p>However there are some stipulations. First of all I never want QuickPasswords
+						 to be the one simple way to steal your friend's passwords, so the backup / restore
+						 features are protected with the master password. If you haven't set one, that's 
+						 too bad, no backup for you. Secondly, we cannot have files full of unencrypted passwords
+						 on some local storage. It's just not safe at all. So by default, I am using Firefox
+						 built in keystore which is a unique personalized encryption platform generated 
+						 when you create a new Firefox profile or install Firefox for the first time.
+						 </p>
+					<br> <img src="img/encryption-reminder.png" alt="Encryption Reminder"/>
+					<p>This also means that you won't be able to restore the passwords on another Firefox
+						/ Profile unless you have a copy of the same keystore. 
+						Same is stored in a file called key3.db and should be backed up somewhere to 
+						read the passwords again. If you loose or break this file 
+						you will also simply not be able to read your passwords on your Firefox anymore.
+						As long as you use the same Firefox on the same Computer this won't present
+						a problem unless there is a file corruption. To transfer to a different
+						machine simply copy the relevant profile folder or at least key3.db.</p>
+					<p>All of these stipulations aside, there as a couple of things that the new backup
+						restore does well (and may be better than others). First of all, when you restore
+						your passwords, there is one thing it does NOT do: it will not DELETE all your
+						passwords. Instead it will merge in the passwords, carefully checking the backed up
+						logins and the time stamps (when was it last changed). If you want to start from zero, 
+						you have to delete all passwords manually. (Make sure to back up beforehand!)</p>
+					<br> <img src="img/modify-prompt.png" alt="Password Modification Prompt"/>
+					<p>Modified passwords: Restore will only <i>change</i> a password if it
+						wasn't changed in the meantime. This way you won't accidentally overwrite
+						a password you may have changed online into an older version. 
+						However, if this is what you <i>actually want</i> to do with a particular login,
+						[maybe because a password change online didn't propagate into the web]
+						you can simply delete that one manually before doing the restore.</p>
+					<p>File handling: you can store your files wherever you like, but I would still recommend
+						not putting them on a public folder or shared drive, unless you have set up 
+						correct access permissions. Better safe than sorry!
+					<br> <img src="img/restore-results.png" alt="Results after Restore"/>
+						</p>
+			</li>
+			<li>Added Ukrainian locale by Volodymyr Savchuk</li>
+			<li>Added Spanish locale by Alejandro P�rez Mart�n</li>
+			<li>Fixed <a href="https://www.mozdev.org/bugs/show_bug.cgi?id=26132">[Bug 26132]</a>
+					Firefox 43: Master Password Setup not shown - Firefox Options were moved into browser tab</li>
+			<li>Fixed <a href="https://www.mozdev.org/bugs/show_bug.cgi?id=26119">[Bug 26119]</a> 
+					Exception thrown by Unified Pwd Change when nothing is selected</li>
+			<li>Fixed <a href="https://www.mozdev.org/bugs/show_bug.cgi?id=26133">[Bug 26133]</a> 
+					Support links always open new tabs</li>
+		</ul>
+	</li>
+
+	<li>
+		<h4>
+			<a name="3.6" href="https://addons.mozilla.org/firefox/addons/versions/75777#version-3.6">Version 3.6 - 09/12/2015</a>
+			<a href="donate.html"><img src="https://www.paypal.com/en_US/i/btn/btn_donate_LG.gif" alt="Please Support QuickPasswords" class="inline-donate" /></a>
+		</h4>
+		<ul>
+			<li><a href="https://www.mozdev.org/bugs/show_bug.cgi?id=25998">[Bug 25998]</a> 
+					Unified Password change (SSO passwords) was fundamentally improved.
+					List of matching domains is shown and the user can now choose to match user 
+					and domain\user when changing the password for all relevant logins.<br>
+					<img src="img/SSO-dialog.png" />
+					</li>
+			<li><a href="https://www.mozdev.org/bugs/show_bug.cgi?id=26114">[Bug 26114]</a>
+					Fixed: When selecting one or more logins in password manager window, some 
+					useful commands in the context menu are disabled.<br>
+					<img src="img/Manager-CopyRecords.png" />
+					</li>
+			<li>Security Fix: QuickPasswords now asks for the master password when copying multiple records to clipboard
+					and when attempting to change passwords.</li>
+			<li>Added support for Firefox Pale Moon.<br>
+					Mozilla is going to eventuallyt terminatee XUL based addons, so it is important that our functionality
+					stays supported on this Firefox fork. Here is a 
+					<a href="https://blog.mozilla.org/addons/2016/11/23/add-ons-in-2017/">Mozilla blog post</a> 
+					explaining their plans.
+			</li>
+			<li>Added support for brighttext themes. The toolbar icon was improved for themes with dark backgrounds.</li>
+			<li>Removed QueryInterface on boxObject because of <a href="https://bugzil.la/979835">https://bugzil.la/979835</a></li>
+		</ul>
+	</li>
+
+	<li>
+		<h4><a name="3.5.1">Version 3.5.1 - 26/05/2025 - Signed Release</a></h4>
+		<p>This version was auto-generated by Mozilla because of <a href="https://blog.mozilla.org/addons/2015/02/10/extension-signing-safer-experience/">
+			 their recent "Add-ons signature" initiative</a>, which is put in place to make all Addons safer.
+			 In future versions, Firefox will only allow signed addons to be installed unless given explicite permission
+			 by the user to install "unsafe" addons.</p>
+		<p>QuickPasswords itself hasn't actually changed, but it may still detect the change in the version number to open this page. 
+			 You can safely close this tab. Sorry for the inconvenience.
+			 </p>
+	</li>
+
+	<li>
+		<h4>
+		<a name="3.5" href="https://addons.mozilla.org/firefox/addons/versions/75777#version-3.5">Version 3.5 - 07/01/2015</a>
+			<a href="donate.html"><img src="https://www.paypal.com/en_US/i/btn/btn_donate_LG.gif" alt="Please Support QuickPasswords" class="inline-donate" /></a>
+		</h4>
+		<ul>
+			<li>Fixed <a href='https://www.mozdev.org/bugs/show_bug.cgi?id=25935'>[Bug 25935]</a>"Unified password change..." broken with Firefox 34.0.5.<br>
+				 Changing passwords via the "Unified password change..." button displayed the error "ReferenceError: theSite is not defined."
+				 This was caused by some of the fixes for <a href='https://www.mozdev.org/bugs/show_bug.cgi?id=25909'>[Bug 25909]</a>.
+			</li>
+			<li>Improved SSO password change making it resilient against early exits caused by multiple users on the same domain</li>
+			<li>Added Feature <a href='https://www.mozdev.org/bugs/show_bug.cgi?id=25931'>[Bug 25931]</a>Added a switch for disabling version history tab. <br>
+					In order to disable the automatic change log, which is displayed when the Add-on is updated: open the Configuration Database 
+					(In Firefox, via entry of about:config in the Address bar; in Thunderbird, open Tb Options / Advanced / General and 
+					click the "Config Editor..." button) - then change the new (boolean) setting<br>
+					extensions.quickpasswords.update.showVersionPage to false.
+			</li>
+		</ul>
+	</li>
+
+	<li>
+		<h4>
+			<a name="3.4" href="https://addons.mozilla.org/firefox/addons/versions/75777#version-3.4">Version 3.4 - 16/12/2014</a>
+			<a href="donate.html"><img src="https://www.paypal.com/en_US/i/btn/btn_donate_LG.gif" alt="Please Support QuickPasswords" class="inline-donate" /></a>
+		</h4>
+		<ul>
+			<li>
+					<a href='https://www.mozdev.org/bugs/show_bug.cgi?id=25909'>[Bug 25909]</a>
+					A change in Firefox beta 35.0 caused QuickPasswords not to work any longer.<br>
+					Fixed http://bugzil.la/1001090 "temporal dead zone" fix breaks add-on in Firefox 35.0
+			</li>
+		</ul>
+	</li>
+
+	<li>
+		<h4>
+			<a name="3.3" href="https://addons.mozilla.org/firefox/addons/versions/75777#version-3.3">Version 3.3 - 17/11/2014</a>
+			<a href="donate.html"><img src="https://www.paypal.com/en_US/i/btn/btn_donate_LG.gif" alt="Please Support QuickPasswords" class="inline-donate" /></a>
+		</h4>
+		
+		<ul>
+			<li>Adds Toolbar button on first run (Firefox / SeaMonkey). </li>
+			<li>When opened from button / context menu of a web page, filtering will now show less results to make login simpler. </li>
+			<li>The last used login is selected by default. This accelerates login for users with multiple profiles. </li>
+		</ul>
+	</li>
+
+	<li>
+		<h4>
+			<a name="3.2.1" href="https://addons.mozilla.org/firefox/addons/versions/75777#version-3.2.1">Version 3.2.1 - 26/04/2014</a>
+			<a href="donate.html"><img src="https://www.paypal.com/en_US/i/btn/btn_donate_LG.gif" alt="Please Support QuickPasswords" class="inline-donate" /></a>
+		</h4>
+		<br>
+		<h5>The new <a href = "https://webwewant.allizom.org/" target="_blank">Firefox Australis</a> will be released on 29/04/2014!</h5>
+		<p>To coincide with the layout changes in the new Firefox skin Australis I have reviewed the icons yet again 
+			 and also added some productivity items. Enjoy!</p>
+		<ul>
+			<li>Improved Australis support with better icons<br>
+					<img src="img/toolbarIcons-Australis.png" alt="new Australis toolbar button"/>
+					</li>
+			<li>Fixed <a href='https://www.mozdev.org/bugs/show_bug.cgi?id=25750'>[Bug 25750]</a> - OK, Cancel missing in Options Dialog on Mac</li>
+			<li><a href='https://www.mozdev.org/bugs/show_bug.cgi?id=2579'>[Bug 25749]</a> - "Fill search box when opening password manager" does not work - invalid
+										(added detailed debug log to getURIcontext())</li>
+			<li>Copy records now shows throbber animation</li>
+			<li>Added copying passwordField, usernameField, formSubmitURL and httpRealm to copy records command</li>
+			<li>Disable donation page on prereleases</li>
+			<li>Made options window "alwaysRaised" to avoid confusion</li>
+			<li>Added "locked" status for showing the Master Password. If a master password is set and hasn't been entered (thus protecting the passwords)
+					this will be shown by adding a lock symbol to the toolbar icon.<br>
+					<img src="img/toolbarIcons.png" alt="new colored toolbar button"/><br>
+					Note: if another method (than opening the passwordmanager window / clicking the quickpasswords toolbar button) 
+					is used to enter the master password, the lock icon may not be updated in that case; at the moment please use the toolbarbutton
+					or "Retrieve a Password..." context menu item to be sure if you want your master password status to always be 
+					reflected correctly in the toolbar.
+					</li>
+			<li>Added Repair confirmation for SeaMonkey users (there is no notification panel in SeaMonkey)	<br>
+					<img src="img/Repair-Prompt.png" alt="Prompt for repairing password field names"/>
+				 </li>
+			<li>Updated tr and pt-BR locales</li>
+			<li>Postbox: Removed repair button and fixed opening options from password manager window.</li>
+			<li>Special thanks to Avinash Kundaliya for helping me with the icons!!</li>
+		</ul>
+	</li>
+
+	<li>
+		<h4>
+		<a name="3.2" href="https://addons.mozilla.org/firefox/addons/versions/75777#version-3.2">Version 3.2 - 13/04/2014</a>
+		<a href="donate.html"><img src="https://www.paypal.com/en_US/i/btn/btn_donate_LG.gif" alt="Please Support QuickPasswords" class="inline-donate" /></a>
+		</h4>
+		
+		<ul>
+		<li>Australis Support - added new monochrome Icon set and big Icon for new Australis side panel customization <br>
+		New Toolbar Panel:<br>
+		<img src="img/Australis-ToolbarPanel.png" alt="new Australis icon"/><br>
+		Here is a side-by-side comparison of the two choices - new Australis skin to the left:<br>
+
+		<table id="australisCompare">
+			<tr>
+				<th>Australis Skin</th>
+				<th>Colorful Skin</th>
+			</tr>		
+			<tr>
+				<td colspan="2" class="hdr">Password Manager</td>
+			</tr>		
+			<tr>
+				<td><img src="img/australis/Manager-Australis.png" alt="manager toolbar icons (Australis)"/></td>
+				<td><img src="img/australis/Manager-Colored.png" alt="manager toolbar icons (Colorful)"/></td>
+			</tr>		
+			<tr>
+				<td colspan="2" class="hdr">Password Manager Context Menu</td>
+			</tr>		
+			<tr>
+				<td><img src="img/australis/Manager-Context-Australis.png" alt="manager context menu (Australis)"/></td>
+				<td><img src="img/australis/Manager-Context-Colored.png" alt="manager context menu (Colorful)"/></td>
+			</tr>		
+			<tr>
+				<td colspan="2" class="hdr">Browser Context Menu</td>
+			</tr>		
+			<tr>
+				<td><img src="img/australis/Browser-Context-Australis.png" alt="browser context menu (Australis)"/></td>
+				<td><img src="img/australis/Browser-Context-Colorful.png" alt="browser context menu (Colorful)"/></td>
+			</tr>		
+			<tr>
+				<td colspan="2" class="hdr">Masterpassword lock states</td>
+			</tr>		
+			<tr>
+				<td><img src="img/australis/locks-australis.png" alt="lock status (Australis)"/>
+					<ul class="lockLegend">
+						<li>Master Password locked (hover)</li>
+						<li>Master Password lock prepared</li>
+						<li>Master Password unlocked</li>
+						<li>Hover State</li>
+						<li>No Master Password set</li>
+					</ul>
+				</td>
+				<td><img src="img/australis/locks-colored.png" alt="lock status (Colorful)"/>
+					<ul class="lockLegend">
+						<li>Master Password locked (hover)</li>
+						<li>Master Password lock prepared</li>
+						<li>Master Password unlocked</li>
+						<li>Hover State</li>
+						<li>No Master Password set</li>
+					</ul>
+				</td>
+			</tr>		
+			<tr>
+				<td colspan="2" class="pictureLegend">
+				<b>Note:</b> For security reasons you cannot use the lock button to unlock the master password once it is locked.
+				the only way to "unlock" is by clicking on the QuickPasswords button in the browser toolbar
+				or the "Retrieve a Password..." context menu in the browser. You can however protect the passwords
+				by "closing the lock" before you close the password manager - the browser will then behave as if you have 
+				started a new Session and prompt for the master password.</td>
+			</tr>		
+
+		</table>
+		<br>
+		The new look can be toggled on QuickPasswords settings > Advanced+Support:<br>
+		<img src="img/Australis-Settings.png" alt="Australis Setting"/>
+		
+		
+		</li>
+		<li>Options Dialog - is now easier to read and split into General and Advanced+Support tabs.  </li>
+		<li>Toolbar Icon - downresized + rerendered colored Toolbar button to 20px for large icons (non Australis)  </li>
+		<li>Fixed: when no entry was selected and the Edit Passwords button was pressed 
+				it displayed the error "TypeError: QuickPasswords.Properties is undefined". 
+				Instead QuickPasswords now displays: "Please select at least one item from the list!"
+		</li>
+	</ul>
+	</li>
+
+	<li>
+		<h4>
+		<a name="3.1" href="https://addons.mozilla.org/firefox/addons/versions/75777#version-3.1">Version 3.1 - 16/12/2013</a>
+		<a href="donate.html"><img src="https://www.paypal.com/en_US/i/btn/btn_donate_LG.gif" alt="Please Support QuickPasswords" class="inline-donate" /></a>
+		</h4>
+		
+		<ul>
+		<li> QuickPasswords now assists you when no master password is set: <br>
+			<img src="img/masterPasswordMissing.png" alt="master password assistant"/><br>
+			This opens the Security preferences - click the red bar to set up the Master Password.<br>
+			<img src="img/setupMasterPassword.png" alt="adding a master password"/><br>
+			Note that this will encrypt all your stored passwords and make them unreadable, so <a href="http://www.wikihow.com/Create-a-Password-You-Can-Remember">make sure to remember it</a>. 
+			I won't be able to help you retrieve them if you forget your master password. 
+			I would go for something that is easy to remember and not too hard to type.	
+			Including mixed case letters, numbers and special characters help to make it stronger.
+			I usually have a master password in Firefox but usually not in Thunderbird - <a href="http://en.wikipedia.org/wiki/YMMV">YMMV</a>.
+		</li>
+		<li> Improved filtering function (showPasswords) in order to always highlight the most correct domain match.</li>
+		<li> Improved security of about:config dialogs - making sure no other configuration settings can be overwritten.</li>
+		<li> Fixed disabling (login / repair) buttons in IETabs - IE tabs do not support modifying the context menu.</li>
+		<li> Added translations for toggle version and donation messages.</li>
+		<li> Moved options css file into skins folder.</li>
+		<li> Removed obsolete buttons from passwordwindow overlay.</li>
+		<li> Decreasing amount of console messages making most messages dependant on debug.default (defaults to true).</li>
+		<li> Removed some global variables to avoid namespace pollution </li>
+		
+		</ul>
+	</li>
+
+	<li>
+		<h4>
+		<a name="3.0" href="https://addons.mozilla.org/firefox/addons/versions/75777#version-3.0">Version 3.0 - 29/09/2013</a>
+		<a href="donate.html"><img src="https://www.paypal.com/en_US/i/btn/btn_donate_LG.gif" alt="Please Support QuickPasswords" class="inline-donate" /></a>
+		</h4>
+		<ul>
+			<li>Streamlined password window by using a toolbar:<br/>
+			<img src="img/toolbar-cropped.png" alt="password manager toolbar"/>
+			</li>
+			<li>Fixed <a href='https://www.mozdev.org/bugs/show_bug.cgi?id=25580'>[Bug 25580]</a>   Better heuristics to determine which fields are not visible to avoid filling the wrong logon fields.
+					Some web sites use the same name for multiple login boxes and hide them by pushing them "off screen". 
+					This version tries to guard against that.</li>
+			<li><p> 
+						Added button to "Correct Field Names" - for sites that use duplicate  / hidden login forms on the same page which confuses Firefox:<br>
+						<img src="img/repair24.png" alt="fix field names button"/>
+					</p>
+					<p> 
+						Use this feature if Quickpasswords is not able to auto-fill the login form. The following notification is displayed on the current browser tab:<br>
+						<img src="img/repairNotification.png" alt="notification panel"/><br>
+						Now right-click the password box and select Insert Password". Likewise, right-click the user name box and select "Insert User Name".
+					</p> 
+					<p> 
+						QuickPasswords will prompt in both cases, whether to correct the stored entry using a notification at the top:<br>
+						<img src="img/fieldRepairNotify.png" alt="notification panel"/><br>
+						Click the [Update field] button to correct the field name entry in both cases.
+					</p> 
+			</li>
+		</ul>
+	</li> 
+			
+	<li>
+		<h4>
+		<a name="2.9" href="https://addons.mozilla.org/firefox/addons/versions/75777#version-2.9">Version 2.9 - 05/05/2013</a>
+		<a href="donate.html"><img src="https://www.paypal.com/en_US/i/btn/btn_donate_LG.gif" alt="Please Support QuickPasswords" class="inline-donate" /></a>
+		</h4>
+		<ul>
+			<li>Improved automatic password filling to also work with form elements that are identified by name and not by id. 
+					This will increase reliability when trying to log on and also help correcting the field name in case the web page
+				was modified.</li>
+			<li>Bumped up compatibility</li>
+			<li>nsIPrivateBrowsingService was removed in version 20 for per-window private browsing mode</li>
+		</ul>
+	</li>
+
+	<li>
+		<h4><a name="2.8" href="https://addons.mozilla.org/firefox/addons/versions/75777#version-2.8">Version 2.8 - 18/02/2013</a>
+		</h4>
+		<ul>
+			<li>Fixed <a href='https://www.mozdev.org/bugs/show_bug.cgi?id=25336'>[Bug 25336]</a> - From Firefox 18.0.2 upwards - When changing a larger amount of passwords can error can be thrown by Mozilla core code:
+					"Javascript Error: signon is undefined" or "undefined property table[selections[0].number]"		<br/>
+			<img src="img/errorGetCellText.png" /></li>
+			<li>Added throbber animation during multiple password change<br/>
+			<img src="img/SSO-Throbber.png" /></li>
+		</ul>
+	</li>
+
+	<a name="2.7"></a>
+
+	<li>
+		<h4><a name="2.6.1" href="https://addons.mozilla.org/firefox/addons/versions/75777#version-2.7">Version 2.7 - 03/Feb/2013</a>
+			<a href="donate.html"><img src="https://www.paypal.com/en_US/i/btn/btn_donate_LG.gif" alt="Please Support QuickPasswords" class="inline-donate" /></a>
+		</h4>
+		<ul>
+			<li>New "do not show this message again" checkbox to make it easier new users (no need to open options dialog any more)</li>
+			<li>Default to closing password manager automatically to remove clutter</li>
+			<li>Moved wizard button to top to clean up commands area.<br/>
+			<img src="img/wizard-button.png"  alt="tidier interface"/>
+		</li>
+		<li>New: <a href='https://www.mozdev.org/bugs/show_bug.cgi?id=25319'>[FR 25319]</a> Lock icon - protects password manager 
+				through the master password prompt for added security.<br/>
+			<img src="img/master-password-protect.png" alt="added security"/><br/>
+			Once you close the lock and leave the Window, it will react the same way as it does when you open the browser: it will
+			prompt for the password again. So now you can leave the browser open and protect it temporarily when you have to 
+			leave your desk.
+		</li>
+		<li>Added Option to update changed form ids - when QuickPasswords can not fill the login form automatically based on stored credentials,
+					and the context menu is used, it can offer to correct the stored login information.<br/>
+			<img src="img/updateNotification.png" alt="If the field names are outdated, QuickPasswords may help to correct them."/>
+			<br/>Sometimes sites change their login forms and the normal way to deal with this (delete password and re-add it) 
+			is cumbersome and not very obvious. With the new correction feature QuickPasswords will "learn" where the new login 
+			and password boxes are. All you have to do is click the [Update Field] button above the web page.
+		</li>
+		</ul>
+	</li>
+
+	<li>
+			<h4><a name="2.6" href="https://addons.mozilla.org/firefox/addons/versions/75777#version-2.6">version 2.6 - 17/01/2013</a>
+			<a href="donate.html"><img src="https://www.paypal.com/en_US/i/btn/btn_donate_LG.gif" alt="Please Support QuickPasswords" class="inline-donate" /></a>
+		</h4>
+		<ul>
+			<li>Fixed <a href='https://www.mozdev.org/bugs/show_bug.cgi?id=25307'>[Bug 25307]</a> - On the Statusbar of Thunderbird and SeaMonkey mail windows some or all icons are missing:<br/>
+			<img src="img/Bug25307.png" /></li>
+			<li>Thunderbird / SeaMonkey mail - Added QuickPasswords command to folder pane context menu</li>
+			<li>Improved filter prediction in SeaMonkey mail windows - we can now filter passwords for 
+				 <ul>
+						 <li>the mailbox when right-clicking a folder </li>
+					 <li>the sender domain when right-clicking a message</li>
+				 </ul>
+				</li>					
+		</ul>
+	</li>
+
+	<li>
+	<a name="2.4"></a>
+		<h4><a name="2.5" href="https://addons.mozilla.org/firefox/addons/versions/75777#version-2.5">Version 2.5 - 10/01/2013</a></h4>
+		<ul>
+			<li> New: <a href='https://www.mozdev.org/bugs/show_bug.cgi?id=25287'>[FR 25287]</a> reacts to double-click on a login item on Password Manager </li>
+			<li> New: <a href='https://www.mozdev.org/bugs/show_bug.cgi?id=25287'>[FR 25287]</a> QuickPasswords now inserts the login information automatically 
+					 when you click the login button (or double-click an entry)<br/>
+			<img src="img/Login_Option.png" />
+			<br/> How: QuickPasswords will go through all forms in the page and match the names of password & user name 
+						fields and also make sure these are currently visible. (Many pages have multiple forms, some of them hidden)
+						Only then it will insert matching information username / password or both. If something cannot be matched, then the
+					context menu entry of the missing field(s) is added as a fallback, like in the previous version.
+			</li>
+			<li> Removed duplicate "copy UserName" menu item.</li>
+			<li> Known Issues: The context menu is always visible when in a Thunderbird content tab</li>
+		</ul>
+	</li>
+
+	<li><h4><a name="2.3" href="https://addons.mozilla.org/firefox/addons/versions/75777#version-2.3">Version 2.3 - 13/12/2012</a>
+		</h4>
+		<ul>
+			<li> Fixed legacy layout issues in Postbox</li>
+			<li> Fixed a problem with version number which caused multiple donation screens</li>
+			<li> IEtab2 support</li>
+			<li> Make it possible to disable donation screen displayed on update by changing extensions.quickpasswords.donations.askOnUpdate = false</li>
+		</ul>
+	</li>
+
+	<li><a name="2.2.1"></a>
+		<h4><a name="2.2" href="https://addons.mozilla.org/firefox/addons/versions/75777#version-2.2">Version 2.2.1 - 25/10/2012</a></h4>
+		<ul>
+			<li>Fixed a problem with showing advanced debug settings (window was going to background)</li>
+			<li>Replaced deprecated -moz-linear-gradient CSS values</li>
+			<li>Replaced -moz-transition CSS values with newer ones</li>
+			<li>known issues: es-AR and pt locales are incomplete.</li>
+			<li>2.2.1 : fixed install script for Italian locale; accidentally it was not included in 2.2</li>
+		</ul>
+		<h5>New locales added</h5>
+		<ul>
+			<li>Completed fr locale - thanks to Jean Michel Bourd�</li>
+			<li>Added Italian Locale - thanks to Leopoldo Saggin</li>
+		</ul>
+	</li>
+
+	<li>
+		<h4><a name="2.1"  href="https://addons.mozilla.org/firefox/addons/versions/75777#version-2.1">Version 2.1 - 08/06/2012</a></h4>
+		<ul>
+			<li>Fixed <a href='https://www.mozdev.org/bugs/show_bug.cgi?id=24940'>[Bug 24940]</a> - Doesn't fill username/password in firefox 13</li>
+			<li>Completed Hu locale</li>
+			<li>fixed display of version link and donation pages after updates</li>
+		</ul>
+	</li>
+
+	<li>
+		<h4><a name=2.0.1></a><a name="2.0"  href="https://addons.mozilla.org/firefox/addons/versions/75777#version-2.0">Version 2.0 - 30/05/2012</a></h4>
+		<ul>
+			<li>Compatibility update => Gecko 15</li>
+			<li>added some translation to the hebrewlocale</li>
+		</ul>
+	 </li>
+
+	<a name="1.9"></a>
+	<li>
+		<h4><a name="1.9.1"  href="https://addons.mozilla.org/firefox/addons/versions/75777#version-1.9.1">Version 1.9.1 - 31/01/2012</a></h4>
+		<ul>
+			<li>Removed some unnecessary errors from console to improve S/N ratio</li>
+			<li>Fixed <a href="https://www.mozdev.org/bugs/show_bug.cgi?id=22904" target="_blank">[Bug 22904]</a> Icon Size on toolbar buttons was too big</li>
+			<li>Some layout improvements in change password box</li>
+		</ul>
+	 </li>
+
+	<li>
+		<h4><a name="1.8"  href="https://addons.mozilla.org/firefox/addons/versions/75777#version-1.8">Version 1.8 - 20/01/2012</a></h4>
+		<ul>
+			<li>Fixed of German translation (UTF format) in order to display change password dialog correctly</li>
+		</ul>
+	 </li>
+
+	<li>
+		<h4><a name="1.7"  href="https://addons.mozilla.org/firefox/addons/versions/75777#version-1.7">Version 1.7 - 26/12/2011</a></h4>
+		<ul>
+			<li>Added cancel login menu item - this tidies up the username and password menu items in case they won't be used</li>
+			<li>Added automatic scrolling to selected row in Manager</li>
+		</ul>
+	 </li>
+
+	<li>
+		<h4><a name="1.6"  href="https://addons.mozilla.org/firefox/addons/versions/75777#version-1.6">Version 1.6 - 12/12/2011</a></h4>
+		<ul>
+			<li>Added "change (multiple) passwords" feature<br>
+				<table class="screens">
+					<tr>
+						<td>
+							<img src="img/QP_ChangePasswords.png" />
+						</td>
+						<td>
+							<p>You can now change the password to one web site or many web sites (provided they have matching passwords). Simply use the
+							magic wand in the password manager first to make your selection (e.g. google.com). Then press the [change multiple passwords] button.
+							finally click on [Select all entries that match]. This will highlight all items that satisfy "google.com" and have this password. Enter a new one
+							and you can change passwords for all these entries in one operation!</p>
+							<br>
+							<p>The good thing is that it will only affect entries with same password so you won't mess up anything if you have
+							multiple users (with differing passwords) stored</p>
+						</td>
+					</tr>
+				</table>
+			</li>
+			<li>Added "Login (without Clipboard)" feature<br>
+				<table class="screens">
+					<tr>
+						<td>
+							<img src="img/Login-Command.png" /><br>
+							<p>"Login" is now the new top command, as it is probably the most frequent use case.</p>
+						</td>
+						<td>
+							<img src="img/fillUser.png" />
+							<br>
+							<p>Once "Login to Website" has been selected, you can insert both User Id and Password with a simple right-click. The clipboard is not used
+							during this operation. Extra safe!</p>
+							<br>
+							<img src="img/fillPassword.png" />
+						</td>
+					</tr>
+				</table>
+			</li>
+			<li>stability fixes mainly for SeaMonkey and Postbox</li>
+			<li>support for private browsing mode (Firefox and SeaMonkey)</li>
+			<li>rapid release bump (maxVer = 9.*)</li>
+			<li>removed locale from jar file</li>
+		</ul>
+	</li>
+
+	<li>
+		<h4><a name="1.5"  href="https://addons.mozilla.org/firefox/addons/versions/75777#version-1.5">Version 1.5 - 22/09/2011</a></h4>
+		<ul>
+			<li>Added Fx + Tb 6.0* compatibility</li>
+			<li>Added refine sites button (magic wand) to narrow down sites with multiple entry points</li>
+			<li>Fixed non working links in options dialog; Fixed tab focusing for following them.</li>
+			<li>Added new versioning regime and link to site on update / first install 
+					- triggered by first use / not by just starting up host Application.</li>
+			<li>Added specialized functionality for mail clients
+				<ul>
+					<li>retrieve mail account password (when in a non-local folder)</li>
+					<li>retrieve URL account passwords (when in content tab, like in Firefox)</li>
+					<li>retrieve passwords based on current sender (when viewing a single message)</li>
+				</ul>
+			</li>
+			<li>hidden debug configuration (right click debug box)</li>
+		</ul>
+		<h5>New locales added</h5>
+		<ul>
+			<li>tr-TR  thanks to Nikneyim [BabelZilla.org]</li>
+			<li>sr     thanks to Rancher [BabelZilla.org]</li>
+		</ul>
+	</li>
+
+	<li>
+		<h4><a name="1.4"  href="https://addons.mozilla.org/firefox/addons/versions/75777#version-1.4">Version 1.4 - 09/02/2011</a></h4>
+		<ul>
+			<li>Force icons in context menu even in default theme (class menuitem-iconic)</li>
+			<li>Added tooltip (and updated label text) to the time delay option</li>
+			<li>Now there are 3 options for displaying browser context menu: never, on text items and always</li>
+			<li>Open issue: in Firefox 4, still not able to display the extension's version number</li>
+		</ul>
+	</li>
+
+	<li>
+		<h4><a name="1.3"  href="https://addons.mozilla.org/firefox/addons/versions/75777#version-1.3">Version 1.3 - 22/01/2011</a></h4>
+		<ul>
+			<li>Changed behavior of context menu item so it only shows if cursor is on an editable (text) field</li>
+			<li>Added Option to completely disable the context menu item from from Browser Window</li>
+			<li>Context Menu item in browser window is now only visible on editable elements</li>
+				<li>Added Option to submit bug or ask for feature</li>
+			<li>Fixed a bug "menu is null" when opening password manager window</li>
+			<li>Added Options Menu Item to context menu in Password Manager</li>
+			<li>Added option to hide Context Menu</li>
+			<li>Added Postbox support</li>
+			</ul>
+			<h5>New locales added</h5>
+			<ul>
+			<li>es-AR by Eduardo Leon</li>
+			<li>ja-JP by Noumi Ryoko</li>
+			<li>sv-SE by Mikael Hiort af Orn�s</li>
+		</ul>
+	</li>
+
+	<li>
+		<h4><a name="1.2"  href="https://addons.mozilla.org/firefox/addons/versions/75777#version-1.2">Version 1.2 - 04/01/2011</a></h4>
+		<ul>
+			<li>Made Extension compatible with Firefox 4.0</li>
+		</ul>
+	</li>
+
+	<li>
+		<h4><a name="1.1"  href="https://addons.mozilla.org/firefox/addons/versions/75777#version-1.1">Version 1.1 - 29/12/2010</a></h4>
+		<ul>
+			<li>Made context menu compatible with the <a href="https://addons.mozilla.org/firefox/addon/60265/">"Saved Password Editor" Extension</a></li>
+			<li>Fixed a bug that made Header row appear as "undefined" when copying multiple records and "Display message after copying" was disabled</li>
+		</ul>
+	</li>
+
+	<li>
+		<h4><a name="1.0"  href="https://addons.mozilla.org/firefox/addons/versions/75777#version-1.0">Version 1.0 - 09/07/2010</a></h4>
+		<ul>
+			<li>Danish Locale Added (Joergen Rasmussen)</li>
+			<li>Hebrew Locale Added (baaryoni)</li>
+			<li>Turkish Locale Added (Nikneyim)</li>
+		</ul>
+	</li>
+
+	<li>
+		<h4><a name="0.9.8" href="https://addons.mozilla.org/firefox/addons/versions/75777#version-0.9.8" >Version 0.9.8 - 22/05/2010</a></h4>
+		<ul>
+			<li> Added option to Copy User Name (in password manager's context menu)</li>
+			<li> Added option to Site URL (in password manager's context menu)</li>
+		</ul>
+	</li>
+
+	<li>
+		<h4><a name="0.9.6.1" href="https://addons.mozilla.org/firefox/addons/versions/75777#version-0.9.6.1">Version 0.9.6.1 - 27/02/2010</a></h4>
+		<ul>
+			<li> Added Russian Locale (Anton Pinsky)</li>
+			<li> Markh: Reviewed Dutch locale</li>
+			<li> Added link to Mozdev homepage to options dialog</li>
+			<li> removed unnecessary JSON module</li>
+		</ul>
+	</li>
+
+	<li>
+		<h4><a name="0.9.6" href="https://addons.mozilla.org/firefox/addons/versions/75777#version-0.9.6">Version 0.9.6 - 20/02/2010</a></h4>
+		<ul>
+			<li> Added "copy multiple lines / records" feature</li>
+			<li> Added option to include header (for pasting data in spreadsheets) when doing this</li>
+			<li> Added Log information about copied data to javascript console (passwords are not displayed)</li>
+			<li> Added Dutch Locale (markh van BabelZilla.org)</li>
+			<li> Added Cantonese Locale (Loviny)</li>
+			<li> Localized description</li>
+		</ul>
+	</li>
+
+	<li>
+		<h4><a name="0.9.5" href="https://addons.mozilla.org/firefox/addons/versions/75777#version-0.9.5">Version 0.9.5 - 14/02/2010</a></h4>
+		<ul>
+			<li>Added feature context menu in password manager</li>
+			<li>Added copy line feature</li>
+			<li>Added German Locale (AG)</li>
+			<li>Added French Locale (Bilouba http://lionel.bijaoui.free.fr/)</li>
+			<li>Added about button to options dialog</li>
+		</ul>
+	</li>
+
+	<li>
+		<h4><a name="0.9.4" href="https://addons.mozilla.org/firefox/addons/versions/75777#version-0.9.4">Version 0.9.4 - 12/02/2010</a></h4>
+		<ul>
+			<li>Fixed Icon and Writing on Browser Content Popup Menu</li>
+			<li>Added links to new extension homepage:  http://quickpasswords.mozdev.org</li>
+			<li>Removed any references to the old working title "PasswordClipper"</li>
+		</ul>
+	</li>
+
+	<li>
+		<h4><a name="0.9.3" href="https://addons.mozilla.org/firefox/addons/versions/75777#version-0.9.3">Version 0.9.2 - 10/02/2010</a></h4>
+		<ul>
+			<li>Fixed localization issues</li>
+			<li>Fixed an issue with case sensitivity in Linux</li>
+			<li>Added missing icon for small toolbar view</li>
+			<li>Added 'real' settings to options dialog</li>
+		</ul>
+	</li>
+
+	<li>
+		<h4><a name="0.9" href="https://addons.mozilla.org/firefox/addons/versions/75777#version-0.9">Version 0.9 - 09/02/2010</a></h4>
+		<ul>
+			<li>Released on AMO</li>
+		</ul>
+	</li>
+
+</ul>
+
+    <p>
+    For questions or comments about QuickPasswords, please send a message to 
+    </p>
+    
+	<p class=mail_link>
+		<SCRIPT LANGUAGE="JavaScript">
+		u1 = '&#97;&#120;&#101;l.gru';
+		u2 = 'de@'
+		u3 = 'gma';
+		u4 = 'il.com';
+		document.write('<a href=\"mailto:' + u1 + u2 + u3 +  u4 +'?subject=[QuickPasswords] - &lt;your subject line here&gt;\">');
+		document.write('Mail To Axel Grude</a>');
+		</SCRIPT>
+		
+		<NOSCRIPT>You need to enable javascript for the email link to work!</NOSCRIPT>
+	</p>
+
+    <!-- For general site related questions or comments, -->
+    For questions or comments <em>not</em> about a specific project,
+    please read our <a href="http://www.mozdev.org/feedback.html">feedback</a> page.<br>
+    <a href="http://www.mozdev.org/copyright.html">Copyright</a> © 2000-2011. All rights reserved.
+    <a href="http://www.mozdev.org/community/terms.html">Terms of Use</a> &amp;
+    <a href="http://www.mozdev.org/community/privacy.html">Privacy Policy</a>.
+    </p>
+    
+	<div class=attribution> Attributions:
+	<BR>bullets, mailto, key and mouse icons by Yusuke Kamiyamane under Creative Commons, see: <a href="http://p.yusukekamiyamane.com/">http://p.yusukekamiyamane.com/</a>
+	<BR>X-mas decorations (baubles) by <a href="http://www.rgbstock.com/user/fangol">Robert Proksa (fangol) from rgbstock.com</a>
+	</div>
+
+	</div><!-- CLOSE <div id="main-content-no-nav"> with the blue box -->
+	<div id="downPusher"></div><!-- push down the black main background -->
+</body>
+</html>
+
